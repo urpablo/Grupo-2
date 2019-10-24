@@ -11,6 +11,7 @@ namespace PruebaCompartido
         static void Main(string[] args)
         {
             Console.WriteLine("probando");
+            Console.WriteLine("probando-2");
             Console.ReadKey();
         }
     }
