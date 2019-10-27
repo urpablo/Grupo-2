@@ -17,10 +17,7 @@ namespace AppComercio
             InitializeComponent();
         }
 
-        private void bunifuFlatButton1_Click(object sender, EventArgs e)
-        {
-
-        }
+    
 
         private void Salir_Click(object sender, EventArgs e)
         {
@@ -33,14 +30,6 @@ namespace AppComercio
 
         }
 
-      
-
-   
-
-        private void TopPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void Restaurar_Click(object sender, EventArgs e)
         {
@@ -63,56 +52,60 @@ namespace AppComercio
             {
                 Sidebar.Width = 45;
                 TopPanelLeft.Width = 45;
+                EnvioLabel.Location = new Point(47, 5);
+                RecibirLabel.Location = new Point(47, 5);
+                RealizarLabel.Location = new Point(47, 5);
+                StockLabel.Location = new Point(47, 5);
             }
             else
             {
                 Sidebar.Width = 157;
                 TopPanelLeft.Width = 157;
+                EnvioLabel.Location = new Point(163, 5);
+                RecibirLabel.Location = new Point(163, 5);
+                RealizarLabel.Location = new Point(163, 5);
+                StockLabel.Location = new Point(163, 5);
+
 
             }
-        }
 
-      
-
-        private void StockLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RecibirPedido_Click(object sender, EventArgs e)
-        {
-
-            StockLabel.Visible = false;
-            RealizarPedidoLabel.Visible = false;
-            EnviarPedidoLabel.Visible = false;
-            RecibirPedidosLabel.Visible = true;
-        }
-
-        private void RealizarPedido_Click(object sender, EventArgs e)
-        {
-
-            StockLabel.Visible = false;
-            RealizarPedidoLabel.Visible = true;
-            EnviarPedidoLabel.Visible = false;
-            RecibirPedidosLabel.Visible = false;
-
-        }
-
-        private void EnviarPedido_Click(object sender, EventArgs e)
-        {
-            StockLabel.Visible = false;
-            RealizarPedidoLabel.Visible = false;
-            EnviarPedidoLabel.Visible = true;
-            RecibirPedidosLabel.Visible = false;
-
+       
         }
 
         private void Stock_Click(object sender, EventArgs e)
         {
             StockLabel.Visible = true;
-            RealizarPedidoLabel.Visible = false;
-            EnviarPedidoLabel.Visible = false;
-            RecibirPedidosLabel.Visible = false;
+            RealizarLabel.Visible = false;
+            RecibirLabel.Visible = false;
+            EnvioLabel.Visible = false;
         }
+
+        private void RealizarPedido_Click(object sender, EventArgs e)
+        {
+            StockLabel.Visible = false;
+            RealizarLabel.Visible = true;
+            RecibirLabel.Visible = false;
+            EnvioLabel.Visible = false;
+        }
+
+        private void EnviarPedido_Click(object sender, EventArgs e)
+        {
+            StockLabel.Visible = false;
+            RealizarLabel.Visible = false;
+            RecibirLabel.Visible = false;
+            EnvioLabel.Visible = true;
+
+        }
+
+        private void RecibirPedido_Click(object sender, EventArgs e)
+        {
+            StockLabel.Visible = false;
+            RealizarLabel.Visible = false;
+            RecibirLabel.Visible = true;
+            EnvioLabel.Visible = false;
+
+        }
+
+      
     }
 }

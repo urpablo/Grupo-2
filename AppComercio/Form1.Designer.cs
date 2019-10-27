@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.EnvioLabel = new System.Windows.Forms.Label();
+            this.RecibirLabel = new System.Windows.Forms.Label();
             this.Restaurar = new System.Windows.Forms.PictureBox();
+            this.StockLabel = new System.Windows.Forms.Label();
             this.Maximizar = new System.Windows.Forms.PictureBox();
             this.TopPanelLeft = new System.Windows.Forms.Panel();
             this.Wrapper = new System.Windows.Forms.PictureBox();
             this.Minimizar = new System.Windows.Forms.PictureBox();
             this.Salir = new System.Windows.Forms.PictureBox();
-            this.StockLabel = new Bunifu.Framework.UI.BunifuCustomLabel();
             this.Sidebar = new System.Windows.Forms.Panel();
-            this.RecibirPedido = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.EnviarPedido = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.RealizarPedido = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.Stock = new Bunifu.Framework.UI.BunifuFlatButton();
-            this.MainPanel = new System.Windows.Forms.Panel();
-            this.RecibirPedidosLabel = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.RealizarPedidoLabel = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.EnviarPedidoLabel = new Bunifu.Framework.UI.BunifuCustomLabel();
-            this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.RecibirPedido = new System.Windows.Forms.Button();
+            this.EnviarPedido = new System.Windows.Forms.Button();
+            this.RealizarPedido = new System.Windows.Forms.Button();
+            this.Stock = new System.Windows.Forms.Button();
+            this.RealizarLabel = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Maximizar)).BeginInit();
@@ -57,13 +57,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).BeginInit();
             this.Sidebar.SuspendLayout();
-            this.MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
+            this.TopPanel.Controls.Add(this.RealizarLabel);
+            this.TopPanel.Controls.Add(this.EnvioLabel);
+            this.TopPanel.Controls.Add(this.RecibirLabel);
             this.TopPanel.Controls.Add(this.Restaurar);
+            this.TopPanel.Controls.Add(this.StockLabel);
             this.TopPanel.Controls.Add(this.Maximizar);
             this.TopPanel.Controls.Add(this.TopPanelLeft);
             this.TopPanel.Controls.Add(this.Minimizar);
@@ -73,7 +80,28 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(695, 32);
             this.TopPanel.TabIndex = 1;
-            this.TopPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TopPanel_Paint);
+            // 
+            // EnvioLabel
+            // 
+            this.EnvioLabel.AutoSize = true;
+            this.EnvioLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnvioLabel.Location = new System.Drawing.Point(163, 5);
+            this.EnvioLabel.Name = "EnvioLabel";
+            this.EnvioLabel.Size = new System.Drawing.Size(297, 24);
+            this.EnvioLabel.TabIndex = 3;
+            this.EnvioLabel.Text = "Confeccionar lotes de envio";
+            this.EnvioLabel.Visible = false;
+            // 
+            // RecibirLabel
+            // 
+            this.RecibirLabel.AutoSize = true;
+            this.RecibirLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecibirLabel.Location = new System.Drawing.Point(163, 5);
+            this.RecibirLabel.Name = "RecibirLabel";
+            this.RecibirLabel.Size = new System.Drawing.Size(165, 24);
+            this.RecibirLabel.TabIndex = 6;
+            this.RecibirLabel.Text = "Recibir Pedidos";
+            this.RecibirLabel.Visible = false;
             // 
             // Restaurar
             // 
@@ -87,6 +115,17 @@
             this.Restaurar.TabStop = false;
             this.Restaurar.Visible = false;
             this.Restaurar.Click += new System.EventHandler(this.Restaurar_Click);
+            // 
+            // StockLabel
+            // 
+            this.StockLabel.AutoSize = true;
+            this.StockLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockLabel.Location = new System.Drawing.Point(163, 5);
+            this.StockLabel.Name = "StockLabel";
+            this.StockLabel.Size = new System.Drawing.Size(183, 24);
+            this.StockLabel.TabIndex = 5;
+            this.StockLabel.Text = "Control de Stock";
+            this.StockLabel.Visible = false;
             // 
             // Maximizar
             // 
@@ -145,20 +184,13 @@
             this.Salir.TabStop = false;
             this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
-            // StockLabel
-            // 
-            this.StockLabel.AutoSize = true;
-            this.StockLabel.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StockLabel.Location = new System.Drawing.Point(1, 1);
-            this.StockLabel.Name = "StockLabel";
-            this.StockLabel.Size = new System.Drawing.Size(166, 22);
-            this.StockLabel.TabIndex = 5;
-            this.StockLabel.Text = "Control de stock";
-            this.StockLabel.Visible = false;
-            // 
             // Sidebar
             // 
             this.Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(206)))));
+            this.Sidebar.Controls.Add(this.pictureBox4);
+            this.Sidebar.Controls.Add(this.pictureBox3);
+            this.Sidebar.Controls.Add(this.pictureBox2);
+            this.Sidebar.Controls.Add(this.pictureBox1);
             this.Sidebar.Controls.Add(this.RecibirPedido);
             this.Sidebar.Controls.Add(this.EnviarPedido);
             this.Sidebar.Controls.Add(this.RealizarPedido);
@@ -169,214 +201,142 @@
             this.Sidebar.Size = new System.Drawing.Size(157, 375);
             this.Sidebar.TabIndex = 2;
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(0, 132);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 15;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(0, 88);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 14;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(0, 44);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 13;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // RecibirPedido
             // 
-            this.RecibirPedido.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.RecibirPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RecibirPedido.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RecibirPedido.BorderRadius = 0;
-            this.RecibirPedido.ButtonText = "Recibir Pedido";
-            this.RecibirPedido.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RecibirPedido.DisabledColor = System.Drawing.Color.White;
             this.RecibirPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RecibirPedido.Iconcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RecibirPedido.Iconimage = ((System.Drawing.Image)(resources.GetObject("RecibirPedido.Iconimage")));
-            this.RecibirPedido.Iconimage_right = null;
-            this.RecibirPedido.Iconimage_right_Selected = null;
-            this.RecibirPedido.Iconimage_Selected = null;
-            this.RecibirPedido.IconMarginLeft = 0;
-            this.RecibirPedido.IconMarginRight = 0;
-            this.RecibirPedido.IconRightVisible = true;
-            this.RecibirPedido.IconRightZoom = 0D;
-            this.RecibirPedido.IconVisible = true;
-            this.RecibirPedido.IconZoom = 90D;
-            this.RecibirPedido.IsTab = false;
+            this.RecibirPedido.FlatAppearance.BorderSize = 0;
+            this.RecibirPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.RecibirPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RecibirPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecibirPedido.ForeColor = System.Drawing.Color.White;
+            this.RecibirPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RecibirPedido.Location = new System.Drawing.Point(0, 132);
             this.RecibirPedido.Name = "RecibirPedido";
-            this.RecibirPedido.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RecibirPedido.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RecibirPedido.OnHoverTextColor = System.Drawing.Color.White;
-            this.RecibirPedido.selected = false;
             this.RecibirPedido.Size = new System.Drawing.Size(157, 44);
-            this.RecibirPedido.TabIndex = 4;
+            this.RecibirPedido.TabIndex = 12;
             this.RecibirPedido.Text = "Recibir Pedido";
-            this.RecibirPedido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RecibirPedido.Textcolor = System.Drawing.Color.White;
-            this.RecibirPedido.TextFont = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecibirPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.RecibirPedido.UseVisualStyleBackColor = false;
             this.RecibirPedido.Click += new System.EventHandler(this.RecibirPedido_Click);
             // 
             // EnviarPedido
             // 
-            this.EnviarPedido.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.EnviarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.EnviarPedido.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.EnviarPedido.BorderRadius = 0;
-            this.EnviarPedido.ButtonText = "Enviar Pedido";
-            this.EnviarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.EnviarPedido.DisabledColor = System.Drawing.Color.White;
             this.EnviarPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EnviarPedido.Iconcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.EnviarPedido.Iconimage = ((System.Drawing.Image)(resources.GetObject("EnviarPedido.Iconimage")));
-            this.EnviarPedido.Iconimage_right = null;
-            this.EnviarPedido.Iconimage_right_Selected = null;
-            this.EnviarPedido.Iconimage_Selected = null;
-            this.EnviarPedido.IconMarginLeft = 0;
-            this.EnviarPedido.IconMarginRight = 0;
-            this.EnviarPedido.IconRightVisible = true;
-            this.EnviarPedido.IconRightZoom = 0D;
-            this.EnviarPedido.IconVisible = true;
-            this.EnviarPedido.IconZoom = 90D;
-            this.EnviarPedido.IsTab = false;
+            this.EnviarPedido.FlatAppearance.BorderSize = 0;
+            this.EnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.EnviarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EnviarPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnviarPedido.ForeColor = System.Drawing.Color.White;
+            this.EnviarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EnviarPedido.Location = new System.Drawing.Point(0, 88);
             this.EnviarPedido.Name = "EnviarPedido";
-            this.EnviarPedido.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.EnviarPedido.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.EnviarPedido.OnHoverTextColor = System.Drawing.Color.White;
-            this.EnviarPedido.selected = false;
             this.EnviarPedido.Size = new System.Drawing.Size(157, 44);
-            this.EnviarPedido.TabIndex = 3;
+            this.EnviarPedido.TabIndex = 11;
             this.EnviarPedido.Text = "Enviar Pedido";
-            this.EnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.EnviarPedido.Textcolor = System.Drawing.Color.White;
-            this.EnviarPedido.TextFont = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.EnviarPedido.UseVisualStyleBackColor = false;
             this.EnviarPedido.Click += new System.EventHandler(this.EnviarPedido_Click);
             // 
             // RealizarPedido
             // 
-            this.RealizarPedido.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.RealizarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RealizarPedido.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.RealizarPedido.BorderRadius = 0;
-            this.RealizarPedido.ButtonText = "Realizar Pedido";
-            this.RealizarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.RealizarPedido.DisabledColor = System.Drawing.Color.White;
             this.RealizarPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RealizarPedido.Iconcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RealizarPedido.Iconimage = ((System.Drawing.Image)(resources.GetObject("RealizarPedido.Iconimage")));
-            this.RealizarPedido.Iconimage_right = null;
-            this.RealizarPedido.Iconimage_right_Selected = null;
-            this.RealizarPedido.Iconimage_Selected = null;
-            this.RealizarPedido.IconMarginLeft = 0;
-            this.RealizarPedido.IconMarginRight = 0;
-            this.RealizarPedido.IconRightVisible = true;
-            this.RealizarPedido.IconRightZoom = 0D;
-            this.RealizarPedido.IconVisible = true;
-            this.RealizarPedido.IconZoom = 90D;
-            this.RealizarPedido.IsTab = false;
+            this.RealizarPedido.FlatAppearance.BorderSize = 0;
+            this.RealizarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.RealizarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RealizarPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarPedido.ForeColor = System.Drawing.Color.White;
+            this.RealizarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RealizarPedido.Location = new System.Drawing.Point(0, 44);
             this.RealizarPedido.Name = "RealizarPedido";
-            this.RealizarPedido.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RealizarPedido.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RealizarPedido.OnHoverTextColor = System.Drawing.Color.White;
-            this.RealizarPedido.selected = false;
             this.RealizarPedido.Size = new System.Drawing.Size(157, 44);
-            this.RealizarPedido.TabIndex = 2;
+            this.RealizarPedido.TabIndex = 10;
             this.RealizarPedido.Text = "Realizar Pedido";
-            this.RealizarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RealizarPedido.Textcolor = System.Drawing.Color.White;
-            this.RealizarPedido.TextFont = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.RealizarPedido.UseVisualStyleBackColor = false;
             this.RealizarPedido.Click += new System.EventHandler(this.RealizarPedido_Click);
             // 
             // Stock
             // 
-            this.Stock.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.Stock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.Stock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Stock.BorderRadius = 0;
-            this.Stock.ButtonText = "Stock";
-            this.Stock.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Stock.DisabledColor = System.Drawing.Color.White;
             this.Stock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Stock.Iconcolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.Stock.Iconimage = ((System.Drawing.Image)(resources.GetObject("Stock.Iconimage")));
-            this.Stock.Iconimage_right = null;
-            this.Stock.Iconimage_right_Selected = null;
-            this.Stock.Iconimage_Selected = null;
-            this.Stock.IconMarginLeft = 0;
-            this.Stock.IconMarginRight = 0;
-            this.Stock.IconRightVisible = true;
-            this.Stock.IconRightZoom = 0D;
-            this.Stock.IconVisible = true;
-            this.Stock.IconZoom = 90D;
-            this.Stock.IsTab = false;
+            this.Stock.FlatAppearance.BorderSize = 0;
+            this.Stock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.Stock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Stock.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stock.ForeColor = System.Drawing.Color.White;
+            this.Stock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Stock.Location = new System.Drawing.Point(0, 0);
             this.Stock.Name = "Stock";
-            this.Stock.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.Stock.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.Stock.OnHoverTextColor = System.Drawing.Color.White;
-            this.Stock.selected = false;
             this.Stock.Size = new System.Drawing.Size(157, 44);
-            this.Stock.TabIndex = 1;
+            this.Stock.TabIndex = 9;
             this.Stock.Text = "Stock";
-            this.Stock.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Stock.Textcolor = System.Drawing.Color.White;
-            this.Stock.TextFont = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Stock.UseVisualStyleBackColor = false;
             this.Stock.Click += new System.EventHandler(this.Stock_Click);
             // 
-            // MainPanel
+            // RealizarLabel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(244)))), ((int)(((byte)(252)))));
-            this.MainPanel.Controls.Add(this.RecibirPedidosLabel);
-            this.MainPanel.Controls.Add(this.StockLabel);
-            this.MainPanel.Controls.Add(this.RealizarPedidoLabel);
-            this.MainPanel.Controls.Add(this.EnviarPedidoLabel);
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(157, 32);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(538, 375);
-            this.MainPanel.TabIndex = 3;
-            // 
-            // RecibirPedidosLabel
-            // 
-            this.RecibirPedidosLabel.AutoSize = true;
-            this.RecibirPedidosLabel.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecibirPedidosLabel.Location = new System.Drawing.Point(2, 2);
-            this.RecibirPedidosLabel.Name = "RecibirPedidosLabel";
-            this.RecibirPedidosLabel.Size = new System.Drawing.Size(154, 22);
-            this.RecibirPedidosLabel.TabIndex = 8;
-            this.RecibirPedidosLabel.Text = "Recibir pedidos";
-            this.RecibirPedidosLabel.Visible = false;
-            // 
-            // RealizarPedidoLabel
-            // 
-            this.RealizarPedidoLabel.AutoSize = true;
-            this.RealizarPedidoLabel.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RealizarPedidoLabel.Location = new System.Drawing.Point(3, 3);
-            this.RealizarPedidoLabel.Name = "RealizarPedidoLabel";
-            this.RealizarPedidoLabel.Size = new System.Drawing.Size(257, 22);
-            this.RealizarPedidoLabel.TabIndex = 6;
-            this.RealizarPedidoLabel.Text = "Realizar Pedido a Industria";
-            this.RealizarPedidoLabel.Visible = false;
-            // 
-            // EnviarPedidoLabel
-            // 
-            this.EnviarPedidoLabel.AutoSize = true;
-            this.EnviarPedidoLabel.Font = new System.Drawing.Font("Lucida Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnviarPedidoLabel.Location = new System.Drawing.Point(1, 3);
-            this.EnviarPedidoLabel.Name = "EnviarPedidoLabel";
-            this.EnviarPedidoLabel.Size = new System.Drawing.Size(269, 22);
-            this.EnviarPedidoLabel.TabIndex = 7;
-            this.EnviarPedidoLabel.Text = "Confeccionar lotes de envio";
-            this.EnviarPedidoLabel.Visible = false;
-            // 
-            // bunifuElipse1
-            // 
-            this.bunifuElipse1.ElipseRadius = 10;
-            this.bunifuElipse1.TargetControl = this;
-            // 
-            // bunifuDragControl1
-            // 
-            this.bunifuDragControl1.Fixed = true;
-            this.bunifuDragControl1.Horizontal = true;
-            this.bunifuDragControl1.TargetControl = this.TopPanel;
-            this.bunifuDragControl1.Vertical = true;
+            this.RealizarLabel.AutoSize = true;
+            this.RealizarLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarLabel.Location = new System.Drawing.Point(163, 5);
+            this.RealizarLabel.Name = "RealizarLabel";
+            this.RealizarLabel.Size = new System.Drawing.Size(286, 24);
+            this.RealizarLabel.TabIndex = 7;
+            this.RealizarLabel.Text = "Realizar pedido a industria";
+            this.RealizarLabel.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 407);
-            this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.TopPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -384,6 +344,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Maximizar)).EndInit();
             this.TopPanelLeft.ResumeLayout(false);
@@ -391,8 +352,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).EndInit();
             this.Sidebar.ResumeLayout(false);
-            this.MainPanel.ResumeLayout(false);
-            this.MainPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -403,20 +366,21 @@
         private System.Windows.Forms.PictureBox Salir;
         private System.Windows.Forms.Panel TopPanelLeft;
         private System.Windows.Forms.Panel Sidebar;
-        private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.PictureBox Maximizar;
         private System.Windows.Forms.PictureBox Restaurar;
         private System.Windows.Forms.PictureBox Wrapper;
-        private Bunifu.Framework.UI.BunifuFlatButton Stock;
-        private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
-        private Bunifu.Framework.UI.BunifuDragControl bunifuDragControl1;
-        private Bunifu.Framework.UI.BunifuFlatButton RecibirPedido;
-        private Bunifu.Framework.UI.BunifuFlatButton EnviarPedido;
-        private Bunifu.Framework.UI.BunifuFlatButton RealizarPedido;
-        private Bunifu.Framework.UI.BunifuCustomLabel StockLabel;
-        private Bunifu.Framework.UI.BunifuCustomLabel RealizarPedidoLabel;
-        private Bunifu.Framework.UI.BunifuCustomLabel RecibirPedidosLabel;
-        private Bunifu.Framework.UI.BunifuCustomLabel EnviarPedidoLabel;
+        private System.Windows.Forms.Button Stock;
+        private System.Windows.Forms.Button RecibirPedido;
+        private System.Windows.Forms.Button EnviarPedido;
+        private System.Windows.Forms.Button RealizarPedido;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label EnvioLabel;
+        private System.Windows.Forms.Label StockLabel;
+        private System.Windows.Forms.Label RecibirLabel;
+        private System.Windows.Forms.Label RealizarLabel;
     }
 }
 
