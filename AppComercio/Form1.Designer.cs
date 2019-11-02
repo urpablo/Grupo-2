@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.RealizarLabel = new System.Windows.Forms.Label();
             this.EnvioLabel = new System.Windows.Forms.Label();
             this.RecibirLabel = new System.Windows.Forms.Label();
             this.Restaurar = new System.Windows.Forms.PictureBox();
@@ -48,7 +49,16 @@
             this.EnviarPedido = new System.Windows.Forms.Button();
             this.RealizarPedido = new System.Windows.Forms.Button();
             this.Stock = new System.Windows.Forms.Button();
-            this.RealizarLabel = new System.Windows.Forms.Label();
+            this.EjLote1 = new System.Windows.Forms.Button();
+            this.ProdAEnviar = new System.Windows.Forms.Button();
+            this.TablaStock = new System.Windows.Forms.DataGridView();
+            this.TablaReaPed = new System.Windows.Forms.DataGridView();
+            this.TablaEnvPed = new System.Windows.Forms.DataGridView();
+            this.TablaRecPed = new System.Windows.Forms.DataGridView();
+            this.LPed = new System.Windows.Forms.Button();
+            this.EjLote2 = new System.Windows.Forms.Button();
+            this.AcPed = new System.Windows.Forms.Button();
+            this.CStock = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Maximizar)).BeginInit();
@@ -61,6 +71,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaStock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaReaPed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaEnvPed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaRecPed)).BeginInit();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -80,6 +94,17 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(695, 32);
             this.TopPanel.TabIndex = 1;
+            // 
+            // RealizarLabel
+            // 
+            this.RealizarLabel.AutoSize = true;
+            this.RealizarLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarLabel.Location = new System.Drawing.Point(163, 5);
+            this.RealizarLabel.Name = "RealizarLabel";
+            this.RealizarLabel.Size = new System.Drawing.Size(286, 24);
+            this.RealizarLabel.TabIndex = 7;
+            this.RealizarLabel.Text = "Realizar pedido a industria";
+            this.RealizarLabel.Visible = false;
             // 
             // EnvioLabel
             // 
@@ -321,28 +346,115 @@
             this.Stock.UseVisualStyleBackColor = false;
             this.Stock.Click += new System.EventHandler(this.Stock_Click);
             // 
-            // RealizarLabel
+            // EjLote1
             // 
-            this.RealizarLabel.AutoSize = true;
-            this.RealizarLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RealizarLabel.Location = new System.Drawing.Point(163, 5);
-            this.RealizarLabel.Name = "RealizarLabel";
-            this.RealizarLabel.Size = new System.Drawing.Size(286, 24);
-            this.RealizarLabel.TabIndex = 7;
-            this.RealizarLabel.Text = "Realizar pedido a industria";
-            this.RealizarLabel.Visible = false;
+            this.EjLote1.Location = new System.Drawing.Point(565, 315);
+            this.EjLote1.Name = "EjLote1";
+            this.EjLote1.Size = new System.Drawing.Size(105, 23);
+            this.EjLote1.TabIndex = 4;
+            this.EjLote1.Text = "Ejecutar lote";
+            this.EjLote1.UseVisualStyleBackColor = true;
+            // 
+            // ProdAEnviar
+            // 
+            this.ProdAEnviar.Location = new System.Drawing.Point(422, 315);
+            this.ProdAEnviar.Name = "ProdAEnviar";
+            this.ProdAEnviar.Size = new System.Drawing.Size(126, 23);
+            this.ProdAEnviar.TabIndex = 5;
+            this.ProdAEnviar.Text = "Ver productos a enviar";
+            this.ProdAEnviar.UseVisualStyleBackColor = true;
+            // 
+            // TablaStock
+            // 
+            this.TablaStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaStock.Location = new System.Drawing.Point(190, 58);
+            this.TablaStock.Name = "TablaStock";
+            this.TablaStock.Size = new System.Drawing.Size(480, 214);
+            this.TablaStock.TabIndex = 3;
+            this.TablaStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // TablaReaPed
+            // 
+            this.TablaReaPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaReaPed.Location = new System.Drawing.Point(190, 58);
+            this.TablaReaPed.Name = "TablaReaPed";
+            this.TablaReaPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaReaPed.TabIndex = 6;
+            // 
+            // TablaEnvPed
+            // 
+            this.TablaEnvPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaEnvPed.Location = new System.Drawing.Point(190, 58);
+            this.TablaEnvPed.Name = "TablaEnvPed";
+            this.TablaEnvPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaEnvPed.TabIndex = 7;
+            // 
+            // TablaRecPed
+            // 
+            this.TablaRecPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.TablaRecPed.Location = new System.Drawing.Point(190, 58);
+            this.TablaRecPed.Name = "TablaRecPed";
+            this.TablaRecPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaRecPed.TabIndex = 8;
+            // 
+            // LPed
+            // 
+            this.LPed.Location = new System.Drawing.Point(422, 315);
+            this.LPed.Name = "LPed";
+            this.LPed.Size = new System.Drawing.Size(126, 23);
+            this.LPed.TabIndex = 9;
+            this.LPed.Text = "Levantar pedido";
+            this.LPed.UseVisualStyleBackColor = true;
+            // 
+            // EjLote2
+            // 
+            this.EjLote2.Location = new System.Drawing.Point(565, 315);
+            this.EjLote2.Name = "EjLote2";
+            this.EjLote2.Size = new System.Drawing.Size(105, 23);
+            this.EjLote2.TabIndex = 10;
+            this.EjLote2.Text = "Ejecutar lote";
+            this.EjLote2.UseVisualStyleBackColor = true;
+            // 
+            // AcPed
+            // 
+            this.AcPed.Location = new System.Drawing.Point(422, 315);
+            this.AcPed.Name = "AcPed";
+            this.AcPed.Size = new System.Drawing.Size(126, 23);
+            this.AcPed.TabIndex = 11;
+            this.AcPed.Text = "Actualizar pedidos";
+            this.AcPed.UseVisualStyleBackColor = true;
+            // 
+            // CStock
+            // 
+            this.CStock.Location = new System.Drawing.Point(565, 315);
+            this.CStock.Name = "CStock";
+            this.CStock.Size = new System.Drawing.Size(105, 23);
+            this.CStock.TabIndex = 12;
+            this.CStock.Text = "Cargar a stock";
+            this.CStock.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 407);
+            this.Controls.Add(this.CStock);
+            this.Controls.Add(this.AcPed);
+            this.Controls.Add(this.EjLote2);
+            this.Controls.Add(this.LPed);
+            this.Controls.Add(this.TablaRecPed);
+            this.Controls.Add(this.TablaEnvPed);
+            this.Controls.Add(this.TablaReaPed);
+            this.Controls.Add(this.ProdAEnviar);
+            this.Controls.Add(this.EjLote1);
+            this.Controls.Add(this.TablaStock);
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.TopPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).EndInit();
@@ -356,6 +468,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaStock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaReaPed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaEnvPed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TablaRecPed)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -381,6 +497,16 @@
         private System.Windows.Forms.Label StockLabel;
         private System.Windows.Forms.Label RecibirLabel;
         private System.Windows.Forms.Label RealizarLabel;
+        private System.Windows.Forms.Button EjLote1;
+        private System.Windows.Forms.Button ProdAEnviar;
+        private System.Windows.Forms.DataGridView TablaStock;
+        private System.Windows.Forms.DataGridView TablaReaPed;
+        private System.Windows.Forms.DataGridView TablaEnvPed;
+        private System.Windows.Forms.DataGridView TablaRecPed;
+        private System.Windows.Forms.Button LPed;
+        private System.Windows.Forms.Button EjLote2;
+        private System.Windows.Forms.Button AcPed;
+        private System.Windows.Forms.Button CStock;
     }
 }
 
