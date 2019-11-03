@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Data;
 
+
 namespace AppComercio
 {
     static class Program
@@ -19,9 +20,6 @@ namespace AppComercio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-
-         
-
 
         }
     }

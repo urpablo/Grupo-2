@@ -33,9 +33,7 @@
             this.RealizarLabel = new System.Windows.Forms.Label();
             this.EnvioLabel = new System.Windows.Forms.Label();
             this.RecibirLabel = new System.Windows.Forms.Label();
-            this.Restaurar = new System.Windows.Forms.PictureBox();
             this.StockLabel = new System.Windows.Forms.Label();
-            this.Maximizar = new System.Windows.Forms.PictureBox();
             this.TopPanelLeft = new System.Windows.Forms.Panel();
             this.Wrapper = new System.Windows.Forms.PictureBox();
             this.Minimizar = new System.Windows.Forms.PictureBox();
@@ -59,9 +57,9 @@
             this.EjLote2 = new System.Windows.Forms.Button();
             this.AcPed = new System.Windows.Forms.Button();
             this.CStock = new System.Windows.Forms.Button();
+            this.labelBienvenido1 = new System.Windows.Forms.Label();
+            this.labelBienvenido2 = new System.Windows.Forms.Label();
             this.TopPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Maximizar)).BeginInit();
             this.TopPanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Wrapper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).BeginInit();
@@ -83,25 +81,23 @@
             this.TopPanel.Controls.Add(this.RealizarLabel);
             this.TopPanel.Controls.Add(this.EnvioLabel);
             this.TopPanel.Controls.Add(this.RecibirLabel);
-            this.TopPanel.Controls.Add(this.Restaurar);
             this.TopPanel.Controls.Add(this.StockLabel);
-            this.TopPanel.Controls.Add(this.Maximizar);
             this.TopPanel.Controls.Add(this.TopPanelLeft);
             this.TopPanel.Controls.Add(this.Minimizar);
             this.TopPanel.Controls.Add(this.Salir);
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(695, 32);
+            this.TopPanel.Size = new System.Drawing.Size(700, 32);
             this.TopPanel.TabIndex = 1;
             // 
             // RealizarLabel
             // 
             this.RealizarLabel.AutoSize = true;
-            this.RealizarLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RealizarLabel.Location = new System.Drawing.Point(163, 5);
             this.RealizarLabel.Name = "RealizarLabel";
-            this.RealizarLabel.Size = new System.Drawing.Size(286, 24);
+            this.RealizarLabel.Size = new System.Drawing.Size(268, 25);
             this.RealizarLabel.TabIndex = 7;
             this.RealizarLabel.Text = "Realizar pedido a industria";
             this.RealizarLabel.Visible = false;
@@ -109,10 +105,10 @@
             // EnvioLabel
             // 
             this.EnvioLabel.AutoSize = true;
-            this.EnvioLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnvioLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EnvioLabel.Location = new System.Drawing.Point(163, 5);
             this.EnvioLabel.Name = "EnvioLabel";
-            this.EnvioLabel.Size = new System.Drawing.Size(297, 24);
+            this.EnvioLabel.Size = new System.Drawing.Size(279, 25);
             this.EnvioLabel.TabIndex = 3;
             this.EnvioLabel.Text = "Confeccionar lotes de envio";
             this.EnvioLabel.Visible = false;
@@ -120,49 +116,24 @@
             // RecibirLabel
             // 
             this.RecibirLabel.AutoSize = true;
-            this.RecibirLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecibirLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecibirLabel.Location = new System.Drawing.Point(163, 5);
             this.RecibirLabel.Name = "RecibirLabel";
-            this.RecibirLabel.Size = new System.Drawing.Size(165, 24);
+            this.RecibirLabel.Size = new System.Drawing.Size(163, 25);
             this.RecibirLabel.TabIndex = 6;
             this.RecibirLabel.Text = "Recibir Pedidos";
             this.RecibirLabel.Visible = false;
             // 
-            // Restaurar
-            // 
-            this.Restaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Restaurar.Image = ((System.Drawing.Image)(resources.GetObject("Restaurar.Image")));
-            this.Restaurar.Location = new System.Drawing.Point(650, 3);
-            this.Restaurar.Name = "Restaurar";
-            this.Restaurar.Size = new System.Drawing.Size(20, 20);
-            this.Restaurar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Restaurar.TabIndex = 4;
-            this.Restaurar.TabStop = false;
-            this.Restaurar.Visible = false;
-            this.Restaurar.Click += new System.EventHandler(this.Restaurar_Click);
-            // 
             // StockLabel
             // 
             this.StockLabel.AutoSize = true;
-            this.StockLabel.Font = new System.Drawing.Font("Lucida Sans", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StockLabel.Location = new System.Drawing.Point(163, 5);
             this.StockLabel.Name = "StockLabel";
-            this.StockLabel.Size = new System.Drawing.Size(183, 24);
+            this.StockLabel.Size = new System.Drawing.Size(171, 25);
             this.StockLabel.TabIndex = 5;
             this.StockLabel.Text = "Control de Stock";
             this.StockLabel.Visible = false;
-            // 
-            // Maximizar
-            // 
-            this.Maximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Maximizar.Image = ((System.Drawing.Image)(resources.GetObject("Maximizar.Image")));
-            this.Maximizar.Location = new System.Drawing.Point(650, 3);
-            this.Maximizar.Name = "Maximizar";
-            this.Maximizar.Size = new System.Drawing.Size(20, 20);
-            this.Maximizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Maximizar.TabIndex = 3;
-            this.Maximizar.TabStop = false;
-            this.Maximizar.Click += new System.EventHandler(this.Maximizar_Click);
             // 
             // TopPanelLeft
             // 
@@ -189,7 +160,7 @@
             // 
             this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
-            this.Minimizar.Location = new System.Drawing.Point(628, 3);
+            this.Minimizar.Location = new System.Drawing.Point(650, 3);
             this.Minimizar.Name = "Minimizar";
             this.Minimizar.Size = new System.Drawing.Size(20, 20);
             this.Minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -200,8 +171,9 @@
             // Salir
             // 
             this.Salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Salir.BackColor = System.Drawing.Color.Red;
             this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.Location = new System.Drawing.Point(672, 3);
+            this.Salir.Location = new System.Drawing.Point(677, 3);
             this.Salir.Name = "Salir";
             this.Salir.Size = new System.Drawing.Size(20, 20);
             this.Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -220,10 +192,9 @@
             this.Sidebar.Controls.Add(this.EnviarPedido);
             this.Sidebar.Controls.Add(this.RealizarPedido);
             this.Sidebar.Controls.Add(this.Stock);
-            this.Sidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.Sidebar.Location = new System.Drawing.Point(0, 32);
             this.Sidebar.Name = "Sidebar";
-            this.Sidebar.Size = new System.Drawing.Size(157, 375);
+            this.Sidebar.Size = new System.Drawing.Size(157, 518);
             this.Sidebar.TabIndex = 2;
             // 
             // pictureBox4
@@ -236,6 +207,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 15;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
             // pictureBox3
             // 
@@ -247,6 +219,7 @@
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 14;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.pictureBox3_Click);
             // 
             // pictureBox2
             // 
@@ -258,6 +231,7 @@
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 13;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
             // pictureBox1
             // 
@@ -269,6 +243,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // RecibirPedido
             // 
@@ -277,7 +252,7 @@
             this.RecibirPedido.FlatAppearance.BorderSize = 0;
             this.RecibirPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.RecibirPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RecibirPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RecibirPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RecibirPedido.ForeColor = System.Drawing.Color.White;
             this.RecibirPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RecibirPedido.Location = new System.Drawing.Point(0, 132);
@@ -296,7 +271,7 @@
             this.EnviarPedido.FlatAppearance.BorderSize = 0;
             this.EnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.EnviarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EnviarPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EnviarPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EnviarPedido.ForeColor = System.Drawing.Color.White;
             this.EnviarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.EnviarPedido.Location = new System.Drawing.Point(0, 88);
@@ -315,7 +290,7 @@
             this.RealizarPedido.FlatAppearance.BorderSize = 0;
             this.RealizarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.RealizarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RealizarPedido.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RealizarPedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RealizarPedido.ForeColor = System.Drawing.Color.White;
             this.RealizarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.RealizarPedido.Location = new System.Drawing.Point(0, 44);
@@ -334,32 +309,34 @@
             this.Stock.FlatAppearance.BorderSize = 0;
             this.Stock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
             this.Stock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Stock.Font = new System.Drawing.Font("Lucida Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Stock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Stock.ForeColor = System.Drawing.Color.White;
             this.Stock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Stock.Location = new System.Drawing.Point(0, 0);
             this.Stock.Name = "Stock";
             this.Stock.Size = new System.Drawing.Size(157, 44);
             this.Stock.TabIndex = 9;
-            this.Stock.Text = "Stock";
+            this.Stock.Text = "Stock actual";
             this.Stock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Stock.UseVisualStyleBackColor = false;
             this.Stock.Click += new System.EventHandler(this.Stock_Click);
             // 
             // EjLote1
             // 
-            this.EjLote1.Location = new System.Drawing.Point(565, 315);
+            this.EjLote1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EjLote1.Location = new System.Drawing.Point(542, 504);
             this.EjLote1.Name = "EjLote1";
-            this.EjLote1.Size = new System.Drawing.Size(105, 23);
+            this.EjLote1.Size = new System.Drawing.Size(128, 32);
             this.EjLote1.TabIndex = 4;
             this.EjLote1.Text = "Ejecutar lote";
             this.EjLote1.UseVisualStyleBackColor = true;
             // 
             // ProdAEnviar
             // 
-            this.ProdAEnviar.Location = new System.Drawing.Point(422, 315);
+            this.ProdAEnviar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProdAEnviar.Location = new System.Drawing.Point(357, 504);
             this.ProdAEnviar.Name = "ProdAEnviar";
-            this.ProdAEnviar.Size = new System.Drawing.Size(126, 23);
+            this.ProdAEnviar.Size = new System.Drawing.Size(164, 32);
             this.ProdAEnviar.TabIndex = 5;
             this.ProdAEnviar.Text = "Ver productos a enviar";
             this.ProdAEnviar.UseVisualStyleBackColor = true;
@@ -369,7 +346,7 @@
             this.TablaStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaStock.Location = new System.Drawing.Point(190, 58);
             this.TablaStock.Name = "TablaStock";
-            this.TablaStock.Size = new System.Drawing.Size(480, 214);
+            this.TablaStock.Size = new System.Drawing.Size(480, 420);
             this.TablaStock.TabIndex = 3;
             this.TablaStock.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -378,7 +355,7 @@
             this.TablaReaPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaReaPed.Location = new System.Drawing.Point(190, 58);
             this.TablaReaPed.Name = "TablaReaPed";
-            this.TablaReaPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaReaPed.Size = new System.Drawing.Size(480, 420);
             this.TablaReaPed.TabIndex = 6;
             // 
             // TablaEnvPed
@@ -386,7 +363,7 @@
             this.TablaEnvPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaEnvPed.Location = new System.Drawing.Point(190, 58);
             this.TablaEnvPed.Name = "TablaEnvPed";
-            this.TablaEnvPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaEnvPed.Size = new System.Drawing.Size(480, 420);
             this.TablaEnvPed.TabIndex = 7;
             // 
             // TablaRecPed
@@ -394,50 +371,76 @@
             this.TablaRecPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TablaRecPed.Location = new System.Drawing.Point(190, 58);
             this.TablaRecPed.Name = "TablaRecPed";
-            this.TablaRecPed.Size = new System.Drawing.Size(480, 214);
+            this.TablaRecPed.Size = new System.Drawing.Size(480, 420);
             this.TablaRecPed.TabIndex = 8;
             // 
             // LPed
             // 
-            this.LPed.Location = new System.Drawing.Point(422, 315);
+            this.LPed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LPed.Location = new System.Drawing.Point(379, 504);
             this.LPed.Name = "LPed";
-            this.LPed.Size = new System.Drawing.Size(126, 23);
+            this.LPed.Size = new System.Drawing.Size(128, 32);
             this.LPed.TabIndex = 9;
             this.LPed.Text = "Levantar pedido";
             this.LPed.UseVisualStyleBackColor = true;
             // 
             // EjLote2
             // 
-            this.EjLote2.Location = new System.Drawing.Point(565, 315);
+            this.EjLote2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EjLote2.Location = new System.Drawing.Point(542, 504);
             this.EjLote2.Name = "EjLote2";
-            this.EjLote2.Size = new System.Drawing.Size(105, 23);
+            this.EjLote2.Size = new System.Drawing.Size(128, 32);
             this.EjLote2.TabIndex = 10;
             this.EjLote2.Text = "Ejecutar lote";
             this.EjLote2.UseVisualStyleBackColor = true;
             // 
             // AcPed
             // 
-            this.AcPed.Location = new System.Drawing.Point(422, 315);
+            this.AcPed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AcPed.Location = new System.Drawing.Point(379, 504);
             this.AcPed.Name = "AcPed";
-            this.AcPed.Size = new System.Drawing.Size(126, 23);
+            this.AcPed.Size = new System.Drawing.Size(128, 32);
             this.AcPed.TabIndex = 11;
             this.AcPed.Text = "Actualizar pedidos";
             this.AcPed.UseVisualStyleBackColor = true;
             // 
             // CStock
             // 
-            this.CStock.Location = new System.Drawing.Point(565, 315);
+            this.CStock.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CStock.Location = new System.Drawing.Point(542, 504);
             this.CStock.Name = "CStock";
-            this.CStock.Size = new System.Drawing.Size(105, 23);
+            this.CStock.Size = new System.Drawing.Size(128, 32);
             this.CStock.TabIndex = 12;
             this.CStock.Text = "Cargar a stock";
             this.CStock.UseVisualStyleBackColor = true;
+            // 
+            // labelBienvenido1
+            // 
+            this.labelBienvenido1.AutoSize = true;
+            this.labelBienvenido1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBienvenido1.Location = new System.Drawing.Point(351, 213);
+            this.labelBienvenido1.Name = "labelBienvenido1";
+            this.labelBienvenido1.Size = new System.Drawing.Size(164, 32);
+            this.labelBienvenido1.TabIndex = 13;
+            this.labelBienvenido1.Text = "¡Bienvenido!";
+            // 
+            // labelBienvenido2
+            // 
+            this.labelBienvenido2.AutoSize = true;
+            this.labelBienvenido2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBienvenido2.Location = new System.Drawing.Point(193, 289);
+            this.labelBienvenido2.Name = "labelBienvenido2";
+            this.labelBienvenido2.Size = new System.Drawing.Size(477, 32);
+            this.labelBienvenido2.TabIndex = 14;
+            this.labelBienvenido2.Text = "Seleccione una opción para comenzar";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(695, 407);
+            this.ClientSize = new System.Drawing.Size(700, 550);
+            this.Controls.Add(this.labelBienvenido2);
+            this.Controls.Add(this.labelBienvenido1);
             this.Controls.Add(this.CStock);
             this.Controls.Add(this.AcPed);
             this.Controls.Add(this.EjLote2);
@@ -451,14 +454,13 @@
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.TopPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "CAI - Comercio";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Restaurar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Maximizar)).EndInit();
             this.TopPanelLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Wrapper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).EndInit();
@@ -473,6 +475,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.TablaEnvPed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TablaRecPed)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -482,8 +485,6 @@
         private System.Windows.Forms.PictureBox Salir;
         private System.Windows.Forms.Panel TopPanelLeft;
         private System.Windows.Forms.Panel Sidebar;
-        private System.Windows.Forms.PictureBox Maximizar;
-        private System.Windows.Forms.PictureBox Restaurar;
         private System.Windows.Forms.PictureBox Wrapper;
         private System.Windows.Forms.Button Stock;
         private System.Windows.Forms.Button RecibirPedido;
@@ -507,6 +508,8 @@
         private System.Windows.Forms.Button EjLote2;
         private System.Windows.Forms.Button AcPed;
         private System.Windows.Forms.Button CStock;
+        private System.Windows.Forms.Label labelBienvenido1;
+        private System.Windows.Forms.Label labelBienvenido2;
     }
 }
 
