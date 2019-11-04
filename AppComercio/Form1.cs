@@ -14,32 +14,27 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         DataTable table = new DataTable();
+        DataTable table2 = new DataTable();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            table2.Columns.Add("Codigo", typeof(int));
+            table2.Columns.Add("Descripcion", typeof(string));
 
-        
+            TablaStock.DataSource = table2;
+
+            // hacer form borderless movible
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            // fin hacer form borderless movible
+        }
 
         public Form1()
         {
             InitializeComponent();
-
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = false;
-            AcPed.Visible = false;
+            botonBotonera = 5;
+            actualizarPantalla();
         }
 
-
-        // hacer que una ventana borderless sea movible
+        // ------------------ hacer que una ventana borderless sea movible ------------------
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -59,9 +54,10 @@ namespace AppComercio
             }
         }
 
-        // fin hacer que una ventana borderless sea movible
+        // ------------------ hacer que una ventana borderless sea movible ------------------
 
 
+        // ------------------ controles ventana ------------------
         private void Salir_Click(object sender, EventArgs e)
         {
 
@@ -79,248 +75,221 @@ namespace AppComercio
             WindowState = FormWindowState.Minimized;
 
         }
+        // ------------------ controles ventana ------------------
 
-
-
+        // ------------------ menú retraible ------------------
         private void Wrapper_Click(object sender, EventArgs e)
         {
-            if (Sidebar.Width == 157)
+            if (Sidebar.Width == 180)
             {
+                panelAyuda.Visible = false;
+
+
                 Sidebar.Width = 45;
                 TopPanelLeft.Width = 45;
 
-                EnvioLabel.Location = new Point(47, 5);
-                RecibirLabel.Location = new Point(47, 5);
-                RealizarLabel.Location = new Point(47, 5);
-                StockLabel.Location = new Point(47, 5);
+                LabelTitulo.Location = new Point(55, 5);
 
-                TablaStock.Width = 592;
-                TablaStock.Location = new Point(78, 58);
-                TablaEnvPed.Width = 592;
-                TablaEnvPed.Location = new Point(78, 58);
-                TablaRecPed.Width = 592;
-                TablaRecPed.Location = new Point(78, 58);
-                TablaReaPed.Width = 592;
-                TablaReaPed.Location = new Point(78, 58);
+                TablaStock.Width = 635;
+                TablaStock.Location = new Point(65, 55);
+                TablaEnvPed.Width = 635;
+                TablaEnvPed.Location = new Point(65, 55);
+                TablaRecPed.Width = 635;
+                TablaRecPed.Location = new Point(65, 55);
+                TablaReaPed.Width = 635;
+                TablaReaPed.Location = new Point(65, 55);
             }
             else
             {
-                Sidebar.Width = 157;
-                TopPanelLeft.Width = 157;
+                panelAyuda.Visible = true;
 
-                EnvioLabel.Location = new Point(163, 5);
-                RecibirLabel.Location = new Point(163, 5);
-                RealizarLabel.Location = new Point(163, 5);
-                StockLabel.Location = new Point(163, 5);
+                Sidebar.Width = 180;
+                TopPanelLeft.Width = 180;
 
-                TablaStock.Width = 480;
-                TablaStock.Location = new Point(190, 58);
-                TablaEnvPed.Width = 480;
-                TablaEnvPed.Location = new Point(190, 58);
-                TablaRecPed.Width = 480;
-                TablaRecPed.Location = new Point(190, 58);
-                TablaReaPed.Width = 480;
-                TablaReaPed.Location = new Point(190, 58);
+                LabelTitulo.Location = new Point(190, 5);
+
+                TablaStock.Width = 500;
+                TablaStock.Location = new Point(200, 55);
+                TablaEnvPed.Width = 500;
+                TablaEnvPed.Location = new Point(200, 55);
+                TablaRecPed.Width = 500;
+                TablaRecPed.Location = new Point(200, 55);
+                TablaReaPed.Width = 500;
+                TablaReaPed.Location = new Point(200, 55);
 
             }
 
        
         }
 
+        // ------------------ menú retraible ------------------
+
+
+        // ------------------ botonera menú ------------------
+
+        public int botonBotonera;
         private void Stock_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = true;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = true;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
-
-
+            botonBotonera = 1;
+            actualizarPantalla();
         }
 
         private void RealizarPedido_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = true;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = true;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = true;
-            ProdAEnviar.Visible = true;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
+            botonBotonera = 2;
+            actualizarPantalla();
         }
 
         private void EnviarPedido_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = true;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = true;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = true;
-            LPed.Visible = true;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
-
-
+            botonBotonera = 3;
+            actualizarPantalla();
         }
 
         private void RecibirPedido_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = true;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = true;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = true;
-            AcPed.Visible = true;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
-
-        }
-
-
-
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        DataTable table2 = new DataTable();
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-            table2.Columns.Add("Codigo", typeof(int));
-            table2.Columns.Add("Descripcion", typeof(string));
-
-            TablaStock.DataSource = table2;
-
-            // hacer form borderless movible
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            // fin hacer form borderless movible
+            botonBotonera = 4;
+            actualizarPantalla();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = true;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = true;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
+            botonBotonera = 1;
+            actualizarPantalla();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = true;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = true;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = true;
-            ProdAEnviar.Visible = true;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
+            botonBotonera = 2;
+            actualizarPantalla();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = false;
-            EnvioLabel.Visible = true;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = false;
-            TablaEnvPed.Visible = true;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = true;
-            LPed.Visible = true;
-            CStock.Visible = false;
-            AcPed.Visible = false;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
+            botonBotonera = 3;
+            actualizarPantalla();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            StockLabel.Visible = false;
-            RealizarLabel.Visible = false;
-            RecibirLabel.Visible = true;
-            EnvioLabel.Visible = false;
-
-            TablaStock.Visible = false;
-            TablaReaPed.Visible = false;
-            TablaRecPed.Visible = true;
-            TablaEnvPed.Visible = false;
-            EjLote1.Visible = false;
-            ProdAEnviar.Visible = false;
-            EjLote2.Visible = false;
-            LPed.Visible = false;
-            CStock.Visible = true;
-            AcPed.Visible = true;
-            labelBienvenido1.Visible = false;
-            labelBienvenido2.Visible = false;
+            botonBotonera = 4;
+            actualizarPantalla();
         }
+
+
+        private void actualizarPantalla()
+        {
+            switch (botonBotonera)
+            {
+                case 1:
+                    LabelTitulo.Text = "Control de Stock";
+                    labelAyuda.MaximumSize = new Size(140, 0);
+                    labelAyuda.AutoSize = true;
+                    labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos," +
+                        " junto al punto por donde se hará un pedido para reponer y mantener el nivel de stock" +
+                        " deseado";
+
+                    TablaStock.Visible = true;
+                    TablaReaPed.Visible = false;
+                    TablaRecPed.Visible = false;
+                    TablaEnvPed.Visible = false;
+                    BotonEjecutarLote1.Visible = false;
+                    botonProdAEnviar.Visible = false;
+                    botonEjecutarLote2.Visible = false;
+                    botonLevantarPedido.Visible = false;
+                    botonCargarStock.Visible = false;
+                    botonActualizarPedidos.Visible = false;
+
+                    labelBienvenido1.Visible = false;
+                    labelBienvenido2.Visible = false;
+                    break;
+
+                case 2:
+                    LabelTitulo.Text = "Confeccionar pedidos a industrias";
+                    labelAyuda.MaximumSize = new Size(140, 0);
+                    labelAyuda.AutoSize = true;
+                    labelAyuda.Text = "Aquí podemos realizar pedidos a las industrias para que nos " +
+                        " envíen productos si tenemos stock por debajo del punto de reposición.";
+
+                    TablaStock.Visible = false;
+                    TablaReaPed.Visible = true;
+                    TablaRecPed.Visible = false;
+                    TablaEnvPed.Visible = false;
+                    BotonEjecutarLote1.Visible = true;
+                    botonProdAEnviar.Visible = true;
+                    botonEjecutarLote2.Visible = false;
+                    botonLevantarPedido.Visible = false;
+                    botonCargarStock.Visible = false;
+                    botonActualizarPedidos.Visible = false;
+
+                    labelBienvenido1.Visible = false;
+                    labelBienvenido2.Visible = false;
+                    break;
+
+                case 3:
+                    LabelTitulo.Text = "Confeccionar lotes de bultos a enviar";
+                    labelAyuda.MaximumSize = new Size(140, 0);
+                    labelAyuda.AutoSize = true;
+                    labelAyuda.Text = "Aquí podemos confeccionar los bultos de lotes para envíos, " +
+                        " dirigidos a la empresa de logística.";
+
+                    TablaStock.Visible = false;
+                    TablaReaPed.Visible = false;
+                    TablaRecPed.Visible = false;
+                    TablaEnvPed.Visible = true;
+                    BotonEjecutarLote1.Visible = false;
+                    botonProdAEnviar.Visible = false;
+                    botonEjecutarLote2.Visible = true;
+                    botonLevantarPedido.Visible = true;
+                    botonCargarStock.Visible = false;
+                    botonActualizarPedidos.Visible = false;
+
+                    labelBienvenido1.Visible = false;
+                    labelBienvenido2.Visible = false;
+                    break;
+
+                case 4:
+                    LabelTitulo.Text = "Recibir pedidos de ventas Online";
+                    labelAyuda.MaximumSize = new Size(140, 0);
+                    labelAyuda.AutoSize = true;
+                    labelAyuda.Text = "Aquí podemos recibir los pedidos resultantes de ventas Online " +
+                        " y revisar contra nuestro stock disponible.";
+
+                    TablaStock.Visible = false;
+                    TablaReaPed.Visible = false;
+                    TablaRecPed.Visible = true;
+                    TablaEnvPed.Visible = false;
+
+                    BotonEjecutarLote1.Visible = false;
+                    botonProdAEnviar.Visible = false;
+                    botonEjecutarLote2.Visible = false;
+                    botonLevantarPedido.Visible = false;
+                    botonCargarStock.Visible = true;
+                    botonActualizarPedidos.Visible = true;
+
+                    labelBienvenido1.Visible = false;
+                    labelBienvenido2.Visible = false;
+                    break;
+
+                case 5:
+                    LabelTitulo.Visible = true;
+                    LabelTitulo.Text = "CAI - Comercio";
+                    labelAyuda.Text = "CAI, Grupo 2";
+
+                    TablaStock.Visible = false;
+                    TablaReaPed.Visible = false;
+                    TablaRecPed.Visible = false;
+                    TablaEnvPed.Visible = false;
+
+                    BotonEjecutarLote1.Visible = false;
+                    botonProdAEnviar.Visible = false;
+                    botonEjecutarLote2.Visible = false;
+                    botonLevantarPedido.Visible = false;
+                    botonCargarStock.Visible = false;
+                    botonActualizarPedidos.Visible = false;
+                    break;
+            }
+        }
+        // ------------------ botonera menú ------------------
     }
 }
