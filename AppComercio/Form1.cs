@@ -17,8 +17,10 @@ namespace AppComercio
         DataTable table2 = new DataTable();
         private void Form1_Load(object sender, EventArgs e)
         {
-            table2.Columns.Add("Codigo", typeof(int));
-            table2.Columns.Add("Descripcion", typeof(string));
+            table2.Columns.Add("Código de Producto", typeof(int));
+            table2.Columns.Add("Cantidad en Stock", typeof(string));
+            table2.Columns.Add("Punto de Reposición", typeof(string));
+            table2.Columns.Add("Diferencia", typeof(string));
 
             TablaStock.DataSource = table2;
 
@@ -193,10 +195,11 @@ namespace AppComercio
                     TablaReaPed.Visible = false;
                     TablaRecPed.Visible = false;
                     TablaEnvPed.Visible = false;
+                    BotonAcuseRecibo.Visible = false;
                     BotonEjecutarLote1.Visible = false;
                     botonProdAEnviar.Visible = false;
                     botonEjecutarLote2.Visible = false;
-                    botonLevantarPedido.Visible = false;
+                    botonGenerarPedido.Visible = false;
                     botonCargarStock.Visible = false;
                     botonActualizarPedidos.Visible = false;
 
@@ -215,10 +218,11 @@ namespace AppComercio
                     TablaReaPed.Visible = true;
                     TablaRecPed.Visible = false;
                     TablaEnvPed.Visible = false;
+                    BotonAcuseRecibo.Visible = false;
                     BotonEjecutarLote1.Visible = true;
                     botonProdAEnviar.Visible = true;
                     botonEjecutarLote2.Visible = false;
-                    botonLevantarPedido.Visible = false;
+                    botonGenerarPedido.Visible = false;
                     botonCargarStock.Visible = false;
                     botonActualizarPedidos.Visible = false;
 
@@ -237,10 +241,11 @@ namespace AppComercio
                     TablaReaPed.Visible = false;
                     TablaRecPed.Visible = false;
                     TablaEnvPed.Visible = true;
+                    BotonAcuseRecibo.Visible = true;
                     BotonEjecutarLote1.Visible = false;
                     botonProdAEnviar.Visible = false;
                     botonEjecutarLote2.Visible = true;
-                    botonLevantarPedido.Visible = true;
+                    botonGenerarPedido.Visible = true;
                     botonCargarStock.Visible = false;
                     botonActualizarPedidos.Visible = false;
 
@@ -260,10 +265,11 @@ namespace AppComercio
                     TablaRecPed.Visible = true;
                     TablaEnvPed.Visible = false;
 
+                    BotonAcuseRecibo.Visible = false;
                     BotonEjecutarLote1.Visible = false;
                     botonProdAEnviar.Visible = false;
                     botonEjecutarLote2.Visible = false;
-                    botonLevantarPedido.Visible = false;
+                    botonGenerarPedido.Visible = false;
                     botonCargarStock.Visible = true;
                     botonActualizarPedidos.Visible = true;
 
@@ -281,10 +287,11 @@ namespace AppComercio
                     TablaRecPed.Visible = false;
                     TablaEnvPed.Visible = false;
 
+                    BotonAcuseRecibo.Visible = false;
                     BotonEjecutarLote1.Visible = false;
                     botonProdAEnviar.Visible = false;
                     botonEjecutarLote2.Visible = false;
-                    botonLevantarPedido.Visible = false;
+                    botonGenerarPedido.Visible = false;
                     botonCargarStock.Visible = false;
                     botonActualizarPedidos.Visible = false;
                     break;

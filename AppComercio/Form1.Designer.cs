@@ -52,12 +52,13 @@
             this.TablaReaPed = new System.Windows.Forms.DataGridView();
             this.TablaEnvPed = new System.Windows.Forms.DataGridView();
             this.TablaRecPed = new System.Windows.Forms.DataGridView();
-            this.botonLevantarPedido = new System.Windows.Forms.Button();
+            this.botonGenerarPedido = new System.Windows.Forms.Button();
             this.botonEjecutarLote2 = new System.Windows.Forms.Button();
             this.botonActualizarPedidos = new System.Windows.Forms.Button();
             this.botonCargarStock = new System.Windows.Forms.Button();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.labelBienvenido2 = new System.Windows.Forms.Label();
+            this.BotonAcuseRecibo = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
             this.TopPanelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Wrapper)).BeginInit();
@@ -311,9 +312,9 @@
             // BotonEjecutarLote1
             // 
             this.BotonEjecutarLote1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BotonEjecutarLote1.Location = new System.Drawing.Point(572, 506);
+            this.BotonEjecutarLote1.Location = new System.Drawing.Point(550, 506);
             this.BotonEjecutarLote1.Name = "BotonEjecutarLote1";
-            this.BotonEjecutarLote1.Size = new System.Drawing.Size(128, 32);
+            this.BotonEjecutarLote1.Size = new System.Drawing.Size(150, 32);
             this.BotonEjecutarLote1.TabIndex = 4;
             this.BotonEjecutarLote1.Text = "Ejecutar lote";
             this.BotonEjecutarLote1.UseVisualStyleBackColor = true;
@@ -321,9 +322,9 @@
             // botonProdAEnviar
             // 
             this.botonProdAEnviar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonProdAEnviar.Location = new System.Drawing.Point(392, 506);
+            this.botonProdAEnviar.Location = new System.Drawing.Point(378, 506);
             this.botonProdAEnviar.Name = "botonProdAEnviar";
-            this.botonProdAEnviar.Size = new System.Drawing.Size(164, 32);
+            this.botonProdAEnviar.Size = new System.Drawing.Size(150, 32);
             this.botonProdAEnviar.TabIndex = 5;
             this.botonProdAEnviar.Text = "Ver productos a enviar";
             this.botonProdAEnviar.UseVisualStyleBackColor = true;
@@ -360,22 +361,22 @@
             this.TablaRecPed.Size = new System.Drawing.Size(500, 430);
             this.TablaRecPed.TabIndex = 8;
             // 
-            // botonLevantarPedido
+            // botonGenerarPedido
             // 
-            this.botonLevantarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonLevantarPedido.Location = new System.Drawing.Point(412, 506);
-            this.botonLevantarPedido.Name = "botonLevantarPedido";
-            this.botonLevantarPedido.Size = new System.Drawing.Size(128, 32);
-            this.botonLevantarPedido.TabIndex = 9;
-            this.botonLevantarPedido.Text = "Levantar pedido";
-            this.botonLevantarPedido.UseVisualStyleBackColor = true;
+            this.botonGenerarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.botonGenerarPedido.Location = new System.Drawing.Point(378, 506);
+            this.botonGenerarPedido.Name = "botonGenerarPedido";
+            this.botonGenerarPedido.Size = new System.Drawing.Size(150, 32);
+            this.botonGenerarPedido.TabIndex = 9;
+            this.botonGenerarPedido.Text = "Generar pedido";
+            this.botonGenerarPedido.UseVisualStyleBackColor = true;
             // 
             // botonEjecutarLote2
             // 
             this.botonEjecutarLote2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonEjecutarLote2.Location = new System.Drawing.Point(572, 506);
+            this.botonEjecutarLote2.Location = new System.Drawing.Point(550, 506);
             this.botonEjecutarLote2.Name = "botonEjecutarLote2";
-            this.botonEjecutarLote2.Size = new System.Drawing.Size(128, 32);
+            this.botonEjecutarLote2.Size = new System.Drawing.Size(150, 32);
             this.botonEjecutarLote2.TabIndex = 10;
             this.botonEjecutarLote2.Text = "Ejecutar lote";
             this.botonEjecutarLote2.UseVisualStyleBackColor = true;
@@ -383,19 +384,19 @@
             // botonActualizarPedidos
             // 
             this.botonActualizarPedidos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonActualizarPedidos.Location = new System.Drawing.Point(412, 506);
+            this.botonActualizarPedidos.Location = new System.Drawing.Point(378, 506);
             this.botonActualizarPedidos.Name = "botonActualizarPedidos";
-            this.botonActualizarPedidos.Size = new System.Drawing.Size(128, 32);
+            this.botonActualizarPedidos.Size = new System.Drawing.Size(150, 32);
             this.botonActualizarPedidos.TabIndex = 11;
-            this.botonActualizarPedidos.Text = "Actualizar pedidos";
+            this.botonActualizarPedidos.Text = "Recibir pedidos";
             this.botonActualizarPedidos.UseVisualStyleBackColor = true;
             // 
             // botonCargarStock
             // 
             this.botonCargarStock.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonCargarStock.Location = new System.Drawing.Point(572, 506);
+            this.botonCargarStock.Location = new System.Drawing.Point(550, 506);
             this.botonCargarStock.Name = "botonCargarStock";
-            this.botonCargarStock.Size = new System.Drawing.Size(128, 32);
+            this.botonCargarStock.Size = new System.Drawing.Size(150, 32);
             this.botonCargarStock.TabIndex = 12;
             this.botonCargarStock.Text = "Cargar a stock";
             this.botonCargarStock.UseVisualStyleBackColor = true;
@@ -420,17 +421,28 @@
             this.labelBienvenido2.TabIndex = 14;
             this.labelBienvenido2.Text = "Seleccione una opción para comenzar";
             // 
+            // BotonAcuseRecibo
+            // 
+            this.BotonAcuseRecibo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BotonAcuseRecibo.Location = new System.Drawing.Point(200, 506);
+            this.BotonAcuseRecibo.Name = "BotonAcuseRecibo";
+            this.BotonAcuseRecibo.Size = new System.Drawing.Size(150, 32);
+            this.BotonAcuseRecibo.TabIndex = 15;
+            this.BotonAcuseRecibo.Text = "Ver Acuse de Recibo";
+            this.BotonAcuseRecibo.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(720, 550);
+            this.Controls.Add(this.BotonAcuseRecibo);
             this.Controls.Add(this.labelBienvenido2);
             this.Controls.Add(this.labelBienvenido1);
             this.Controls.Add(this.botonCargarStock);
             this.Controls.Add(this.botonActualizarPedidos);
             this.Controls.Add(this.botonEjecutarLote2);
-            this.Controls.Add(this.botonLevantarPedido);
+            this.Controls.Add(this.botonGenerarPedido);
             this.Controls.Add(this.TablaRecPed);
             this.Controls.Add(this.TablaEnvPed);
             this.Controls.Add(this.TablaReaPed);
@@ -489,7 +501,7 @@
         private System.Windows.Forms.DataGridView TablaReaPed;
         private System.Windows.Forms.DataGridView TablaEnvPed;
         private System.Windows.Forms.DataGridView TablaRecPed;
-        private System.Windows.Forms.Button botonLevantarPedido;
+        private System.Windows.Forms.Button botonGenerarPedido;
         private System.Windows.Forms.Button botonEjecutarLote2;
         private System.Windows.Forms.Button botonActualizarPedidos;
         private System.Windows.Forms.Button botonCargarStock;
@@ -497,6 +509,7 @@
         private System.Windows.Forms.Label labelBienvenido2;
         private System.Windows.Forms.Panel panelAyuda;
         private System.Windows.Forms.Label labelAyuda;
+        private System.Windows.Forms.Button BotonAcuseRecibo;
     }
 }
 
