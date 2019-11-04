@@ -188,8 +188,8 @@ namespace AppComercio
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos," +
-                        " junto al punto por donde se hará un pedido para reponer y mantener el nivel de stock" +
-                        " deseado";
+                        " junto al punto por donde se hará un pedido a industrias para reponer y mantener el nivel de stock" +
+                        " deseado.";
 
                     TablaStock.Visible = true;
                     TablaReaPed.Visible = false;
@@ -234,8 +234,8 @@ namespace AppComercio
                     LabelTitulo.Text = "Confeccionar lotes de bultos a enviar";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos confeccionar los bultos de lotes para envíos, " +
-                        " dirigidos a la empresa de logística.";
+                    labelAyuda.Text = "Aquí podemos confeccionar los lotes de bultos para envíos a clientes, " +
+                        " distribuídos por la empresa de logística.";
 
                     TablaStock.Visible = false;
                     TablaReaPed.Visible = false;
@@ -257,8 +257,8 @@ namespace AppComercio
                     LabelTitulo.Text = "Recibir pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos recibir los pedidos resultantes de ventas Online " +
-                        " y revisar contra nuestro stock disponible.";
+                    labelAyuda.Text = "Aquí podemos recibir los pedidos resultantes de ventas Online" +
+                        " y reflejarlos contra nuestro stock disponible.";
 
                     TablaStock.Visible = false;
                     TablaReaPed.Visible = false;
@@ -280,7 +280,7 @@ namespace AppComercio
                 case 5:
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "CAI - Comercio";
-                    labelAyuda.Text = "CAI, Grupo 2";
+                    labelAyuda.Text = "CAI - Grupo 2";
 
                     TablaStock.Visible = false;
                     TablaReaPed.Visible = false;
