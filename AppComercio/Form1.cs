@@ -13,16 +13,24 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        DataTable table = new DataTable();
-        DataTable table2 = new DataTable();
+        DataTable tReaPed = new DataTable();
+        DataTable tStock = new DataTable();
         private void Form1_Load(object sender, EventArgs e)
         {
-            table2.Columns.Add("Código de Producto", typeof(int));
-            table2.Columns.Add("Cantidad en Stock", typeof(string));
-            table2.Columns.Add("Punto de Reposición", typeof(string));
-            table2.Columns.Add("Diferencia", typeof(string));
+            tStock.Columns.Add("Código de Producto", typeof(int));
+            tStock.Columns.Add("Cantidad en Stock", typeof(string));
+            tStock.Columns.Add("Punto de Reposición", typeof(string));
+            tStock.Columns.Add("Diferencia", typeof(string));
 
-            TablaStock.DataSource = table2;
+            tReaPed.Columns.Add("Código de producto", typeof(string));
+            tReaPed.Columns.Add("Cantidad", typeof(string));
+            tReaPed.Columns.Add("Código de comercio", typeof(string));
+            tReaPed.Columns.Add("Razón Social", typeof(string));
+            tReaPed.Columns.Add("CUIT", typeof(string));
+            tReaPed.Columns.Add("Dirección de entrega", typeof(string));
+
+            TablaStock.DataSource = tStock;
+            TablaReaPed.DataSource = tReaPed;
 
             // hacer form borderless movible
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
@@ -32,7 +40,7 @@ namespace AppComercio
         public Form1()
         {
             InitializeComponent();
-            botonBotonera = 5;
+            botonBotonera = 0;
             actualizarPantalla();
         }
 
@@ -92,6 +100,11 @@ namespace AppComercio
 
                 LabelTitulo.Location = new Point(55, 5);
 
+                labelBienvenido1.Location = new Point(310, 200);
+                labelBienvenido2.Location = new Point(155, 275);
+
+                
+
                 TablaStock.Width = 635;
                 TablaStock.Location = new Point(65, 55);
                 TablaEnvPed.Width = 635;
@@ -109,6 +122,9 @@ namespace AppComercio
                 TopPanelLeft.Width = 180;
 
                 LabelTitulo.Location = new Point(190, 5);
+
+                labelBienvenido1.Location = new Point(370, 200);
+                labelBienvenido2.Location = new Point(210, 275);
 
                 TablaStock.Width = 500;
                 TablaStock.Location = new Point(200, 55);
@@ -277,7 +293,7 @@ namespace AppComercio
                     labelBienvenido2.Visible = false;
                     break;
 
-                case 5:
+                case 0:
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "CAI - Comercio";
                     labelAyuda.Text = "CAI - Grupo 2";

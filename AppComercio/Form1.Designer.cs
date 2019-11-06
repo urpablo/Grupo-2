@@ -405,7 +405,7 @@
             // 
             this.labelBienvenido1.AutoSize = true;
             this.labelBienvenido1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBienvenido1.Location = new System.Drawing.Point(371, 211);
+            this.labelBienvenido1.Location = new System.Drawing.Point(370, 200);
             this.labelBienvenido1.Name = "labelBienvenido1";
             this.labelBienvenido1.Size = new System.Drawing.Size(164, 32);
             this.labelBienvenido1.TabIndex = 13;
@@ -415,7 +415,7 @@
             // 
             this.labelBienvenido2.AutoSize = true;
             this.labelBienvenido2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBienvenido2.Location = new System.Drawing.Point(213, 287);
+            this.labelBienvenido2.Location = new System.Drawing.Point(210, 275);
             this.labelBienvenido2.Name = "labelBienvenido2";
             this.labelBienvenido2.Size = new System.Drawing.Size(477, 32);
             this.labelBienvenido2.TabIndex = 14;
