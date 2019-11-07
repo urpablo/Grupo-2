@@ -20,7 +20,9 @@ namespace AppComercio
             panelAcuseRecibo.Location = new Point(186, 38);
 
             // hacer form borderless movible
-            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove_1);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
             // hacer form borderless movible
         }
         public Form1()
@@ -39,7 +41,25 @@ namespace AppComercio
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        private void TopPanel_MouseMove_1(object sender, MouseEventArgs e)
+        private void TopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void TopPanelLeft_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void LabelTitulo_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -278,6 +298,9 @@ namespace AppComercio
                     break;
             }
         }
+
+
+
 
 
 

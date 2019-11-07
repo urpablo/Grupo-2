@@ -153,7 +153,7 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(800, 32);
             this.TopPanel.TabIndex = 1;
-            this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove_1);
+            this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
             // LabelTitulo
             // 
@@ -165,6 +165,7 @@
             this.LabelTitulo.TabIndex = 7;
             this.LabelTitulo.Text = "Confeccionar pedidos a industrias";
             this.LabelTitulo.Visible = false;
+            this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitulo_MouseMove);
             // 
             // TopPanelLeft
             // 
@@ -174,6 +175,7 @@
             this.TopPanelLeft.Name = "TopPanelLeft";
             this.TopPanelLeft.Size = new System.Drawing.Size(180, 32);
             this.TopPanelLeft.TabIndex = 2;
+            this.TopPanelLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanelLeft_MouseMove);
             // 
             // Minimizar
             // 
