@@ -279,7 +279,7 @@
             // 
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(0, 132);
+            this.pictureBox4.Location = new System.Drawing.Point(0, 88);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(47, 44);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -291,7 +291,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(0, 88);
+            this.pictureBox3.Location = new System.Drawing.Point(0, 132);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(47, 44);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -333,7 +333,7 @@
             this.btnRecibirPedidoOnline.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecibirPedidoOnline.ForeColor = System.Drawing.Color.White;
             this.btnRecibirPedidoOnline.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecibirPedidoOnline.Location = new System.Drawing.Point(45, 132);
+            this.btnRecibirPedidoOnline.Location = new System.Drawing.Point(45, 88);
             this.btnRecibirPedidoOnline.Name = "btnRecibirPedidoOnline";
             this.btnRecibirPedidoOnline.Size = new System.Drawing.Size(135, 44);
             this.btnRecibirPedidoOnline.TabIndex = 12;
@@ -352,7 +352,7 @@
             this.btnEnviarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviarPedido.ForeColor = System.Drawing.Color.White;
             this.btnEnviarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEnviarPedido.Location = new System.Drawing.Point(45, 88);
+            this.btnEnviarPedido.Location = new System.Drawing.Point(45, 132);
             this.btnEnviarPedido.Name = "btnEnviarPedido";
             this.btnEnviarPedido.Size = new System.Drawing.Size(135, 44);
             this.btnEnviarPedido.TabIndex = 11;
