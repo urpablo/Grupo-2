@@ -21,7 +21,7 @@ namespace AppComercio
 
             // hacer form borderless movible
             MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove_1);
-            // fin hacer form borderless movible
+            // hacer form borderless movible
         }
         public Form1()
         {
@@ -43,7 +43,6 @@ namespace AppComercio
         {
             if (e.Button == MouseButtons.Left)
             {
-
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
@@ -63,8 +62,6 @@ namespace AppComercio
             {
                 Application.Exit();
             }
-
-
         }
 
         private void Minimizar_Click(object sender, EventArgs e)
@@ -73,6 +70,7 @@ namespace AppComercio
 
         }
         // ------------------ controles ventana -----------------
+
 
         // ------------------ botonera menú ------------------
 
@@ -138,7 +136,6 @@ namespace AppComercio
             actualizarPantalla();
         }
 
-
         private void actualizarPantalla()
         {
             switch (botonBotonera)
@@ -150,7 +147,13 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
-                    
+
+                    btnStock.BackColor = Color.FromArgb(52, 78, 103);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+
                     LabelTitulo.Text = "Control de Stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
@@ -168,6 +171,12 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
+
+                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(52, 78, 103);
+                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
 
                     LabelTitulo.Text = "Confirmar pedidos a industrias";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -187,6 +196,12 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
+                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnEnviarPedido.BackColor = Color.FromArgb(52, 78, 103);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+
                     LabelTitulo.Text = "Confirmar lotes de bultos a enviar";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
@@ -205,6 +220,12 @@ namespace AppComercio
                     panelVentasOnline.Visible = true;
                     panelAcuseRecibo.Visible = false;
 
+                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(52, 78, 103);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+
                     LabelTitulo.Text = "Recibir pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
@@ -222,6 +243,12 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = true;
 
+                    btnStock.BackColor =  Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(52, 78, 103);
+
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "Ver acuse de recibo de Envíos";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -238,6 +265,11 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
+                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
 
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "CAI - Comercio";
@@ -246,7 +278,6 @@ namespace AppComercio
                     break;
             }
         }
-
 
 
 

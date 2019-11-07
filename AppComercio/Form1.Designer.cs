@@ -54,6 +54,8 @@
             this.groupBoxBotonPedidoIndustria = new System.Windows.Forms.GroupBox();
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
+            this.labelCodigoPedido = new System.Windows.Forms.Label();
+            this.textBoxCodPedidoInd = new System.Windows.Forms.TextBox();
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textBoxDireccion = new System.Windows.Forms.TextBox();
             this.labelCUIT = new System.Windows.Forms.Label();
@@ -71,6 +73,10 @@
             this.groupBoxRecibirPedido = new System.Windows.Forms.GroupBox();
             this.buttonRecibirPedidoOnline = new System.Windows.Forms.Button();
             this.groupBoxDatosClienteOnline = new System.Windows.Forms.GroupBox();
+            this.labelCodLoteCliente = new System.Windows.Forms.Label();
+            this.textBoxCodLoteOnline = new System.Windows.Forms.TextBox();
+            this.labelCodRefCliente = new System.Windows.Forms.Label();
+            this.textBoxCodRefOnline = new System.Windows.Forms.TextBox();
             this.labelDirDev = new System.Windows.Forms.Label();
             this.textBoxDirDevOnline = new System.Windows.Forms.TextBox();
             this.labelRteCUIT = new System.Windows.Forms.Label();
@@ -83,10 +89,6 @@
             this.dgwVentasOnline = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labelCodRefCliente = new System.Windows.Forms.Label();
-            this.textBoxCodRefOnline = new System.Windows.Forms.TextBox();
-            this.labelCodLoteCliente = new System.Windows.Forms.Label();
-            this.textBoxCodLoteOnline = new System.Windows.Forms.TextBox();
             this.panelAcuseRecibo = new System.Windows.Forms.Panel();
             this.groupBoxAcuseRecibo = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -95,19 +97,17 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelPedidoIndustrias = new System.Windows.Forms.Panel();
-            this.groupBoxOperacionesInd = new System.Windows.Forms.GroupBox();
-            this.buttonConfirmarPedidoInd = new System.Windows.Forms.Button();
             this.groupBoxPedidoIndustrias = new System.Windows.Forms.GroupBox();
-            this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
+            this.groupBoxOperacionesInd = new System.Windows.Forms.GroupBox();
             this.buttonLimpiarPedidoInd = new System.Windows.Forms.Button();
+            this.buttonConfirmarPedidoInd = new System.Windows.Forms.Button();
+            this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
             this.panelEnviosClientesOnline = new System.Windows.Forms.Panel();
             this.groupBoxEnviosClientes = new System.Windows.Forms.GroupBox();
             this.groupBoxOperacionesOnline = new System.Windows.Forms.GroupBox();
             this.buttonLimpiarClientesOnline = new System.Windows.Forms.Button();
             this.buttonEnviarClientesOnline = new System.Windows.Forms.Button();
             this.textBoxEnviosClientesOnline = new System.Windows.Forms.TextBox();
-            this.labelCodigoPedido = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).BeginInit();
@@ -134,8 +134,8 @@
             this.groupBoxTablaAcuseRecibo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).BeginInit();
             this.panelPedidoIndustrias.SuspendLayout();
-            this.groupBoxOperacionesInd.SuspendLayout();
             this.groupBoxPedidoIndustrias.SuspendLayout();
+            this.groupBoxOperacionesInd.SuspendLayout();
             this.panelEnviosClientesOnline.SuspendLayout();
             this.groupBoxEnviosClientes.SuspendLayout();
             this.groupBoxOperacionesOnline.SuspendLayout();
@@ -168,7 +168,7 @@
             // 
             // TopPanelLeft
             // 
-            this.TopPanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(247)))));
+            this.TopPanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(111)))), ((int)(((byte)(197)))));
             this.TopPanelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.TopPanelLeft.Location = new System.Drawing.Point(0, 0);
             this.TopPanelLeft.Name = "TopPanelLeft";
@@ -178,6 +178,7 @@
             // Minimizar
             // 
             this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
             this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
             this.Minimizar.Location = new System.Drawing.Point(750, 5);
             this.Minimizar.Name = "Minimizar";
@@ -202,7 +203,7 @@
             // 
             // Sidebar
             // 
-            this.Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(206)))));
+            this.Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(77)))), ((int)(((byte)(91)))));
             this.Sidebar.Controls.Add(this.pictureBox5);
             this.Sidebar.Controls.Add(this.btnAcuseRecibo);
             this.Sidebar.Controls.Add(this.panelAyuda);
@@ -221,7 +222,7 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
             this.pictureBox5.Location = new System.Drawing.Point(0, 176);
             this.pictureBox5.Name = "pictureBox5";
@@ -234,9 +235,9 @@
             // btnAcuseRecibo
             // 
             this.btnAcuseRecibo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcuseRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnAcuseRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(71)))));
             this.btnAcuseRecibo.FlatAppearance.BorderSize = 0;
-            this.btnAcuseRecibo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnAcuseRecibo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnAcuseRecibo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcuseRecibo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcuseRecibo.ForeColor = System.Drawing.Color.White;
@@ -252,7 +253,7 @@
             // 
             // panelAyuda
             // 
-            this.panelAyuda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(170)))), ((int)(((byte)(227)))));
+            this.panelAyuda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(62)))), ((int)(((byte)(70)))));
             this.panelAyuda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelAyuda.Controls.Add(this.labelAyuda);
             this.panelAyuda.Location = new System.Drawing.Point(10, 230);
@@ -274,7 +275,7 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
             this.pictureBox4.Location = new System.Drawing.Point(0, 132);
             this.pictureBox4.Name = "pictureBox4";
@@ -286,7 +287,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(0, 88);
             this.pictureBox3.Name = "pictureBox3";
@@ -298,7 +299,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 44);
             this.pictureBox2.Name = "pictureBox2";
@@ -310,7 +311,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
@@ -323,9 +324,9 @@
             // btnRecibirPedidoOnline
             // 
             this.btnRecibirPedidoOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRecibirPedidoOnline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnRecibirPedidoOnline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(71)))));
             this.btnRecibirPedidoOnline.FlatAppearance.BorderSize = 0;
-            this.btnRecibirPedidoOnline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnRecibirPedidoOnline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnRecibirPedidoOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecibirPedidoOnline.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecibirPedidoOnline.ForeColor = System.Drawing.Color.White;
@@ -342,9 +343,9 @@
             // btnEnviarPedido
             // 
             this.btnEnviarPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEnviarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnEnviarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(71)))));
             this.btnEnviarPedido.FlatAppearance.BorderSize = 0;
-            this.btnEnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnEnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnEnviarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEnviarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEnviarPedido.ForeColor = System.Drawing.Color.White;
@@ -361,9 +362,9 @@
             // btnPedidoIndustrias
             // 
             this.btnPedidoIndustrias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPedidoIndustrias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnPedidoIndustrias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(71)))));
             this.btnPedidoIndustrias.FlatAppearance.BorderSize = 0;
-            this.btnPedidoIndustrias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnPedidoIndustrias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnPedidoIndustrias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedidoIndustrias.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidoIndustrias.ForeColor = System.Drawing.Color.White;
@@ -380,9 +381,9 @@
             // btnStock
             // 
             this.btnStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(71)))));
             this.btnStock.FlatAppearance.BorderSize = 0;
-            this.btnStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStock.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStock.ForeColor = System.Drawing.Color.White;
@@ -420,7 +421,7 @@
             // 
             this.panelBienvenido.Controls.Add(this.labelBienvenido2);
             this.panelBienvenido.Controls.Add(this.labelBienvenido1);
-            this.panelBienvenido.Location = new System.Drawing.Point(190, 341);
+            this.panelBienvenido.Location = new System.Drawing.Point(184, 322);
             this.panelBienvenido.Name = "panelBienvenido";
             this.panelBienvenido.Size = new System.Drawing.Size(608, 505);
             this.panelBienvenido.TabIndex = 15;
@@ -430,7 +431,7 @@
             this.PanelStock.Controls.Add(this.groupBoxBotonPedidoIndustria);
             this.PanelStock.Controls.Add(this.groupBoxStockComercio);
             this.PanelStock.Controls.Add(this.groupBoxStockTabla);
-            this.PanelStock.Location = new System.Drawing.Point(212, 288);
+            this.PanelStock.Location = new System.Drawing.Point(206, 263);
             this.PanelStock.Name = "PanelStock";
             this.PanelStock.Size = new System.Drawing.Size(608, 505);
             this.PanelStock.TabIndex = 16;
@@ -457,7 +458,7 @@
             // groupBoxStockComercio
             // 
             this.groupBoxStockComercio.Controls.Add(this.labelCodigoPedido);
-            this.groupBoxStockComercio.Controls.Add(this.textBox1);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxCodPedidoInd);
             this.groupBoxStockComercio.Controls.Add(this.labelDireccion);
             this.groupBoxStockComercio.Controls.Add(this.textBoxDireccion);
             this.groupBoxStockComercio.Controls.Add(this.labelCUIT);
@@ -472,6 +473,22 @@
             this.groupBoxStockComercio.TabIndex = 21;
             this.groupBoxStockComercio.TabStop = false;
             this.groupBoxStockComercio.Text = "Datos del Comercio para Pedido";
+            // 
+            // labelCodigoPedido
+            // 
+            this.labelCodigoPedido.AutoSize = true;
+            this.labelCodigoPedido.Location = new System.Drawing.Point(7, 208);
+            this.labelCodigoPedido.Name = "labelCodigoPedido";
+            this.labelCodigoPedido.Size = new System.Drawing.Size(91, 13);
+            this.labelCodigoPedido.TabIndex = 9;
+            this.labelCodigoPedido.Text = "Código de Pedido";
+            // 
+            // textBoxCodPedidoInd
+            // 
+            this.textBoxCodPedidoInd.Location = new System.Drawing.Point(6, 224);
+            this.textBoxCodPedidoInd.Name = "textBoxCodPedidoInd";
+            this.textBoxCodPedidoInd.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodPedidoInd.TabIndex = 8;
             // 
             // labelDireccion
             // 
@@ -579,7 +596,7 @@
             this.panelVentasOnline.Controls.Add(this.groupBoxRecibirPedido);
             this.panelVentasOnline.Controls.Add(this.groupBoxDatosClienteOnline);
             this.panelVentasOnline.Controls.Add(this.groupBoxVentasOnline);
-            this.panelVentasOnline.Location = new System.Drawing.Point(258, 226);
+            this.panelVentasOnline.Location = new System.Drawing.Point(252, 207);
             this.panelVentasOnline.Name = "panelVentasOnline";
             this.panelVentasOnline.Size = new System.Drawing.Size(608, 505);
             this.panelVentasOnline.TabIndex = 24;
@@ -623,6 +640,38 @@
             this.groupBoxDatosClienteOnline.TabIndex = 21;
             this.groupBoxDatosClienteOnline.TabStop = false;
             this.groupBoxDatosClienteOnline.Text = "Datos del Cliente para Envío";
+            // 
+            // labelCodLoteCliente
+            // 
+            this.labelCodLoteCliente.AutoSize = true;
+            this.labelCodLoteCliente.Location = new System.Drawing.Point(7, 260);
+            this.labelCodLoteCliente.Name = "labelCodLoteCliente";
+            this.labelCodLoteCliente.Size = new System.Drawing.Size(79, 13);
+            this.labelCodLoteCliente.TabIndex = 11;
+            this.labelCodLoteCliente.Text = "Codigo de Lote";
+            // 
+            // textBoxCodLoteOnline
+            // 
+            this.textBoxCodLoteOnline.Location = new System.Drawing.Point(6, 276);
+            this.textBoxCodLoteOnline.Name = "textBoxCodLoteOnline";
+            this.textBoxCodLoteOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodLoteOnline.TabIndex = 10;
+            // 
+            // labelCodRefCliente
+            // 
+            this.labelCodRefCliente.AutoSize = true;
+            this.labelCodRefCliente.Location = new System.Drawing.Point(7, 212);
+            this.labelCodRefCliente.Name = "labelCodRefCliente";
+            this.labelCodRefCliente.Size = new System.Drawing.Size(110, 13);
+            this.labelCodRefCliente.TabIndex = 9;
+            this.labelCodRefCliente.Text = "Codigo de Referencia";
+            // 
+            // textBoxCodRefOnline
+            // 
+            this.textBoxCodRefOnline.Location = new System.Drawing.Point(6, 228);
+            this.textBoxCodRefOnline.Name = "textBoxCodRefOnline";
+            this.textBoxCodRefOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodRefOnline.TabIndex = 8;
             // 
             // labelDirDev
             // 
@@ -719,43 +768,11 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             // 
-            // labelCodRefCliente
-            // 
-            this.labelCodRefCliente.AutoSize = true;
-            this.labelCodRefCliente.Location = new System.Drawing.Point(7, 212);
-            this.labelCodRefCliente.Name = "labelCodRefCliente";
-            this.labelCodRefCliente.Size = new System.Drawing.Size(110, 13);
-            this.labelCodRefCliente.TabIndex = 9;
-            this.labelCodRefCliente.Text = "Codigo de Referencia";
-            // 
-            // textBoxCodRefOnline
-            // 
-            this.textBoxCodRefOnline.Location = new System.Drawing.Point(6, 228);
-            this.textBoxCodRefOnline.Name = "textBoxCodRefOnline";
-            this.textBoxCodRefOnline.Size = new System.Drawing.Size(196, 20);
-            this.textBoxCodRefOnline.TabIndex = 8;
-            // 
-            // labelCodLoteCliente
-            // 
-            this.labelCodLoteCliente.AutoSize = true;
-            this.labelCodLoteCliente.Location = new System.Drawing.Point(7, 260);
-            this.labelCodLoteCliente.Name = "labelCodLoteCliente";
-            this.labelCodLoteCliente.Size = new System.Drawing.Size(79, 13);
-            this.labelCodLoteCliente.TabIndex = 11;
-            this.labelCodLoteCliente.Text = "Codigo de Lote";
-            // 
-            // textBoxCodLoteOnline
-            // 
-            this.textBoxCodLoteOnline.Location = new System.Drawing.Point(6, 276);
-            this.textBoxCodLoteOnline.Name = "textBoxCodLoteOnline";
-            this.textBoxCodLoteOnline.Size = new System.Drawing.Size(196, 20);
-            this.textBoxCodLoteOnline.TabIndex = 10;
-            // 
             // panelAcuseRecibo
             // 
             this.panelAcuseRecibo.Controls.Add(this.groupBoxAcuseRecibo);
             this.panelAcuseRecibo.Controls.Add(this.groupBoxTablaAcuseRecibo);
-            this.panelAcuseRecibo.Location = new System.Drawing.Point(295, 172);
+            this.panelAcuseRecibo.Location = new System.Drawing.Point(289, 153);
             this.panelAcuseRecibo.Name = "panelAcuseRecibo";
             this.panelAcuseRecibo.Size = new System.Drawing.Size(608, 505);
             this.panelAcuseRecibo.TabIndex = 25;
@@ -813,30 +830,10 @@
             // panelPedidoIndustrias
             // 
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
-            this.panelPedidoIndustrias.Location = new System.Drawing.Point(329, 120);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(323, 101);
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(608, 505);
             this.panelPedidoIndustrias.TabIndex = 26;
-            // 
-            // groupBoxOperacionesInd
-            // 
-            this.groupBoxOperacionesInd.Controls.Add(this.buttonLimpiarPedidoInd);
-            this.groupBoxOperacionesInd.Controls.Add(this.buttonConfirmarPedidoInd);
-            this.groupBoxOperacionesInd.Location = new System.Drawing.Point(6, 409);
-            this.groupBoxOperacionesInd.Name = "groupBoxOperacionesInd";
-            this.groupBoxOperacionesInd.Size = new System.Drawing.Size(575, 72);
-            this.groupBoxOperacionesInd.TabIndex = 23;
-            this.groupBoxOperacionesInd.TabStop = false;
-            this.groupBoxOperacionesInd.Text = "Operaciones";
-            // 
-            // buttonConfirmarPedidoInd
-            // 
-            this.buttonConfirmarPedidoInd.Location = new System.Drawing.Point(98, 19);
-            this.buttonConfirmarPedidoInd.Name = "buttonConfirmarPedidoInd";
-            this.buttonConfirmarPedidoInd.Size = new System.Drawing.Size(186, 42);
-            this.buttonConfirmarPedidoInd.TabIndex = 22;
-            this.buttonConfirmarPedidoInd.Text = "Confirmar pedido";
-            this.buttonConfirmarPedidoInd.UseVisualStyleBackColor = true;
             // 
             // groupBoxPedidoIndustrias
             // 
@@ -849,14 +846,16 @@
             this.groupBoxPedidoIndustrias.TabStop = false;
             this.groupBoxPedidoIndustrias.Text = "Pedidos a Industrias";
             // 
-            // textBoxPedidoIndustria
+            // groupBoxOperacionesInd
             // 
-            this.textBoxPedidoIndustria.Location = new System.Drawing.Point(6, 19);
-            this.textBoxPedidoIndustria.Multiline = true;
-            this.textBoxPedidoIndustria.Name = "textBoxPedidoIndustria";
-            this.textBoxPedidoIndustria.ReadOnly = true;
-            this.textBoxPedidoIndustria.Size = new System.Drawing.Size(575, 383);
-            this.textBoxPedidoIndustria.TabIndex = 0;
+            this.groupBoxOperacionesInd.Controls.Add(this.buttonLimpiarPedidoInd);
+            this.groupBoxOperacionesInd.Controls.Add(this.buttonConfirmarPedidoInd);
+            this.groupBoxOperacionesInd.Location = new System.Drawing.Point(6, 409);
+            this.groupBoxOperacionesInd.Name = "groupBoxOperacionesInd";
+            this.groupBoxOperacionesInd.Size = new System.Drawing.Size(575, 72);
+            this.groupBoxOperacionesInd.TabIndex = 23;
+            this.groupBoxOperacionesInd.TabStop = false;
+            this.groupBoxOperacionesInd.Text = "Operaciones";
             // 
             // buttonLimpiarPedidoInd
             // 
@@ -867,10 +866,28 @@
             this.buttonLimpiarPedidoInd.Text = "Limpiar pedido";
             this.buttonLimpiarPedidoInd.UseVisualStyleBackColor = true;
             // 
+            // buttonConfirmarPedidoInd
+            // 
+            this.buttonConfirmarPedidoInd.Location = new System.Drawing.Point(98, 19);
+            this.buttonConfirmarPedidoInd.Name = "buttonConfirmarPedidoInd";
+            this.buttonConfirmarPedidoInd.Size = new System.Drawing.Size(186, 42);
+            this.buttonConfirmarPedidoInd.TabIndex = 22;
+            this.buttonConfirmarPedidoInd.Text = "Confirmar pedido";
+            this.buttonConfirmarPedidoInd.UseVisualStyleBackColor = true;
+            // 
+            // textBoxPedidoIndustria
+            // 
+            this.textBoxPedidoIndustria.Location = new System.Drawing.Point(6, 19);
+            this.textBoxPedidoIndustria.Multiline = true;
+            this.textBoxPedidoIndustria.Name = "textBoxPedidoIndustria";
+            this.textBoxPedidoIndustria.ReadOnly = true;
+            this.textBoxPedidoIndustria.Size = new System.Drawing.Size(575, 383);
+            this.textBoxPedidoIndustria.TabIndex = 0;
+            // 
             // panelEnviosClientesOnline
             // 
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(375, 58);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(369, 39);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(608, 505);
             this.panelEnviosClientesOnline.TabIndex = 27;
@@ -924,22 +941,6 @@
             this.textBoxEnviosClientesOnline.Size = new System.Drawing.Size(575, 383);
             this.textBoxEnviosClientesOnline.TabIndex = 0;
             // 
-            // labelCodigoPedido
-            // 
-            this.labelCodigoPedido.AutoSize = true;
-            this.labelCodigoPedido.Location = new System.Drawing.Point(7, 208);
-            this.labelCodigoPedido.Name = "labelCodigoPedido";
-            this.labelCodigoPedido.Size = new System.Drawing.Size(91, 13);
-            this.labelCodigoPedido.TabIndex = 9;
-            this.labelCodigoPedido.Text = "Código de Pedido";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 224);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(196, 20);
-            this.textBox1.TabIndex = 8;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -990,9 +991,9 @@
             this.groupBoxTablaAcuseRecibo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).EndInit();
             this.panelPedidoIndustrias.ResumeLayout(false);
-            this.groupBoxOperacionesInd.ResumeLayout(false);
             this.groupBoxPedidoIndustrias.ResumeLayout(false);
             this.groupBoxPedidoIndustrias.PerformLayout();
+            this.groupBoxOperacionesInd.ResumeLayout(false);
             this.panelEnviosClientesOnline.ResumeLayout(false);
             this.groupBoxEnviosClientes.ResumeLayout(false);
             this.groupBoxEnviosClientes.PerformLayout();
@@ -1080,7 +1081,7 @@
         private System.Windows.Forms.Button buttonEnviarClientesOnline;
         private System.Windows.Forms.TextBox textBoxEnviosClientesOnline;
         private System.Windows.Forms.Label labelCodigoPedido;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxCodPedidoInd;
     }
 }
 
