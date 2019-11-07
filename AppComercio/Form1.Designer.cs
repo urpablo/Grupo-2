@@ -32,48 +32,113 @@
             this.TopPanel = new System.Windows.Forms.Panel();
             this.LabelTitulo = new System.Windows.Forms.Label();
             this.TopPanelLeft = new System.Windows.Forms.Panel();
-            this.Wrapper = new System.Windows.Forms.PictureBox();
             this.Minimizar = new System.Windows.Forms.PictureBox();
             this.Salir = new System.Windows.Forms.PictureBox();
             this.Sidebar = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.btnAcuseRecibo = new System.Windows.Forms.Button();
             this.panelAyuda = new System.Windows.Forms.Panel();
             this.labelAyuda = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.RecibirPedido = new System.Windows.Forms.Button();
-            this.EnviarPedido = new System.Windows.Forms.Button();
-            this.RealizarPedido = new System.Windows.Forms.Button();
-            this.Stock = new System.Windows.Forms.Button();
-            this.BotonEjecutarLote1 = new System.Windows.Forms.Button();
-            this.botonProdAEnviar = new System.Windows.Forms.Button();
-            this.TablaStock = new System.Windows.Forms.DataGridView();
-            this.TablaReaPed = new System.Windows.Forms.DataGridView();
-            this.TablaEnvPed = new System.Windows.Forms.DataGridView();
-            this.TablaRecPed = new System.Windows.Forms.DataGridView();
-            this.botonGenerarPedido = new System.Windows.Forms.Button();
-            this.botonEjecutarLote2 = new System.Windows.Forms.Button();
-            this.botonActualizarPedidos = new System.Windows.Forms.Button();
-            this.botonCargarStock = new System.Windows.Forms.Button();
+            this.btnRecibirPedidoOnline = new System.Windows.Forms.Button();
+            this.btnEnviarPedido = new System.Windows.Forms.Button();
+            this.btnPedidoIndustrias = new System.Windows.Forms.Button();
+            this.btnStock = new System.Windows.Forms.Button();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.labelBienvenido2 = new System.Windows.Forms.Label();
-            this.BotonAcuseRecibo = new System.Windows.Forms.Button();
+            this.panelBienvenido = new System.Windows.Forms.Panel();
+            this.PanelStock = new System.Windows.Forms.Panel();
+            this.groupBoxBotonPedidoIndustria = new System.Windows.Forms.GroupBox();
+            this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
+            this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
+            this.labelDireccion = new System.Windows.Forms.Label();
+            this.textBoxDireccion = new System.Windows.Forms.TextBox();
+            this.labelCUIT = new System.Windows.Forms.Label();
+            this.textBoxCUIT = new System.Windows.Forms.TextBox();
+            this.labelRazSoc = new System.Windows.Forms.Label();
+            this.textBoxRazSoc = new System.Windows.Forms.TextBox();
+            this.labelCodComercio = new System.Windows.Forms.Label();
+            this.textBoxCodComercio = new System.Windows.Forms.TextBox();
+            this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
+            this.dgwStock = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelVentasOnline = new System.Windows.Forms.Panel();
+            this.groupBoxRecibirPedido = new System.Windows.Forms.GroupBox();
+            this.buttonRecibirPedidoOnline = new System.Windows.Forms.Button();
+            this.groupBoxDatosClienteOnline = new System.Windows.Forms.GroupBox();
+            this.labelDirDev = new System.Windows.Forms.Label();
+            this.textBoxDirDevOnline = new System.Windows.Forms.TextBox();
+            this.labelRteCUIT = new System.Windows.Forms.Label();
+            this.textBoxRteCUITOnline = new System.Windows.Forms.TextBox();
+            this.labelRteRazSoc = new System.Windows.Forms.Label();
+            this.textBoxRazSocOnline = new System.Windows.Forms.TextBox();
+            this.labelCodCliente = new System.Windows.Forms.Label();
+            this.textBoxCodClienteOnline = new System.Windows.Forms.TextBox();
+            this.groupBoxVentasOnline = new System.Windows.Forms.GroupBox();
+            this.dgwVentasOnline = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelCodRefCliente = new System.Windows.Forms.Label();
+            this.textBoxCodRefOnline = new System.Windows.Forms.TextBox();
+            this.labelCodLoteCliente = new System.Windows.Forms.Label();
+            this.textBoxCodLoteOnline = new System.Windows.Forms.TextBox();
+            this.panelAcuseRecibo = new System.Windows.Forms.Panel();
+            this.groupBoxAcuseRecibo = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBoxTablaAcuseRecibo = new System.Windows.Forms.GroupBox();
+            this.dgwAcuseRecibo = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panelPedidoIndustrias = new System.Windows.Forms.Panel();
+            this.groupBoxOperacionesInd = new System.Windows.Forms.GroupBox();
+            this.buttonConfirmarPedidoInd = new System.Windows.Forms.Button();
+            this.groupBoxPedidoIndustrias = new System.Windows.Forms.GroupBox();
+            this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
+            this.buttonLimpiarPedidoInd = new System.Windows.Forms.Button();
+            this.panelEnviosClientesOnline = new System.Windows.Forms.Panel();
+            this.groupBoxEnviosClientes = new System.Windows.Forms.GroupBox();
+            this.groupBoxOperacionesOnline = new System.Windows.Forms.GroupBox();
+            this.buttonLimpiarClientesOnline = new System.Windows.Forms.Button();
+            this.buttonEnviarClientesOnline = new System.Windows.Forms.Button();
+            this.textBoxEnviosClientesOnline = new System.Windows.Forms.TextBox();
+            this.labelCodigoPedido = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.TopPanel.SuspendLayout();
-            this.TopPanelLeft.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Wrapper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).BeginInit();
             this.Sidebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.panelAyuda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaStock)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaReaPed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaEnvPed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaRecPed)).BeginInit();
+            this.panelBienvenido.SuspendLayout();
+            this.PanelStock.SuspendLayout();
+            this.groupBoxBotonPedidoIndustria.SuspendLayout();
+            this.groupBoxStockComercio.SuspendLayout();
+            this.groupBoxStockTabla.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).BeginInit();
+            this.panelVentasOnline.SuspendLayout();
+            this.groupBoxRecibirPedido.SuspendLayout();
+            this.groupBoxDatosClienteOnline.SuspendLayout();
+            this.groupBoxVentasOnline.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwVentasOnline)).BeginInit();
+            this.panelAcuseRecibo.SuspendLayout();
+            this.groupBoxAcuseRecibo.SuspendLayout();
+            this.groupBoxTablaAcuseRecibo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).BeginInit();
+            this.panelPedidoIndustrias.SuspendLayout();
+            this.groupBoxOperacionesInd.SuspendLayout();
+            this.groupBoxPedidoIndustrias.SuspendLayout();
+            this.panelEnviosClientesOnline.SuspendLayout();
+            this.groupBoxEnviosClientes.SuspendLayout();
+            this.groupBoxOperacionesOnline.SuspendLayout();
             this.SuspendLayout();
             // 
             // TopPanel
@@ -86,8 +151,9 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(720, 32);
+            this.TopPanel.Size = new System.Drawing.Size(800, 32);
             this.TopPanel.TabIndex = 1;
+            this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove_1);
             // 
             // LabelTitulo
             // 
@@ -103,29 +169,17 @@
             // TopPanelLeft
             // 
             this.TopPanelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(175)))), ((int)(((byte)(247)))));
-            this.TopPanelLeft.Controls.Add(this.Wrapper);
             this.TopPanelLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.TopPanelLeft.Location = new System.Drawing.Point(0, 0);
             this.TopPanelLeft.Name = "TopPanelLeft";
             this.TopPanelLeft.Size = new System.Drawing.Size(180, 32);
             this.TopPanelLeft.TabIndex = 2;
             // 
-            // Wrapper
-            // 
-            this.Wrapper.Image = ((System.Drawing.Image)(resources.GetObject("Wrapper.Image")));
-            this.Wrapper.Location = new System.Drawing.Point(6, 1);
-            this.Wrapper.Name = "Wrapper";
-            this.Wrapper.Size = new System.Drawing.Size(35, 31);
-            this.Wrapper.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Wrapper.TabIndex = 5;
-            this.Wrapper.TabStop = false;
-            this.Wrapper.Click += new System.EventHandler(this.Wrapper_Click);
-            // 
             // Minimizar
             // 
             this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
-            this.Minimizar.Location = new System.Drawing.Point(670, 3);
+            this.Minimizar.Location = new System.Drawing.Point(750, 5);
             this.Minimizar.Name = "Minimizar";
             this.Minimizar.Size = new System.Drawing.Size(20, 20);
             this.Minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -138,7 +192,7 @@
             this.Salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Salir.BackColor = System.Drawing.Color.Red;
             this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.Location = new System.Drawing.Point(697, 3);
+            this.Salir.Location = new System.Drawing.Point(775, 5);
             this.Salir.Name = "Salir";
             this.Salir.Size = new System.Drawing.Size(20, 20);
             this.Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -149,28 +203,61 @@
             // Sidebar
             // 
             this.Sidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(206)))));
+            this.Sidebar.Controls.Add(this.pictureBox5);
+            this.Sidebar.Controls.Add(this.btnAcuseRecibo);
             this.Sidebar.Controls.Add(this.panelAyuda);
             this.Sidebar.Controls.Add(this.pictureBox4);
             this.Sidebar.Controls.Add(this.pictureBox3);
             this.Sidebar.Controls.Add(this.pictureBox2);
             this.Sidebar.Controls.Add(this.pictureBox1);
-            this.Sidebar.Controls.Add(this.RecibirPedido);
-            this.Sidebar.Controls.Add(this.EnviarPedido);
-            this.Sidebar.Controls.Add(this.RealizarPedido);
-            this.Sidebar.Controls.Add(this.Stock);
+            this.Sidebar.Controls.Add(this.btnRecibirPedidoOnline);
+            this.Sidebar.Controls.Add(this.btnEnviarPedido);
+            this.Sidebar.Controls.Add(this.btnPedidoIndustrias);
+            this.Sidebar.Controls.Add(this.btnStock);
             this.Sidebar.Location = new System.Drawing.Point(0, 32);
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(180, 520);
             this.Sidebar.TabIndex = 2;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(0, 176);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(47, 44);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 18;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // btnAcuseRecibo
+            // 
+            this.btnAcuseRecibo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcuseRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnAcuseRecibo.FlatAppearance.BorderSize = 0;
+            this.btnAcuseRecibo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnAcuseRecibo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAcuseRecibo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAcuseRecibo.ForeColor = System.Drawing.Color.White;
+            this.btnAcuseRecibo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAcuseRecibo.Location = new System.Drawing.Point(45, 176);
+            this.btnAcuseRecibo.Name = "btnAcuseRecibo";
+            this.btnAcuseRecibo.Size = new System.Drawing.Size(135, 44);
+            this.btnAcuseRecibo.TabIndex = 17;
+            this.btnAcuseRecibo.Text = "Acuse de Recibo de Envíos";
+            this.btnAcuseRecibo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAcuseRecibo.UseVisualStyleBackColor = false;
+            this.btnAcuseRecibo.Click += new System.EventHandler(this.btnAcuseRecibo_Click);
             // 
             // panelAyuda
             // 
             this.panelAyuda.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(170)))), ((int)(((byte)(227)))));
             this.panelAyuda.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelAyuda.Controls.Add(this.labelAyuda);
-            this.panelAyuda.Location = new System.Drawing.Point(9, 187);
+            this.panelAyuda.Location = new System.Drawing.Point(10, 230);
             this.panelAyuda.Name = "panelAyuda";
-            this.panelAyuda.Size = new System.Drawing.Size(160, 320);
+            this.panelAyuda.Size = new System.Drawing.Size(160, 280);
             this.panelAyuda.TabIndex = 16;
             // 
             // labelAyuda
@@ -233,179 +320,87 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // RecibirPedido
+            // btnRecibirPedidoOnline
             // 
-            this.RecibirPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RecibirPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RecibirPedido.FlatAppearance.BorderSize = 0;
-            this.RecibirPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RecibirPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RecibirPedido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RecibirPedido.ForeColor = System.Drawing.Color.White;
-            this.RecibirPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RecibirPedido.Location = new System.Drawing.Point(0, 132);
-            this.RecibirPedido.Name = "RecibirPedido";
-            this.RecibirPedido.Size = new System.Drawing.Size(180, 44);
-            this.RecibirPedido.TabIndex = 12;
-            this.RecibirPedido.Text = "Recibir Pedido";
-            this.RecibirPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RecibirPedido.UseVisualStyleBackColor = false;
-            this.RecibirPedido.Click += new System.EventHandler(this.RecibirPedido_Click);
+            this.btnRecibirPedidoOnline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecibirPedidoOnline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnRecibirPedidoOnline.FlatAppearance.BorderSize = 0;
+            this.btnRecibirPedidoOnline.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnRecibirPedidoOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecibirPedidoOnline.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecibirPedidoOnline.ForeColor = System.Drawing.Color.White;
+            this.btnRecibirPedidoOnline.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRecibirPedidoOnline.Location = new System.Drawing.Point(45, 132);
+            this.btnRecibirPedidoOnline.Name = "btnRecibirPedidoOnline";
+            this.btnRecibirPedidoOnline.Size = new System.Drawing.Size(135, 44);
+            this.btnRecibirPedidoOnline.TabIndex = 12;
+            this.btnRecibirPedidoOnline.Text = "Recibir Ventas de Clientes Online";
+            this.btnRecibirPedidoOnline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRecibirPedidoOnline.UseVisualStyleBackColor = false;
+            this.btnRecibirPedidoOnline.Click += new System.EventHandler(this.btnRecibirPedidoOnline_Click);
             // 
-            // EnviarPedido
+            // btnEnviarPedido
             // 
-            this.EnviarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.EnviarPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EnviarPedido.FlatAppearance.BorderSize = 0;
-            this.EnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.EnviarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EnviarPedido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EnviarPedido.ForeColor = System.Drawing.Color.White;
-            this.EnviarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.EnviarPedido.Location = new System.Drawing.Point(0, 88);
-            this.EnviarPedido.Name = "EnviarPedido";
-            this.EnviarPedido.Size = new System.Drawing.Size(180, 44);
-            this.EnviarPedido.TabIndex = 11;
-            this.EnviarPedido.Text = "Enviar Pedido";
-            this.EnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.EnviarPedido.UseVisualStyleBackColor = false;
-            this.EnviarPedido.Click += new System.EventHandler(this.EnviarPedido_Click);
+            this.btnEnviarPedido.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEnviarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnEnviarPedido.FlatAppearance.BorderSize = 0;
+            this.btnEnviarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnEnviarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEnviarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEnviarPedido.ForeColor = System.Drawing.Color.White;
+            this.btnEnviarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEnviarPedido.Location = new System.Drawing.Point(45, 88);
+            this.btnEnviarPedido.Name = "btnEnviarPedido";
+            this.btnEnviarPedido.Size = new System.Drawing.Size(135, 44);
+            this.btnEnviarPedido.TabIndex = 11;
+            this.btnEnviarPedido.Text = "Enviar Pedido de Clientes Online";
+            this.btnEnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEnviarPedido.UseVisualStyleBackColor = false;
+            this.btnEnviarPedido.Click += new System.EventHandler(this.btnEnviarPedido_Click);
             // 
-            // RealizarPedido
+            // btnPedidoIndustrias
             // 
-            this.RealizarPedido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.RealizarPedido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.RealizarPedido.FlatAppearance.BorderSize = 0;
-            this.RealizarPedido.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.RealizarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RealizarPedido.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RealizarPedido.ForeColor = System.Drawing.Color.White;
-            this.RealizarPedido.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.RealizarPedido.Location = new System.Drawing.Point(0, 44);
-            this.RealizarPedido.Name = "RealizarPedido";
-            this.RealizarPedido.Size = new System.Drawing.Size(180, 44);
-            this.RealizarPedido.TabIndex = 10;
-            this.RealizarPedido.Text = "Realizar Pedido";
-            this.RealizarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.RealizarPedido.UseVisualStyleBackColor = false;
-            this.RealizarPedido.Click += new System.EventHandler(this.RealizarPedido_Click);
+            this.btnPedidoIndustrias.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPedidoIndustrias.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnPedidoIndustrias.FlatAppearance.BorderSize = 0;
+            this.btnPedidoIndustrias.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnPedidoIndustrias.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPedidoIndustrias.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidoIndustrias.ForeColor = System.Drawing.Color.White;
+            this.btnPedidoIndustrias.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPedidoIndustrias.Location = new System.Drawing.Point(45, 44);
+            this.btnPedidoIndustrias.Name = "btnPedidoIndustrias";
+            this.btnPedidoIndustrias.Size = new System.Drawing.Size(135, 44);
+            this.btnPedidoIndustrias.TabIndex = 10;
+            this.btnPedidoIndustrias.Text = "Realizar Pedido a Industrias";
+            this.btnPedidoIndustrias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPedidoIndustrias.UseVisualStyleBackColor = false;
+            this.btnPedidoIndustrias.Click += new System.EventHandler(this.btnPedidoIndustrias_Click);
             // 
-            // Stock
+            // btnStock
             // 
-            this.Stock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
-            this.Stock.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Stock.FlatAppearance.BorderSize = 0;
-            this.Stock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
-            this.Stock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Stock.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Stock.ForeColor = System.Drawing.Color.White;
-            this.Stock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Stock.Location = new System.Drawing.Point(0, 0);
-            this.Stock.Name = "Stock";
-            this.Stock.Size = new System.Drawing.Size(180, 44);
-            this.Stock.TabIndex = 9;
-            this.Stock.Text = "Stock actual";
-            this.Stock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.Stock.UseVisualStyleBackColor = false;
-            this.Stock.Click += new System.EventHandler(this.Stock_Click);
-            // 
-            // BotonEjecutarLote1
-            // 
-            this.BotonEjecutarLote1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BotonEjecutarLote1.Location = new System.Drawing.Point(550, 506);
-            this.BotonEjecutarLote1.Name = "BotonEjecutarLote1";
-            this.BotonEjecutarLote1.Size = new System.Drawing.Size(150, 32);
-            this.BotonEjecutarLote1.TabIndex = 4;
-            this.BotonEjecutarLote1.Text = "Ejecutar lote";
-            this.BotonEjecutarLote1.UseVisualStyleBackColor = true;
-            // 
-            // botonProdAEnviar
-            // 
-            this.botonProdAEnviar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonProdAEnviar.Location = new System.Drawing.Point(378, 506);
-            this.botonProdAEnviar.Name = "botonProdAEnviar";
-            this.botonProdAEnviar.Size = new System.Drawing.Size(150, 32);
-            this.botonProdAEnviar.TabIndex = 5;
-            this.botonProdAEnviar.Text = "Ver productos a enviar";
-            this.botonProdAEnviar.UseVisualStyleBackColor = true;
-            // 
-            // TablaStock
-            // 
-            this.TablaStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaStock.Location = new System.Drawing.Point(200, 55);
-            this.TablaStock.Name = "TablaStock";
-            this.TablaStock.Size = new System.Drawing.Size(500, 430);
-            this.TablaStock.TabIndex = 3;
-            // 
-            // TablaReaPed
-            // 
-            this.TablaReaPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaReaPed.Location = new System.Drawing.Point(200, 55);
-            this.TablaReaPed.Name = "TablaReaPed";
-            this.TablaReaPed.Size = new System.Drawing.Size(500, 430);
-            this.TablaReaPed.TabIndex = 6;
-            // 
-            // TablaEnvPed
-            // 
-            this.TablaEnvPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaEnvPed.Location = new System.Drawing.Point(200, 55);
-            this.TablaEnvPed.Name = "TablaEnvPed";
-            this.TablaEnvPed.Size = new System.Drawing.Size(500, 430);
-            this.TablaEnvPed.TabIndex = 7;
-            // 
-            // TablaRecPed
-            // 
-            this.TablaRecPed.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.TablaRecPed.Location = new System.Drawing.Point(200, 55);
-            this.TablaRecPed.Name = "TablaRecPed";
-            this.TablaRecPed.Size = new System.Drawing.Size(500, 430);
-            this.TablaRecPed.TabIndex = 8;
-            // 
-            // botonGenerarPedido
-            // 
-            this.botonGenerarPedido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonGenerarPedido.Location = new System.Drawing.Point(378, 506);
-            this.botonGenerarPedido.Name = "botonGenerarPedido";
-            this.botonGenerarPedido.Size = new System.Drawing.Size(150, 32);
-            this.botonGenerarPedido.TabIndex = 9;
-            this.botonGenerarPedido.Text = "Generar pedido";
-            this.botonGenerarPedido.UseVisualStyleBackColor = true;
-            // 
-            // botonEjecutarLote2
-            // 
-            this.botonEjecutarLote2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonEjecutarLote2.Location = new System.Drawing.Point(550, 506);
-            this.botonEjecutarLote2.Name = "botonEjecutarLote2";
-            this.botonEjecutarLote2.Size = new System.Drawing.Size(150, 32);
-            this.botonEjecutarLote2.TabIndex = 10;
-            this.botonEjecutarLote2.Text = "Ejecutar lote";
-            this.botonEjecutarLote2.UseVisualStyleBackColor = true;
-            // 
-            // botonActualizarPedidos
-            // 
-            this.botonActualizarPedidos.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonActualizarPedidos.Location = new System.Drawing.Point(378, 506);
-            this.botonActualizarPedidos.Name = "botonActualizarPedidos";
-            this.botonActualizarPedidos.Size = new System.Drawing.Size(150, 32);
-            this.botonActualizarPedidos.TabIndex = 11;
-            this.botonActualizarPedidos.Text = "Recibir pedidos";
-            this.botonActualizarPedidos.UseVisualStyleBackColor = true;
-            // 
-            // botonCargarStock
-            // 
-            this.botonCargarStock.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.botonCargarStock.Location = new System.Drawing.Point(550, 506);
-            this.botonCargarStock.Name = "botonCargarStock";
-            this.botonCargarStock.Size = new System.Drawing.Size(150, 32);
-            this.botonCargarStock.TabIndex = 12;
-            this.botonCargarStock.Text = "Cargar a stock";
-            this.botonCargarStock.UseVisualStyleBackColor = true;
+            this.btnStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(179)))), ((int)(((byte)(227)))));
+            this.btnStock.FlatAppearance.BorderSize = 0;
+            this.btnStock.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(209)))));
+            this.btnStock.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStock.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnStock.ForeColor = System.Drawing.Color.White;
+            this.btnStock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStock.Location = new System.Drawing.Point(45, 0);
+            this.btnStock.Name = "btnStock";
+            this.btnStock.Size = new System.Drawing.Size(135, 44);
+            this.btnStock.TabIndex = 9;
+            this.btnStock.Text = "Ver stock actual";
+            this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnStock.UseVisualStyleBackColor = false;
+            this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
             // 
             // labelBienvenido1
             // 
             this.labelBienvenido1.AutoSize = true;
             this.labelBienvenido1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBienvenido1.Location = new System.Drawing.Point(370, 200);
+            this.labelBienvenido1.Location = new System.Drawing.Point(229, 177);
             this.labelBienvenido1.Name = "labelBienvenido1";
             this.labelBienvenido1.Size = new System.Drawing.Size(164, 32);
             this.labelBienvenido1.TabIndex = 13;
@@ -415,42 +410,549 @@
             // 
             this.labelBienvenido2.AutoSize = true;
             this.labelBienvenido2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBienvenido2.Location = new System.Drawing.Point(210, 275);
+            this.labelBienvenido2.Location = new System.Drawing.Point(69, 252);
             this.labelBienvenido2.Name = "labelBienvenido2";
             this.labelBienvenido2.Size = new System.Drawing.Size(477, 32);
             this.labelBienvenido2.TabIndex = 14;
             this.labelBienvenido2.Text = "Seleccione una opción para comenzar";
             // 
-            // BotonAcuseRecibo
+            // panelBienvenido
             // 
-            this.BotonAcuseRecibo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BotonAcuseRecibo.Location = new System.Drawing.Point(200, 506);
-            this.BotonAcuseRecibo.Name = "BotonAcuseRecibo";
-            this.BotonAcuseRecibo.Size = new System.Drawing.Size(150, 32);
-            this.BotonAcuseRecibo.TabIndex = 15;
-            this.BotonAcuseRecibo.Text = "Ver Acuse de Recibo";
-            this.BotonAcuseRecibo.UseVisualStyleBackColor = true;
+            this.panelBienvenido.Controls.Add(this.labelBienvenido2);
+            this.panelBienvenido.Controls.Add(this.labelBienvenido1);
+            this.panelBienvenido.Location = new System.Drawing.Point(190, 341);
+            this.panelBienvenido.Name = "panelBienvenido";
+            this.panelBienvenido.Size = new System.Drawing.Size(608, 505);
+            this.panelBienvenido.TabIndex = 15;
+            // 
+            // PanelStock
+            // 
+            this.PanelStock.Controls.Add(this.groupBoxBotonPedidoIndustria);
+            this.PanelStock.Controls.Add(this.groupBoxStockComercio);
+            this.PanelStock.Controls.Add(this.groupBoxStockTabla);
+            this.PanelStock.Location = new System.Drawing.Point(212, 288);
+            this.PanelStock.Name = "PanelStock";
+            this.PanelStock.Size = new System.Drawing.Size(608, 505);
+            this.PanelStock.TabIndex = 16;
+            // 
+            // groupBoxBotonPedidoIndustria
+            // 
+            this.groupBoxBotonPedidoIndustria.Controls.Add(this.buttonPedidoStockIndustrias);
+            this.groupBoxBotonPedidoIndustria.Location = new System.Drawing.Point(391, 280);
+            this.groupBoxBotonPedidoIndustria.Name = "groupBoxBotonPedidoIndustria";
+            this.groupBoxBotonPedidoIndustria.Size = new System.Drawing.Size(206, 72);
+            this.groupBoxBotonPedidoIndustria.TabIndex = 23;
+            this.groupBoxBotonPedidoIndustria.TabStop = false;
+            this.groupBoxBotonPedidoIndustria.Text = "Pedido de Stock";
+            // 
+            // buttonPedidoStockIndustrias
+            // 
+            this.buttonPedidoStockIndustrias.Location = new System.Drawing.Point(8, 19);
+            this.buttonPedidoStockIndustrias.Name = "buttonPedidoStockIndustrias";
+            this.buttonPedidoStockIndustrias.Size = new System.Drawing.Size(192, 42);
+            this.buttonPedidoStockIndustrias.TabIndex = 22;
+            this.buttonPedidoStockIndustrias.Text = "Generar Pedido de Stock a Industrias";
+            this.buttonPedidoStockIndustrias.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxStockComercio
+            // 
+            this.groupBoxStockComercio.Controls.Add(this.labelCodigoPedido);
+            this.groupBoxStockComercio.Controls.Add(this.textBox1);
+            this.groupBoxStockComercio.Controls.Add(this.labelDireccion);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxDireccion);
+            this.groupBoxStockComercio.Controls.Add(this.labelCUIT);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxCUIT);
+            this.groupBoxStockComercio.Controls.Add(this.labelRazSoc);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxRazSoc);
+            this.groupBoxStockComercio.Controls.Add(this.labelCodComercio);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxCodComercio);
+            this.groupBoxStockComercio.Location = new System.Drawing.Point(389, 13);
+            this.groupBoxStockComercio.Name = "groupBoxStockComercio";
+            this.groupBoxStockComercio.Size = new System.Drawing.Size(208, 259);
+            this.groupBoxStockComercio.TabIndex = 21;
+            this.groupBoxStockComercio.TabStop = false;
+            this.groupBoxStockComercio.Text = "Datos del Comercio para Pedido";
+            // 
+            // labelDireccion
+            // 
+            this.labelDireccion.AutoSize = true;
+            this.labelDireccion.Location = new System.Drawing.Point(7, 165);
+            this.labelDireccion.Name = "labelDireccion";
+            this.labelDireccion.Size = new System.Drawing.Size(52, 13);
+            this.labelDireccion.TabIndex = 7;
+            this.labelDireccion.Text = "Dirección";
+            // 
+            // textBoxDireccion
+            // 
+            this.textBoxDireccion.Location = new System.Drawing.Point(6, 181);
+            this.textBoxDireccion.Name = "textBoxDireccion";
+            this.textBoxDireccion.Size = new System.Drawing.Size(196, 20);
+            this.textBoxDireccion.TabIndex = 6;
+            // 
+            // labelCUIT
+            // 
+            this.labelCUIT.AutoSize = true;
+            this.labelCUIT.Location = new System.Drawing.Point(7, 121);
+            this.labelCUIT.Name = "labelCUIT";
+            this.labelCUIT.Size = new System.Drawing.Size(32, 13);
+            this.labelCUIT.TabIndex = 5;
+            this.labelCUIT.Text = "CUIT";
+            // 
+            // textBoxCUIT
+            // 
+            this.textBoxCUIT.Location = new System.Drawing.Point(6, 137);
+            this.textBoxCUIT.Name = "textBoxCUIT";
+            this.textBoxCUIT.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCUIT.TabIndex = 4;
+            // 
+            // labelRazSoc
+            // 
+            this.labelRazSoc.AutoSize = true;
+            this.labelRazSoc.Location = new System.Drawing.Point(7, 77);
+            this.labelRazSoc.Name = "labelRazSoc";
+            this.labelRazSoc.Size = new System.Drawing.Size(70, 13);
+            this.labelRazSoc.TabIndex = 3;
+            this.labelRazSoc.Text = "Razón Social";
+            // 
+            // textBoxRazSoc
+            // 
+            this.textBoxRazSoc.Location = new System.Drawing.Point(6, 93);
+            this.textBoxRazSoc.Name = "textBoxRazSoc";
+            this.textBoxRazSoc.Size = new System.Drawing.Size(196, 20);
+            this.textBoxRazSoc.TabIndex = 2;
+            // 
+            // labelCodComercio
+            // 
+            this.labelCodComercio.AutoSize = true;
+            this.labelCodComercio.Location = new System.Drawing.Point(7, 33);
+            this.labelCodComercio.Name = "labelCodComercio";
+            this.labelCodComercio.Size = new System.Drawing.Size(102, 13);
+            this.labelCodComercio.TabIndex = 1;
+            this.labelCodComercio.Text = "Código de Comercio";
+            // 
+            // textBoxCodComercio
+            // 
+            this.textBoxCodComercio.Location = new System.Drawing.Point(6, 49);
+            this.textBoxCodComercio.Name = "textBoxCodComercio";
+            this.textBoxCodComercio.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodComercio.TabIndex = 0;
+            // 
+            // groupBoxStockTabla
+            // 
+            this.groupBoxStockTabla.Controls.Add(this.dgwStock);
+            this.groupBoxStockTabla.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxStockTabla.Name = "groupBoxStockTabla";
+            this.groupBoxStockTabla.Size = new System.Drawing.Size(374, 487);
+            this.groupBoxStockTabla.TabIndex = 20;
+            this.groupBoxStockTabla.TabStop = false;
+            this.groupBoxStockTabla.Text = "Tabla de Stock";
+            // 
+            // dgwStock
+            // 
+            this.dgwStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwStock.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dgwStock.Location = new System.Drawing.Point(6, 19);
+            this.dgwStock.Name = "dgwStock";
+            this.dgwStock.Size = new System.Drawing.Size(362, 462);
+            this.dgwStock.TabIndex = 19;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Código de Producto";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Cantidad";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Punto de Reposición";
+            this.Column3.Name = "Column3";
+            // 
+            // panelVentasOnline
+            // 
+            this.panelVentasOnline.Controls.Add(this.groupBoxRecibirPedido);
+            this.panelVentasOnline.Controls.Add(this.groupBoxDatosClienteOnline);
+            this.panelVentasOnline.Controls.Add(this.groupBoxVentasOnline);
+            this.panelVentasOnline.Location = new System.Drawing.Point(258, 226);
+            this.panelVentasOnline.Name = "panelVentasOnline";
+            this.panelVentasOnline.Size = new System.Drawing.Size(608, 505);
+            this.panelVentasOnline.TabIndex = 24;
+            // 
+            // groupBoxRecibirPedido
+            // 
+            this.groupBoxRecibirPedido.Controls.Add(this.buttonRecibirPedidoOnline);
+            this.groupBoxRecibirPedido.Location = new System.Drawing.Point(389, 329);
+            this.groupBoxRecibirPedido.Name = "groupBoxRecibirPedido";
+            this.groupBoxRecibirPedido.Size = new System.Drawing.Size(208, 72);
+            this.groupBoxRecibirPedido.TabIndex = 23;
+            this.groupBoxRecibirPedido.TabStop = false;
+            this.groupBoxRecibirPedido.Text = "Carga de Venta";
+            // 
+            // buttonRecibirPedidoOnline
+            // 
+            this.buttonRecibirPedidoOnline.Location = new System.Drawing.Point(8, 19);
+            this.buttonRecibirPedidoOnline.Name = "buttonRecibirPedidoOnline";
+            this.buttonRecibirPedidoOnline.Size = new System.Drawing.Size(194, 42);
+            this.buttonRecibirPedidoOnline.TabIndex = 22;
+            this.buttonRecibirPedidoOnline.Text = "Generar lote de Venta Online";
+            this.buttonRecibirPedidoOnline.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxDatosClienteOnline
+            // 
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelCodLoteCliente);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCodLoteOnline);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelCodRefCliente);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCodRefOnline);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelDirDev);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxDirDevOnline);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelRteCUIT);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxRteCUITOnline);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelRteRazSoc);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxRazSocOnline);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.labelCodCliente);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCodClienteOnline);
+            this.groupBoxDatosClienteOnline.Location = new System.Drawing.Point(389, 13);
+            this.groupBoxDatosClienteOnline.Name = "groupBoxDatosClienteOnline";
+            this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(208, 310);
+            this.groupBoxDatosClienteOnline.TabIndex = 21;
+            this.groupBoxDatosClienteOnline.TabStop = false;
+            this.groupBoxDatosClienteOnline.Text = "Datos del Cliente para Envío";
+            // 
+            // labelDirDev
+            // 
+            this.labelDirDev.AutoSize = true;
+            this.labelDirDev.Location = new System.Drawing.Point(7, 165);
+            this.labelDirDev.Name = "labelDirDev";
+            this.labelDirDev.Size = new System.Drawing.Size(122, 13);
+            this.labelDirDev.TabIndex = 7;
+            this.labelDirDev.Text = "Dirección de devolución";
+            // 
+            // textBoxDirDevOnline
+            // 
+            this.textBoxDirDevOnline.Location = new System.Drawing.Point(6, 181);
+            this.textBoxDirDevOnline.Name = "textBoxDirDevOnline";
+            this.textBoxDirDevOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxDirDevOnline.TabIndex = 6;
+            // 
+            // labelRteCUIT
+            // 
+            this.labelRteCUIT.AutoSize = true;
+            this.labelRteCUIT.Location = new System.Drawing.Point(7, 121);
+            this.labelRteCUIT.Name = "labelRteCUIT";
+            this.labelRteCUIT.Size = new System.Drawing.Size(55, 13);
+            this.labelRteCUIT.TabIndex = 5;
+            this.labelRteCUIT.Text = "Rte. CUIT";
+            // 
+            // textBoxRteCUITOnline
+            // 
+            this.textBoxRteCUITOnline.Location = new System.Drawing.Point(6, 137);
+            this.textBoxRteCUITOnline.Name = "textBoxRteCUITOnline";
+            this.textBoxRteCUITOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxRteCUITOnline.TabIndex = 4;
+            // 
+            // labelRteRazSoc
+            // 
+            this.labelRteRazSoc.AutoSize = true;
+            this.labelRteRazSoc.Location = new System.Drawing.Point(7, 77);
+            this.labelRteRazSoc.Name = "labelRteRazSoc";
+            this.labelRteRazSoc.Size = new System.Drawing.Size(93, 13);
+            this.labelRteRazSoc.TabIndex = 3;
+            this.labelRteRazSoc.Text = "Rte. Razón Social";
+            // 
+            // textBoxRazSocOnline
+            // 
+            this.textBoxRazSocOnline.Location = new System.Drawing.Point(6, 93);
+            this.textBoxRazSocOnline.Name = "textBoxRazSocOnline";
+            this.textBoxRazSocOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxRazSocOnline.TabIndex = 2;
+            // 
+            // labelCodCliente
+            // 
+            this.labelCodCliente.AutoSize = true;
+            this.labelCodCliente.Location = new System.Drawing.Point(7, 33);
+            this.labelCodCliente.Name = "labelCodCliente";
+            this.labelCodCliente.Size = new System.Drawing.Size(90, 13);
+            this.labelCodCliente.TabIndex = 1;
+            this.labelCodCliente.Text = "Código de Cliente";
+            // 
+            // textBoxCodClienteOnline
+            // 
+            this.textBoxCodClienteOnline.Location = new System.Drawing.Point(6, 49);
+            this.textBoxCodClienteOnline.Name = "textBoxCodClienteOnline";
+            this.textBoxCodClienteOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodClienteOnline.TabIndex = 0;
+            // 
+            // groupBoxVentasOnline
+            // 
+            this.groupBoxVentasOnline.Controls.Add(this.dgwVentasOnline);
+            this.groupBoxVentasOnline.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxVentasOnline.Name = "groupBoxVentasOnline";
+            this.groupBoxVentasOnline.Size = new System.Drawing.Size(374, 487);
+            this.groupBoxVentasOnline.TabIndex = 20;
+            this.groupBoxVentasOnline.TabStop = false;
+            this.groupBoxVentasOnline.Text = "Tabla de Ventas Online";
+            // 
+            // dgwVentasOnline
+            // 
+            this.dgwVentasOnline.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwVentasOnline.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dgwVentasOnline.Location = new System.Drawing.Point(6, 19);
+            this.dgwVentasOnline.Name = "dgwVentasOnline";
+            this.dgwVentasOnline.Size = new System.Drawing.Size(362, 462);
+            this.dgwVentasOnline.TabIndex = 19;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código de Producto";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // labelCodRefCliente
+            // 
+            this.labelCodRefCliente.AutoSize = true;
+            this.labelCodRefCliente.Location = new System.Drawing.Point(7, 212);
+            this.labelCodRefCliente.Name = "labelCodRefCliente";
+            this.labelCodRefCliente.Size = new System.Drawing.Size(110, 13);
+            this.labelCodRefCliente.TabIndex = 9;
+            this.labelCodRefCliente.Text = "Codigo de Referencia";
+            // 
+            // textBoxCodRefOnline
+            // 
+            this.textBoxCodRefOnline.Location = new System.Drawing.Point(6, 228);
+            this.textBoxCodRefOnline.Name = "textBoxCodRefOnline";
+            this.textBoxCodRefOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodRefOnline.TabIndex = 8;
+            // 
+            // labelCodLoteCliente
+            // 
+            this.labelCodLoteCliente.AutoSize = true;
+            this.labelCodLoteCliente.Location = new System.Drawing.Point(7, 260);
+            this.labelCodLoteCliente.Name = "labelCodLoteCliente";
+            this.labelCodLoteCliente.Size = new System.Drawing.Size(79, 13);
+            this.labelCodLoteCliente.TabIndex = 11;
+            this.labelCodLoteCliente.Text = "Codigo de Lote";
+            // 
+            // textBoxCodLoteOnline
+            // 
+            this.textBoxCodLoteOnline.Location = new System.Drawing.Point(6, 276);
+            this.textBoxCodLoteOnline.Name = "textBoxCodLoteOnline";
+            this.textBoxCodLoteOnline.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCodLoteOnline.TabIndex = 10;
+            // 
+            // panelAcuseRecibo
+            // 
+            this.panelAcuseRecibo.Controls.Add(this.groupBoxAcuseRecibo);
+            this.panelAcuseRecibo.Controls.Add(this.groupBoxTablaAcuseRecibo);
+            this.panelAcuseRecibo.Location = new System.Drawing.Point(295, 172);
+            this.panelAcuseRecibo.Name = "panelAcuseRecibo";
+            this.panelAcuseRecibo.Size = new System.Drawing.Size(608, 505);
+            this.panelAcuseRecibo.TabIndex = 25;
+            // 
+            // groupBoxAcuseRecibo
+            // 
+            this.groupBoxAcuseRecibo.Controls.Add(this.button1);
+            this.groupBoxAcuseRecibo.Location = new System.Drawing.Point(389, 428);
+            this.groupBoxAcuseRecibo.Name = "groupBoxAcuseRecibo";
+            this.groupBoxAcuseRecibo.Size = new System.Drawing.Size(200, 72);
+            this.groupBoxAcuseRecibo.TabIndex = 23;
+            this.groupBoxAcuseRecibo.TabStop = false;
+            this.groupBoxAcuseRecibo.Text = "Acuse de Recibo";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 42);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Leer acuse de recibo de Logística";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxTablaAcuseRecibo
+            // 
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.dgwAcuseRecibo);
+            this.groupBoxTablaAcuseRecibo.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxTablaAcuseRecibo.Name = "groupBoxTablaAcuseRecibo";
+            this.groupBoxTablaAcuseRecibo.Size = new System.Drawing.Size(374, 487);
+            this.groupBoxTablaAcuseRecibo.TabIndex = 20;
+            this.groupBoxTablaAcuseRecibo.TabStop = false;
+            this.groupBoxTablaAcuseRecibo.Text = "Tabla de Acuses de Recibo";
+            // 
+            // dgwAcuseRecibo
+            // 
+            this.dgwAcuseRecibo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwAcuseRecibo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
+            this.dgwAcuseRecibo.Location = new System.Drawing.Point(6, 19);
+            this.dgwAcuseRecibo.Name = "dgwAcuseRecibo";
+            this.dgwAcuseRecibo.Size = new System.Drawing.Size(362, 462);
+            this.dgwAcuseRecibo.TabIndex = 19;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Código de Referencia";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Entregado";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // panelPedidoIndustrias
+            // 
+            this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(329, 120);
+            this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
+            this.panelPedidoIndustrias.Size = new System.Drawing.Size(608, 505);
+            this.panelPedidoIndustrias.TabIndex = 26;
+            // 
+            // groupBoxOperacionesInd
+            // 
+            this.groupBoxOperacionesInd.Controls.Add(this.buttonLimpiarPedidoInd);
+            this.groupBoxOperacionesInd.Controls.Add(this.buttonConfirmarPedidoInd);
+            this.groupBoxOperacionesInd.Location = new System.Drawing.Point(6, 409);
+            this.groupBoxOperacionesInd.Name = "groupBoxOperacionesInd";
+            this.groupBoxOperacionesInd.Size = new System.Drawing.Size(575, 72);
+            this.groupBoxOperacionesInd.TabIndex = 23;
+            this.groupBoxOperacionesInd.TabStop = false;
+            this.groupBoxOperacionesInd.Text = "Operaciones";
+            // 
+            // buttonConfirmarPedidoInd
+            // 
+            this.buttonConfirmarPedidoInd.Location = new System.Drawing.Point(98, 19);
+            this.buttonConfirmarPedidoInd.Name = "buttonConfirmarPedidoInd";
+            this.buttonConfirmarPedidoInd.Size = new System.Drawing.Size(186, 42);
+            this.buttonConfirmarPedidoInd.TabIndex = 22;
+            this.buttonConfirmarPedidoInd.Text = "Confirmar pedido";
+            this.buttonConfirmarPedidoInd.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxPedidoIndustrias
+            // 
+            this.groupBoxPedidoIndustrias.Controls.Add(this.groupBoxOperacionesInd);
+            this.groupBoxPedidoIndustrias.Controls.Add(this.textBoxPedidoIndustria);
+            this.groupBoxPedidoIndustrias.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxPedidoIndustrias.Name = "groupBoxPedidoIndustrias";
+            this.groupBoxPedidoIndustrias.Size = new System.Drawing.Size(590, 487);
+            this.groupBoxPedidoIndustrias.TabIndex = 20;
+            this.groupBoxPedidoIndustrias.TabStop = false;
+            this.groupBoxPedidoIndustrias.Text = "Pedidos a Industrias";
+            // 
+            // textBoxPedidoIndustria
+            // 
+            this.textBoxPedidoIndustria.Location = new System.Drawing.Point(6, 19);
+            this.textBoxPedidoIndustria.Multiline = true;
+            this.textBoxPedidoIndustria.Name = "textBoxPedidoIndustria";
+            this.textBoxPedidoIndustria.ReadOnly = true;
+            this.textBoxPedidoIndustria.Size = new System.Drawing.Size(575, 383);
+            this.textBoxPedidoIndustria.TabIndex = 0;
+            // 
+            // buttonLimpiarPedidoInd
+            // 
+            this.buttonLimpiarPedidoInd.Location = new System.Drawing.Point(290, 19);
+            this.buttonLimpiarPedidoInd.Name = "buttonLimpiarPedidoInd";
+            this.buttonLimpiarPedidoInd.Size = new System.Drawing.Size(186, 42);
+            this.buttonLimpiarPedidoInd.TabIndex = 23;
+            this.buttonLimpiarPedidoInd.Text = "Limpiar pedido";
+            this.buttonLimpiarPedidoInd.UseVisualStyleBackColor = true;
+            // 
+            // panelEnviosClientesOnline
+            // 
+            this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(375, 58);
+            this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
+            this.panelEnviosClientesOnline.Size = new System.Drawing.Size(608, 505);
+            this.panelEnviosClientesOnline.TabIndex = 27;
+            // 
+            // groupBoxEnviosClientes
+            // 
+            this.groupBoxEnviosClientes.Controls.Add(this.groupBoxOperacionesOnline);
+            this.groupBoxEnviosClientes.Controls.Add(this.textBoxEnviosClientesOnline);
+            this.groupBoxEnviosClientes.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxEnviosClientes.Name = "groupBoxEnviosClientes";
+            this.groupBoxEnviosClientes.Size = new System.Drawing.Size(590, 487);
+            this.groupBoxEnviosClientes.TabIndex = 20;
+            this.groupBoxEnviosClientes.TabStop = false;
+            this.groupBoxEnviosClientes.Text = "Envíos de ventas Online";
+            // 
+            // groupBoxOperacionesOnline
+            // 
+            this.groupBoxOperacionesOnline.Controls.Add(this.buttonLimpiarClientesOnline);
+            this.groupBoxOperacionesOnline.Controls.Add(this.buttonEnviarClientesOnline);
+            this.groupBoxOperacionesOnline.Location = new System.Drawing.Point(6, 409);
+            this.groupBoxOperacionesOnline.Name = "groupBoxOperacionesOnline";
+            this.groupBoxOperacionesOnline.Size = new System.Drawing.Size(575, 72);
+            this.groupBoxOperacionesOnline.TabIndex = 23;
+            this.groupBoxOperacionesOnline.TabStop = false;
+            this.groupBoxOperacionesOnline.Text = "Operaciones";
+            // 
+            // buttonLimpiarClientesOnline
+            // 
+            this.buttonLimpiarClientesOnline.Location = new System.Drawing.Point(290, 19);
+            this.buttonLimpiarClientesOnline.Name = "buttonLimpiarClientesOnline";
+            this.buttonLimpiarClientesOnline.Size = new System.Drawing.Size(186, 42);
+            this.buttonLimpiarClientesOnline.TabIndex = 23;
+            this.buttonLimpiarClientesOnline.Text = "Limpiar pedido";
+            this.buttonLimpiarClientesOnline.UseVisualStyleBackColor = true;
+            // 
+            // buttonEnviarClientesOnline
+            // 
+            this.buttonEnviarClientesOnline.Location = new System.Drawing.Point(98, 19);
+            this.buttonEnviarClientesOnline.Name = "buttonEnviarClientesOnline";
+            this.buttonEnviarClientesOnline.Size = new System.Drawing.Size(186, 42);
+            this.buttonEnviarClientesOnline.TabIndex = 22;
+            this.buttonEnviarClientesOnline.Text = "Confirmar pedido";
+            this.buttonEnviarClientesOnline.UseVisualStyleBackColor = true;
+            // 
+            // textBoxEnviosClientesOnline
+            // 
+            this.textBoxEnviosClientesOnline.Location = new System.Drawing.Point(6, 19);
+            this.textBoxEnviosClientesOnline.Multiline = true;
+            this.textBoxEnviosClientesOnline.Name = "textBoxEnviosClientesOnline";
+            this.textBoxEnviosClientesOnline.ReadOnly = true;
+            this.textBoxEnviosClientesOnline.Size = new System.Drawing.Size(575, 383);
+            this.textBoxEnviosClientesOnline.TabIndex = 0;
+            // 
+            // labelCodigoPedido
+            // 
+            this.labelCodigoPedido.AutoSize = true;
+            this.labelCodigoPedido.Location = new System.Drawing.Point(7, 208);
+            this.labelCodigoPedido.Name = "labelCodigoPedido";
+            this.labelCodigoPedido.Size = new System.Drawing.Size(91, 13);
+            this.labelCodigoPedido.TabIndex = 9;
+            this.labelCodigoPedido.Text = "Código de Pedido";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 224);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(196, 20);
+            this.textBox1.TabIndex = 8;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 550);
-            this.Controls.Add(this.BotonAcuseRecibo);
-            this.Controls.Add(this.labelBienvenido2);
-            this.Controls.Add(this.labelBienvenido1);
-            this.Controls.Add(this.botonCargarStock);
-            this.Controls.Add(this.botonActualizarPedidos);
-            this.Controls.Add(this.botonEjecutarLote2);
-            this.Controls.Add(this.botonGenerarPedido);
-            this.Controls.Add(this.TablaRecPed);
-            this.Controls.Add(this.TablaEnvPed);
-            this.Controls.Add(this.TablaReaPed);
-            this.Controls.Add(this.botonProdAEnviar);
-            this.Controls.Add(this.BotonEjecutarLote1);
-            this.Controls.Add(this.TablaStock);
+            this.ClientSize = new System.Drawing.Size(800, 550);
+            this.Controls.Add(this.panelEnviosClientesOnline);
+            this.Controls.Add(this.panelPedidoIndustrias);
+            this.Controls.Add(this.panelAcuseRecibo);
+            this.Controls.Add(this.panelVentasOnline);
+            this.Controls.Add(this.PanelStock);
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.panelBienvenido);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -459,23 +961,43 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
-            this.TopPanelLeft.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Wrapper)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).EndInit();
             this.Sidebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.panelAyuda.ResumeLayout(false);
             this.panelAyuda.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaStock)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaReaPed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaEnvPed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TablaRecPed)).EndInit();
+            this.panelBienvenido.ResumeLayout(false);
+            this.panelBienvenido.PerformLayout();
+            this.PanelStock.ResumeLayout(false);
+            this.groupBoxBotonPedidoIndustria.ResumeLayout(false);
+            this.groupBoxStockComercio.ResumeLayout(false);
+            this.groupBoxStockComercio.PerformLayout();
+            this.groupBoxStockTabla.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).EndInit();
+            this.panelVentasOnline.ResumeLayout(false);
+            this.groupBoxRecibirPedido.ResumeLayout(false);
+            this.groupBoxDatosClienteOnline.ResumeLayout(false);
+            this.groupBoxDatosClienteOnline.PerformLayout();
+            this.groupBoxVentasOnline.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwVentasOnline)).EndInit();
+            this.panelAcuseRecibo.ResumeLayout(false);
+            this.groupBoxAcuseRecibo.ResumeLayout(false);
+            this.groupBoxTablaAcuseRecibo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).EndInit();
+            this.panelPedidoIndustrias.ResumeLayout(false);
+            this.groupBoxOperacionesInd.ResumeLayout(false);
+            this.groupBoxPedidoIndustrias.ResumeLayout(false);
+            this.groupBoxPedidoIndustrias.PerformLayout();
+            this.panelEnviosClientesOnline.ResumeLayout(false);
+            this.groupBoxEnviosClientes.ResumeLayout(false);
+            this.groupBoxEnviosClientes.PerformLayout();
+            this.groupBoxOperacionesOnline.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -485,31 +1007,80 @@
         private System.Windows.Forms.PictureBox Salir;
         private System.Windows.Forms.Panel TopPanelLeft;
         private System.Windows.Forms.Panel Sidebar;
-        private System.Windows.Forms.PictureBox Wrapper;
-        private System.Windows.Forms.Button Stock;
-        private System.Windows.Forms.Button RecibirPedido;
-        private System.Windows.Forms.Button EnviarPedido;
-        private System.Windows.Forms.Button RealizarPedido;
+        private System.Windows.Forms.Button btnStock;
+        private System.Windows.Forms.Button btnEnviarPedido;
+        private System.Windows.Forms.Button btnPedidoIndustrias;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label LabelTitulo;
-        private System.Windows.Forms.Button BotonEjecutarLote1;
-        private System.Windows.Forms.Button botonProdAEnviar;
-        private System.Windows.Forms.DataGridView TablaStock;
-        private System.Windows.Forms.DataGridView TablaReaPed;
-        private System.Windows.Forms.DataGridView TablaEnvPed;
-        private System.Windows.Forms.DataGridView TablaRecPed;
-        private System.Windows.Forms.Button botonGenerarPedido;
-        private System.Windows.Forms.Button botonEjecutarLote2;
-        private System.Windows.Forms.Button botonActualizarPedidos;
-        private System.Windows.Forms.Button botonCargarStock;
-        private System.Windows.Forms.Label labelBienvenido1;
-        private System.Windows.Forms.Label labelBienvenido2;
         private System.Windows.Forms.Panel panelAyuda;
         private System.Windows.Forms.Label labelAyuda;
-        private System.Windows.Forms.Button BotonAcuseRecibo;
+        private System.Windows.Forms.Button btnAcuseRecibo;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Button btnRecibirPedidoOnline;
+        private System.Windows.Forms.Label labelBienvenido1;
+        private System.Windows.Forms.Label labelBienvenido2;
+        private System.Windows.Forms.Panel panelBienvenido;
+        private System.Windows.Forms.Panel PanelStock;
+        private System.Windows.Forms.DataGridView dgwStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.GroupBox groupBoxStockTabla;
+        private System.Windows.Forms.GroupBox groupBoxStockComercio;
+        private System.Windows.Forms.Label labelRazSoc;
+        private System.Windows.Forms.TextBox textBoxRazSoc;
+        private System.Windows.Forms.Label labelCodComercio;
+        private System.Windows.Forms.TextBox textBoxCodComercio;
+        private System.Windows.Forms.Label labelCUIT;
+        private System.Windows.Forms.TextBox textBoxCUIT;
+        private System.Windows.Forms.Label labelDireccion;
+        private System.Windows.Forms.TextBox textBoxDireccion;
+        private System.Windows.Forms.GroupBox groupBoxBotonPedidoIndustria;
+        private System.Windows.Forms.Button buttonPedidoStockIndustrias;
+        private System.Windows.Forms.Panel panelVentasOnline;
+        private System.Windows.Forms.GroupBox groupBoxRecibirPedido;
+        private System.Windows.Forms.Button buttonRecibirPedidoOnline;
+        private System.Windows.Forms.GroupBox groupBoxDatosClienteOnline;
+        private System.Windows.Forms.Label labelCodLoteCliente;
+        private System.Windows.Forms.TextBox textBoxCodLoteOnline;
+        private System.Windows.Forms.Label labelCodRefCliente;
+        private System.Windows.Forms.TextBox textBoxCodRefOnline;
+        private System.Windows.Forms.Label labelDirDev;
+        private System.Windows.Forms.TextBox textBoxDirDevOnline;
+        private System.Windows.Forms.Label labelRteCUIT;
+        private System.Windows.Forms.TextBox textBoxRteCUITOnline;
+        private System.Windows.Forms.Label labelRteRazSoc;
+        private System.Windows.Forms.TextBox textBoxRazSocOnline;
+        private System.Windows.Forms.Label labelCodCliente;
+        private System.Windows.Forms.TextBox textBoxCodClienteOnline;
+        private System.Windows.Forms.GroupBox groupBoxVentasOnline;
+        private System.Windows.Forms.DataGridView dgwVentasOnline;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Panel panelAcuseRecibo;
+        private System.Windows.Forms.GroupBox groupBoxAcuseRecibo;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBoxTablaAcuseRecibo;
+        private System.Windows.Forms.DataGridView dgwAcuseRecibo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Panel panelPedidoIndustrias;
+        private System.Windows.Forms.GroupBox groupBoxPedidoIndustrias;
+        private System.Windows.Forms.GroupBox groupBoxOperacionesInd;
+        private System.Windows.Forms.Button buttonLimpiarPedidoInd;
+        private System.Windows.Forms.Button buttonConfirmarPedidoInd;
+        private System.Windows.Forms.TextBox textBoxPedidoIndustria;
+        private System.Windows.Forms.Panel panelEnviosClientesOnline;
+        private System.Windows.Forms.GroupBox groupBoxEnviosClientes;
+        private System.Windows.Forms.GroupBox groupBoxOperacionesOnline;
+        private System.Windows.Forms.Button buttonLimpiarClientesOnline;
+        private System.Windows.Forms.Button buttonEnviarClientesOnline;
+        private System.Windows.Forms.TextBox textBoxEnviosClientesOnline;
+        private System.Windows.Forms.Label labelCodigoPedido;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
