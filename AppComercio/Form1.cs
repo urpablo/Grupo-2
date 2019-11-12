@@ -12,9 +12,16 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         // ------------------ carga del formulario ------------------
-
+        DataTable table = new DataTable();
         private void Form1_Load(object sender, EventArgs e)
         {
+            table.Columns.Add("Id",typeof(int));
+            table.Columns.Add("Cantidad", typeof(int));
+            table.Columns.Add("Punto de Reposición", typeof(int));
+
+            dataGridView1.DataSource = table;
+
+
             panelBienvenido.Location = new Point(186,38);
             PanelStock.Location = new Point(186, 38);
             panelPedidoIndustrias.Location = new Point(186, 38);
@@ -535,7 +542,43 @@ namespace AppComercio
 
         }
 
-      
+        private void PanelStock_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            table.Rows.Clear();
+            dataGridView1.Refresh();
+
+            string[] lines = File.ReadAllLines(@"Stock.txt");
+            string[] values;
+
+            for (int i=0;i<lines.Length;i++)
+            {
+                values = lines[i].ToString().Split(',');
+                string[] row = new string[values.Length];
+
+                for (int j=0;j<values.Length;j++)
+                {
+                    row[j] = values[j].Trim();
+                }
+                table.Rows.Add(row);
+
+            }
+        }
+
+        private void buttonLimpiarPedStockInd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+
+
 
 
 
