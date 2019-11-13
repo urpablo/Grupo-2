@@ -11,8 +11,9 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        // ------------------ carga del formulario ------------------
+        // ------------------ carga del formulario -------------------------------------------------
         DataTable table = new DataTable();
+        string ultimoPedidoGuardado;
         private void Form1_Load(object sender, EventArgs e)
         {
             table.Columns.Add("Id",typeof(int));
@@ -21,6 +22,7 @@ namespace AppComercio
 
             dataGridView1.DataSource = table;
 
+            refrescarstock();
 
             panelBienvenido.Location = new Point(186,38);
             PanelStock.Location = new Point(186, 38);
@@ -78,7 +80,7 @@ namespace AppComercio
             }
         }
         // ------------------ hacer que una ventana borderless sea movible ------------------
-        // ------------------ carga del formulario ------------------
+        // ------------------ carga del formulario -------------------------------------------------
 
 
 
@@ -263,6 +265,9 @@ namespace AppComercio
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
+
+                    listLoteClientes.Visible = false;
+
                     break;
 
                 case 5:
@@ -309,17 +314,82 @@ namespace AppComercio
             }
         }
 
+        // ------------------ botonera menú ------------------
 
 
-        public void buttonLimpiarVentaOnline_Click(object sender, EventArgs e)
+        // ------------------ LOGICA PANTALLA STOCK Y CONFIRMAR PEDIDO INDUSTRIAS -------------------------
+
+        private void buttonLimpiarPedStockInd_Click(object sender, EventArgs e)
+        {
+            textBoxCodComercio.Clear();
+            textBoxRazSoc.Clear();
+            textBoxCUIT.Clear();
+            textBoxDireccion.Clear();
+            textBoxCodPedidoInd.Clear();
+        }
+
+        private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+
+        }
+
+        private void buttonLimpiarPedidoInd_Click(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Clear();
+            textBoxPedidoIndustria.Clear();
+        }
+
+
+
+
+        //--------------------- leer stock.txt -----------------------------------
+        private void button3_Click(object sender, EventArgs e)
+        {
+            refrescarstock();
+        }
+
+        private void refrescarstock()
+        {
+            table.Rows.Clear();
+            dataGridView1.Refresh();
+
+            string[] lines = File.ReadAllLines(@"Stock.txt");
+            string[] values;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].ToString().Split(',');
+                string[] row = new string[values.Length];
+
+                for (int j = 0; j < values.Length; j++)
+                {
+                    row[j] = values[j].Trim();
+                }
+                table.Rows.Add(row);
+
+            }
+        }
+
+        //--------------------- leer stock.txt -----------------------------------
+
+        // ------------------ LOGICA PANTALLA STOCK Y CONFIRMAR PEDIDO INDUSTRIAS -------------------------
+
+
+
+
+        // ------------------ LOGICA PANTALLAS VENTAS ONLINE Y GENERAR LOTES/ENVIOS ---------------
+
+        public void buttonAgregarItem_Click(object sender, EventArgs e)
         {
             ListViewItem lstPedido = new ListViewItem(textBoxCdProd.Text);
             lstPedido.SubItems.Add(textBoxCant.Text);
             listPedidos.Items.Add(lstPedido);
-
+            textBoxCant.Clear();
+            textBoxCdProd.Clear();
         }
 
-        private void buttonRecibirPedidoOnline_Click(object sender, EventArgs e)
+        private void buttonGenerarPedido_Click(object sender, EventArgs e)
         {
             bool flag = true;
             int IdStock = 0;
@@ -451,10 +521,12 @@ namespace AppComercio
                 File.Move("StockTemporalPtoRepo.txt", "Stock.txt");
 
                 string n = string.Format("Pedido-{0:yyyy-MM-dd_hh-mm}.txt", DateTime.Now);
+                ultimoPedidoGuardado = n;
+               
 
                 using (StreamWriter sw = new StreamWriter(n))
                 {
-
+                     
                     sw.Write(textBoxCdRef.Text + "," + textBoxDirEnt.Text);
                     sw.Write("\n");
 
@@ -468,111 +540,141 @@ namespace AppComercio
                 }
                 File.Delete("PedidoTemporal.txt");
             }
+
+            limpiarlistapedidos();
+            botonBotonera = 3;
+            actualizarPantalla();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void buttonCargarPedidoEnviosOnline_Click(object sender, EventArgs e)
+        {
+
+            if (ultimoPedidoGuardado != "") 
+            {
+                textBoxLote.AppendText("---" + Environment.NewLine);
+                foreach (var line in File.ReadLines(ultimoPedidoGuardado))
+                {
+
+                    textBoxLote.AppendText(line + Environment.NewLine);
+                }
+
+            }
+
+            ultimoPedidoGuardado = "";
+            //DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
+            //if (result == DialogResult.OK) // Test result.
+            //    {
+            //        string var11;
+            //        string var22;
+
+            //        string file = ultimoPedidoGuardado;
+            //        var records3 = File
+            //              .ReadAllLines(file)
+            //              .Select(record => record.Split(','))
+            //              .Select(record => new
+            //              {
+            //                  a11 = record[0],
+            //                  a22 = record[1],
+            //              }).ToList();
+
+            //        foreach (var recordc in records3)
+            //        {
+            //            var11 = recordc.a11;
+            //            var22 = recordc.a22;
+            //            //var33 = recordc.a33;
+
+            //            ListViewItem lstPedido2 = new ListViewItem(var11.ToString());
+
+            //            lstPedido2.SubItems.Add(var22);
+            //            //lstPedido2.SubItems.Add(var33.ToString());
+            //            listLoteClientes.Items.Add(lstPedido2);
+            //        }
+
+            //        listLoteClientes.Items.Add("---");
+            //    }
+        }
+
+        private void buttonLimpiarListaPedidos_Click(object sender, EventArgs e)
+        {
+            limpiarlistapedidos();
+        }
+
+        private void limpiarlistapedidos()
         {
             listPedidos.Items.Clear();
             textBoxCdRef.Clear();
             textBoxDirEnt.Clear();
-
+            textBoxCdCli.Clear();
+            textBoxCdProd.Clear();
+            textBoxCant.Clear();
         }
 
-        private void buttonEnviarClientesOnline_Click(object sender, EventArgs e)
-        {
-            DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
-            if (result == DialogResult.OK) // Test result.
-            {
-                string var11;
-                string var22;
-
-                string file = openFileDialog1.FileName;
-                var records3 = File
-                      .ReadAllLines(file)
-                      .Select(record => record.Split(','))
-                      .Select(record => new
-                      {
-                          a11 = record[0],
-                          a22 = record[1],
-                      }).ToList();
-
-                foreach (var recordc in records3)
-                {
-                    var11 = recordc.a11;
-                    var22 = recordc.a22;
-                    //var33 = recordc.a33;
-
-                    ListViewItem lstPedido2 = new ListViewItem(var11.ToString());
-
-                    lstPedido2.SubItems.Add(var22);
-                    //lstPedido2.SubItems.Add(var33.ToString());
-                    listLoteClientes.Items.Add(lstPedido2);
-                }
-
-                listLoteClientes.Items.Add("---");
-            }
-        }
 
         private void buttonLimpiarClientesOnline_Click(object sender, EventArgs e)
         {
             textBoxLote.Clear();
+            textBoxRemitente.Clear();
+            textBoxRzSoc.Clear();
+            textBoxCuit2.Clear();
+            textBoxDirDev.Clear();
+            textBoxCdLote.Clear();
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        private void buttonGenerarTXTLote_Click(object sender, EventArgs e)
         {
 
             using (StreamWriter sw = new StreamWriter("Lote_"+textBoxCdCli.Text+"_"+textBoxCdLote.Text+".txt"))
             {
                 sw.Write(textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text);
                 sw.Write("\n");
-                sw.Write("---");
-                sw.Write("\n");
+                //sw.Write("---");
+                //sw.Write("\n");
 
-                foreach (ListViewItem item in listLoteClientes.Items)
+                foreach (var line in textBoxLote.Text)
                 {
-                    sw.Write(item.Text);
-                    for (int i = 1; i < item.SubItems.Count; i++)
-                        sw.Write("," + item.SubItems[i].Text);
-                    sw.Write("\n");
+                    sw.Write(line);
                 }
+
+                //foreach (ListViewItem item in listLoteClientes.Items)
+                //{
+                //    sw.Write(item.Text);
+                //    for (int i = 1; i < item.SubItems.Count; i++)
+                //        sw.Write("," + item.SubItems[i].Text);
+                //    sw.Write("\n");
+                //}
 
             }
 
         }
 
-        private void PanelStock_Paint(object sender, PaintEventArgs e)
-        {
 
+
+
+        // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes -------------
+
+        private void textBoxRzSoc_TextChanged(object sender, EventArgs e)
+        {
+            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void textBoxCuit2_TextChanged(object sender, EventArgs e)
         {
-            table.Rows.Clear();
-            dataGridView1.Refresh();
-
-            string[] lines = File.ReadAllLines(@"Stock.txt");
-            string[] values;
-
-            for (int i=0;i<lines.Length;i++)
-            {
-                values = lines[i].ToString().Split(',');
-                string[] row = new string[values.Length];
-
-                for (int j=0;j<values.Length;j++)
-                {
-                    row[j] = values[j].Trim();
-                }
-                table.Rows.Add(row);
-
-            }
+            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
         }
 
+        private void textBoxDirDev_TextChanged(object sender, EventArgs e)
+        {
+            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
+        }
+
+ 
 
 
+        // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes -------------
+
+        // ------------------ LOGICA PANTALLAS VENTAS ONLINE Y GENERAR LOTES/ENVIOS ---------------
 
 
-
-
-        // ------------------ botonera menú ------------------
     }
 }
