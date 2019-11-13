@@ -45,6 +45,8 @@
             this.buttonAgregarItem = new System.Windows.Forms.Button();
             this.buttonGenerarPedido = new System.Windows.Forms.Button();
             this.groupBoxDatosClienteOnline = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBoxCdCli = new System.Windows.Forms.TextBox();
             this.labelRteRazSoc = new System.Windows.Forms.Label();
             this.textBoxDirEnt = new System.Windows.Forms.TextBox();
             this.labelCodCliente = new System.Windows.Forms.Label();
@@ -70,8 +72,8 @@
             this.panelBienvenido = new System.Windows.Forms.Panel();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.PanelStock = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBoxBotonPedidoIndustria = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.buttonLimpiarPedStockInd = new System.Windows.Forms.Button();
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
@@ -88,10 +90,11 @@
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelAcuseRecibo = new System.Windows.Forms.Panel();
-            this.groupBoxAcuseRecibo = new System.Windows.Forms.GroupBox();
+            this.groupBoxReporteEntrega = new System.Windows.Forms.GroupBox();
+            this.btnCargarStockNoEntregados = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBoxTablaAcuseRecibo = new System.Windows.Forms.GroupBox();
-            this.dgwAcuseRecibo = new System.Windows.Forms.DataGridView();
+            this.dgwReporteEntrega = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelPedidoIndustrias = new System.Windows.Forms.Panel();
@@ -101,26 +104,29 @@
             this.buttonConfirmarPedidoInd = new System.Windows.Forms.Button();
             this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
             this.panelEnviosClientesOnline = new System.Windows.Forms.Panel();
-            this.groupBoxEnviosClientes = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.labelCodClienteCliente = new System.Windows.Forms.Label();
+            this.labelDirEntregaCliente = new System.Windows.Forms.Label();
+            this.labelCodRefCliente = new System.Windows.Forms.Label();
             this.groupBoxOperacionesOnline = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.buttonLimpiarClientesOnline = new System.Windows.Forms.Button();
             this.buttonEnviarClientesOnline = new System.Windows.Forms.Button();
+            this.groupBoxEnviosClientes = new System.Windows.Forms.GroupBox();
+            this.textBoxLote = new System.Windows.Forms.TextBox();
+            this.listLoteClientes = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxCdLote = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBoxCdCli = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxDirDev = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxCuit2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxRzSoc = new System.Windows.Forms.TextBox();
-            this.listLoteClientes = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -147,15 +153,16 @@
             this.groupBoxStockTabla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelAcuseRecibo.SuspendLayout();
-            this.groupBoxAcuseRecibo.SuspendLayout();
+            this.groupBoxReporteEntrega.SuspendLayout();
             this.groupBoxTablaAcuseRecibo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwReporteEntrega)).BeginInit();
             this.panelPedidoIndustrias.SuspendLayout();
             this.groupBoxPedidoIndustrias.SuspendLayout();
             this.groupBoxOperacionesInd.SuspendLayout();
             this.panelEnviosClientesOnline.SuspendLayout();
-            this.groupBoxEnviosClientes.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBoxOperacionesOnline.SuspendLayout();
+            this.groupBoxEnviosClientes.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,6 +188,7 @@
             this.LabelTitulo.Size = new System.Drawing.Size(345, 23);
             this.LabelTitulo.TabIndex = 0;
             this.LabelTitulo.Text = "Confeccionar lote de pedido a industria";
+            this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitulo_MouseMove);
             // 
             // TopPanelLeft
             // 
@@ -224,7 +232,7 @@
             this.panelVentasOnline.Controls.Add(this.groupBoxRecibirPedido);
             this.panelVentasOnline.Controls.Add(this.groupBoxDatosClienteOnline);
             this.panelVentasOnline.Controls.Add(this.groupBoxVentasOnline);
-            this.panelVentasOnline.Location = new System.Drawing.Point(186, 36);
+            this.panelVentasOnline.Location = new System.Drawing.Point(972, 521);
             this.panelVentasOnline.Name = "panelVentasOnline";
             this.panelVentasOnline.Size = new System.Drawing.Size(608, 505);
             this.panelVentasOnline.TabIndex = 24;
@@ -235,9 +243,9 @@
             this.groupBox1.Controls.Add(this.textBoxCant);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBoxCdProd);
-            this.groupBox1.Location = new System.Drawing.Point(389, 13);
+            this.groupBox1.Location = new System.Drawing.Point(385, 223);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(208, 129);
+            this.groupBox1.Size = new System.Drawing.Size(210, 108);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del pedido";
@@ -245,7 +253,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 77);
+            this.label3.Location = new System.Drawing.Point(7, 63);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 3;
@@ -253,15 +261,15 @@
             // 
             // textBoxCant
             // 
-            this.textBoxCant.Location = new System.Drawing.Point(6, 93);
+            this.textBoxCant.Location = new System.Drawing.Point(9, 79);
             this.textBoxCant.Name = "textBoxCant";
-            this.textBoxCant.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCant.Size = new System.Drawing.Size(192, 20);
             this.textBoxCant.TabIndex = 2;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 33);
+            this.label4.Location = new System.Drawing.Point(7, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 13);
             this.label4.TabIndex = 1;
@@ -269,9 +277,9 @@
             // 
             // textBoxCdProd
             // 
-            this.textBoxCdProd.Location = new System.Drawing.Point(6, 49);
+            this.textBoxCdProd.Location = new System.Drawing.Point(9, 36);
             this.textBoxCdProd.Name = "textBoxCdProd";
-            this.textBoxCdProd.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCdProd.Size = new System.Drawing.Size(192, 20);
             this.textBoxCdProd.TabIndex = 0;
             // 
             // groupBoxRecibirPedido
@@ -279,28 +287,28 @@
             this.groupBoxRecibirPedido.Controls.Add(this.LimpiarListaPedidos);
             this.groupBoxRecibirPedido.Controls.Add(this.buttonAgregarItem);
             this.groupBoxRecibirPedido.Controls.Add(this.buttonGenerarPedido);
-            this.groupBoxRecibirPedido.Location = new System.Drawing.Point(389, 304);
+            this.groupBoxRecibirPedido.Location = new System.Drawing.Point(385, 332);
             this.groupBoxRecibirPedido.Name = "groupBoxRecibirPedido";
-            this.groupBoxRecibirPedido.Size = new System.Drawing.Size(208, 196);
+            this.groupBoxRecibirPedido.Size = new System.Drawing.Size(210, 170);
             this.groupBoxRecibirPedido.TabIndex = 23;
             this.groupBoxRecibirPedido.TabStop = false;
-            this.groupBoxRecibirPedido.Text = "Carga de Venta";
+            this.groupBoxRecibirPedido.Text = "Operaciones";
             // 
             // LimpiarListaPedidos
             // 
-            this.LimpiarListaPedidos.Location = new System.Drawing.Point(8, 85);
+            this.LimpiarListaPedidos.Location = new System.Drawing.Point(11, 70);
             this.LimpiarListaPedidos.Name = "LimpiarListaPedidos";
-            this.LimpiarListaPedidos.Size = new System.Drawing.Size(194, 42);
+            this.LimpiarListaPedidos.Size = new System.Drawing.Size(190, 42);
             this.LimpiarListaPedidos.TabIndex = 24;
-            this.LimpiarListaPedidos.Text = "Limpiar contenido";
+            this.LimpiarListaPedidos.Text = "Limpiar pantalla";
             this.LimpiarListaPedidos.UseVisualStyleBackColor = true;
             this.LimpiarListaPedidos.Click += new System.EventHandler(this.button2_Click);
             // 
             // buttonAgregarItem
             // 
-            this.buttonAgregarItem.Location = new System.Drawing.Point(8, 27);
+            this.buttonAgregarItem.Location = new System.Drawing.Point(11, 22);
             this.buttonAgregarItem.Name = "buttonAgregarItem";
-            this.buttonAgregarItem.Size = new System.Drawing.Size(194, 42);
+            this.buttonAgregarItem.Size = new System.Drawing.Size(190, 42);
             this.buttonAgregarItem.TabIndex = 23;
             this.buttonAgregarItem.Text = "Agregar item";
             this.buttonAgregarItem.UseVisualStyleBackColor = true;
@@ -308,9 +316,9 @@
             // 
             // buttonGenerarPedido
             // 
-            this.buttonGenerarPedido.Location = new System.Drawing.Point(8, 141);
+            this.buttonGenerarPedido.Location = new System.Drawing.Point(11, 118);
             this.buttonGenerarPedido.Name = "buttonGenerarPedido";
-            this.buttonGenerarPedido.Size = new System.Drawing.Size(194, 42);
+            this.buttonGenerarPedido.Size = new System.Drawing.Size(190, 42);
             this.buttonGenerarPedido.TabIndex = 22;
             this.buttonGenerarPedido.Text = "Generar pedido";
             this.buttonGenerarPedido.UseVisualStyleBackColor = true;
@@ -318,22 +326,39 @@
             // 
             // groupBoxDatosClienteOnline
             // 
+            this.groupBoxDatosClienteOnline.Controls.Add(this.label6);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCdCli);
             this.groupBoxDatosClienteOnline.Controls.Add(this.labelRteRazSoc);
             this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxDirEnt);
             this.groupBoxDatosClienteOnline.Controls.Add(this.labelCodCliente);
             this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCdRef);
-            this.groupBoxDatosClienteOnline.Location = new System.Drawing.Point(389, 160);
+            this.groupBoxDatosClienteOnline.Location = new System.Drawing.Point(385, 14);
             this.groupBoxDatosClienteOnline.Name = "groupBoxDatosClienteOnline";
-            this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(208, 123);
+            this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(210, 200);
             this.groupBoxDatosClienteOnline.TabIndex = 21;
             this.groupBoxDatosClienteOnline.TabStop = false;
-            this.groupBoxDatosClienteOnline.Text = "Datos del envío";
-            this.groupBoxDatosClienteOnline.Enter += new System.EventHandler(this.groupBoxDatosClienteOnline_Enter);
+            this.groupBoxDatosClienteOnline.Text = "Datos del cliente";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 109);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Código de cliente";
+            // 
+            // textBoxCdCli
+            // 
+            this.textBoxCdCli.Location = new System.Drawing.Point(10, 126);
+            this.textBoxCdCli.Name = "textBoxCdCli";
+            this.textBoxCdCli.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCdCli.TabIndex = 8;
             // 
             // labelRteRazSoc
             // 
             this.labelRteRazSoc.AutoSize = true;
-            this.labelRteRazSoc.Location = new System.Drawing.Point(7, 77);
+            this.labelRteRazSoc.Location = new System.Drawing.Point(7, 64);
             this.labelRteRazSoc.Name = "labelRteRazSoc";
             this.labelRteRazSoc.Size = new System.Drawing.Size(106, 13);
             this.labelRteRazSoc.TabIndex = 3;
@@ -341,15 +366,15 @@
             // 
             // textBoxDirEnt
             // 
-            this.textBoxDirEnt.Location = new System.Drawing.Point(6, 96);
+            this.textBoxDirEnt.Location = new System.Drawing.Point(10, 82);
             this.textBoxDirEnt.Name = "textBoxDirEnt";
-            this.textBoxDirEnt.Size = new System.Drawing.Size(196, 20);
+            this.textBoxDirEnt.Size = new System.Drawing.Size(192, 20);
             this.textBoxDirEnt.TabIndex = 4;
             // 
             // labelCodCliente
             // 
             this.labelCodCliente.AutoSize = true;
-            this.labelCodCliente.Location = new System.Drawing.Point(7, 33);
+            this.labelCodCliente.Location = new System.Drawing.Point(8, 19);
             this.labelCodCliente.Name = "labelCodCliente";
             this.labelCodCliente.Size = new System.Drawing.Size(105, 13);
             this.labelCodCliente.TabIndex = 1;
@@ -357,9 +382,9 @@
             // 
             // textBoxCdRef
             // 
-            this.textBoxCdRef.Location = new System.Drawing.Point(6, 49);
+            this.textBoxCdRef.Location = new System.Drawing.Point(9, 35);
             this.textBoxCdRef.Name = "textBoxCdRef";
-            this.textBoxCdRef.Size = new System.Drawing.Size(196, 20);
+            this.textBoxCdRef.Size = new System.Drawing.Size(192, 20);
             this.textBoxCdRef.TabIndex = 4;
             // 
             // groupBoxVentasOnline
@@ -367,7 +392,7 @@
             this.groupBoxVentasOnline.Controls.Add(this.listPedidos);
             this.groupBoxVentasOnline.Location = new System.Drawing.Point(9, 13);
             this.groupBoxVentasOnline.Name = "groupBoxVentasOnline";
-            this.groupBoxVentasOnline.Size = new System.Drawing.Size(374, 487);
+            this.groupBoxVentasOnline.Size = new System.Drawing.Size(370, 487);
             this.groupBoxVentasOnline.TabIndex = 20;
             this.groupBoxVentasOnline.TabStop = false;
             this.groupBoxVentasOnline.Text = "Tabla de Ventas Online";
@@ -377,9 +402,10 @@
             this.listPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
+            this.listPedidos.HideSelection = false;
             this.listPedidos.Location = new System.Drawing.Point(7, 20);
             this.listPedidos.Name = "listPedidos";
-            this.listPedidos.Size = new System.Drawing.Size(361, 453);
+            this.listPedidos.Size = new System.Drawing.Size(361, 461);
             this.listPedidos.TabIndex = 0;
             this.listPedidos.UseCompatibleStateImageBehavior = false;
             this.listPedidos.View = System.Windows.Forms.View.Details;
@@ -438,7 +464,7 @@
             this.btnAcuseRecibo.Name = "btnAcuseRecibo";
             this.btnAcuseRecibo.Size = new System.Drawing.Size(135, 44);
             this.btnAcuseRecibo.TabIndex = 17;
-            this.btnAcuseRecibo.Text = "Recibos";
+            this.btnAcuseRecibo.Text = "Reporte de Entrega";
             this.btnAcuseRecibo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAcuseRecibo.UseVisualStyleBackColor = false;
             this.btnAcuseRecibo.Click += new System.EventHandler(this.btnAcuseRecibo_Click);
@@ -546,7 +572,7 @@
             this.btnEnviarPedido.Name = "btnEnviarPedido";
             this.btnEnviarPedido.Size = new System.Drawing.Size(135, 44);
             this.btnEnviarPedido.TabIndex = 11;
-            this.btnEnviarPedido.Text = "Enviar Pedidos";
+            this.btnEnviarPedido.Text = "Enviar Ventas";
             this.btnEnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnviarPedido.UseVisualStyleBackColor = false;
             this.btnEnviarPedido.Click += new System.EventHandler(this.btnEnviarPedido_Click);
@@ -565,7 +591,7 @@
             this.btnPedidoIndustrias.Name = "btnPedidoIndustrias";
             this.btnPedidoIndustrias.Size = new System.Drawing.Size(135, 44);
             this.btnPedidoIndustrias.TabIndex = 10;
-            this.btnPedidoIndustrias.Text = "Realizar Pedido";
+            this.btnPedidoIndustrias.Text = "Pedidos Stock";
             this.btnPedidoIndustrias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPedidoIndustrias.UseVisualStyleBackColor = false;
             this.btnPedidoIndustrias.Click += new System.EventHandler(this.btnPedidoIndustrias_Click);
@@ -584,7 +610,7 @@
             this.btnStock.Name = "btnStock";
             this.btnStock.Size = new System.Drawing.Size(135, 44);
             this.btnStock.TabIndex = 9;
-            this.btnStock.Text = "Ver stock actual";
+            this.btnStock.Text = "Ver stock";
             this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStock.UseVisualStyleBackColor = false;
             this.btnStock.Click += new System.EventHandler(this.btnStock_Click);
@@ -592,11 +618,11 @@
             // labelBienvenido2
             // 
             this.labelBienvenido2.AutoSize = true;
-            this.labelBienvenido2.Font = new System.Drawing.Font("Lucida Sans", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBienvenido2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBienvenido2.ForeColor = System.Drawing.Color.Gray;
             this.labelBienvenido2.Location = new System.Drawing.Point(44, 241);
             this.labelBienvenido2.Name = "labelBienvenido2";
-            this.labelBienvenido2.Size = new System.Drawing.Size(531, 32);
+            this.labelBienvenido2.Size = new System.Drawing.Size(508, 31);
             this.labelBienvenido2.TabIndex = 14;
             this.labelBienvenido2.Text = "Seleccione una opción para comenzar";
             // 
@@ -604,7 +630,7 @@
             // 
             this.panelBienvenido.Controls.Add(this.labelBienvenido1);
             this.panelBienvenido.Controls.Add(this.labelBienvenido2);
-            this.panelBienvenido.Location = new System.Drawing.Point(186, 36);
+            this.panelBienvenido.Location = new System.Drawing.Point(855, 544);
             this.panelBienvenido.Name = "panelBienvenido";
             this.panelBienvenido.Size = new System.Drawing.Size(608, 505);
             this.panelBienvenido.TabIndex = 15;
@@ -612,11 +638,11 @@
             // labelBienvenido1
             // 
             this.labelBienvenido1.AutoSize = true;
-            this.labelBienvenido1.Font = new System.Drawing.Font("Lucida Sans", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBienvenido1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBienvenido1.ForeColor = System.Drawing.Color.Gray;
             this.labelBienvenido1.Location = new System.Drawing.Point(217, 184);
             this.labelBienvenido1.Name = "labelBienvenido1";
-            this.labelBienvenido1.Size = new System.Drawing.Size(173, 32);
+            this.labelBienvenido1.Size = new System.Drawing.Size(176, 31);
             this.labelBienvenido1.TabIndex = 15;
             this.labelBienvenido1.Text = "¡Bienvenido!";
             // 
@@ -625,11 +651,23 @@
             this.PanelStock.Controls.Add(this.groupBoxBotonPedidoIndustria);
             this.PanelStock.Controls.Add(this.groupBoxStockComercio);
             this.PanelStock.Controls.Add(this.groupBoxStockTabla);
-            this.PanelStock.Location = new System.Drawing.Point(181, 38);
+            this.PanelStock.Location = new System.Drawing.Point(799, 37);
             this.PanelStock.Name = "PanelStock";
             this.PanelStock.Size = new System.Drawing.Size(608, 505);
             this.PanelStock.TabIndex = 16;
             this.PanelStock.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelStock_Paint);
+            // 
+            // groupBoxBotonPedidoIndustria
+            // 
+            this.groupBoxBotonPedidoIndustria.Controls.Add(this.button3);
+            this.groupBoxBotonPedidoIndustria.Controls.Add(this.buttonLimpiarPedStockInd);
+            this.groupBoxBotonPedidoIndustria.Controls.Add(this.buttonPedidoStockIndustrias);
+            this.groupBoxBotonPedidoIndustria.Location = new System.Drawing.Point(385, 329);
+            this.groupBoxBotonPedidoIndustria.Name = "groupBoxBotonPedidoIndustria";
+            this.groupBoxBotonPedidoIndustria.Size = new System.Drawing.Size(210, 171);
+            this.groupBoxBotonPedidoIndustria.TabIndex = 23;
+            this.groupBoxBotonPedidoIndustria.TabStop = false;
+            this.groupBoxBotonPedidoIndustria.Text = "Pedido de Stock";
             // 
             // button3
             // 
@@ -641,18 +679,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // groupBoxBotonPedidoIndustria
-            // 
-            this.groupBoxBotonPedidoIndustria.Controls.Add(this.button3);
-            this.groupBoxBotonPedidoIndustria.Controls.Add(this.buttonLimpiarPedStockInd);
-            this.groupBoxBotonPedidoIndustria.Controls.Add(this.buttonPedidoStockIndustrias);
-            this.groupBoxBotonPedidoIndustria.Location = new System.Drawing.Point(389, 329);
-            this.groupBoxBotonPedidoIndustria.Name = "groupBoxBotonPedidoIndustria";
-            this.groupBoxBotonPedidoIndustria.Size = new System.Drawing.Size(206, 171);
-            this.groupBoxBotonPedidoIndustria.TabIndex = 23;
-            this.groupBoxBotonPedidoIndustria.TabStop = false;
-            this.groupBoxBotonPedidoIndustria.Text = "Pedido de Stock";
-            // 
             // buttonLimpiarPedStockInd
             // 
             this.buttonLimpiarPedStockInd.Location = new System.Drawing.Point(8, 70);
@@ -661,7 +687,6 @@
             this.buttonLimpiarPedStockInd.TabIndex = 23;
             this.buttonLimpiarPedStockInd.Text = "Descartar pantalla";
             this.buttonLimpiarPedStockInd.UseVisualStyleBackColor = true;
-            this.buttonLimpiarPedStockInd.Click += new System.EventHandler(this.buttonLimpiarPedStockInd_Click);
             // 
             // buttonPedidoStockIndustrias
             // 
@@ -684,9 +709,9 @@
             this.groupBoxStockComercio.Controls.Add(this.textBoxRazSoc);
             this.groupBoxStockComercio.Controls.Add(this.labelCodComercio);
             this.groupBoxStockComercio.Controls.Add(this.textBoxCodComercio);
-            this.groupBoxStockComercio.Location = new System.Drawing.Point(389, 13);
+            this.groupBoxStockComercio.Location = new System.Drawing.Point(385, 12);
             this.groupBoxStockComercio.Name = "groupBoxStockComercio";
-            this.groupBoxStockComercio.Size = new System.Drawing.Size(208, 252);
+            this.groupBoxStockComercio.Size = new System.Drawing.Size(210, 252);
             this.groupBoxStockComercio.TabIndex = 21;
             this.groupBoxStockComercio.TabStop = false;
             this.groupBoxStockComercio.Text = "Datos del Comercio para Pedido";
@@ -776,7 +801,7 @@
             this.groupBoxStockTabla.Controls.Add(this.dataGridView1);
             this.groupBoxStockTabla.Location = new System.Drawing.Point(9, 13);
             this.groupBoxStockTabla.Name = "groupBoxStockTabla";
-            this.groupBoxStockTabla.Size = new System.Drawing.Size(374, 487);
+            this.groupBoxStockTabla.Size = new System.Drawing.Size(370, 487);
             this.groupBoxStockTabla.TabIndex = 20;
             this.groupBoxStockTabla.TabStop = false;
             this.groupBoxStockTabla.Text = "Tabla de Stock";
@@ -784,29 +809,39 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(340, 449);
+            this.dataGridView1.Size = new System.Drawing.Size(360, 461);
             this.dataGridView1.TabIndex = 0;
             // 
             // panelAcuseRecibo
             // 
-            this.panelAcuseRecibo.Controls.Add(this.groupBoxAcuseRecibo);
+            this.panelAcuseRecibo.Controls.Add(this.groupBoxReporteEntrega);
             this.panelAcuseRecibo.Controls.Add(this.groupBoxTablaAcuseRecibo);
-            this.panelAcuseRecibo.Location = new System.Drawing.Point(286, 160);
+            this.panelAcuseRecibo.Location = new System.Drawing.Point(1275, 289);
             this.panelAcuseRecibo.Name = "panelAcuseRecibo";
             this.panelAcuseRecibo.Size = new System.Drawing.Size(608, 505);
             this.panelAcuseRecibo.TabIndex = 25;
             // 
-            // groupBoxAcuseRecibo
+            // groupBoxReporteEntrega
             // 
-            this.groupBoxAcuseRecibo.Controls.Add(this.button1);
-            this.groupBoxAcuseRecibo.Location = new System.Drawing.Point(389, 428);
-            this.groupBoxAcuseRecibo.Name = "groupBoxAcuseRecibo";
-            this.groupBoxAcuseRecibo.Size = new System.Drawing.Size(200, 72);
-            this.groupBoxAcuseRecibo.TabIndex = 23;
-            this.groupBoxAcuseRecibo.TabStop = false;
-            this.groupBoxAcuseRecibo.Text = "Acuse de Recibo";
+            this.groupBoxReporteEntrega.Controls.Add(this.btnCargarStockNoEntregados);
+            this.groupBoxReporteEntrega.Controls.Add(this.button1);
+            this.groupBoxReporteEntrega.Location = new System.Drawing.Point(389, 376);
+            this.groupBoxReporteEntrega.Name = "groupBoxReporteEntrega";
+            this.groupBoxReporteEntrega.Size = new System.Drawing.Size(200, 124);
+            this.groupBoxReporteEntrega.TabIndex = 23;
+            this.groupBoxReporteEntrega.TabStop = false;
+            this.groupBoxReporteEntrega.Text = "Operaciones";
+            // 
+            // btnCargarStockNoEntregados
+            // 
+            this.btnCargarStockNoEntregados.Location = new System.Drawing.Point(8, 74);
+            this.btnCargarStockNoEntregados.Name = "btnCargarStockNoEntregados";
+            this.btnCargarStockNoEntregados.Size = new System.Drawing.Size(186, 42);
+            this.btnCargarStockNoEntregados.TabIndex = 23;
+            this.btnCargarStockNoEntregados.Text = "Cargar Stock de no entregados";
+            this.btnCargarStockNoEntregados.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -814,29 +849,29 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(186, 42);
             this.button1.TabIndex = 22;
-            this.button1.Text = "Leer acuse de recibo de Logística";
+            this.button1.Text = "Leer reporte de entrega de Logística";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // groupBoxTablaAcuseRecibo
             // 
-            this.groupBoxTablaAcuseRecibo.Controls.Add(this.dgwAcuseRecibo);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.dgwReporteEntrega);
             this.groupBoxTablaAcuseRecibo.Location = new System.Drawing.Point(9, 13);
             this.groupBoxTablaAcuseRecibo.Name = "groupBoxTablaAcuseRecibo";
             this.groupBoxTablaAcuseRecibo.Size = new System.Drawing.Size(374, 487);
             this.groupBoxTablaAcuseRecibo.TabIndex = 20;
             this.groupBoxTablaAcuseRecibo.TabStop = false;
-            this.groupBoxTablaAcuseRecibo.Text = "Tabla de Acuses de Recibo";
+            this.groupBoxTablaAcuseRecibo.Text = "Tabla de Reportes de Entrega";
             // 
-            // dgwAcuseRecibo
+            // dgwReporteEntrega
             // 
-            this.dgwAcuseRecibo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwAcuseRecibo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgwReporteEntrega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwReporteEntrega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dgwAcuseRecibo.Location = new System.Drawing.Point(6, 19);
-            this.dgwAcuseRecibo.Name = "dgwAcuseRecibo";
-            this.dgwAcuseRecibo.Size = new System.Drawing.Size(362, 462);
-            this.dgwAcuseRecibo.TabIndex = 19;
+            this.dgwReporteEntrega.Location = new System.Drawing.Point(6, 19);
+            this.dgwReporteEntrega.Name = "dgwReporteEntrega";
+            this.dgwReporteEntrega.Size = new System.Drawing.Size(362, 462);
+            this.dgwReporteEntrega.TabIndex = 19;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -851,7 +886,7 @@
             // panelPedidoIndustrias
             // 
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
-            this.panelPedidoIndustrias.Location = new System.Drawing.Point(332, 109);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(1220, 449);
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(608, 505);
             this.panelPedidoIndustrias.TabIndex = 26;
@@ -907,41 +942,71 @@
             // 
             // panelEnviosClientesOnline
             // 
+            this.panelEnviosClientesOnline.Controls.Add(this.groupBox3);
+            this.panelEnviosClientesOnline.Controls.Add(this.groupBoxOperacionesOnline);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(190, 39);
+            this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(186, 38);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(608, 505);
             this.panelEnviosClientesOnline.TabIndex = 27;
             // 
-            // groupBoxEnviosClientes
+            // groupBox3
             // 
-            this.groupBoxEnviosClientes.Controls.Add(this.groupBoxOperacionesOnline);
-            this.groupBoxEnviosClientes.Controls.Add(this.groupBox2);
-            this.groupBoxEnviosClientes.Controls.Add(this.listLoteClientes);
-            this.groupBoxEnviosClientes.Location = new System.Drawing.Point(9, 13);
-            this.groupBoxEnviosClientes.Name = "groupBoxEnviosClientes";
-            this.groupBoxEnviosClientes.Size = new System.Drawing.Size(590, 487);
-            this.groupBoxEnviosClientes.TabIndex = 20;
-            this.groupBoxEnviosClientes.TabStop = false;
-            this.groupBoxEnviosClientes.Text = "Envíos de ventas Online";
+            this.groupBox3.Controls.Add(this.labelCodClienteCliente);
+            this.groupBox3.Controls.Add(this.labelDirEntregaCliente);
+            this.groupBox3.Controls.Add(this.labelCodRefCliente);
+            this.groupBox3.Location = new System.Drawing.Point(386, 223);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(210, 108);
+            this.groupBox3.TabIndex = 25;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Datos del Cliente";
+            // 
+            // labelCodClienteCliente
+            // 
+            this.labelCodClienteCliente.AutoEllipsis = true;
+            this.labelCodClienteCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelCodClienteCliente.Location = new System.Drawing.Point(8, 80);
+            this.labelCodClienteCliente.Name = "labelCodClienteCliente";
+            this.labelCodClienteCliente.Size = new System.Drawing.Size(192, 20);
+            this.labelCodClienteCliente.TabIndex = 2;
+            // 
+            // labelDirEntregaCliente
+            // 
+            this.labelDirEntregaCliente.AutoEllipsis = true;
+            this.labelDirEntregaCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelDirEntregaCliente.Location = new System.Drawing.Point(8, 50);
+            this.labelDirEntregaCliente.Name = "labelDirEntregaCliente";
+            this.labelDirEntregaCliente.Size = new System.Drawing.Size(192, 20);
+            this.labelDirEntregaCliente.TabIndex = 1;
+            // 
+            // labelCodRefCliente
+            // 
+            this.labelCodRefCliente.AutoEllipsis = true;
+            this.labelCodRefCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelCodRefCliente.Location = new System.Drawing.Point(8, 20);
+            this.labelCodRefCliente.Name = "labelCodRefCliente";
+            this.labelCodRefCliente.Size = new System.Drawing.Size(192, 20);
+            this.labelCodRefCliente.TabIndex = 0;
             // 
             // groupBoxOperacionesOnline
             // 
             this.groupBoxOperacionesOnline.Controls.Add(this.button2);
             this.groupBoxOperacionesOnline.Controls.Add(this.buttonLimpiarClientesOnline);
             this.groupBoxOperacionesOnline.Controls.Add(this.buttonEnviarClientesOnline);
-            this.groupBoxOperacionesOnline.Location = new System.Drawing.Point(369, 304);
+            this.groupBoxOperacionesOnline.Location = new System.Drawing.Point(386, 330);
             this.groupBoxOperacionesOnline.Name = "groupBoxOperacionesOnline";
-            this.groupBoxOperacionesOnline.Size = new System.Drawing.Size(205, 175);
+            this.groupBoxOperacionesOnline.Size = new System.Drawing.Size(210, 170);
             this.groupBoxOperacionesOnline.TabIndex = 23;
             this.groupBoxOperacionesOnline.TabStop = false;
             this.groupBoxOperacionesOnline.Text = "Operaciones";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(13, 128);
+            this.button2.Location = new System.Drawing.Point(10, 118);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 42);
+            this.button2.Size = new System.Drawing.Size(190, 42);
             this.button2.TabIndex = 24;
             this.button2.Text = "Generar lote";
             this.button2.UseVisualStyleBackColor = true;
@@ -949,122 +1014,43 @@
             // 
             // buttonLimpiarClientesOnline
             // 
-            this.buttonLimpiarClientesOnline.Location = new System.Drawing.Point(13, 74);
+            this.buttonLimpiarClientesOnline.Location = new System.Drawing.Point(10, 70);
             this.buttonLimpiarClientesOnline.Name = "buttonLimpiarClientesOnline";
-            this.buttonLimpiarClientesOnline.Size = new System.Drawing.Size(186, 42);
+            this.buttonLimpiarClientesOnline.Size = new System.Drawing.Size(190, 42);
             this.buttonLimpiarClientesOnline.TabIndex = 23;
-            this.buttonLimpiarClientesOnline.Text = "Limpiar lote";
+            this.buttonLimpiarClientesOnline.Text = "Limpiar lote / pantalla";
             this.buttonLimpiarClientesOnline.UseVisualStyleBackColor = true;
             this.buttonLimpiarClientesOnline.Click += new System.EventHandler(this.buttonLimpiarClientesOnline_Click);
             // 
             // buttonEnviarClientesOnline
             // 
-            this.buttonEnviarClientesOnline.Location = new System.Drawing.Point(13, 19);
+            this.buttonEnviarClientesOnline.Location = new System.Drawing.Point(10, 22);
             this.buttonEnviarClientesOnline.Name = "buttonEnviarClientesOnline";
-            this.buttonEnviarClientesOnline.Size = new System.Drawing.Size(186, 42);
+            this.buttonEnviarClientesOnline.Size = new System.Drawing.Size(190, 42);
             this.buttonEnviarClientesOnline.TabIndex = 22;
             this.buttonEnviarClientesOnline.Text = "Cargar pedido";
             this.buttonEnviarClientesOnline.UseVisualStyleBackColor = true;
             this.buttonEnviarClientesOnline.Click += new System.EventHandler(this.buttonEnviarClientesOnline_Click);
             // 
-            // groupBox2
+            // groupBoxEnviosClientes
             // 
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.textBoxCdLote);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBoxCdCli);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBoxDirDev);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBoxCuit2);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBoxRzSoc);
-            this.groupBox2.Location = new System.Drawing.Point(369, 26);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(205, 272);
-            this.groupBox2.TabIndex = 24;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Datos del pedido";
+            this.groupBoxEnviosClientes.Controls.Add(this.textBoxLote);
+            this.groupBoxEnviosClientes.Controls.Add(this.listLoteClientes);
+            this.groupBoxEnviosClientes.Location = new System.Drawing.Point(9, 13);
+            this.groupBoxEnviosClientes.Name = "groupBoxEnviosClientes";
+            this.groupBoxEnviosClientes.Size = new System.Drawing.Size(370, 487);
+            this.groupBoxEnviosClientes.TabIndex = 20;
+            this.groupBoxEnviosClientes.TabStop = false;
+            this.groupBoxEnviosClientes.Text = "Envíos de ventas Online";
             // 
-            // label7
+            // textBoxLote
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 222);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Código de lote";
-            // 
-            // textBoxCdLote
-            // 
-            this.textBoxCdLote.Location = new System.Drawing.Point(6, 238);
-            this.textBoxCdLote.Name = "textBoxCdLote";
-            this.textBoxCdLote.Size = new System.Drawing.Size(196, 20);
-            this.textBoxCdLote.TabIndex = 8;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 174);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Código de cliente";
-            // 
-            // textBoxCdCli
-            // 
-            this.textBoxCdCli.Location = new System.Drawing.Point(6, 190);
-            this.textBoxCdCli.Name = "textBoxCdCli";
-            this.textBoxCdCli.Size = new System.Drawing.Size(196, 20);
-            this.textBoxCdCli.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 125);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Dirección devolución";
-            // 
-            // textBoxDirDev
-            // 
-            this.textBoxDirDev.Location = new System.Drawing.Point(6, 141);
-            this.textBoxDirDev.Name = "textBoxDirDev";
-            this.textBoxDirDev.Size = new System.Drawing.Size(196, 20);
-            this.textBoxDirDev.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 76);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "CUIT";
-            // 
-            // textBoxCuit2
-            // 
-            this.textBoxCuit2.Location = new System.Drawing.Point(6, 92);
-            this.textBoxCuit2.Name = "textBoxCuit2";
-            this.textBoxCuit2.Size = new System.Drawing.Size(196, 20);
-            this.textBoxCuit2.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(68, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Razón social";
-            // 
-            // textBoxRzSoc
-            // 
-            this.textBoxRzSoc.Location = new System.Drawing.Point(6, 49);
-            this.textBoxRzSoc.Name = "textBoxRzSoc";
-            this.textBoxRzSoc.Size = new System.Drawing.Size(196, 20);
-            this.textBoxRzSoc.TabIndex = 0;
+            this.textBoxLote.Location = new System.Drawing.Point(6, 199);
+            this.textBoxLote.Multiline = true;
+            this.textBoxLote.Name = "textBoxLote";
+            this.textBoxLote.ReadOnly = true;
+            this.textBoxLote.Size = new System.Drawing.Size(357, 282);
+            this.textBoxLote.TabIndex = 1;
             // 
             // listLoteClientes
             // 
@@ -1072,9 +1058,10 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8});
-            this.listLoteClientes.Location = new System.Drawing.Point(6, 32);
+            this.listLoteClientes.HideSelection = false;
+            this.listLoteClientes.Location = new System.Drawing.Point(6, 19);
             this.listLoteClientes.Name = "listLoteClientes";
-            this.listLoteClientes.Size = new System.Drawing.Size(357, 449);
+            this.listLoteClientes.Size = new System.Drawing.Size(357, 174);
             this.listLoteClientes.TabIndex = 0;
             this.listLoteClientes.UseCompatibleStateImageBehavior = false;
             this.listLoteClientes.View = System.Windows.Forms.View.Details;
@@ -1093,6 +1080,87 @@
             // 
             this.columnHeader8.Text = "Dirección devolución";
             this.columnHeader8.Width = 113;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.textBoxCdLote);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.textBoxDirDev);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.textBoxCuit2);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.textBoxRzSoc);
+            this.groupBox2.Location = new System.Drawing.Point(386, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(210, 200);
+            this.groupBox2.TabIndex = 24;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Datos del envío";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 157);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Código de lote";
+            // 
+            // textBoxCdLote
+            // 
+            this.textBoxCdLote.Location = new System.Drawing.Point(10, 173);
+            this.textBoxCdLote.Name = "textBoxCdLote";
+            this.textBoxCdLote.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCdLote.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 110);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(185, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Dirección de devolución del remitente";
+            // 
+            // textBoxDirDev
+            // 
+            this.textBoxDirDev.Location = new System.Drawing.Point(10, 127);
+            this.textBoxDirDev.Name = "textBoxDirDev";
+            this.textBoxDirDev.Size = new System.Drawing.Size(192, 20);
+            this.textBoxDirDev.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "CUIT del remitente";
+            // 
+            // textBoxCuit2
+            // 
+            this.textBoxCuit2.Location = new System.Drawing.Point(10, 83);
+            this.textBoxCuit2.Name = "textBoxCuit2";
+            this.textBoxCuit2.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCuit2.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(131, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Razón social del remitente";
+            // 
+            // textBoxRzSoc
+            // 
+            this.textBoxRzSoc.Location = new System.Drawing.Point(8, 36);
+            this.textBoxRzSoc.Name = "textBoxRzSoc";
+            this.textBoxRzSoc.Size = new System.Drawing.Size(192, 20);
+            this.textBoxRzSoc.TabIndex = 0;
             // 
             // openFileDialog1
             // 
@@ -1158,16 +1226,18 @@
             this.groupBoxStockTabla.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelAcuseRecibo.ResumeLayout(false);
-            this.groupBoxAcuseRecibo.ResumeLayout(false);
+            this.groupBoxReporteEntrega.ResumeLayout(false);
             this.groupBoxTablaAcuseRecibo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgwAcuseRecibo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwReporteEntrega)).EndInit();
             this.panelPedidoIndustrias.ResumeLayout(false);
             this.groupBoxPedidoIndustrias.ResumeLayout(false);
             this.groupBoxPedidoIndustrias.PerformLayout();
             this.groupBoxOperacionesInd.ResumeLayout(false);
             this.panelEnviosClientesOnline.ResumeLayout(false);
-            this.groupBoxEnviosClientes.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBoxOperacionesOnline.ResumeLayout(false);
+            this.groupBoxEnviosClientes.ResumeLayout(false);
+            this.groupBoxEnviosClientes.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -1218,10 +1288,10 @@
         private System.Windows.Forms.TextBox textBoxCdRef;
         private System.Windows.Forms.GroupBox groupBoxVentasOnline;
         private System.Windows.Forms.Panel panelAcuseRecibo;
-        private System.Windows.Forms.GroupBox groupBoxAcuseRecibo;
+        private System.Windows.Forms.GroupBox groupBoxReporteEntrega;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBoxTablaAcuseRecibo;
-        private System.Windows.Forms.DataGridView dgwAcuseRecibo;
+        private System.Windows.Forms.DataGridView dgwReporteEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Panel panelPedidoIndustrias;
@@ -1231,7 +1301,6 @@
         private System.Windows.Forms.Button buttonConfirmarPedidoInd;
         private System.Windows.Forms.TextBox textBoxPedidoIndustria;
         private System.Windows.Forms.Panel panelEnviosClientesOnline;
-        private System.Windows.Forms.GroupBox groupBoxEnviosClientes;
         private System.Windows.Forms.GroupBox groupBoxOperacionesOnline;
         private System.Windows.Forms.Button buttonLimpiarClientesOnline;
         private System.Windows.Forms.Button buttonEnviarClientesOnline;
@@ -1248,7 +1317,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button LimpiarListaPedidos;
-        private System.Windows.Forms.ListView listLoteClientes;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
@@ -1261,16 +1329,24 @@
         private System.Windows.Forms.TextBox textBoxCuit2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxRzSoc;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxCdLote;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxCdCli;
         private System.Windows.Forms.Label labelBienvenido1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCargarStockNoEntregados;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxCdCli;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label labelCodClienteCliente;
+        private System.Windows.Forms.Label labelDirEntregaCliente;
+        private System.Windows.Forms.Label labelCodRefCliente;
+        private System.Windows.Forms.GroupBox groupBoxEnviosClientes;
+        private System.Windows.Forms.TextBox textBoxLote;
+        private System.Windows.Forms.ListView listLoteClientes;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
     }
 }
 

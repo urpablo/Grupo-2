@@ -211,7 +211,7 @@ namespace AppComercio
                     LabelTitulo.Text = "Confeccionar pedido a industria";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos realizar pedidos a las industrias para que nos " +
+                    labelAyuda.Text = "Aquí podemos confirmar pedidos a las industrias para que nos " +
                         " envíen productos si tenemos stock por debajo del punto de reposición.";
 
                     labelBienvenido1.Visible = false;
@@ -256,10 +256,10 @@ namespace AppComercio
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(52, 78, 103);
                     btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
 
-                    LabelTitulo.Text = "Recibir pedidos de ventas Online";
+                    LabelTitulo.Text = "Ingresar pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos recibir los pedidos resultantes de ventas Online.";
+                    labelAyuda.Text = "Aquí podemos ingresar los pedidos resultantes de ventas Online.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -283,7 +283,7 @@ namespace AppComercio
                     LabelTitulo.Text = "Ver acuse de recibo de Envíos";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver si los envíos fueron hechos correctamente.";
+                    labelAyuda.Text = "Aquí podemos ver si los envíos fueron hechos correctamente, y reingresar stock por los que no fueron entregados.";
 
                     break;
 
@@ -309,12 +309,7 @@ namespace AppComercio
             }
         }
 
-        private void groupBoxDatosClienteOnline_Enter(object sender, EventArgs e)
-        {
 
-        }
-
-        
 
         public void buttonLimpiarVentaOnline_Click(object sender, EventArgs e)
         {
@@ -478,6 +473,9 @@ namespace AppComercio
         private void button2_Click(object sender, EventArgs e)
         {
             listPedidos.Items.Clear();
+            textBoxCdRef.Clear();
+            textBoxDirEnt.Clear();
+
         }
 
         private void buttonEnviarClientesOnline_Click(object sender, EventArgs e)
@@ -517,7 +515,7 @@ namespace AppComercio
 
         private void buttonLimpiarClientesOnline_Click(object sender, EventArgs e)
         {
-            listLoteClientes.Items.Clear();
+            textBoxLote.Clear();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -568,24 +566,6 @@ namespace AppComercio
 
             }
         }
-
-        private void buttonLimpiarPedStockInd_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
