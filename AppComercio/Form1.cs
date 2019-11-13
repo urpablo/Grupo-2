@@ -23,6 +23,7 @@ namespace AppComercio
             dataGridView1.DataSource = table;
 
             refrescarstock();
+            listPedidos.Visible = false;
 
             panelBienvenido.Location = new Point(186,38);
             PanelStock.Location = new Point(186, 38);
