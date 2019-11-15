@@ -14,11 +14,17 @@ namespace AppComercio
         // ------------------ carga del formulario -------------------------------------------------
         DataTable table = new DataTable();
         string ultimoPedidoGuardado;
+        int codPedidoInd;
+        int codRefPedido;
+        int codLote;
         private void Form1_Load(object sender, EventArgs e)
         {
-            table.Columns.Add("Id",typeof(int));
-            table.Columns.Add("Cantidad", typeof(int));
+            table.Columns.Add("ID",typeof(int));
+            table.Columns.Add("Real", typeof(int));
+            table.Columns.Add("Comprometido", typeof(int));
             table.Columns.Add("Punto de Reposición", typeof(int));
+            table.Columns.Add("Diferencia", typeof(int));
+
 
             dataGridView1.DataSource = table;
 
@@ -190,8 +196,7 @@ namespace AppComercio
                     LabelTitulo.Text = "Control de Stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos," +
-                        " y hacer el pedido de los que están debajo del punto de reposición";
+                    labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -215,7 +220,8 @@ namespace AppComercio
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos confirmar pedidos a las industrias para que nos " +
-                        " envíen productos si tenemos stock por debajo del punto de reposición.";
+                        " envíen productos si tenemos stock por debajo del punto de reposición. \n \n" +
+                        "Recuerde que sólo se puede hacer UN pedido por día.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -239,7 +245,8 @@ namespace AppComercio
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos ver los lotes de bultos para envíos a clientes, " +
-                        " para ser distribuídos por la empresa de logística.";
+                        " para ser distribuídos por la empresa de logística. \n \n" +
+                        "Recuerde que solo se puede enviar un lote por día.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -262,7 +269,11 @@ namespace AppComercio
                     LabelTitulo.Text = "Ingresar pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ingresar los pedidos resultantes de ventas Online.";
+                    labelAyuda.Text = "Pasos para ingresar un pedido: \n" +
+                        "1) Ingrese los datos del cliente. \n" +
+                        "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
+                        "3) Ingrese de la misma forma hasta completar el pedido del cliente. \n" +
+                        "4) Clic en 'Confirmar Pedido' para ingresarlo al sistema.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -326,7 +337,6 @@ namespace AppComercio
             textBoxRazSoc.Clear();
             textBoxCUIT.Clear();
             textBoxDireccion.Clear();
-            textBoxCodPedidoInd.Clear();
         }
 
         private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
@@ -397,6 +407,7 @@ namespace AppComercio
             int KStock = 0;
             int IdPed = 0;
             int KPed = 0;
+            codRefPedido = codRefPedido + 1;
 
             Dictionary<int, int> InventarioTemporal = new Dictionary<int, int>();
             List<string> lista = new List<string>();
@@ -528,7 +539,7 @@ namespace AppComercio
                 using (StreamWriter sw = new StreamWriter(n))
                 {
                      
-                    sw.Write(textBoxCdRef.Text + "," + textBoxDirEnt.Text);
+                    sw.Write("R" + codRefPedido + "," + textBoxDirEnt.Text);
                     sw.Write("\n");
 
                     foreach (ListViewItem item in listPedidos.Items)
@@ -543,15 +554,8 @@ namespace AppComercio
             }
 
             limpiarlistapedidos();
-            botonBotonera = 3;
-            actualizarPantalla();
-        }
 
-
-        private void buttonCargarPedidoEnviosOnline_Click(object sender, EventArgs e)
-        {
-
-            if (ultimoPedidoGuardado != "") 
+            if (ultimoPedidoGuardado != "")
             {
                 textBoxLote.AppendText("---" + Environment.NewLine);
                 foreach (var line in File.ReadLines(ultimoPedidoGuardado))
@@ -559,10 +563,10 @@ namespace AppComercio
 
                     textBoxLote.AppendText(line + Environment.NewLine);
                 }
-
+                ultimoPedidoGuardado = "";
             }
 
-            ultimoPedidoGuardado = "";
+
             //DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
             //if (result == DialogResult.OK) // Test result.
             //    {
@@ -604,7 +608,6 @@ namespace AppComercio
         private void limpiarlistapedidos()
         {
             listPedidos.Items.Clear();
-            textBoxCdRef.Clear();
             textBoxDirEnt.Clear();
             textBoxCdCli.Clear();
             textBoxCdProd.Clear();
@@ -619,13 +622,12 @@ namespace AppComercio
             textBoxRzSoc.Clear();
             textBoxCuit2.Clear();
             textBoxDirDev.Clear();
-            textBoxCdLote.Clear();
         }
 
         private void buttonGenerarTXTLote_Click(object sender, EventArgs e)
         {
-
-            using (StreamWriter sw = new StreamWriter("Lote_"+textBoxCdCli.Text+"_"+textBoxCdLote.Text+".txt"))
+            codLote = codLote + 1;
+            using (StreamWriter sw = new StreamWriter("Lote_C" + textBoxCdCli.Text + "_L" + codLote + ".txt"))
             {
                 sw.Write(textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text);
                 sw.Write("\n");
@@ -646,8 +648,8 @@ namespace AppComercio
                 //}
 
             }
-
         }
+
 
 
 
@@ -669,7 +671,8 @@ namespace AppComercio
             textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
         }
 
- 
+
+
 
 
         // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes -------------
