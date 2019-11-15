@@ -168,7 +168,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(1486, 32);
+            this.TopPanel.Size = new System.Drawing.Size(800, 32);
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
@@ -197,7 +197,7 @@
             this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
             this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
-            this.Minimizar.Location = new System.Drawing.Point(1436, 5);
+            this.Minimizar.Location = new System.Drawing.Point(750, 5);
             this.Minimizar.Name = "Minimizar";
             this.Minimizar.Size = new System.Drawing.Size(20, 20);
             this.Minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -210,7 +210,7 @@
             this.Salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Salir.BackColor = System.Drawing.Color.Red;
             this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.Location = new System.Drawing.Point(1461, 5);
+            this.Salir.Location = new System.Drawing.Point(775, 5);
             this.Salir.Name = "Salir";
             this.Salir.Size = new System.Drawing.Size(20, 20);
             this.Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -926,7 +926,7 @@
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxOperacionesOnline);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(1255, 47);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(1298, 304);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(608, 505);
             this.panelEnviosClientesOnline.TabIndex = 27;
@@ -1130,7 +1130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1486, 592);
+            this.ClientSize = new System.Drawing.Size(800, 550);
             this.Controls.Add(this.PanelStock);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelVentasOnline);
