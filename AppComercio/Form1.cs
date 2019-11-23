@@ -188,15 +188,16 @@ namespace AppComercio
                     panelAcuseRecibo.Visible = false;
 
                     btnStock.BackColor = Color.FromArgb(52, 78, 103);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 31);
 
                     LabelTitulo.Text = "Control de Stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos.";
+                    labelAyuda.Text = "Aquí podemos ver el nivel de stock actual de los productos. \n \n" +
+                        "Si desea agregar un nuevo producto al listado, ingréselo en la fila disponible al final de la lista.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -210,18 +211,18 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
-                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
+                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
                     btnPedidoIndustrias.BackColor = Color.FromArgb(52, 78, 103);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 31);
 
                     LabelTitulo.Text = "Confeccionar pedido a industria";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos confirmar pedidos a las industrias para que nos " +
                         " envíen productos si tenemos stock por debajo del punto de reposición. \n \n" +
-                        "Recuerde que sólo se puede hacer UN pedido por día.";
+                        "Recuerde que sólo se puede hacer UN solo pedido por día.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -235,18 +236,19 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
-                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(52, 78, 103);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 31);
 
                     LabelTitulo.Text = "Confeccionar el lote de bultos a enviar";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos ver los lotes de bultos para envíos a clientes, " +
                         " para ser distribuídos por la empresa de logística. \n \n" +
-                        "Recuerde que solo se puede enviar un lote por día.";
+                        "Recuerde que solo se puede enviar UN solo lote por día. \n \n" +
+                        "Recuerde llenar los datos del remitente para despachar el lote.";
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -260,16 +262,16 @@ namespace AppComercio
                     panelVentasOnline.Visible = true;
                     panelAcuseRecibo.Visible = false;
 
-                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(52, 78, 103);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 31);
 
                     LabelTitulo.Text = "Ingresar pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Pasos para ingresar un pedido: \n" +
+                    labelAyuda.Text = "Pasos para ingresar un pedido: \n \n" +
                         "1) Ingrese los datos del cliente. \n" +
                         "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
                         "3) Ingrese de la misma forma hasta completar el pedido del cliente. \n" +
@@ -290,17 +292,20 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = true;
 
-                    btnStock.BackColor =  Color.FromArgb(41, 57, 71);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnStock.BackColor =  Color.FromArgb(41, 57, 128);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnAcuseRecibo.BackColor = Color.FromArgb(52, 78, 103);
 
                     LabelTitulo.Visible = true;
-                    LabelTitulo.Text = "Ver acuse de recibo de Envíos";
+                    LabelTitulo.Text = "Reporte de Entregas";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver si los envíos fueron hechos correctamente, y reingresar stock por los que no fueron entregados.";
+                    labelAyuda.Text = "Pasos para leer y processar el reporte de entregas: \n \n" +
+                        "1) Haga clic en 'Leer Reporte...' y elija el archivo \n" +
+                        "2) Se visualizará el reporte. Luego haga clic en 'Cargar Stock...' \n" +
+                        "3) Los pedidos que no hayan sido entregados habrán sido reingresados al stock";
 
                     break;
 
@@ -312,11 +317,11 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
-                    btnStock.BackColor = Color.FromArgb(41, 57, 71);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 71);
+                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 71);
+                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 57, 31);
 
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "CAI - Comercio";
@@ -345,20 +350,10 @@ namespace AppComercio
 
         }
 
-        private void buttonLimpiarPedidoInd_Click(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Clear();
-            textBoxPedidoIndustria.Clear();
-        }
-
 
 
 
         //--------------------- leer stock.txt -----------------------------------
-        private void button3_Click(object sender, EventArgs e)
-        {
-            refrescarstock();
-        }
 
         private void refrescarstock()
         {
@@ -600,6 +595,9 @@ namespace AppComercio
             //    }
         }
 
+
+
+
         private void buttonLimpiarListaPedidos_Click(object sender, EventArgs e)
         {
             limpiarlistapedidos();
@@ -614,15 +612,6 @@ namespace AppComercio
             textBoxCant.Clear();
         }
 
-
-        private void buttonLimpiarClientesOnline_Click(object sender, EventArgs e)
-        {
-            textBoxLote.Clear();
-            textBoxRemitente.Clear();
-            textBoxRzSoc.Clear();
-            textBoxCuit2.Clear();
-            textBoxDirDev.Clear();
-        }
 
         private void buttonGenerarTXTLote_Click(object sender, EventArgs e)
         {
@@ -672,10 +661,36 @@ namespace AppComercio
         }
 
 
-
-
-
         // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes -------------
+
+
+        // ------------------ interactividad textboxes de datos de comercio con textbox header del archivo de pedido a industrias -------------
+
+        private void textBoxCodComercio_TextChanged(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+        }
+
+        private void textBoxRazSoc_TextChanged(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+        }
+
+        private void textBoxCUIT_TextChanged(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+        }
+
+        private void textBoxDireccion_TextChanged(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+        }
+
+
+        // ------------------ interactividad textboxes de datos de comercio con textbox header del archivo de pedido a industrias -------------
+
+
+
 
         // ------------------ LOGICA PANTALLAS VENTAS ONLINE Y GENERAR LOTES/ENVIOS ---------------
 
