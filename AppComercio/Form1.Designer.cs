@@ -68,9 +68,9 @@
             this.labelBienvenido2 = new System.Windows.Forms.Label();
             this.panelBienvenido = new System.Windows.Forms.Panel();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
-            this.PanelStock = new System.Windows.Forms.Panel();
+            this.panelStock = new System.Windows.Forms.Panel();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgwStock = new System.Windows.Forms.DataGridView();
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
             this.labelDireccion = new System.Windows.Forms.Label();
@@ -132,9 +132,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelBienvenido.SuspendLayout();
-            this.PanelStock.SuspendLayout();
+            this.panelStock.SuspendLayout();
             this.groupBoxStockTabla.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).BeginInit();
             this.groupBoxStockComercio.SuspendLayout();
             this.panelAcuseRecibo.SuspendLayout();
             this.groupBoxReporteEntrega.SuspendLayout();
@@ -157,7 +157,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(840, 32);
+            this.TopPanel.Size = new System.Drawing.Size(2500, 32);
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
@@ -186,7 +186,7 @@
             this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
             this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
-            this.Minimizar.Location = new System.Drawing.Point(790, 5);
+            this.Minimizar.Location = new System.Drawing.Point(2450, 5);
             this.Minimizar.Name = "Minimizar";
             this.Minimizar.Size = new System.Drawing.Size(20, 20);
             this.Minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -199,7 +199,7 @@
             this.Salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Salir.BackColor = System.Drawing.Color.Red;
             this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.Location = new System.Drawing.Point(815, 5);
+            this.Salir.Location = new System.Drawing.Point(2475, 5);
             this.Salir.Name = "Salir";
             this.Salir.Size = new System.Drawing.Size(20, 20);
             this.Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -212,7 +212,7 @@
             this.panelVentasOnline.Controls.Add(this.groupBox1);
             this.panelVentasOnline.Controls.Add(this.groupBoxDatosClienteOnline);
             this.panelVentasOnline.Controls.Add(this.groupBoxVentasOnline);
-            this.panelVentasOnline.Location = new System.Drawing.Point(932, 153);
+            this.panelVentasOnline.Location = new System.Drawing.Point(1427, 642);
             this.panelVentasOnline.Name = "panelVentasOnline";
             this.panelVentasOnline.Size = new System.Drawing.Size(650, 550);
             this.panelVentasOnline.TabIndex = 24;
@@ -256,6 +256,7 @@
             this.textBoxCant.Name = "textBoxCant";
             this.textBoxCant.Size = new System.Drawing.Size(192, 20);
             this.textBoxCant.TabIndex = 2;
+            this.textBoxCant.TextChanged += new System.EventHandler(this.textBoxCant_TextChanged);
             // 
             // label4
             // 
@@ -272,6 +273,7 @@
             this.textBoxCdProd.Name = "textBoxCdProd";
             this.textBoxCdProd.Size = new System.Drawing.Size(192, 20);
             this.textBoxCdProd.TabIndex = 0;
+            this.textBoxCdProd.TextChanged += new System.EventHandler(this.textBoxCdProd_TextChanged);
             // 
             // groupBoxDatosClienteOnline
             // 
@@ -301,6 +303,7 @@
             this.textBoxCdCli.Name = "textBoxCdCli";
             this.textBoxCdCli.Size = new System.Drawing.Size(192, 20);
             this.textBoxCdCli.TabIndex = 8;
+            this.textBoxCdCli.TextChanged += new System.EventHandler(this.textBoxCdCli_TextChanged);
             // 
             // labelRteRazSoc
             // 
@@ -317,6 +320,7 @@
             this.textBoxDirEnt.Name = "textBoxDirEnt";
             this.textBoxDirEnt.Size = new System.Drawing.Size(192, 20);
             this.textBoxDirEnt.TabIndex = 4;
+            this.textBoxDirEnt.TextChanged += new System.EventHandler(this.textBoxDirEnt_TextChanged);
             // 
             // groupBoxVentasOnline
             // 
@@ -406,7 +410,7 @@
             // btnAcuseRecibo
             // 
             this.btnAcuseRecibo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcuseRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(57)))), ((int)(((byte)(31)))));
+            this.btnAcuseRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(47)))), ((int)(((byte)(71)))));
             this.btnAcuseRecibo.FlatAppearance.BorderSize = 0;
             this.btnAcuseRecibo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(78)))), ((int)(((byte)(103)))));
             this.btnAcuseRecibo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -599,17 +603,17 @@
             this.labelBienvenido1.TabIndex = 15;
             this.labelBienvenido1.Text = "¡Bienvenido!";
             // 
-            // PanelStock
+            // panelStock
             // 
-            this.PanelStock.Controls.Add(this.groupBoxStockTabla);
-            this.PanelStock.Location = new System.Drawing.Point(970, 131);
-            this.PanelStock.Name = "PanelStock";
-            this.PanelStock.Size = new System.Drawing.Size(650, 550);
-            this.PanelStock.TabIndex = 16;
+            this.panelStock.Controls.Add(this.groupBoxStockTabla);
+            this.panelStock.Location = new System.Drawing.Point(1661, 56);
+            this.panelStock.Name = "panelStock";
+            this.panelStock.Size = new System.Drawing.Size(650, 550);
+            this.panelStock.TabIndex = 16;
             // 
             // groupBoxStockTabla
             // 
-            this.groupBoxStockTabla.Controls.Add(this.dataGridView1);
+            this.groupBoxStockTabla.Controls.Add(this.dgwStock);
             this.groupBoxStockTabla.Location = new System.Drawing.Point(3, 3);
             this.groupBoxStockTabla.Name = "groupBoxStockTabla";
             this.groupBoxStockTabla.Size = new System.Drawing.Size(644, 544);
@@ -617,13 +621,13 @@
             this.groupBoxStockTabla.TabStop = false;
             this.groupBoxStockTabla.Text = "Tabla de Stock";
             // 
-            // dataGridView1
+            // dgwStock
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(632, 519);
-            this.dataGridView1.TabIndex = 0;
+            this.dgwStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwStock.Location = new System.Drawing.Point(6, 19);
+            this.dgwStock.Name = "dgwStock";
+            this.dgwStock.Size = new System.Drawing.Size(632, 519);
+            this.dgwStock.TabIndex = 0;
             // 
             // buttonPedidoStockIndustrias
             // 
@@ -725,7 +729,7 @@
             // 
             this.panelAcuseRecibo.Controls.Add(this.groupBoxReporteEntrega);
             this.panelAcuseRecibo.Controls.Add(this.groupBoxTablaAcuseRecibo);
-            this.panelAcuseRecibo.Location = new System.Drawing.Point(1016, 76);
+            this.panelAcuseRecibo.Location = new System.Drawing.Point(745, 639);
             this.panelAcuseRecibo.Name = "panelAcuseRecibo";
             this.panelAcuseRecibo.Size = new System.Drawing.Size(650, 550);
             this.panelAcuseRecibo.TabIndex = 25;
@@ -794,7 +798,7 @@
             // 
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxStockComercio);
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
-            this.panelPedidoIndustrias.Location = new System.Drawing.Point(990, 109);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(913, 56);
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(650, 550);
             this.panelPedidoIndustrias.TabIndex = 26;
@@ -855,7 +859,7 @@
             this.panelEnviosClientesOnline.Controls.Add(this.listLoteClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(1045, 54);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(24, 639);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(650, 550);
             this.panelEnviosClientesOnline.TabIndex = 27;
@@ -1039,8 +1043,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 590);
-            this.Controls.Add(this.PanelStock);
+            this.ClientSize = new System.Drawing.Size(2500, 1460);
+            this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelVentasOnline);
             this.Controls.Add(this.panelEnviosClientesOnline);
@@ -1073,9 +1077,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelBienvenido.ResumeLayout(false);
             this.panelBienvenido.PerformLayout();
-            this.PanelStock.ResumeLayout(false);
+            this.panelStock.ResumeLayout(false);
             this.groupBoxStockTabla.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).EndInit();
             this.groupBoxStockComercio.ResumeLayout(false);
             this.groupBoxStockComercio.PerformLayout();
             this.panelAcuseRecibo.ResumeLayout(false);
@@ -1113,7 +1117,7 @@
         private System.Windows.Forms.Button btnRecibirPedidoOnline;
         private System.Windows.Forms.Label labelBienvenido2;
         private System.Windows.Forms.Panel panelBienvenido;
-        private System.Windows.Forms.Panel PanelStock;
+        private System.Windows.Forms.Panel panelStock;
         private System.Windows.Forms.GroupBox groupBoxStockTabla;
         private System.Windows.Forms.GroupBox groupBoxStockComercio;
         private System.Windows.Forms.Label labelRazSoc;
@@ -1165,7 +1169,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxRzSoc;
         private System.Windows.Forms.Label labelBienvenido1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgwStock;
         private System.Windows.Forms.Button btnCargarStockNoEntregados;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxCdCli;
