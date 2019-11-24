@@ -235,6 +235,7 @@
             // 
             // comboBoxCodProducto
             // 
+            this.comboBoxCodProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCodProducto.FormattingEnabled = true;
             this.comboBoxCodProducto.Location = new System.Drawing.Point(9, 36);
             this.comboBoxCodProducto.Name = "comboBoxCodProducto";
@@ -625,11 +626,16 @@
             // 
             // dgwStock
             // 
+            this.dgwStock.AllowUserToAddRows = false;
+            this.dgwStock.AllowUserToDeleteRows = false;
+            this.dgwStock.AllowUserToResizeRows = false;
             this.dgwStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwStock.Location = new System.Drawing.Point(6, 19);
             this.dgwStock.Name = "dgwStock";
+            this.dgwStock.ReadOnly = true;
             this.dgwStock.Size = new System.Drawing.Size(632, 519);
             this.dgwStock.TabIndex = 0;
+           // this.dgwStock.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwStock_CellClick);
             // 
             // buttonPedidoStockIndustrias
             // 

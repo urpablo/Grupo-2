@@ -43,6 +43,8 @@ namespace AppComercio
         }
         //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
 
+        //--------------------- evitar modificar el datagridview de stock si la fila ingresada no esta vacia
+
 
 
         private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)

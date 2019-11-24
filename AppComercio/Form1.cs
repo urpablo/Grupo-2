@@ -215,8 +215,8 @@ namespace AppComercio
                     LabelTitulo.Text = "Control de Stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver la situación de stock actual. \n \n" +
-                        "Si desea agregar un nuevo producto al listado, ingréselo en la fila disponible al final de la lista.";
+                    labelAyuda.Text = "Aquí podemos ver la situación de stock actual.";
+
 
                     labelBienvenido1.Visible = false;
                     labelBienvenido2.Visible = false;
@@ -355,13 +355,31 @@ namespace AppComercio
             }
         }
 
+        //private void dgwStock_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (dgwStock.NewRowIndex == e.RowIndex)
+        //        {
+        //            dgwStock.Rows[e.RowIndex].ReadOnly = false;
+        //        }
+        //        else if (dgwStock.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
+        //        {
+        //            dgwStock.Rows[e.RowIndex].ReadOnly = false;
+        //        }
+        //        else
+        //        {
+        //            dgwStock.Rows[e.RowIndex].ReadOnly = true;
+        //        }
+        //    }
+
+        //    catch
+        //    {
 
 
+        //    }
 
-
-
-
-
-
+            
+        //}
     }
 }
