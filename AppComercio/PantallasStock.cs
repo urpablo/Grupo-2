@@ -14,12 +14,6 @@ namespace AppComercio
         DataTable tablaStock = new DataTable();
 
 
-        private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
-
-        }
-
         //--------------------- leer stock.txt al cargar el programa -----------------------------------
 
         private void refrescarstock()
@@ -42,7 +36,10 @@ namespace AppComercio
                 tablaStock.Rows.Add(row);
 
             }
+
         }
+
+
 
         //--------------------- leer stock.txt al cargar el programa -----------------------------------
 

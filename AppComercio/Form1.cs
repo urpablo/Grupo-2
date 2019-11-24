@@ -13,20 +13,26 @@ namespace AppComercio
     {
 
     
-        // ------------------ carga del formulario -------------------------------------------------
+        // ------------------ carga del formulario ----------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
 
 
             dgwStock.DataSource = tablaStock;
+            dgwReporteEntrega.DataSource = tablaReporte;
+
             tablaStock.Columns.Add("ID",typeof(int));
             tablaStock.Columns.Add("Real", typeof(int));
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
             tablaStock.Columns.Add("Diferencia", typeof(int));
-            
+
+            tablaReporte.Columns.Add("Código de referencia", typeof(string));
+            tablaReporte.Columns.Add("Entregado", typeof(bool));
 
             refrescarstock();
+
+
             listLoteClientes.Visible = false;
 
             panelBienvenido.Location = new Point(186,38);
@@ -91,7 +97,7 @@ namespace AppComercio
             }
         }
         // ------------------ hacer que una ventana borderless sea movible ------------------
-        // ------------------ carga del formulario -------------------------------------------------
+        // ------------------ carga del formulario ----------------------------------------------------------------------------
 
 
 
@@ -333,6 +339,7 @@ namespace AppComercio
                     break;
             }
         }
+
 
 
 

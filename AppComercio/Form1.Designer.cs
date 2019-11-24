@@ -85,10 +85,12 @@
             this.groupBoxReporteEntrega = new System.Windows.Forms.GroupBox();
             this.btnCargarStockNoEntregados = new System.Windows.Forms.Button();
             this.groupBoxTablaAcuseRecibo = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.dgwReporteEntrega = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxCodLoteReporte = new System.Windows.Forms.TextBox();
+            this.buttonLeerReporteEntrega = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxCodClienteReporte = new System.Windows.Forms.TextBox();
             this.panelPedidoIndustrias = new System.Windows.Forms.Panel();
             this.groupBoxPedidoIndustrias = new System.Windows.Forms.GroupBox();
             this.textBoxDatosComercio = new System.Windows.Forms.TextBox();
@@ -637,7 +639,6 @@
             this.buttonPedidoStockIndustrias.TabIndex = 22;
             this.buttonPedidoStockIndustrias.Text = "Confirmar Pedido de Stock a Industrias";
             this.buttonPedidoStockIndustrias.UseVisualStyleBackColor = true;
-            this.buttonPedidoStockIndustrias.Click += new System.EventHandler(this.buttonPedidoStockIndustrias_Click);
             // 
             // groupBoxStockComercio
             // 
@@ -742,7 +743,7 @@
             this.groupBoxReporteEntrega.Size = new System.Drawing.Size(320, 544);
             this.groupBoxReporteEntrega.TabIndex = 23;
             this.groupBoxReporteEntrega.TabStop = false;
-            this.groupBoxReporteEntrega.Text = "Resultado del procesado";
+            this.groupBoxReporteEntrega.Text = "Información del reporte cargado";
             // 
             // btnCargarStockNoEntregados
             // 
@@ -755,8 +756,12 @@
             // 
             // groupBoxTablaAcuseRecibo
             // 
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.label12);
             this.groupBoxTablaAcuseRecibo.Controls.Add(this.dgwReporteEntrega);
-            this.groupBoxTablaAcuseRecibo.Controls.Add(this.button1);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.textBoxCodLoteReporte);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.buttonLeerReporteEntrega);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.label7);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.textBoxCodClienteReporte);
             this.groupBoxTablaAcuseRecibo.Location = new System.Drawing.Point(3, 3);
             this.groupBoxTablaAcuseRecibo.Name = "groupBoxTablaAcuseRecibo";
             this.groupBoxTablaAcuseRecibo.Size = new System.Drawing.Size(320, 544);
@@ -764,35 +769,60 @@
             this.groupBoxTablaAcuseRecibo.TabStop = false;
             this.groupBoxTablaAcuseRecibo.Text = "Tabla de Reportes de Entrega";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(168, 22);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(75, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Código de lote";
+            // 
             // dgwReporteEntrega
             // 
             this.dgwReporteEntrega.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwReporteEntrega.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dgwReporteEntrega.Location = new System.Drawing.Point(6, 19);
+            this.dgwReporteEntrega.Location = new System.Drawing.Point(6, 73);
             this.dgwReporteEntrega.Name = "dgwReporteEntrega";
-            this.dgwReporteEntrega.Size = new System.Drawing.Size(308, 462);
+            this.dgwReporteEntrega.ReadOnly = true;
+            this.dgwReporteEntrega.Size = new System.Drawing.Size(308, 408);
             this.dgwReporteEntrega.TabIndex = 19;
             // 
-            // dataGridViewTextBoxColumn3
+            // textBoxCodLoteReporte
             // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Código de Referencia";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.textBoxCodLoteReporte.Enabled = false;
+            this.textBoxCodLoteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCodLoteReporte.Location = new System.Drawing.Point(171, 41);
+            this.textBoxCodLoteReporte.Name = "textBoxCodLoteReporte";
+            this.textBoxCodLoteReporte.Size = new System.Drawing.Size(142, 26);
+            this.textBoxCodLoteReporte.TabIndex = 26;
             // 
-            // dataGridViewTextBoxColumn4
+            // buttonLeerReporteEntrega
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Entregado";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.buttonLeerReporteEntrega.Location = new System.Drawing.Point(73, 496);
+            this.buttonLeerReporteEntrega.Name = "buttonLeerReporteEntrega";
+            this.buttonLeerReporteEntrega.Size = new System.Drawing.Size(186, 42);
+            this.buttonLeerReporteEntrega.TabIndex = 22;
+            this.buttonLeerReporteEntrega.Text = "Leer reporte de entrega de Logística";
+            this.buttonLeerReporteEntrega.UseVisualStyleBackColor = true;
+            this.buttonLeerReporteEntrega.Click += new System.EventHandler(this.buttonLeerReporteEntrega_Click);
             // 
-            // button1
+            // label7
             // 
-            this.button1.Location = new System.Drawing.Point(73, 496);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 42);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Leer reporte de entrega de Logística";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(5, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(89, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Código de cliente";
+            // 
+            // textBoxCodClienteReporte
+            // 
+            this.textBoxCodClienteReporte.Enabled = false;
+            this.textBoxCodClienteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCodClienteReporte.Location = new System.Drawing.Point(6, 41);
+            this.textBoxCodClienteReporte.Name = "textBoxCodClienteReporte";
+            this.textBoxCodClienteReporte.Size = new System.Drawing.Size(142, 26);
+            this.textBoxCodClienteReporte.TabIndex = 24;
             // 
             // panelPedidoIndustrias
             // 
@@ -1085,6 +1115,7 @@
             this.panelAcuseRecibo.ResumeLayout(false);
             this.groupBoxReporteEntrega.ResumeLayout(false);
             this.groupBoxTablaAcuseRecibo.ResumeLayout(false);
+            this.groupBoxTablaAcuseRecibo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwReporteEntrega)).EndInit();
             this.panelPedidoIndustrias.ResumeLayout(false);
             this.groupBoxPedidoIndustrias.ResumeLayout(false);
@@ -1137,11 +1168,8 @@
         private System.Windows.Forms.GroupBox groupBoxVentasOnline;
         private System.Windows.Forms.Panel panelAcuseRecibo;
         private System.Windows.Forms.GroupBox groupBoxReporteEntrega;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLeerReporteEntrega;
         private System.Windows.Forms.GroupBox groupBoxTablaAcuseRecibo;
-        private System.Windows.Forms.DataGridView dgwReporteEntrega;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Panel panelPedidoIndustrias;
         private System.Windows.Forms.GroupBox groupBoxPedidoIndustrias;
         private System.Windows.Forms.TextBox textBoxPedidoIndustria;
@@ -1187,6 +1215,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panelAyuda;
         private System.Windows.Forms.Label labelAyuda;
+        private System.Windows.Forms.DataGridView dgwReporteEntrega;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxCodLoteReporte;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxCodClienteReporte;
     }
 }
 

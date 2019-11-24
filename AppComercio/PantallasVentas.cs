@@ -300,7 +300,10 @@ namespace AppComercio
 
         private void HabilitarBotonGenerarLote()
         {
-            if (!string.IsNullOrWhiteSpace(textBoxRzSoc.Text) && !string.IsNullOrWhiteSpace(textBoxCuit2.Text) && !string.IsNullOrWhiteSpace(textBoxDirDev.Text))
+            if (!string.IsNullOrWhiteSpace(textBoxRzSoc.Text) 
+                && !string.IsNullOrWhiteSpace(textBoxCuit2.Text)
+                && !string.IsNullOrWhiteSpace(textBoxDirDev.Text)
+                && !string.IsNullOrWhiteSpace(textBoxLote.Text))
             {
                 buttonGenerarTXTLote.Enabled = true;
             }
@@ -377,7 +380,8 @@ namespace AppComercio
         private void HabilitarAgregarItem()
         {
 
-            if (!string.IsNullOrWhiteSpace(textBoxCant.Text) && !string.IsNullOrWhiteSpace(textBoxCdProd.Text))
+            if (!string.IsNullOrWhiteSpace(textBoxCant.Text) 
+                && !string.IsNullOrWhiteSpace(textBoxCdProd.Text))
             {
                 buttonAgregarItem.Enabled = true;
             }
@@ -406,7 +410,8 @@ namespace AppComercio
 
         private void HabilitarConfirmarPedido()
         {
-            if (!string.IsNullOrWhiteSpace(textBoxDirEnt.Text) && !string.IsNullOrWhiteSpace(textBoxCdCli.Text))
+            if (!string.IsNullOrWhiteSpace(textBoxDirEnt.Text) 
+                && !string.IsNullOrWhiteSpace(textBoxCdCli.Text))
             {
                 buttonGenerarPedido.Enabled = true;
             }

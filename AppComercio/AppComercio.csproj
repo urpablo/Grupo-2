@@ -94,6 +94,9 @@
     <Content Include="Stock.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Entrega_C332_L115.txt" />
+    <Content Include="Entrega_C332_L116.txt" />
+    <Content Include="Entrega_C340_L643.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
