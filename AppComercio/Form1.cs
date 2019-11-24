@@ -23,9 +23,9 @@ namespace AppComercio
 
             tablaStock.Columns.Add("ID",typeof(int));
             tablaStock.Columns.Add("Real", typeof(int));
-            tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
-            tablaStock.Columns.Add("Diferencia", typeof(int));
+            tablaStock.Columns.Add("Comprometido", typeof(int));
+            tablaStock.Columns.Add("Pendientes", typeof(int));
 
             tablaReporte.Columns.Add("Código de referencia", typeof(string));
             tablaReporte.Columns.Add("Entregado", typeof(bool));
@@ -129,6 +129,26 @@ namespace AppComercio
         {
             botonBotonera = 1;
             actualizarPantalla();
+
+          
+            tablaStock.Rows.Clear();
+            dgwStock.Refresh();
+
+            string[] lines = File.ReadAllLines(@"Stock.txt");
+            string[] values;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].ToString().Split(',');
+                string[] row = new string[values.Length];
+
+                for (int j = 0; j < values.Length; j++)
+                {
+                    row[j] = values[j].Trim();
+                }
+                tablaStock.Rows.Add(row);
+
+            }
         }
 
         private void btnPedidoIndustrias_Click(object sender, EventArgs e)
@@ -337,6 +357,146 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
                     break;
+            }
+        }
+
+        private void panelBienvenido_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        
+
+        private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
+        {
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
+
+
+            //levanta en memoria el stock actual
+            var lineasstock = File
+                      .ReadAllLines("Stock.txt")
+                      .Select(record => record.Split(','))
+                      .Select(record => new
+                      {
+                          b1 = Int32.Parse(record[0]),
+                          b2 = Int32.Parse(record[1]),
+                          b3 = Int32.Parse(record[2]),
+                          b4 = Int32.Parse(record[3]),
+                          b5 = Int32.Parse(record[4])
+
+                      }).ToList();
+
+            foreach (var regStock in lineasstock)
+            {
+                int actual = regStock.b2;
+                int pp = regStock.b5;
+                int comp = regStock.b4;
+                int pr = regStock.b3;
+                int IdStock = regStock.b1;
+                string parametrosinv;
+
+                Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
+
+                if (((actual + pp) - comp) < pr)
+                {
+
+                    InventarioTemporal.Add(IdStock, comp.ToString());
+
+                    using (StreamWriter sw12 = new StreamWriter("AReponer.txt"))
+                    {
+                        foreach (KeyValuePair<int, string> entry in InventarioTemporal)
+                        {
+                            sw12.Write(entry.Key);
+                            sw12.Write(",");
+                            sw12.Write(entry.Value);
+                            sw12.Write("\n");
+                        }
+                    }
+                }
+            }
+
+            var lineasrepone = File
+                      .ReadAllLines("AReponer.txt")
+                      .Select(record => record.Split(','))
+                      .Select(record => new
+                      {
+                          c1 = record[0],
+                          c2 = Int32.Parse(record[1]),
+                      }).ToList();
+
+            Dictionary<int, string> InventarioTemporal2 = new Dictionary<int, string>();
+
+            foreach (var regStock in lineasstock)
+            {
+                int actual = regStock.b2;
+                int pp = regStock.b5;
+                int comp = regStock.b4;
+                int pr = regStock.b3;
+                int IdStock = regStock.b1;
+                string parametrosinv;
+
+
+
+                foreach (var regPed in lineasrepone)
+                {
+                    string cdRepo = regPed.c1;
+                    int cantRepo = regPed.c2;
+
+                    if (IdStock.ToString() == cdRepo)
+                    {
+                        parametrosinv = actual + "," + pr + "," + comp + "," + cantRepo;
+
+                        InventarioTemporal2.Add(IdStock, parametrosinv);
+
+
+                    }
+
+
+                }
+
+                if (!InventarioTemporal2.ContainsKey(IdStock))
+                {
+                    parametrosinv = actual + "," + pr + "," + comp + "," + pp;
+                    InventarioTemporal2.Add(IdStock, parametrosinv);
+                }
+            }
+
+            using (StreamWriter sw13 = new StreamWriter("stockconpp.txt"))
+            {
+                foreach (KeyValuePair<int, string> entry in InventarioTemporal2)
+                {
+                    sw13.Write(entry.Key);
+                    sw13.Write(",");
+                    sw13.Write(entry.Value);
+                    sw13.Write("\n");
+                }
+            }
+
+            File.Delete("Stock.txt");
+            File.Move("stockconpp.txt", "Stock.txt");
+
+            DateTime date = DateTime.Now;
+            long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
+
+            using (StreamWriter sw14 = new StreamWriter("Lote_" + n + ".txt"))
+            {
+                sw14.Write(textBoxCodComercio.Text + "," + textBoxRazSoc.Text + "," + textBoxCUIT.Text + "," + textBoxDireccion.Text);
+                sw14.Write("\n");
+                sw14.Write("---");
+                sw14.Write("\n");
+
+            }
+
+            using (StreamWriter sw15 = File.AppendText("Lote_" + n + ".txt"))
+            {
+                string[] readText = File.ReadAllLines("AReponer.txt");
+                foreach (string s in readText)
+                {
+                    sw15.Write(s);
+                    sw15.Write("\n");
+                }
+
+
             }
         }
 

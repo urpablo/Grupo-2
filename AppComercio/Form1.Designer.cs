@@ -593,6 +593,7 @@
             this.panelBienvenido.Name = "panelBienvenido";
             this.panelBienvenido.Size = new System.Drawing.Size(650, 550);
             this.panelBienvenido.TabIndex = 15;
+            this.panelBienvenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBienvenido_Paint);
             // 
             // labelBienvenido1
             // 
@@ -639,6 +640,7 @@
             this.buttonPedidoStockIndustrias.TabIndex = 22;
             this.buttonPedidoStockIndustrias.Text = "Confirmar Pedido de Stock a Industrias";
             this.buttonPedidoStockIndustrias.UseVisualStyleBackColor = true;
+            this.buttonPedidoStockIndustrias.Click += new System.EventHandler(this.buttonPedidoStockIndustrias_Click);
             // 
             // groupBoxStockComercio
             // 
@@ -828,7 +830,7 @@
             // 
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxStockComercio);
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
-            this.panelPedidoIndustrias.Location = new System.Drawing.Point(913, 56);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(183, 32);
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(650, 550);
             this.panelPedidoIndustrias.TabIndex = 26;
@@ -889,7 +891,7 @@
             this.panelEnviosClientesOnline.Controls.Add(this.listLoteClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(24, 639);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(186, 35);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(650, 550);
             this.panelEnviosClientesOnline.TabIndex = 27;
@@ -1074,11 +1076,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 590);
+            this.Controls.Add(this.panelPedidoIndustrias);
+            this.Controls.Add(this.panelEnviosClientesOnline);
             this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelVentasOnline);
-            this.Controls.Add(this.panelEnviosClientesOnline);
-            this.Controls.Add(this.panelPedidoIndustrias);
             this.Controls.Add(this.panelAcuseRecibo);
             this.Controls.Add(this.Sidebar);
             this.Controls.Add(this.TopPanel);
