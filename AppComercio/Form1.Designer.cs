@@ -36,11 +36,11 @@
             this.Salir = new System.Windows.Forms.PictureBox();
             this.panelVentasOnline = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxCodProducto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonAgregarItem = new System.Windows.Forms.Button();
             this.textBoxCant = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBoxCdProd = new System.Windows.Forms.TextBox();
             this.groupBoxDatosClienteOnline = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxCdCli = new System.Windows.Forms.TextBox();
@@ -214,24 +214,32 @@
             this.panelVentasOnline.Controls.Add(this.groupBox1);
             this.panelVentasOnline.Controls.Add(this.groupBoxDatosClienteOnline);
             this.panelVentasOnline.Controls.Add(this.groupBoxVentasOnline);
-            this.panelVentasOnline.Location = new System.Drawing.Point(1427, 642);
+            this.panelVentasOnline.Location = new System.Drawing.Point(700, 607);
             this.panelVentasOnline.Name = "panelVentasOnline";
             this.panelVentasOnline.Size = new System.Drawing.Size(650, 550);
             this.panelVentasOnline.TabIndex = 24;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBoxCodProducto);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.buttonAgregarItem);
             this.groupBox1.Controls.Add(this.textBoxCant);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBoxCdProd);
             this.groupBox1.Location = new System.Drawing.Point(437, 133);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 168);
             this.groupBox1.TabIndex = 22;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos a ingresar al pedido";
+            // 
+            // comboBoxCodProducto
+            // 
+            this.comboBoxCodProducto.FormattingEnabled = true;
+            this.comboBoxCodProducto.Location = new System.Drawing.Point(9, 36);
+            this.comboBoxCodProducto.Name = "comboBoxCodProducto";
+            this.comboBoxCodProducto.Size = new System.Drawing.Size(192, 21);
+            this.comboBoxCodProducto.TabIndex = 23;
             // 
             // label3
             // 
@@ -268,14 +276,6 @@
             this.label4.Size = new System.Drawing.Size(101, 13);
             this.label4.TabIndex = 1;
             this.label4.Text = "Código de Producto";
-            // 
-            // textBoxCdProd
-            // 
-            this.textBoxCdProd.Location = new System.Drawing.Point(9, 36);
-            this.textBoxCdProd.Name = "textBoxCdProd";
-            this.textBoxCdProd.Size = new System.Drawing.Size(192, 20);
-            this.textBoxCdProd.TabIndex = 0;
-            this.textBoxCdProd.TextChanged += new System.EventHandler(this.textBoxCdProd_TextChanged);
             // 
             // groupBoxDatosClienteOnline
             // 
@@ -362,9 +362,9 @@
             this.columnHeader1,
             this.columnHeader2});
             this.listPedidos.HideSelection = false;
-            this.listPedidos.Location = new System.Drawing.Point(7, 20);
+            this.listPedidos.Location = new System.Drawing.Point(6, 18);
             this.listPedidos.Name = "listPedidos";
-            this.listPedidos.Size = new System.Drawing.Size(415, 470);
+            this.listPedidos.Size = new System.Drawing.Size(416, 472);
             this.listPedidos.TabIndex = 0;
             this.listPedidos.UseCompatibleStateImageBehavior = false;
             this.listPedidos.View = System.Windows.Forms.View.Details;
@@ -593,7 +593,6 @@
             this.panelBienvenido.Name = "panelBienvenido";
             this.panelBienvenido.Size = new System.Drawing.Size(650, 550);
             this.panelBienvenido.TabIndex = 15;
-            this.panelBienvenido.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBienvenido_Paint);
             // 
             // labelBienvenido1
             // 
@@ -609,7 +608,7 @@
             // panelStock
             // 
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
-            this.panelStock.Location = new System.Drawing.Point(1661, 56);
+            this.panelStock.Location = new System.Drawing.Point(856, 38);
             this.panelStock.Name = "panelStock";
             this.panelStock.Size = new System.Drawing.Size(650, 550);
             this.panelStock.TabIndex = 16;
@@ -732,7 +731,7 @@
             // 
             this.panelAcuseRecibo.Controls.Add(this.groupBoxReporteEntrega);
             this.panelAcuseRecibo.Controls.Add(this.groupBoxTablaAcuseRecibo);
-            this.panelAcuseRecibo.Location = new System.Drawing.Point(745, 639);
+            this.panelAcuseRecibo.Location = new System.Drawing.Point(24, 607);
             this.panelAcuseRecibo.Name = "panelAcuseRecibo";
             this.panelAcuseRecibo.Size = new System.Drawing.Size(650, 550);
             this.panelAcuseRecibo.TabIndex = 25;
@@ -830,7 +829,7 @@
             // 
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxStockComercio);
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
-            this.panelPedidoIndustrias.Location = new System.Drawing.Point(183, 32);
+            this.panelPedidoIndustrias.Location = new System.Drawing.Point(1373, 610);
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(650, 550);
             this.panelPedidoIndustrias.TabIndex = 26;
@@ -891,7 +890,7 @@
             this.panelEnviosClientesOnline.Controls.Add(this.listLoteClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
-            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(186, 35);
+            this.panelEnviosClientesOnline.Location = new System.Drawing.Point(1525, 38);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(650, 550);
             this.panelEnviosClientesOnline.TabIndex = 27;
@@ -1181,7 +1180,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxCant;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxCdProd;
         private System.Windows.Forms.ListView listPedidos;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
@@ -1222,6 +1220,7 @@
         private System.Windows.Forms.TextBox textBoxCodLoteReporte;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBoxCodClienteReporte;
+        private System.Windows.Forms.ComboBox comboBoxCodProducto;
     }
 }
 

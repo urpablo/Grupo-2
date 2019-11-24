@@ -16,16 +16,50 @@ namespace AppComercio
         int codPedidoInd;
         int codRefPedido;
         int codLote;
-        
+        bool actualizo;
 
         public void buttonAgregarItem_Click(object sender, EventArgs e)
         {
-            ListViewItem lstPedido = new ListViewItem(textBoxCdProd.Text);
-            lstPedido.SubItems.Add(textBoxCant.Text);
-            listPedidos.Items.Add(lstPedido);
-            textBoxCant.Clear();
-            textBoxCdProd.Clear();
+            actualizo = false;
+            
 
+            if (int.TryParse(textBoxCant.Text, out int sumar1) == false || sumar1 < 0)
+            {
+                DialogResult resultadoMSGbox = MessageBox.Show("No se puede ingresar una cantidad negativa " +
+                    "o algo que no sea un número, intente nuevamente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            else
+            {
+
+                foreach (ListViewItem lvi in listPedidos.Items)
+                {
+                    if (lvi.SubItems[0].Text == comboBoxCodProducto.Text)
+                    {
+                        int.TryParse(lvi.SubItems[1].Text, out int original);
+                        int.TryParse(textBoxCant.Text, out int sumar);
+
+                        lvi.SubItems[1].Text = "" + (original + sumar);
+
+                        actualizo = true;
+                        textBoxCant.Clear();
+                    }
+
+                }
+
+                if (actualizo == false)
+                {
+                    ListViewItem lstPedido = new ListViewItem(comboBoxCodProducto.Text);
+                    lstPedido.SubItems.Add(textBoxCant.Text);
+                    listPedidos.Items.Add(lstPedido);
+                    textBoxCant.Clear();
+
+                }
+
+            }
+
+
+            
         }
 
         private void buttonGenerarPedido_Click(object sender, EventArgs e)
@@ -134,10 +168,9 @@ namespace AppComercio
 
                 }
             }
+
+            limpiarlistapedidos();
         }
-
-
-
 
         private void buttonLimpiarListaPedidos_Click(object sender, EventArgs e)
         {
@@ -149,7 +182,6 @@ namespace AppComercio
             listPedidos.Items.Clear();
             textBoxDirEnt.Clear();
             textBoxCdCli.Clear();
-            textBoxCdProd.Clear();
             textBoxCant.Clear();
         }
 
@@ -407,6 +439,7 @@ namespace AppComercio
 
 
 
+
         // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes  + habilitar/desabilitar botones-------------
 
         private void textBoxRzSoc_TextChanged(object sender, EventArgs e)
@@ -441,10 +474,6 @@ namespace AppComercio
                 buttonGenerarTXTLote.Enabled = false;
             }
         }
-
-        // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes + habilitar/desabilitar botones -------------
-
-
 
 
 
@@ -491,16 +520,10 @@ namespace AppComercio
 
         }
 
-        // ------------------ interactividad textboxes de datos de comercio con textbox header del archivo de pedido a industrias + habilitar/desabilitar botones  -------------
-
-
 
 
         // ------------------ Habilitar botón de agregar item solo si los dos textboxes tienen contenido -------------
-        private void textBoxCdProd_TextChanged(object sender, EventArgs e)
-        {
-            HabilitarAgregarItem();
-        }
+
         private void textBoxCant_TextChanged(object sender, EventArgs e)
         {
             HabilitarAgregarItem();
@@ -510,7 +533,7 @@ namespace AppComercio
         {
 
             if (!string.IsNullOrWhiteSpace(textBoxCant.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxCdProd.Text))
+                && !string.IsNullOrWhiteSpace(comboBoxCodProducto.Text))
             {
                 buttonAgregarItem.Enabled = true;
             }
@@ -519,8 +542,6 @@ namespace AppComercio
                 buttonAgregarItem.Enabled = false;
             }
         }
-
-        // ------------------ Habilitar botón de agregar item solo si los dos textboxes tienen contenido -------------
 
 
 
@@ -550,6 +571,6 @@ namespace AppComercio
             }
         }
 
-        // ------------------ Habilitar botón de confirmar pedido solo si los dos textboxes tienen contenido y el listview no esta vacío -------------
+ 
     }
 }

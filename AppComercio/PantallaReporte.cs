@@ -15,6 +15,7 @@ namespace AppComercio
         DataTable tablaReporte = new DataTable();
         DataTable tablaNoEntregados = new DataTable();
 
+
         // ----------------------------------------------- cargar reporte, validar nombre de archivo y formato --------------------------
         private void buttonLeerReporteEntrega_Click(object sender, EventArgs e)
         {
@@ -31,7 +32,8 @@ namespace AppComercio
                 if (nombreArchivo.StartsWith("Entrega_") 
                     && nombreArchivo.Contains("_C") 
                     && nombreArchivo.Contains("_L")
-                    &&  (nombreArchivo.IndexOf("C") < nombreArchivo.IndexOf("L")))
+                    &&  (nombreArchivo.IndexOf("C") < nombreArchivo.IndexOf("L"))
+                    && nombreArchivo.Contains(".txt"))
                 {
                     // ahora valida el contenido
                     bool seprendiofuego = false;
@@ -60,7 +62,8 @@ namespace AppComercio
                     // si el nombre de archivo es correcto pero el contenido no es correcto, falla. 
                     if (seprendiofuego == true)
                     {
-                        DialogResult resultadoMSGbox = MessageBox.Show("Ha elegido un archivo con un formato incorrecto. Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DialogResult resultadoMSGbox = MessageBox.Show("Ha elegido un archivo con un formato incorrecto. " +
+                            "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -70,6 +73,7 @@ namespace AppComercio
                         textBoxCodClienteReporte.Text = archivoCodCliente;
                         textBoxCodLoteReporte.Text = archivoCodLote;
 
+                        dgwReporteEntrega.DataSource = tablaReporte;
 
                         tablaReporte.Rows.Clear();
                         dgwReporteEntrega.Refresh();
@@ -95,17 +99,18 @@ namespace AppComercio
 
 
                 }
-                //si el nombre de archivo no es correcto, falla
+                //si el nombre de archivo no es correcto o no es un archivo .txt, falla
                 else
                 {
-                    DialogResult resultadoMSGbox = MessageBox.Show("Ha elegido un archivo con un nombre incorrecto. Debe ser del estilo \n \n 'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DialogResult resultadoMSGbox = MessageBox.Show("Ha elegido un archivo con un nombre incorrecto, " +
+                        "o no es un archivo de texto. Debe ser del estilo \n \n 'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 
             }
         }
 
-        // ----------------------------------------------- cargar reporte, validar nombre de archivo y formato --------------------------
+
 
         }
 
