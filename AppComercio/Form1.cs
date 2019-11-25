@@ -23,8 +23,11 @@ namespace AppComercio
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Pendientes", typeof(int));
 
-            tablaReporte.Columns.Add("Código de referencia", typeof(string));
-            tablaReporte.Columns.Add("Entregado", typeof(bool));
+            tablaEntregados.Columns.Add("Código de referencia", typeof(string));
+            tablaEntregados.Columns.Add("Entregado", typeof(bool));
+
+            tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
+            tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
             refrescarstock();
 
@@ -42,6 +45,7 @@ namespace AppComercio
             buttonGenerarPedido.Enabled = false;
             buttonGenerarTXTLote.Enabled = false;
             buttonPedidoStockIndustrias.Enabled = false;
+            btnCargarStockNoEntregados.Enabled = false;
 
 
             // hacer ventana borderless movible
@@ -218,9 +222,6 @@ namespace AppComercio
                     labelAyuda.Text = "Aquí podemos ver la situación de stock actual.";
 
 
-                    labelBienvenido1.Visible = false;
-                    labelBienvenido2.Visible = false;
-
                     panelBienvenido.Visible = false;
                     panelStock.Visible = true;
                     panelPedidoIndustrias.Visible = false;
@@ -243,9 +244,6 @@ namespace AppComercio
                         " envíen productos si tenemos stock por debajo del punto de reposición. \n \n" +
                         "Recuerde que sólo se puede hacer UN solo pedido por día. \n \n" +
                         "Recuerde llenar los datos del comercio que hace el pedido.";
-
-                    labelBienvenido1.Visible = false;
-                    labelBienvenido2.Visible = false;
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -270,9 +268,6 @@ namespace AppComercio
                         "Recuerde que solo se puede enviar UN solo lote por día. \n \n" +
                         "Recuerde llenar los datos del remitente para despachar el lote.";
 
-                    labelBienvenido1.Visible = false;
-                    labelBienvenido2.Visible = false;
-
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
                     panelPedidoIndustrias.Visible = false;
@@ -296,9 +291,6 @@ namespace AppComercio
                         "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
                         "3) Ingrese de la misma forma hasta completar el pedido del cliente. \n" +
                         "4) Clic en 'Confirmar Pedido' para ingresarlo al sistema.";
-
-                    labelBienvenido1.Visible = false;
-                    labelBienvenido2.Visible = false;
 
                     listLoteClientes.Visible = false;
 
@@ -355,6 +347,8 @@ namespace AppComercio
             }
         }
 
+ 
+
         //private void dgwStock_CellClick(object sender, DataGridViewCellEventArgs e)
         //{
         //    try
@@ -379,7 +373,7 @@ namespace AppComercio
 
         //    }
 
-            
+
         //}
     }
 }

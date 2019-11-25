@@ -12,7 +12,7 @@ namespace AppComercio
     public partial class Form1 : Form
     {
 
-        DataTable tablaReporte = new DataTable();
+        DataTable tablaEntregados = new DataTable();
         DataTable tablaNoEntregados = new DataTable();
 
 
@@ -67,16 +67,19 @@ namespace AppComercio
                     }
                     else
                     {
-                        // sino, lo carga
+                        // sino, lo carga, y separa entre entregados y no entregados
                         string archivoCodCliente = nombreArchivo.Substring(nombreArchivo.IndexOf("C"), (nombreArchivo.IndexOf("_L") - nombreArchivo.IndexOf("C")));
                         string archivoCodLote = nombreArchivo.Substring(nombreArchivo.IndexOf("L"), (nombreArchivo.IndexOf(".txt") - nombreArchivo.IndexOf("L")));
                         textBoxCodClienteReporte.Text = archivoCodCliente;
                         textBoxCodLoteReporte.Text = archivoCodLote;
 
-                        dgwReporteEntrega.DataSource = tablaReporte;
+                        dgwEntregados.DataSource = tablaEntregados;
+                        dgwNoEntregados.DataSource = tablaNoEntregados;
 
-                        tablaReporte.Rows.Clear();
-                        dgwReporteEntrega.Refresh();
+                        tablaEntregados.Rows.Clear();
+                        tablaNoEntregados.Rows.Clear();
+                        dgwEntregados.Refresh();
+                        dgwNoEntregados.Refresh();
 
                         string[] lines = File.ReadAllLines(openFileDialog1.FileName);
                         string[] values;
@@ -86,14 +89,29 @@ namespace AppComercio
                             values = lines[i].ToString().Split(';');
                             string[] row = new string[values.Length];
 
-                            for (int j = 0; j < values.Length; j++)
+                            if (values.Contains("true"))
                             {
-                                row[j] = values[j].Trim();
-                            }
-                            tablaReporte.Rows.Add(row);
+                                for (int j = 0; j < values.Length; j++)
+                                {
+                                    row[j] = values[j].Trim();
+                                }
+                                tablaEntregados.Rows.Add(row);
 
+                            }
+                            else
+                            {
+                                for (int j = 0; j < values.Length; j++)
+                                {
+                                    row[j] = values[j].Trim();
+                                }
+                                tablaNoEntregados.Rows.Add(row);
+                            }
+
+                            
                         }
 
+
+                        
 
                     }
 
@@ -110,9 +128,32 @@ namespace AppComercio
             }
         }
 
+        //------------------------------- Habilitar botón de cargar pedidos no entregados si se ha cargado un reporte ------------------
 
-
+        private void textBoxCodClienteReporte_TextChanged(object sender, EventArgs e)
+        {
+            habilitarCargarNoEntregados();
         }
+
+        private void textBoxCodLoteReporte_TextChanged(object sender, EventArgs e)
+        {
+            habilitarCargarNoEntregados();
+        }
+
+        private void habilitarCargarNoEntregados()
+        {
+
+            if (!string.IsNullOrWhiteSpace(textBoxCodClienteReporte.Text)
+               && !string.IsNullOrWhiteSpace(textBoxCodLoteReporte.Text))
+            {
+                btnCargarStockNoEntregados.Enabled = true;
+            }
+            else
+            {
+                btnCargarStockNoEntregados.Enabled = false;
+            }
+        }
+    }
 
 
     }

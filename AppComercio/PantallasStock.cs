@@ -12,6 +12,7 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         DataTable tablaStock = new DataTable();
+        
 
         //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
 
