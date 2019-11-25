@@ -163,7 +163,11 @@ namespace AppComercio
             DateTime date = DateTime.Now;
             long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
 
-            using (StreamWriter sw14 = new StreamWriter("Lote_" + n + ".txt"))
+            Random r = new Random();
+
+            int q = r.Next(0, 999);
+
+            using (StreamWriter sw14 = new StreamWriter("Pedido_A" + q + ".txt"))
             {
                 sw14.Write(textBoxCodComercio.Text + "," + textBoxRazSoc.Text + "," + textBoxCUIT.Text + "," + textBoxDireccion.Text);
                 sw14.Write("\n");
