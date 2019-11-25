@@ -44,7 +44,7 @@ namespace AppComercio
             }
 
 
-
+            Directory.CreateDirectory(@"C:\Grupo2");
 
 
 

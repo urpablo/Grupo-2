@@ -448,7 +448,10 @@ namespace AppComercio
 
 
             File.Move("PedidosFinal.txt", "Lote_C"+ q+"_" +"L"+q+ ".txt");
+            File.Move("Lote_C" + q + "_" + "L" + q + ".txt", @"c:\Grupo2\" + "Lote_C" + q + "_" + "L" + q + ".txt");
+            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonGenerarTXTLote.Enabled = false;
+
         }
 
 
