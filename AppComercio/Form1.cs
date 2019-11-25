@@ -170,7 +170,7 @@ namespace AppComercio
 
             for (int i = 0; i < lines.Length; i++)
             {
-                values = lines[i].ToString().Split(',');
+                values = lines[i].ToString().Split(';');
                 string[] row = new string[values.Length];
 
                 for (int j = 0; j < values.Length; j++)
@@ -269,13 +269,12 @@ namespace AppComercio
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Confeccionar pedido a industria";
+                    LabelTitulo.Text = "Pedido diario de stock a industria";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos confirmar pedidos a las industrias para que nos" +
-                        " envíen productos si tenemos stock por debajo del punto de reposición. \n \n" +
-                        "Recuerde que sólo se puede hacer UN solo pedido por día. \n \n" +
-                        "Recuerde llenar los datos del comercio que hace el pedido.";
+                        " envíen productos si tenemos stock por debajo del punto de reposición al cargar ventas. \n \n" +
+                        "Recuerde que sólo se puede hacer UN solo pedido por día.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -292,13 +291,13 @@ namespace AppComercio
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Confeccionar el lote de bultos a enviar";
+                    LabelTitulo.Text = "Confirmar lote diario de ventas a enviar";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver los lotes de bultos para envíos a clientes, " +
+                    labelAyuda.Text = "Aquí podemos ver el lote generado por las ventas a clientes en el día, " +
                         " para ser distribuídos por la empresa de logística. \n \n" +
                         "Recuerde que solo se puede enviar UN solo lote por día. \n \n" +
-                        "Recuerde llenar los datos del remitente para despachar el lote.";
+                        "Cargue todas sus ventas antes de confirmarlo.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -321,8 +320,8 @@ namespace AppComercio
                     labelAyuda.Text = "Pasos para ingresar un pedido: \n \n" +
                         "1) Ingrese los datos del cliente. \n" +
                         "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
-                        "3) Ingrese de la misma forma hasta completar el pedido del cliente. \n" +
-                        "4) Clic en 'Confirmar Pedido' para ingresarlo al sistema.";
+                        "3) Ingrese de la misma forma hasta completar el pedido del cliente para la venta hecha. \n" +
+                        "4) Clic en 'Confirmar Pedido' para ingresarlo al lote diario.";
 
                     listLoteClientes.Visible = false;
 
@@ -465,34 +464,5 @@ namespace AppComercio
                 e.Handled = true;
             }
         }
-
-
-
-        //private void dgwStock_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (dgwStock.NewRowIndex == e.RowIndex)
-        //        {
-        //            dgwStock.Rows[e.RowIndex].ReadOnly = false;
-        //        }
-        //        else if (dgwStock.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString() == "")
-        //        {
-        //            dgwStock.Rows[e.RowIndex].ReadOnly = false;
-        //        }
-        //        else
-        //        {
-        //            dgwStock.Rows[e.RowIndex].ReadOnly = true;
-        //        }
-        //    }
-
-        //    catch
-        //    {
-
-
-        //    }
-
-
-        //}
     }
 }

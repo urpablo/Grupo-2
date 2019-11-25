@@ -298,7 +298,7 @@
             this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(210, 124);
             this.groupBoxDatosClienteOnline.TabIndex = 21;
             this.groupBoxDatosClienteOnline.TabStop = false;
-            this.groupBoxDatosClienteOnline.Text = "Datos del cliente para este pedido";
+            this.groupBoxDatosClienteOnline.Text = "Datos del cliente para esta venta";
             // 
             // label6
             // 
@@ -432,7 +432,7 @@
             this.btnAcuseRecibo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAcuseRecibo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAcuseRecibo.ForeColor = System.Drawing.Color.White;
-            this.btnAcuseRecibo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAcuseRecibo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAcuseRecibo.Location = new System.Drawing.Point(45, 176);
             this.btnAcuseRecibo.Name = "btnAcuseRecibo";
             this.btnAcuseRecibo.Size = new System.Drawing.Size(135, 44);
@@ -526,7 +526,7 @@
             this.btnRecibirPedidoOnline.Name = "btnRecibirPedidoOnline";
             this.btnRecibirPedidoOnline.Size = new System.Drawing.Size(135, 44);
             this.btnRecibirPedidoOnline.TabIndex = 12;
-            this.btnRecibirPedidoOnline.Text = "Cargar Ventas";
+            this.btnRecibirPedidoOnline.Text = "Cargar ventas a lote diario";
             this.btnRecibirPedidoOnline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecibirPedidoOnline.UseVisualStyleBackColor = false;
             this.btnRecibirPedidoOnline.Click += new System.EventHandler(this.btnRecibirPedidoOnline_Click);
@@ -545,7 +545,7 @@
             this.btnEnviarPedido.Name = "btnEnviarPedido";
             this.btnEnviarPedido.Size = new System.Drawing.Size(135, 44);
             this.btnEnviarPedido.TabIndex = 11;
-            this.btnEnviarPedido.Text = "Enviar Ventas";
+            this.btnEnviarPedido.Text = "Enviar lote diario a logística";
             this.btnEnviarPedido.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnviarPedido.UseVisualStyleBackColor = false;
             this.btnEnviarPedido.Click += new System.EventHandler(this.btnEnviarPedido_Click);
@@ -583,7 +583,7 @@
             this.btnStock.Name = "btnStock";
             this.btnStock.Size = new System.Drawing.Size(135, 44);
             this.btnStock.TabIndex = 9;
-            this.btnStock.Text = "Ver Stock";
+            this.btnStock.Text = "Control de stock";
             this.btnStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStock.UseVisualStyleBackColor = false;
             this.btnStock.Click += new System.EventHandler(this.btnStock_Click);

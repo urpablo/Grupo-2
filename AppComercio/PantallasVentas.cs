@@ -18,6 +18,7 @@ namespace AppComercio
         int codLote;
         bool actualizo;
 
+        // -------------------- boton agregar item de cargar ventas ------------------------------------
         public void buttonAgregarItem_Click(object sender, EventArgs e)
         {
             actualizo = false;
@@ -61,7 +62,9 @@ namespace AppComercio
 
             
         }
+        
 
+        // ---------------- boton confirmar pedido de cargar ventas ---------------------------------------
         private void buttonGenerarPedido_Click(object sender, EventArgs e)
         {
             int IdStock = 0;
@@ -77,10 +80,10 @@ namespace AppComercio
             {
                 foreach (ListViewItem item in listPedidos.Items)
                 {
-                    sw.Write(textBoxCdCli.Text + "," + textBoxDirEnt.Text + ",");
+                    sw.Write(textBoxCdCli.Text + ";" + textBoxDirEnt.Text + ";");
                     sw.Write(item.Text);
                     for (int i = 1; i < item.SubItems.Count; i++)
-                        sw.Write("," + item.SubItems[i].Text);
+                        sw.Write(";" + item.SubItems[i].Text);
                     sw.Write("\n");
                 }
             }
@@ -88,7 +91,7 @@ namespace AppComercio
             //levanta en memoria el pedido temporal
             var lineaspedido = File
                       .ReadAllLines("PedidoTemporal.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           a1 = record[0],
@@ -100,7 +103,7 @@ namespace AppComercio
             //levanta en memoria el stock actual
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           b1 = Int32.Parse(record[0]),
@@ -125,7 +128,7 @@ namespace AppComercio
                     if (IdStock == IdPed)
                     {
                         int sumcomprometido = KStock + KPed;
-                        parametrosinv = registroStock.b2 + "," + registroStock.b3 + "," + sumcomprometido + "," + registroStock.b5;
+                        parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + sumcomprometido + ";" + registroStock.b5;
 
                         InventarioTemporal.Add(IdStock, parametrosinv);
 
@@ -133,7 +136,7 @@ namespace AppComercio
                 }
                 if (!InventarioTemporal.ContainsKey(IdStock))
                 {
-                    parametrosinv = registroStock.b2 + "," + registroStock.b3 + "," + KStock + "," + registroStock.b5;
+                    parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + KStock + ";" + registroStock.b5;
                     InventarioTemporal.Add(IdStock, parametrosinv);
                 }
 
@@ -146,7 +149,7 @@ namespace AppComercio
                 foreach (KeyValuePair<int, string> entry in InventarioTemporal)
                 {
                     sw2.Write(entry.Key);
-                    sw2.Write(",");
+                    sw2.Write(";");
                     sw2.Write(entry.Value);
                     sw2.Write("\n");
                 }
@@ -169,10 +172,12 @@ namespace AppComercio
                 }
             }
 
-            MessageBox.Show("Pedido agregado exitosamente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n Cuando termine de agregar ventas, puede generar el lote final diario para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             limpiarlistapedidos();
         }
 
+
+        // ----------------- boton limpiar pedidos de cargar ventas -------------------------------------------
         private void buttonLimpiarListaPedidos_Click(object sender, EventArgs e)
         {
             limpiarlistapedidos();
@@ -202,7 +207,7 @@ namespace AppComercio
 
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           b1 = Int32.Parse(record[0]),
@@ -215,7 +220,7 @@ namespace AppComercio
 
             var lineaspedido = File
                       .ReadAllLines("Pedidos.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           a1 = record[0],
@@ -242,7 +247,7 @@ namespace AppComercio
                         {
                             int sumact = KStock - KPed;
                             int sumcomp = kComp - KPed;
-                            parametrosinv = sumact + "," + registroStock.b3 + "," + sumcomp + "," + registroStock.b5;
+                            parametrosinv = sumact + ";" + registroStock.b3 + ";" + sumcomp + ";" + registroStock.b5;
 
                             if (InventarioTemporalLote.ContainsKey(IdStock))
                             {
@@ -252,14 +257,14 @@ namespace AppComercio
 
                                     string valor = InventarioTemporalLote[IdStock];
                                     sw7.Write(IdStock);
-                                    sw7.Write(",");
+                                    sw7.Write(";");
                                     sw7.Write(valor);
                                     sw7.Write("\n");
 
                                 }
                                 var lineaspedido2 = File
                             .ReadAllLines("lineaindividual.txt")
-                            .Select(record => record.Split(','))
+                            .Select(record => record.Split(';'))
                             .Select(record => new
                             {
                                 d1 = record[0],
@@ -272,7 +277,7 @@ namespace AppComercio
                                 {
                                     int actuallinea = registroLinea.d2;
                                     int actuallinea2 = registroLinea.d4;
-                                    parametrosinv = (actuallinea - KPed) + "," + registroStock.b3 + "," + (actuallinea2 - KPed) + "," + registroStock.b5;
+                                    parametrosinv = (actuallinea - KPed) + ";" + registroStock.b3 + ";" + (actuallinea2 - KPed) + ";" + registroStock.b5;
 
                                 }
 
@@ -285,7 +290,7 @@ namespace AppComercio
                             using (StreamWriter sw6 = File.AppendText("PedidosAEnviar.txt"))
                             {
 
-                                sw6.Write(registroPedido.a1 + "," + registroPedido.a2 + "," + IdPed + "," + KPed);
+                                sw6.Write(registroPedido.a1 + ";" + registroPedido.a2 + ";" + IdPed + ";" + KPed);
                                 sw6.Write("\n");
                             }
 
@@ -299,13 +304,13 @@ namespace AppComercio
                         }
                         else
                         {
-                            parametrosinv = registroStock.b2 + "," + registroStock.b3 + "," + registroStock.b4 + "," + registroStock.b5;
+                            parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + registroStock.b4 + ";" + registroStock.b5;
                             InventarioTemporalLote.Add(IdStock, parametrosinv);
 
                             using (StreamWriter sw5 = File.AppendText("PedidosPendientes.txt"))
                             {
 
-                                sw5.Write(registroPedido.a1 + "," + registroPedido.a2 + "," + IdPed + "," + KPed);
+                                sw5.Write(registroPedido.a1 + ";" + registroPedido.a2 + ";" + IdPed + ";" + KPed);
                                 sw5.Write("\n");
                             }
                         }
@@ -316,7 +321,7 @@ namespace AppComercio
                 }
                 if (!InventarioTemporalLote.ContainsKey(IdStock))
                 {
-                    parametrosinv = registroStock.b2 + "," + registroStock.b3 + "," + kComp + "," + registroStock.b5;
+                    parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + kComp + ";" + registroStock.b5;
                     InventarioTemporalLote.Add(IdStock, parametrosinv);
 
 
@@ -329,7 +334,7 @@ namespace AppComercio
                 foreach (KeyValuePair<int, string> entry in InventarioTemporalLote)
                 {
                     sw4.Write(entry.Key);
-                    sw4.Write(",");
+                    sw4.Write(";");
                     sw4.Write(entry.Value);
                     sw4.Write("\n");
                 }
@@ -340,7 +345,7 @@ namespace AppComercio
                 foreach (KeyValuePair<string, string> entry in ArmaLote)
                 {
                     sw6.Write(entry.Key);
-                    sw6.Write(",");
+                    sw6.Write(";");
                     sw6.Write(entry.Value);
                     sw6.Write("\n");
                 }
@@ -351,7 +356,7 @@ namespace AppComercio
 
             var lineasreferencia = File
                       .ReadAllLines("Listadereferencias.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           e1 = record[0],
@@ -360,7 +365,7 @@ namespace AppComercio
 
             var lineasPedidosaEnviar = File
                       .ReadAllLines("PedidosAEnviar.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           f1 = record[0],
@@ -372,7 +377,7 @@ namespace AppComercio
 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
             {
-                sw8.Write(textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text);
+                sw8.Write(textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text);
                 sw8.Write("\n");
                 sw8.Write("---");
                 sw8.Write("\n");
@@ -392,7 +397,7 @@ namespace AppComercio
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
 
-                    sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ "," + cdRef2);
+                    sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ ";" + cdRef2);
                     sw9.Write("\n");
                     sw9.Write("---");
                     sw9.Write("\n");
@@ -415,7 +420,7 @@ namespace AppComercio
                         using (StreamWriter sw10 = File.AppendText("PedidosFinal.txt"))
                         {
 
-                            sw10.Write(CdPedEnv + "," + CdPedEnv2);
+                            sw10.Write(CdPedEnv + ";" + CdPedEnv2);
                             sw10.Write("\n");
 
                         }
@@ -471,19 +476,19 @@ namespace AppComercio
 
         private void textBoxRzSoc_TextChanged(object sender, EventArgs e)
         {
-            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
+            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
             HabilitarBotonGenerarLote();
         }
 
         private void textBoxCuit2_TextChanged(object sender, EventArgs e)
         {
-            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
+            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
             HabilitarBotonGenerarLote();
         }
 
         private void textBoxDirDev_TextChanged(object sender, EventArgs e)
         {
-            textBoxRemitente.Text = textBoxRzSoc.Text + "," + textBoxCuit2.Text + "," + textBoxDirDev.Text;
+            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
             HabilitarBotonGenerarLote();
         }
 

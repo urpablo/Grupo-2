@@ -30,7 +30,7 @@ namespace AppComercio
 
             for (int i = 0; i < lines.Length; i++)
             {
-                values = lines[i].ToString().Split(',');
+                values = lines[i].ToString().Split(';');
                 string[] row = new string[values.Length];
 
                 for (int j = 0; j < values.Length; j++)
