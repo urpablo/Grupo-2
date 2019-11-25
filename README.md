@@ -21,13 +21,16 @@ La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección
 
 Viene con un stock inicial predefinido, y archivos de prueba para la funcionalidad de entrada en reportes de entrega. Todos se encuentran junto al archivo de solución.
 
+Todos los archivos de salida se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Es creada por el programa si no existe.
+
 ### Pruebas
 
-- Las validaciones usuales y esperables se encuentran implementadas. Si logra romperlo, es bienvenido de notificarlo.
-- El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, "Entrega_C340_L643.txt" es aceptado.
+Las validaciones usuales y esperables se encuentran implementadas. Si logra romperlo (seguramente), es bienvenido de notificarlo.
+
+El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba, "Entrega_C340_L643.txt" es aceptado. Los otros dos fallan.
 
 ### Varios
 
-Naturalmente es trabajo en progreso y es un concepto, no debería ser usado por ningún negocio real (momentáneamente)
+Naturalmente es trabajo en progreso y es un concepto, no debería ser usado por ningún negocio real (momentaneamente)
 
 
