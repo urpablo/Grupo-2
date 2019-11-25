@@ -348,7 +348,7 @@ namespace AppComercio
         }
 
 
-        // --------------------- evitar entradas espurias en los textbox-------------
+        // ------------------------------------ Validaciones: evitar entradas espurias en los textbox--------------------------------------------
         private void textBoxDirEnt_KeyPress(object sender, KeyPressEventArgs e)
         {
 
@@ -356,7 +356,6 @@ namespace AppComercio
             {
                 e.Handled = true;
             }
-            //e.Handled = e.KeyChar != (char)Keys.Back && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar);
         }
 
 
