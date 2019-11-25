@@ -12,11 +12,15 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         DataTable tablaStock = new DataTable();
+
         
 
-        //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
+    //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
 
-        private void refrescarstock()
+
+
+
+    private void refrescarstock()
         {
             tablaStock.Rows.Clear();
             dgwStock.Refresh();
@@ -180,6 +184,7 @@ namespace AppComercio
 
             }
 
+            buttonPedidoStockIndustrias.Enabled = false;
 
         }
 

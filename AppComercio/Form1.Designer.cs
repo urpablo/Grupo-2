@@ -608,7 +608,7 @@
             this.panelBienvenido.Controls.Add(this.labelBienvenidoA);
             this.panelBienvenido.Controls.Add(this.labelBienvenido1);
             this.panelBienvenido.Controls.Add(this.labelBienvenido2);
-            this.panelBienvenido.Location = new System.Drawing.Point(186, 35);
+            this.panelBienvenido.Location = new System.Drawing.Point(279, 113);
             this.panelBienvenido.Name = "panelBienvenido";
             this.panelBienvenido.Size = new System.Drawing.Size(650, 550);
             this.panelBienvenido.TabIndex = 15;

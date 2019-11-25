@@ -16,7 +16,39 @@ namespace AppComercio
         // ------------------ carga del formulario ----------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
+
             
+            if (File.Exists("PedidoTemporal.txt"))
+            {
+                File.Delete("PedidoTemporal.txt");
+            }
+
+            if (File.Exists("PedidosAEnviar.txt"))
+            {
+                File.Delete("PedidosAEnviar.txt");
+            }
+
+            if (File.Exists("Pedidos.txt"))
+            {
+                File.Delete("Pedidos.txt");
+            }
+
+            if (File.Exists("Listadereferencias.txt"))
+            {
+                File.Delete("Listadereferencias.txt");
+            }
+
+            if (File.Exists("lineaindividual.txt"))
+            {
+                File.Delete("lineaindividual.txt");
+            }
+
+
+
+
+
+
+
             tablaStock.Columns.Add("ID",typeof(int));
             tablaStock.Columns.Add("Real", typeof(int));
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));

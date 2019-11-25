@@ -378,21 +378,29 @@ namespace AppComercio
 
             }
 
-
+            int i = 0;
+            int j = 0;
+            int z = 0;
             foreach (var registroRef in lineasreferencia)
             {
                 string cdRef = registroRef.e1;
                 string cdRef2 = registroRef.e2;
 
+                
+
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
 
-                    sw9.Write(cdRef + "," + cdRef2);
+                    sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ "," + cdRef2);
                     sw9.Write("\n");
                     sw9.Write("---");
                     sw9.Write("\n");
 
                 }
+
+                i = i+1;
+                j = j+1;
+                z = z+1;
 
                 foreach (var registroPedEnv in lineasPedidosaEnviar)
                 {
@@ -428,9 +436,19 @@ namespace AppComercio
 
             }
 
-            DateTime date = DateTime.Now;
-            long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
-            File.Move("PedidosFinal.txt", "Lote_c332_" + n + ".txt");
+            Random r = new Random();
+
+            int q = r.Next(0, 999);
+           
+
+
+
+
+
+
+
+            File.Move("PedidosFinal.txt", "Lote_C"+ q+"_" +"L"+q+ ".txt");
+            buttonGenerarTXTLote.Enabled = false;
         }
 
 
