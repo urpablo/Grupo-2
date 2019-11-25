@@ -271,10 +271,12 @@
             // textBoxCant
             // 
             this.textBoxCant.Location = new System.Drawing.Point(9, 79);
+            this.textBoxCant.MaxLength = 6;
             this.textBoxCant.Name = "textBoxCant";
             this.textBoxCant.Size = new System.Drawing.Size(192, 20);
             this.textBoxCant.TabIndex = 2;
             this.textBoxCant.TextChanged += new System.EventHandler(this.textBoxCant_TextChanged);
+            this.textBoxCant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCant_KeyPress);
             // 
             // label4
             // 
@@ -310,10 +312,12 @@
             // textBoxCdCli
             // 
             this.textBoxCdCli.Location = new System.Drawing.Point(6, 38);
+            this.textBoxCdCli.MaxLength = 5;
             this.textBoxCdCli.Name = "textBoxCdCli";
             this.textBoxCdCli.Size = new System.Drawing.Size(192, 20);
             this.textBoxCdCli.TabIndex = 8;
             this.textBoxCdCli.TextChanged += new System.EventHandler(this.textBoxCdCli_TextChanged);
+            this.textBoxCdCli.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCdCli_KeyPress);
             // 
             // labelRteRazSoc
             // 
@@ -327,10 +331,12 @@
             // textBoxDirEnt
             // 
             this.textBoxDirEnt.Location = new System.Drawing.Point(7, 84);
+            this.textBoxDirEnt.MaxLength = 100;
             this.textBoxDirEnt.Name = "textBoxDirEnt";
             this.textBoxDirEnt.Size = new System.Drawing.Size(192, 20);
             this.textBoxDirEnt.TabIndex = 4;
             this.textBoxDirEnt.TextChanged += new System.EventHandler(this.textBoxDirEnt_TextChanged);
+            this.textBoxDirEnt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDirEnt_KeyPress);
             // 
             // groupBoxVentasOnline
             // 
@@ -691,7 +697,7 @@
             this.dgwStock.Location = new System.Drawing.Point(15, 19);
             this.dgwStock.Name = "dgwStock";
             this.dgwStock.ReadOnly = true;
-            this.dgwStock.Size = new System.Drawing.Size(632, 519);
+            this.dgwStock.Size = new System.Drawing.Size(623, 520);
             this.dgwStock.TabIndex = 0;
             // 
             // buttonPedidoStockIndustrias
@@ -734,10 +740,12 @@
             // textBoxDireccion
             // 
             this.textBoxDireccion.Location = new System.Drawing.Point(6, 177);
+            this.textBoxDireccion.MaxLength = 100;
             this.textBoxDireccion.Name = "textBoxDireccion";
             this.textBoxDireccion.Size = new System.Drawing.Size(196, 20);
             this.textBoxDireccion.TabIndex = 6;
             this.textBoxDireccion.TextChanged += new System.EventHandler(this.textBoxDireccion_TextChanged);
+            this.textBoxDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDireccion_KeyPress);
             // 
             // labelCUIT
             // 
@@ -751,10 +759,12 @@
             // textBoxCUIT
             // 
             this.textBoxCUIT.Location = new System.Drawing.Point(6, 133);
+            this.textBoxCUIT.MaxLength = 11;
             this.textBoxCUIT.Name = "textBoxCUIT";
             this.textBoxCUIT.Size = new System.Drawing.Size(196, 20);
             this.textBoxCUIT.TabIndex = 4;
             this.textBoxCUIT.TextChanged += new System.EventHandler(this.textBoxCUIT_TextChanged);
+            this.textBoxCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCUIT_KeyPress);
             // 
             // labelRazSoc
             // 
@@ -768,10 +778,12 @@
             // textBoxRazSoc
             // 
             this.textBoxRazSoc.Location = new System.Drawing.Point(6, 88);
+            this.textBoxRazSoc.MaxLength = 100;
             this.textBoxRazSoc.Name = "textBoxRazSoc";
             this.textBoxRazSoc.Size = new System.Drawing.Size(196, 20);
             this.textBoxRazSoc.TabIndex = 2;
             this.textBoxRazSoc.TextChanged += new System.EventHandler(this.textBoxRazSoc_TextChanged);
+            this.textBoxRazSoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRazSoc_KeyPress);
             // 
             // labelCodComercio
             // 
@@ -785,10 +797,12 @@
             // textBoxCodComercio
             // 
             this.textBoxCodComercio.Location = new System.Drawing.Point(6, 44);
+            this.textBoxCodComercio.MaxLength = 5;
             this.textBoxCodComercio.Name = "textBoxCodComercio";
             this.textBoxCodComercio.Size = new System.Drawing.Size(196, 20);
             this.textBoxCodComercio.TabIndex = 0;
             this.textBoxCodComercio.TextChanged += new System.EventHandler(this.textBoxCodComercio_TextChanged);
+            this.textBoxCodComercio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodComercio_KeyPress);
             // 
             // panelAcuseRecibo
             // 
@@ -883,6 +897,7 @@
             this.textBoxCodClienteReporte.Enabled = false;
             this.textBoxCodClienteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCodClienteReporte.Location = new System.Drawing.Point(176, 39);
+            this.textBoxCodClienteReporte.MaxLength = 5000;
             this.textBoxCodClienteReporte.Name = "textBoxCodClienteReporte";
             this.textBoxCodClienteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodClienteReporte.TabIndex = 24;
@@ -894,6 +909,7 @@
             this.textBoxCodLoteReporte.Enabled = false;
             this.textBoxCodLoteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCodLoteReporte.Location = new System.Drawing.Point(333, 39);
+            this.textBoxCodLoteReporte.MaxLength = 5000;
             this.textBoxCodLoteReporte.Name = "textBoxCodLoteReporte";
             this.textBoxCodLoteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodLoteReporte.TabIndex = 26;
@@ -1097,10 +1113,12 @@
             // textBoxDirDev
             // 
             this.textBoxDirDev.Location = new System.Drawing.Point(6, 134);
+            this.textBoxDirDev.MaxLength = 100;
             this.textBoxDirDev.Name = "textBoxDirDev";
             this.textBoxDirDev.Size = new System.Drawing.Size(192, 20);
             this.textBoxDirDev.TabIndex = 4;
             this.textBoxDirDev.TextChanged += new System.EventHandler(this.textBoxDirDev_TextChanged);
+            this.textBoxDirDev.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDirDev_KeyPress);
             // 
             // label1
             // 
@@ -1114,10 +1132,12 @@
             // textBoxCuit2
             // 
             this.textBoxCuit2.Location = new System.Drawing.Point(6, 90);
+            this.textBoxCuit2.MaxLength = 11;
             this.textBoxCuit2.Name = "textBoxCuit2";
             this.textBoxCuit2.Size = new System.Drawing.Size(192, 20);
             this.textBoxCuit2.TabIndex = 2;
             this.textBoxCuit2.TextChanged += new System.EventHandler(this.textBoxCuit2_TextChanged);
+            this.textBoxCuit2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCuit2_KeyPress);
             // 
             // label2
             // 
@@ -1131,10 +1151,12 @@
             // textBoxRzSoc
             // 
             this.textBoxRzSoc.Location = new System.Drawing.Point(6, 43);
+            this.textBoxRzSoc.MaxLength = 100;
             this.textBoxRzSoc.Name = "textBoxRzSoc";
             this.textBoxRzSoc.Size = new System.Drawing.Size(192, 20);
             this.textBoxRzSoc.TabIndex = 0;
             this.textBoxRzSoc.TextChanged += new System.EventHandler(this.textBoxRzSoc_TextChanged);
+            this.textBoxRzSoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRzSoc_KeyPress);
             // 
             // openFileDialog1
             // 
