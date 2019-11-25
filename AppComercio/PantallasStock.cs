@@ -176,7 +176,7 @@ namespace AppComercio
 
             }
 
-            using (StreamWriter sw15 = File.AppendText("Lote_" + n + ".txt"))
+            using (StreamWriter sw15 = File.AppendText("Pedido_A" + q + ".txt"))
             {
                 string[] readText = File.ReadAllLines("AReponer.txt");
                 foreach (string s in readText)
@@ -188,8 +188,15 @@ namespace AppComercio
 
             }
 
+            File.Move("Pedido_A" + q + ".txt", @"c:\Grupo2\" + "Pedido_A" + q + ".txt");
+            MessageBox.Show("¡Pedido a industrias diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonPedidoStockIndustrias.Enabled = false;
 
+            foreach (var line in File.ReadLines(@"c:\Grupo2\" + "Pedido_A" + q + ".txt"))
+            {
+
+                textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
+            }
         }
 
     }
