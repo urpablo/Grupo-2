@@ -13,14 +13,26 @@ namespace AppComercio
     {
         DataTable tablaStock = new DataTable();
 
-        
+        // ----------------------------------- cargar datos del comercio -------------------------
 
-    //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
+        private void cargarDatosComercio()
+        {
+            string[] dComercio = File.ReadAllLines(@"DatosComercio.txt");
+            textBoxCodComercio.Text = dComercio[0];
+            textBoxRazSoc.Text = dComercio[1];
+            textBoxRzSoc.Text = dComercio[1];
+            textBoxCUIT.Text = dComercio[2];
+            textBoxCUIT2.Text = dComercio[2];
+            textBoxDirEntComercio.Text = dComercio[3];
+            textBoxDirDevComercio.Text = dComercio[4];
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+        }
 
 
+        //---------------------  leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
 
-
-    private void refrescarstock()
+        private void refrescarstock()
         {
             tablaStock.Rows.Clear();
             dgwStock.Refresh();
@@ -48,7 +60,7 @@ namespace AppComercio
         }
         //--------------------- leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
 
-        //--------------------- evitar modificar el datagridview de stock si la fila ingresada no esta vacia
+        
 
 
 
@@ -169,7 +181,7 @@ namespace AppComercio
 
             using (StreamWriter sw14 = new StreamWriter("Pedido_A" + q + ".txt"))
             {
-                sw14.Write(textBoxCodComercio.Text + "," + textBoxRazSoc.Text + "," + textBoxCUIT.Text + "," + textBoxDireccion.Text);
+                sw14.Write(textBoxCodComercio.Text + "," + textBoxRazSoc.Text + "," + textBoxCUIT.Text + "," + textBoxDirEntComercio.Text);
                 sw14.Write("\n");
                 sw14.Write("---");
                 sw14.Write("\n");

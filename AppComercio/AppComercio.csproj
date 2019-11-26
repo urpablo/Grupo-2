@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Validaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PantallaReporte.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,6 +94,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Comercio.ico" />
+    <Content Include="DatosComercio.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Stock.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

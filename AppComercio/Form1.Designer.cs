@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.pbMinimizar = new System.Windows.Forms.PictureBox();
             this.LabelTitulo = new System.Windows.Forms.Label();
+            this.pbSalir = new System.Windows.Forms.PictureBox();
             this.TopPanelLeft = new System.Windows.Forms.Panel();
             this.Minimizar = new System.Windows.Forms.PictureBox();
             this.Salir = new System.Windows.Forms.PictureBox();
@@ -79,7 +81,7 @@
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
             this.labelDireccion = new System.Windows.Forms.Label();
-            this.textBoxDireccion = new System.Windows.Forms.TextBox();
+            this.textBoxDirEntComercio = new System.Windows.Forms.TextBox();
             this.labelCUIT = new System.Windows.Forms.Label();
             this.textBoxCUIT = new System.Windows.Forms.TextBox();
             this.labelRazSoc = new System.Windows.Forms.Label();
@@ -116,9 +118,9 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.buttonGenerarTXTLote = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBoxDirDev = new System.Windows.Forms.TextBox();
+            this.textBoxDirDevComercio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxCuit2 = new System.Windows.Forms.TextBox();
+            this.textBoxCUIT2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxRzSoc = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -126,6 +128,8 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TopPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimizar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).BeginInit();
             this.panelVentasOnline.SuspendLayout();
@@ -159,7 +163,9 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(224)))), ((int)(((byte)(227)))));
+            this.TopPanel.Controls.Add(this.pbMinimizar);
             this.TopPanel.Controls.Add(this.LabelTitulo);
+            this.TopPanel.Controls.Add(this.pbSalir);
             this.TopPanel.Controls.Add(this.TopPanelLeft);
             this.TopPanel.Controls.Add(this.Minimizar);
             this.TopPanel.Controls.Add(this.Salir);
@@ -170,6 +176,20 @@
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
+            // pbMinimizar
+            // 
+            this.pbMinimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbMinimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
+            this.pbMinimizar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("pbMinimizar.Image")));
+            this.pbMinimizar.Location = new System.Drawing.Point(788, 5);
+            this.pbMinimizar.Name = "pbMinimizar";
+            this.pbMinimizar.Size = new System.Drawing.Size(20, 20);
+            this.pbMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbMinimizar.TabIndex = 29;
+            this.pbMinimizar.TabStop = false;
+            this.pbMinimizar.Click += new System.EventHandler(this.pbMinimizar_Click);
+            // 
             // LabelTitulo
             // 
             this.LabelTitulo.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -179,6 +199,20 @@
             this.LabelTitulo.TabIndex = 0;
             this.LabelTitulo.Text = "Confeccionar lote de pedido a industria";
             this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitulo_MouseMove);
+            // 
+            // pbSalir
+            // 
+            this.pbSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbSalir.BackColor = System.Drawing.Color.Red;
+            this.pbSalir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbSalir.Image = ((System.Drawing.Image)(resources.GetObject("pbSalir.Image")));
+            this.pbSalir.Location = new System.Drawing.Point(813, 5);
+            this.pbSalir.Name = "pbSalir";
+            this.pbSalir.Size = new System.Drawing.Size(20, 20);
+            this.pbSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbSalir.TabIndex = 28;
+            this.pbSalir.TabStop = false;
+            this.pbSalir.Click += new System.EventHandler(this.pbSalir_Click);
             // 
             // TopPanelLeft
             // 
@@ -192,29 +226,19 @@
             // 
             // Minimizar
             // 
-            this.Minimizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Minimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
-            this.Minimizar.Image = ((System.Drawing.Image)(resources.GetObject("Minimizar.Image")));
-            this.Minimizar.Location = new System.Drawing.Point(790, 5);
+            this.Minimizar.Location = new System.Drawing.Point(0, 0);
             this.Minimizar.Name = "Minimizar";
-            this.Minimizar.Size = new System.Drawing.Size(20, 20);
-            this.Minimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Minimizar.TabIndex = 2;
+            this.Minimizar.Size = new System.Drawing.Size(100, 50);
+            this.Minimizar.TabIndex = 30;
             this.Minimizar.TabStop = false;
-            this.Minimizar.Click += new System.EventHandler(this.Minimizar_Click);
             // 
             // Salir
             // 
-            this.Salir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Salir.BackColor = System.Drawing.Color.Red;
-            this.Salir.Image = ((System.Drawing.Image)(resources.GetObject("Salir.Image")));
-            this.Salir.Location = new System.Drawing.Point(815, 5);
+            this.Salir.Location = new System.Drawing.Point(0, 0);
             this.Salir.Name = "Salir";
-            this.Salir.Size = new System.Drawing.Size(20, 20);
-            this.Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Salir.TabIndex = 0;
+            this.Salir.Size = new System.Drawing.Size(100, 50);
+            this.Salir.TabIndex = 31;
             this.Salir.TabStop = false;
-            this.Salir.Click += new System.EventHandler(this.Salir_Click);
             // 
             // panelVentasOnline
             // 
@@ -714,7 +738,7 @@
             // 
             this.groupBoxStockComercio.Controls.Add(this.labelDireccion);
             this.groupBoxStockComercio.Controls.Add(this.buttonPedidoStockIndustrias);
-            this.groupBoxStockComercio.Controls.Add(this.textBoxDireccion);
+            this.groupBoxStockComercio.Controls.Add(this.textBoxDirEntComercio);
             this.groupBoxStockComercio.Controls.Add(this.labelCUIT);
             this.groupBoxStockComercio.Controls.Add(this.textBoxCUIT);
             this.groupBoxStockComercio.Controls.Add(this.labelRazSoc);
@@ -737,15 +761,15 @@
             this.labelDireccion.TabIndex = 7;
             this.labelDireccion.Text = "Dirección de Entrega";
             // 
-            // textBoxDireccion
+            // textBoxDirEntComercio
             // 
-            this.textBoxDireccion.Location = new System.Drawing.Point(6, 177);
-            this.textBoxDireccion.MaxLength = 100;
-            this.textBoxDireccion.Name = "textBoxDireccion";
-            this.textBoxDireccion.Size = new System.Drawing.Size(196, 20);
-            this.textBoxDireccion.TabIndex = 6;
-            this.textBoxDireccion.TextChanged += new System.EventHandler(this.textBoxDireccion_TextChanged);
-            this.textBoxDireccion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDireccion_KeyPress);
+            this.textBoxDirEntComercio.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxDirEntComercio.Location = new System.Drawing.Point(6, 177);
+            this.textBoxDirEntComercio.MaxLength = 100;
+            this.textBoxDirEntComercio.Name = "textBoxDirEntComercio";
+            this.textBoxDirEntComercio.ReadOnly = true;
+            this.textBoxDirEntComercio.Size = new System.Drawing.Size(196, 20);
+            this.textBoxDirEntComercio.TabIndex = 6;
             // 
             // labelCUIT
             // 
@@ -758,13 +782,13 @@
             // 
             // textBoxCUIT
             // 
+            this.textBoxCUIT.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxCUIT.Location = new System.Drawing.Point(6, 133);
             this.textBoxCUIT.MaxLength = 11;
             this.textBoxCUIT.Name = "textBoxCUIT";
+            this.textBoxCUIT.ReadOnly = true;
             this.textBoxCUIT.Size = new System.Drawing.Size(196, 20);
             this.textBoxCUIT.TabIndex = 4;
-            this.textBoxCUIT.TextChanged += new System.EventHandler(this.textBoxCUIT_TextChanged);
-            this.textBoxCUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCUIT_KeyPress);
             // 
             // labelRazSoc
             // 
@@ -777,13 +801,13 @@
             // 
             // textBoxRazSoc
             // 
+            this.textBoxRazSoc.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxRazSoc.Location = new System.Drawing.Point(6, 88);
             this.textBoxRazSoc.MaxLength = 100;
             this.textBoxRazSoc.Name = "textBoxRazSoc";
+            this.textBoxRazSoc.ReadOnly = true;
             this.textBoxRazSoc.Size = new System.Drawing.Size(196, 20);
             this.textBoxRazSoc.TabIndex = 2;
-            this.textBoxRazSoc.TextChanged += new System.EventHandler(this.textBoxRazSoc_TextChanged);
-            this.textBoxRazSoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRazSoc_KeyPress);
             // 
             // labelCodComercio
             // 
@@ -796,13 +820,13 @@
             // 
             // textBoxCodComercio
             // 
+            this.textBoxCodComercio.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxCodComercio.Location = new System.Drawing.Point(6, 44);
             this.textBoxCodComercio.MaxLength = 5;
             this.textBoxCodComercio.Name = "textBoxCodComercio";
+            this.textBoxCodComercio.ReadOnly = true;
             this.textBoxCodComercio.Size = new System.Drawing.Size(196, 20);
             this.textBoxCodComercio.TabIndex = 0;
-            this.textBoxCodComercio.TextChanged += new System.EventHandler(this.textBoxCodComercio_TextChanged);
-            this.textBoxCodComercio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodComercio_KeyPress);
             // 
             // panelAcuseRecibo
             // 
@@ -894,11 +918,12 @@
             // 
             // textBoxCodClienteReporte
             // 
-            this.textBoxCodClienteReporte.Enabled = false;
+            this.textBoxCodClienteReporte.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxCodClienteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCodClienteReporte.Location = new System.Drawing.Point(176, 39);
             this.textBoxCodClienteReporte.MaxLength = 5000;
             this.textBoxCodClienteReporte.Name = "textBoxCodClienteReporte";
+            this.textBoxCodClienteReporte.ReadOnly = true;
             this.textBoxCodClienteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodClienteReporte.TabIndex = 24;
             this.textBoxCodClienteReporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -906,11 +931,12 @@
             // 
             // textBoxCodLoteReporte
             // 
-            this.textBoxCodLoteReporte.Enabled = false;
+            this.textBoxCodLoteReporte.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxCodLoteReporte.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxCodLoteReporte.Location = new System.Drawing.Point(333, 39);
             this.textBoxCodLoteReporte.MaxLength = 5000;
             this.textBoxCodLoteReporte.Name = "textBoxCodLoteReporte";
+            this.textBoxCodLoteReporte.ReadOnly = true;
             this.textBoxCodLoteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodLoteReporte.TabIndex = 26;
             this.textBoxCodLoteReporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -949,7 +975,8 @@
             // 
             // textBoxDatosComercio
             // 
-            this.textBoxDatosComercio.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxDatosComercio.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBoxDatosComercio.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxDatosComercio.Location = new System.Drawing.Point(6, 40);
             this.textBoxDatosComercio.Multiline = true;
             this.textBoxDatosComercio.Name = "textBoxDatosComercio";
@@ -977,7 +1004,8 @@
             // 
             // textBoxPedidoIndustria
             // 
-            this.textBoxPedidoIndustria.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPedidoIndustria.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBoxPedidoIndustria.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxPedidoIndustria.Location = new System.Drawing.Point(7, 106);
             this.textBoxPedidoIndustria.Multiline = true;
             this.textBoxPedidoIndustria.Name = "textBoxPedidoIndustria";
@@ -1048,7 +1076,8 @@
             // 
             // textBoxRemitente
             // 
-            this.textBoxRemitente.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRemitente.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBoxRemitente.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRemitente.Location = new System.Drawing.Point(6, 40);
             this.textBoxRemitente.Multiline = true;
             this.textBoxRemitente.Name = "textBoxRemitente";
@@ -1067,7 +1096,8 @@
             // 
             // textBoxLote
             // 
-            this.textBoxLote.Font = new System.Drawing.Font("Courier New", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxLote.BackColor = System.Drawing.Color.LemonChiffon;
+            this.textBoxLote.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxLote.Location = new System.Drawing.Point(7, 106);
             this.textBoxLote.Multiline = true;
             this.textBoxLote.Name = "textBoxLote";
@@ -1079,9 +1109,9 @@
             // 
             this.groupBox2.Controls.Add(this.buttonGenerarTXTLote);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.textBoxDirDev);
+            this.groupBox2.Controls.Add(this.textBoxDirDevComercio);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.textBoxCuit2);
+            this.groupBox2.Controls.Add(this.textBoxCUIT2);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.textBoxRzSoc);
             this.groupBox2.Location = new System.Drawing.Point(437, 3);
@@ -1110,15 +1140,15 @@
             this.label5.TabIndex = 5;
             this.label5.Text = "Dirección de devolución del remitente";
             // 
-            // textBoxDirDev
+            // textBoxDirDevComercio
             // 
-            this.textBoxDirDev.Location = new System.Drawing.Point(6, 134);
-            this.textBoxDirDev.MaxLength = 100;
-            this.textBoxDirDev.Name = "textBoxDirDev";
-            this.textBoxDirDev.Size = new System.Drawing.Size(192, 20);
-            this.textBoxDirDev.TabIndex = 4;
-            this.textBoxDirDev.TextChanged += new System.EventHandler(this.textBoxDirDev_TextChanged);
-            this.textBoxDirDev.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDirDev_KeyPress);
+            this.textBoxDirDevComercio.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxDirDevComercio.Location = new System.Drawing.Point(6, 134);
+            this.textBoxDirDevComercio.MaxLength = 100;
+            this.textBoxDirDevComercio.Name = "textBoxDirDevComercio";
+            this.textBoxDirDevComercio.ReadOnly = true;
+            this.textBoxDirDevComercio.Size = new System.Drawing.Size(192, 20);
+            this.textBoxDirDevComercio.TabIndex = 4;
             // 
             // label1
             // 
@@ -1129,15 +1159,15 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "CUIT del remitente";
             // 
-            // textBoxCuit2
+            // textBoxCUIT2
             // 
-            this.textBoxCuit2.Location = new System.Drawing.Point(6, 90);
-            this.textBoxCuit2.MaxLength = 11;
-            this.textBoxCuit2.Name = "textBoxCuit2";
-            this.textBoxCuit2.Size = new System.Drawing.Size(192, 20);
-            this.textBoxCuit2.TabIndex = 2;
-            this.textBoxCuit2.TextChanged += new System.EventHandler(this.textBoxCuit2_TextChanged);
-            this.textBoxCuit2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCuit2_KeyPress);
+            this.textBoxCUIT2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBoxCUIT2.Location = new System.Drawing.Point(6, 90);
+            this.textBoxCUIT2.MaxLength = 11;
+            this.textBoxCUIT2.Name = "textBoxCUIT2";
+            this.textBoxCUIT2.ReadOnly = true;
+            this.textBoxCUIT2.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCUIT2.TabIndex = 2;
             // 
             // label2
             // 
@@ -1150,13 +1180,13 @@
             // 
             // textBoxRzSoc
             // 
+            this.textBoxRzSoc.BackColor = System.Drawing.SystemColors.Control;
             this.textBoxRzSoc.Location = new System.Drawing.Point(6, 43);
             this.textBoxRzSoc.MaxLength = 100;
             this.textBoxRzSoc.Name = "textBoxRzSoc";
+            this.textBoxRzSoc.ReadOnly = true;
             this.textBoxRzSoc.Size = new System.Drawing.Size(192, 20);
             this.textBoxRzSoc.TabIndex = 0;
-            this.textBoxRzSoc.TextChanged += new System.EventHandler(this.textBoxRzSoc_TextChanged);
-            this.textBoxRzSoc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxRzSoc_KeyPress);
             // 
             // openFileDialog1
             // 
@@ -1196,6 +1226,8 @@
             this.Text = "CAI - Comercio";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.TopPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbMinimizar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Salir)).EndInit();
             this.panelVentasOnline.ResumeLayout(false);
@@ -1266,7 +1298,7 @@
         private System.Windows.Forms.Label labelCUIT;
         private System.Windows.Forms.TextBox textBoxCUIT;
         private System.Windows.Forms.Label labelDireccion;
-        private System.Windows.Forms.TextBox textBoxDireccion;
+        private System.Windows.Forms.TextBox textBoxDirEntComercio;
         private System.Windows.Forms.Button buttonPedidoStockIndustrias;
         private System.Windows.Forms.Panel panelVentasOnline;
         private System.Windows.Forms.Button buttonGenerarPedido;
@@ -1298,9 +1330,9 @@
         private System.Windows.Forms.Button buttonGenerarTXTLote;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBoxDirDev;
+        private System.Windows.Forms.TextBox textBoxDirDevComercio;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxCuit2;
+        private System.Windows.Forms.TextBox textBoxCUIT2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxRzSoc;
         private System.Windows.Forms.Label labelBienvenido1;
@@ -1334,6 +1366,8 @@
         private System.Windows.Forms.Label labelBienvenidoB;
         private System.Windows.Forms.Label labelBienvenidoA;
         private System.Windows.Forms.DataGridView dgwNoEntregados;
+        private System.Windows.Forms.PictureBox pbMinimizar;
+        private System.Windows.Forms.PictureBox pbSalir;
     }
 }
 

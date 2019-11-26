@@ -12,12 +12,12 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         
-    
+        
         // ------------------ carga del formulario ----------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            
+            // ------------ chequeos iniciales
             if (File.Exists("PedidoTemporal.txt"))
             {
                 File.Delete("PedidoTemporal.txt");
@@ -43,7 +43,6 @@ namespace AppComercio
                 File.Delete("lineaindividual.txt");
             }
 
-
             Directory.CreateDirectory(@"C:\Grupo2");
 
 
@@ -61,6 +60,7 @@ namespace AppComercio
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
+            cargarDatosComercio();
             refrescarstock();
 
 
@@ -84,8 +84,9 @@ namespace AppComercio
             MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
             MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
             MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
-            // hacer ventana borderless movible
         }
+
+
         public Form1()
         {
             InitializeComponent();
@@ -134,9 +135,8 @@ namespace AppComercio
 
 
         // ------------------ controles ventana ------------------
-        private void Salir_Click(object sender, EventArgs e)
+        private void pbSalir_Click(object sender, EventArgs e)
         {
-
             DialogResult resultadoMSGbox = MessageBox.Show("¿Desea realmente salir?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
 
             if (resultadoMSGbox == DialogResult.Yes)
@@ -145,13 +145,11 @@ namespace AppComercio
             }
         }
 
-        private void Minimizar_Click(object sender, EventArgs e)
+        private void pbMinimizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
 
         }
-
-
 
         // ------------------ botonera menú ------------------
 
@@ -379,90 +377,5 @@ namespace AppComercio
         }
 
 
-        // ------------------------------------ Validaciones: evitar entradas espurias en los textbox--------------------------------------------
-        private void textBoxDirEnt_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-
-        private void textBoxDireccion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBoxCant_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-        }
-
-        private void textBoxCUIT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBoxCuit2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBoxCdCli_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBoxCodComercio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-
-        private void textBoxRazSoc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBoxRzSoc_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-
-        private void textBoxDirDev_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
     }
 }

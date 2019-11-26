@@ -12,6 +12,9 @@ namespace AppComercio
     public partial class Form1 : Form
     {
 
+
+
+
         string ultimoPedidoGuardado;
         int codPedidoInd;
         int codRefPedido;
@@ -377,7 +380,7 @@ namespace AppComercio
 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
             {
-                sw8.Write(textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text);
+                sw8.Write(textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text);
                 sw8.Write("\n");
                 sw8.Write("---");
                 sw8.Write("\n");
@@ -471,137 +474,6 @@ namespace AppComercio
 
 
 
-
-        // ------------------ interactividad textboxes remitente con textbox header del archivo de lotes  + habilitar/desabilitar botones-------------
-
-        private void textBoxRzSoc_TextChanged(object sender, EventArgs e)
-        {
-            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
-            HabilitarBotonGenerarLote();
-        }
-
-        private void textBoxCuit2_TextChanged(object sender, EventArgs e)
-        {
-            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
-            HabilitarBotonGenerarLote();
-        }
-
-        private void textBoxDirDev_TextChanged(object sender, EventArgs e)
-        {
-            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCuit2.Text + ";" + textBoxDirDev.Text;
-            HabilitarBotonGenerarLote();
-        }
-
-        private void HabilitarBotonGenerarLote()
-        {
-            if (!string.IsNullOrWhiteSpace(textBoxRzSoc.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxCuit2.Text)
-                && !string.IsNullOrWhiteSpace(textBoxDirDev.Text))
-                //&& !string.IsNullOrWhiteSpace(textBoxLote.Text))
-            {
-                buttonGenerarTXTLote.Enabled = true;
-            }
-            else
-            {
-                buttonGenerarTXTLote.Enabled = false;
-            }
-        }
-
-
-
-        // ------------------ interactividad textboxes de datos de comercio con textbox header del archivo de pedido a industrias +  habilitar/desabilitar botones -------------
-
-        private void textBoxCodComercio_TextChanged(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
-            HabilitarBotonPedidoStock();
-        }
-
-        private void textBoxRazSoc_TextChanged(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
-            HabilitarBotonPedidoStock();
-        }
-
-        private void textBoxCUIT_TextChanged(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
-            HabilitarBotonPedidoStock();
-        }
-
-        private void textBoxDireccion_TextChanged(object sender, EventArgs e)
-        {
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDireccion.Text;
-            HabilitarBotonPedidoStock();
-        }
-
-        private void HabilitarBotonPedidoStock()
-        {
-            if (!string.IsNullOrWhiteSpace(textBoxCodComercio.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxRazSoc.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxCUIT.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxDireccion.Text))
-                //&& !string.IsNullOrWhiteSpace(textBoxPedidoIndustria.Text))
-            {
-                buttonPedidoStockIndustrias.Enabled = true;
-            }
-            else
-            {
-                buttonPedidoStockIndustrias.Enabled = false;
-            }
-
-        }
-
-
-
-        // ------------------ Habilitar botón de agregar item solo si los dos textboxes tienen contenido -------------
-
-        private void textBoxCant_TextChanged(object sender, EventArgs e)
-        {
-            HabilitarAgregarItem();
-        }
-
-        private void HabilitarAgregarItem()
-        {
-
-            if (!string.IsNullOrWhiteSpace(textBoxCant.Text) 
-                && !string.IsNullOrWhiteSpace(comboBoxCodProducto.Text))
-            {
-                buttonAgregarItem.Enabled = true;
-            }
-            else
-            {
-                buttonAgregarItem.Enabled = false;
-            }
-        }
-
-
-
-        // ------------------ Habilitar botón de confirmar pedido solo si los dos textboxes tienen contenido y el listview no esta vacío -------------
-
-
-        private void textBoxCdCli_TextChanged(object sender, EventArgs e)
-        {
-            HabilitarConfirmarPedido();
-        }
-
-        private void textBoxDirEnt_TextChanged(object sender, EventArgs e)
-        {
-            HabilitarConfirmarPedido();
-        }
-
-        private void HabilitarConfirmarPedido()
-        {
-            if (!string.IsNullOrWhiteSpace(textBoxDirEnt.Text) 
-                && !string.IsNullOrWhiteSpace(textBoxCdCli.Text))
-            {
-                buttonGenerarPedido.Enabled = true;
-            }
-            else
-            {
-                buttonGenerarPedido.Enabled = false;
-            }
-        }
 
  
     }

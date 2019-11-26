@@ -24,15 +24,15 @@ namespace AppComercio
             DialogResult result = openFileDialog1.ShowDialog();
 
             if (result == DialogResult.OK)
-                {
+            {
 
                 string nombreArchivo = Path.GetFileName(openFileDialog1.FileName);
 
                 // valida el nombre del archivo
-                if (nombreArchivo.StartsWith("Entrega_") 
-                    && nombreArchivo.Contains("_C") 
+                if (nombreArchivo.StartsWith("Entrega_")
+                    && nombreArchivo.Contains("_C")
                     && nombreArchivo.Contains("_L")
-                    &&  (nombreArchivo.IndexOf("C") < nombreArchivo.IndexOf("L"))
+                    && (nombreArchivo.IndexOf("C") < nombreArchivo.IndexOf("L"))
                     && nombreArchivo.Contains(".txt"))
                 {
                     // ahora valida el contenido
@@ -41,7 +41,7 @@ namespace AppComercio
                     foreach (var linea in lineas)
                     {
                         string[] ASD = linea.Split(';');
-                            foreach (var line in ASD)
+                        foreach (var line in ASD)
                         {
                             if (line.StartsWith("R") && int.TryParse(line.Remove(0, 1), out int rowParseado))
                             {
@@ -81,37 +81,37 @@ namespace AppComercio
                         dgwEntregados.Refresh();
                         dgwNoEntregados.Refresh();
 
-                        string[] lines = File.ReadAllLines(openFileDialog1.FileName);
-                        string[] values;
+                        string[] linesR = File.ReadAllLines(openFileDialog1.FileName);
+                        string[] valueR;
 
-                        for (int i = 0; i < lines.Length; i++)
+                        for (int i = 0; i < linesR.Length; i++)
                         {
-                            values = lines[i].ToString().Split(';');
-                            string[] row = new string[values.Length];
+                            valueR = linesR[i].ToString().Split(';');
+                            string[] rowR = new string[valueR.Length];
 
-                            if (values.Contains("true"))
+                            if (valueR.Contains("true"))
                             {
-                                for (int j = 0; j < values.Length; j++)
+                                for (int j = 0; j < valueR.Length; j++)
                                 {
-                                    row[j] = values[j].Trim();
+                                    rowR[j] = valueR[j].Trim();
                                 }
-                                tablaEntregados.Rows.Add(row);
+                                tablaEntregados.Rows.Add(rowR);
 
                             }
                             else
                             {
-                                for (int j = 0; j < values.Length; j++)
+                                for (int j = 0; j < valueR.Length; j++)
                                 {
-                                    row[j] = values[j].Trim();
+                                    rowR[j] = valueR[j].Trim();
                                 }
-                                tablaNoEntregados.Rows.Add(row);
+                                tablaNoEntregados.Rows.Add(rowR);
                             }
 
-                            
+
                         }
 
 
-                        
+
 
                     }
 
@@ -128,32 +128,8 @@ namespace AppComercio
             }
         }
 
-        //------------------------------- Habilitar botón de cargar pedidos no entregados si se ha cargado un reporte ------------------
 
-        private void textBoxCodClienteReporte_TextChanged(object sender, EventArgs e)
-        {
-            habilitarCargarNoEntregados();
-        }
-
-        private void textBoxCodLoteReporte_TextChanged(object sender, EventArgs e)
-        {
-            habilitarCargarNoEntregados();
-        }
-
-        private void habilitarCargarNoEntregados()
-        {
-
-            if (!string.IsNullOrWhiteSpace(textBoxCodClienteReporte.Text)
-               && !string.IsNullOrWhiteSpace(textBoxCodLoteReporte.Text))
-            {
-                btnCargarStockNoEntregados.Enabled = true;
-            }
-            else
-            {
-                btnCargarStockNoEntregados.Enabled = false;
-            }
-        }
-    }
 
 
     }
+}
