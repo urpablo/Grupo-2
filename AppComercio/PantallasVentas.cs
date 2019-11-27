@@ -467,6 +467,9 @@ namespace AppComercio
                 textBoxLote.AppendText(line + Environment.NewLine);
             }
 
+            File.Delete("Pedidos.txt");
+            File.Delete("PedidosAEnviar.txt");
+
         }
 
 

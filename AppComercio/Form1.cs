@@ -188,6 +188,14 @@ namespace AppComercio
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
         {
+            if (File.Exists("Pedidos.txt"))
+            {
+                buttonGenerarTXTLote.Enabled = true;
+            }
+            else
+            {
+                buttonGenerarTXTLote.Enabled = false;
+            }
             botonBotonera = 3;
             actualizarPantalla();
         }
