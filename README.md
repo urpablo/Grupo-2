@@ -51,7 +51,7 @@ El archivo de entrada de logística está validado por contenido, por extensión
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
 - Cualquier otro archivo al que se le haya asignado un nombre correcto siendo cualquier otra cosa su contenido, no es aceptado
 
-Para probar esta funcionalidad, cargue un pedido o dos. De esta forma tendrá al menos un código de referencia R0 y R1. Luego cree un archivo de texto con el formato descripto marcando R0 o R1 o ambos como no entregados (false). Los productos despachados para estos pedidos deberían volver al stock real y aumentarlo.
+Para probar esta funcionalidad, cargue un pedido o dos. De esta forma tendrá al menos un código de referencia R1 y R2. Luego cree un archivo de texto con el formato descripto marcando R1 o R2 (o ambos) como no entregados (false). Los productos despachados para estos pedidos deberían volver al stock real y aumentarlo.
 
 
 ### Varios
