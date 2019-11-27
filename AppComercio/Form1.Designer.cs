@@ -882,6 +882,7 @@
             this.btnCargarStockNoEntregados.TabIndex = 23;
             this.btnCargarStockNoEntregados.Text = "Cargar Stock de no entregados";
             this.btnCargarStockNoEntregados.UseVisualStyleBackColor = true;
+            this.btnCargarStockNoEntregados.Click += new System.EventHandler(this.btnCargarStockNoEntregados_Click);
             // 
             // groupBoxTablaAcuseRecibo
             // 

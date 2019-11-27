@@ -129,7 +129,10 @@ namespace AppComercio
         }
 
 
+        private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
+        {
 
+        }
 
     }
 }

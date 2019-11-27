@@ -178,7 +178,6 @@ namespace AppComercio
             //long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
 
             Random r = new Random();
-
             int q = r.Next(0, 999);
 
             using (StreamWriter sw14 = new StreamWriter("Pedido_A" + q + ".txt"))

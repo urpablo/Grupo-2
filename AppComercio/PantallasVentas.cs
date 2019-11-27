@@ -461,13 +461,13 @@ namespace AppComercio
 
 
             // reemplazo numero random por un contador que suma por cada nuevo lote, codLote
-            //Random r = new Random();
-            //int q = r.Next(0, 999);
+            Random r= new Random();
+            int codClienterng = r.Next(0, 999);
 
             
             // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
 
-            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_" + textBoxCodComercio.Text + "_L" + codLote + ".txt");
+            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienterng + "_L" + codLote + ".txt");
 
             // aumenta el contador de lote una vez que se generó
             // notificación de que se completó exitosamente la generación del lote y del archivo de salida
