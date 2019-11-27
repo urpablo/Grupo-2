@@ -26,7 +26,7 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 ### Pruebas
 
 
-Validaciones implementadas en cuanto a la interfaz de usuario:
+Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesarios:
 
 #### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt"
