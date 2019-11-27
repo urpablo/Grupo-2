@@ -34,11 +34,11 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta seis dígitos, sin espacios ni ningún otro tipo de caracter
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar
 
-### Pantalla "Enviar lote diario a logística"
+#### Pantalla "Enviar lote diario a logística"
 - No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos un pedido anteriormente
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado
 
-### Pantalla "Pedidos Stock"
+#### Pantalla "Pedidos Stock"
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado
 
 #### Pantalla "Reportes de entrega":
