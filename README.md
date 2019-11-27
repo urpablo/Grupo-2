@@ -25,16 +25,17 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 
 ### Pruebas
 
+
 Validaciones implementadas en cuanto a la interfaz de usuario:
 
-Pantalla "Control de stock":
+#### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt"
 
-Pantalla "Cargar ventas a lote diario":
+#### Pantalla "Cargar ventas a lote diario":
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos.
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
 
-Pantalla "Reportes de entrega":
+#### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
 El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba:
