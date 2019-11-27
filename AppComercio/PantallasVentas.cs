@@ -12,14 +12,11 @@ namespace AppComercio
     public partial class Form1 : Form
     {
 
-
-
-
-        string ultimoPedidoGuardado;
-        int codPedidoInd;
-        int codRefPedido;
-        int codLote;
+        // contadores de código de referencia y código de lote
+        int codRef = 1;
+        int codLote = 1;
         bool actualizo;
+
 
         // -------------------- boton agregar item de cargar ventas ------------------------------------
         public void buttonAgregarItem_Click(object sender, EventArgs e)
@@ -344,10 +341,12 @@ namespace AppComercio
                 }
             }
 
+            //
             using (StreamWriter sw6 = new StreamWriter("Listadereferencias.txt"))
             {
                 foreach (KeyValuePair<string, string> entry in ArmaLote)
                 {
+                   
                     sw6.Write(entry.Key);
                     sw6.Write(";");
                     sw6.Write(entry.Value);
@@ -379,6 +378,7 @@ namespace AppComercio
 
                       }).ToList();
 
+            // escribe header con los datos del remitente 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
             {
                 sw8.Write(textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text);
@@ -388,9 +388,11 @@ namespace AppComercio
 
             }
 
-            int i = 0;
-            int j = 0;
-            int z = 0;
+            // reemplazo contadores para numero de referencia que sumaban de a 000 -> 111 -> 222 -> etc por un contador que suma +1 por pedido ingresado
+            
+            //int i = 0;
+            //int j = 0;
+            //int z = 0;
             foreach (var registroRef in lineasreferencia)
             {
                 string cdRef = registroRef.e1;
@@ -401,16 +403,18 @@ namespace AppComercio
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
 
-                    sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ ";" + cdRef2);
+                    //sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ ";" + cdRef2);
+                    sw9.Write("R" + codRef.ToString() + ";" + cdRef2);
                     sw9.Write("\n");
-                    sw9.Write("---");
-                    sw9.Write("\n");
-
+                    //sw9.Write("---");
+                    //sw9.Write("\n");
+                    //sin este separador y esta nueva línea, la salida es igual a la de los lineamientos
                 }
 
-                i = i+1;
-                j = j+1;
-                z = z+1;
+                codRef++;
+                //i = i+1;
+                //j = j+1;
+                //z = z+1;
 
                 foreach (var registroPedEnv in lineasPedidosaEnviar)
                 {
@@ -424,7 +428,7 @@ namespace AppComercio
                         using (StreamWriter sw10 = File.AppendText("PedidosFinal.txt"))
                         {
 
-                            sw10.Write(CdPedEnv + ";" + CdPedEnv2);
+                            sw10.Write("P" + CdPedEnv + ";" + CdPedEnv2);
                             sw10.Write("\n");
 
                         }
@@ -435,6 +439,7 @@ namespace AppComercio
 
                 }
 
+                // último ---
                 using (StreamWriter sw11 = File.AppendText("PedidosFinal.txt"))
                 {
 
@@ -446,27 +451,32 @@ namespace AppComercio
 
             }
 
-            Random r = new Random();
 
-            int q = r.Next(0, 999);
-           
-
-
-
-
-
-
-
-            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + q + "_" + "L" + q + ".txt");
-            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            buttonGenerarTXTLote.Enabled = false;
-
-            foreach (var line in File.ReadLines(@"c:\Grupo2\" + "Lote_C" + q + "_" + "L" + q + ".txt"))
+            // vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
+            textBoxLote.Text = "";
+            foreach (var line in File.ReadLines("PedidosFinal.txt").Skip(1))
             {
-
                 textBoxLote.AppendText(line + Environment.NewLine);
             }
 
+
+            // reemplazo numero random por un contador que suma por cada nuevo lote, codLote
+            //Random r = new Random();
+            //int q = r.Next(0, 999);
+
+            
+            // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
+
+            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_" + textBoxCodComercio.Text + "_L" + codLote + ".txt");
+
+            // aumenta el contador de lote una vez que se generó
+            // notificación de que se completó exitosamente la generación del lote y del archivo de salida
+            codLote++;
+            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            buttonGenerarTXTLote.Enabled = false;
+
+
+            // limpiar archivos de este lote para poder comenzar un nuevo ciclo
             File.Delete("Pedidos.txt");
             File.Delete("PedidosAEnviar.txt");
 

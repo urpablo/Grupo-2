@@ -12,6 +12,7 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         DataTable tablaStock = new DataTable();
+        
 
         // ----------------------------------- cargar datos del comercio -------------------------
 
@@ -72,7 +73,7 @@ namespace AppComercio
             //levanta en memoria el stock actual
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           b1 = Int32.Parse(record[0]),
@@ -104,7 +105,7 @@ namespace AppComercio
                         foreach (KeyValuePair<int, string> entry in InventarioTemporal)
                         {
                             sw12.Write(entry.Key);
-                            sw12.Write(",");
+                            sw12.Write(";");
                             sw12.Write(entry.Value);
                             sw12.Write("\n");
                         }
@@ -114,7 +115,7 @@ namespace AppComercio
 
             var lineasrepone = File
                       .ReadAllLines("AReponer.txt")
-                      .Select(record => record.Split(','))
+                      .Select(record => record.Split(';'))
                       .Select(record => new
                       {
                           c1 = record[0],
@@ -141,7 +142,7 @@ namespace AppComercio
 
                     if (IdStock.ToString() == cdRepo)
                     {
-                        parametrosinv = actual + "," + pr + "," + comp + "," + cantRepo;
+                        parametrosinv = actual + ";" + pr + ";" + comp + ";" + cantRepo;
 
                         InventarioTemporal2.Add(IdStock, parametrosinv);
 
@@ -153,7 +154,7 @@ namespace AppComercio
 
                 if (!InventarioTemporal2.ContainsKey(IdStock))
                 {
-                    parametrosinv = actual + "," + pr + "," + comp + "," + pp;
+                    parametrosinv = actual + ";" + pr + ";" + comp + ";" + pp;
                     InventarioTemporal2.Add(IdStock, parametrosinv);
                 }
             }
@@ -162,8 +163,9 @@ namespace AppComercio
             {
                 foreach (KeyValuePair<int, string> entry in InventarioTemporal2)
                 {
+                    
                     sw13.Write(entry.Key);
-                    sw13.Write(",");
+                    sw13.Write(";");
                     sw13.Write(entry.Value);
                     sw13.Write("\n");
                 }
@@ -172,8 +174,8 @@ namespace AppComercio
             File.Delete("Stock.txt");
             File.Move("stockconpp.txt", "Stock.txt");
 
-            DateTime date = DateTime.Now;
-            long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
+            //DateTime date = DateTime.Now;
+            //long n = long.Parse(date.ToString("yyyyMMddHHmmss"));
 
             Random r = new Random();
 
@@ -181,7 +183,7 @@ namespace AppComercio
 
             using (StreamWriter sw14 = new StreamWriter("Pedido_A" + q + ".txt"))
             {
-                sw14.Write(textBoxCodComercio.Text + "," + textBoxRazSoc.Text + "," + textBoxCUIT.Text + "," + textBoxDirEntComercio.Text);
+                sw14.Write(textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text);
                 sw14.Write("\n");
                 sw14.Write("---");
                 sw14.Write("\n");
@@ -193,22 +195,27 @@ namespace AppComercio
                 string[] readText = File.ReadAllLines("AReponer.txt");
                 foreach (string s in readText)
                 {
-                    sw15.Write(s);
+                    sw15.Write("P" + s);
                     sw15.Write("\n");
                 }
 
 
             }
 
+            //vuelco el pedido al textbox de vista previa
+            textBoxPedidoIndustria.Text = "";
+            foreach (var line in File.ReadLines("Pedido_A" + q + ".txt").Skip(1))
+            {
+                textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
+            }
+
+
+            // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
             File.Move("Pedido_A" + q + ".txt", @"c:\Grupo2\" + "Pedido_A" + q + ".txt");
             MessageBox.Show("¡Pedido a industrias diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonPedidoStockIndustrias.Enabled = false;
+            
 
-            foreach (var line in File.ReadLines(@"c:\Grupo2\" + "Pedido_A" + q + ".txt"))
-            {
-
-                textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
-            }
         }
 
     }

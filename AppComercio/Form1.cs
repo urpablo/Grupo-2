@@ -17,7 +17,7 @@ namespace AppComercio
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            // ------------ chequeos iniciales
+            // borrar todo rastro de archivos de ejecuciones pasadas
             if (File.Exists("PedidoTemporal.txt"))
             {
                 File.Delete("PedidoTemporal.txt");
@@ -43,11 +43,20 @@ namespace AppComercio
                 File.Delete("lineaindividual.txt");
             }
 
-            Directory.CreateDirectory(@"C:\Grupo2");
+            // borrar la salida de la ejecución anterior y recrear el directorio de salida
+            if (Directory.Exists(@"C:\Grupo2"))
+            {
+                Directory.Delete(@"C:\Grupo2", true);
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
+            else
+            {
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
+            
 
 
-
-
+            //seteo de columnas para las tablas de datos
             tablaStock.Columns.Add("ID",typeof(int));
             tablaStock.Columns.Add("Real", typeof(int));
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
@@ -59,6 +68,9 @@ namespace AppComercio
 
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
+
+
+            //últimos ajustes iniciales
 
             cargarDatosComercio();
             refrescarstock();
