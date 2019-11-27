@@ -75,8 +75,8 @@ namespace AppComercio
 
             buttonAgregarItem.Enabled = false;
             buttonGenerarPedido.Enabled = false;
-            buttonGenerarTXTLote.Enabled = false;
-            buttonPedidoStockIndustrias.Enabled = false;
+            //buttonGenerarTXTLote.Enabled = false;
+            //buttonPedidoStockIndustrias.Enabled = false;
             btnCargarStockNoEntregados.Enabled = false;
 
 
@@ -375,7 +375,5 @@ namespace AppComercio
                     break;
             }
         }
-
-
     }
 }

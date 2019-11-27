@@ -24,9 +24,10 @@ namespace AppComercio
         // -------------------- boton agregar item de cargar ventas ------------------------------------
         public void buttonAgregarItem_Click(object sender, EventArgs e)
         {
-            actualizo = false;
+
             
 
+            actualizo = false;
             if (int.TryParse(textBoxCant.Text, out int sumar1) == false || sumar1 < 0)
             {
                 DialogResult resultadoMSGbox = MessageBox.Show("No se puede ingresar una cantidad negativa " +
@@ -62,8 +63,8 @@ namespace AppComercio
 
             }
 
+            HabilitarConfirmarPedido();
 
-            
         }
         
 

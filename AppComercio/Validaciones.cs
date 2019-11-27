@@ -14,31 +14,31 @@ namespace AppComercio
 
 
         // ------------------  habilitar/desabilitar boton generar lote en envios de ventas si la vista previa está vacía------------
-        private void HabilitarBotonGenerarLote()
-        {
-            if (textBoxLote.Text == "")
-            {
-                buttonGenerarTXTLote.Enabled = true;
-            }
-            else
-            {
-                buttonGenerarTXTLote.Enabled = false;
-            }
-        }
+        //private void HabilitarBotonGenerarLote()
+        //{
+        //    if (textBoxLote.Text == "")
+        //    {
+        //        buttonGenerarTXTLote.Enabled = true;
+        //    }
+        //    else
+        //    {
+        //        buttonGenerarTXTLote.Enabled = false;
+        //    }
+        //}
 
         // ------------------ habilitar/desabilitar boton pedido stock en pedidos a industrias si la vista previa está vacía -------------
-        private void HabilitarBotonPedidoStock()
-        {
-            if (textBoxPedidoIndustria.Text == "")
-            {
-                buttonPedidoStockIndustrias.Enabled = false;
-            }
-            else
-            {
-                buttonPedidoStockIndustrias.Enabled = true;
-            }
+        //private void HabilitarBotonPedidoStock()
+        //{
+        //    if (textBoxPedidoIndustria.Text == "")
+        //    {
+        //        buttonPedidoStockIndustrias.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        buttonPedidoStockIndustrias.Enabled = true;
+        //    }
 
-        }
+        //}
 
         // ------------------ Habilitar botón de agregar item en ventas solo si los dos textboxes tienen contenido -------------
 
