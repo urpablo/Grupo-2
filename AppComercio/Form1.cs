@@ -560,9 +560,5 @@ namespace AppComercio
             }
         }
 
-        private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
