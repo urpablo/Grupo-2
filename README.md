@@ -5,7 +5,7 @@
 
 Esta app implementa la sección de comercio de los lineamientos del trabajo práctico.
 
-![Descripción](https://i.imgur.com/9gVjHoZ.png)
+![Descripción](https://i.imgur.com/v1CuPCd.png)
 
 - Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
 - En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
