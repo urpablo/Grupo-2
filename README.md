@@ -28,7 +28,8 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesarios:
 
 #### Pantalla "Control de stock":
-- Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt"
+- Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt" y se va modificando a medida que se realizan transacciones en la aplicación, como confirmar un pedido o emitir un lote.
+- Tabla entregas pendientes de recepción, permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón "Cargar pedido pendiente".
 
 #### Pantalla "Cargar ventas a lote diario":
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta seis dígitos, sin espacios ni ningún otro tipo de caracter
