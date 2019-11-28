@@ -23,7 +23,7 @@ Viene con un stock inicial predefinido (Stock.txt), los datos del comercio a car
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Es creada por el programa si no existe.
 
-### Pruebas
+### Pruebas y comportamiento esperado
 
 Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesarios:
 
