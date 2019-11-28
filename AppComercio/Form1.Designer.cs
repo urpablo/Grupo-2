@@ -77,11 +77,11 @@
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.panelStock = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.buttonPedidosPendientes = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgwEntregasFabrica = new System.Windows.Forms.DataGridView();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
+            this.dgwCantARep = new System.Windows.Forms.DataGridView();
             this.dgwStock = new System.Windows.Forms.DataGridView();
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
@@ -151,8 +151,9 @@
             this.panelBienvenido.SuspendLayout();
             this.panelStock.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwEntregasFabrica)).BeginInit();
             this.groupBoxStockTabla.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCantARep)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).BeginInit();
             this.groupBoxStockComercio.SuspendLayout();
             this.panelAcuseRecibo.SuspendLayout();
@@ -706,7 +707,6 @@
             // panelStock
             // 
             this.panelStock.Controls.Add(this.label14);
-            this.panelStock.Controls.Add(this.label13);
             this.panelStock.Controls.Add(this.groupBox3);
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
             this.panelStock.Location = new System.Drawing.Point(847, 38);
@@ -718,27 +718,17 @@
             // 
             this.label14.AutoEllipsis = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(493, 328);
+            this.label14.Location = new System.Drawing.Point(438, 325);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(131, 200);
+            this.label14.Size = new System.Drawing.Size(165, 191);
             this.label14.TabIndex = 3;
             this.label14.Text = "Aviso sobre stock bajo";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label13
-            // 
-            this.label13.AutoEllipsis = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(397, 327);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(90, 200);
-            this.label13.TabIndex = 2;
-            this.label13.Text = "Cantidades a reponer";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.buttonPedidosPendientes);
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.dgwEntregasFabrica);
             this.groupBox3.Location = new System.Drawing.Point(3, 315);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(379, 232);
@@ -756,20 +746,22 @@
             this.buttonPedidosPendientes.UseVisualStyleBackColor = true;
             this.buttonPedidosPendientes.Click += new System.EventHandler(this.buttonPedidosPendientes_Click);
             // 
-            // dataGridView1
+            // dgwEntregasFabrica
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 19);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(357, 172);
-            this.dataGridView1.TabIndex = 0;
+            this.dgwEntregasFabrica.AllowUserToAddRows = false;
+            this.dgwEntregasFabrica.AllowUserToDeleteRows = false;
+            this.dgwEntregasFabrica.AllowUserToResizeColumns = false;
+            this.dgwEntregasFabrica.AllowUserToResizeRows = false;
+            this.dgwEntregasFabrica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwEntregasFabrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwEntregasFabrica.Location = new System.Drawing.Point(14, 19);
+            this.dgwEntregasFabrica.Name = "dgwEntregasFabrica";
+            this.dgwEntregasFabrica.Size = new System.Drawing.Size(357, 172);
+            this.dgwEntregasFabrica.TabIndex = 0;
             // 
             // groupBoxStockTabla
             // 
+            this.groupBoxStockTabla.Controls.Add(this.dgwCantARep);
             this.groupBoxStockTabla.Controls.Add(this.dgwStock);
             this.groupBoxStockTabla.Location = new System.Drawing.Point(3, 3);
             this.groupBoxStockTabla.Name = "groupBoxStockTabla";
@@ -778,16 +770,34 @@
             this.groupBoxStockTabla.TabStop = false;
             this.groupBoxStockTabla.Text = "Tabla de Stock";
             // 
+            // dgwCantARep
+            // 
+            this.dgwCantARep.AllowUserToAddRows = false;
+            this.dgwCantARep.AllowUserToDeleteRows = false;
+            this.dgwCantARep.AllowUserToOrderColumns = true;
+            this.dgwCantARep.AllowUserToResizeColumns = false;
+            this.dgwCantARep.AllowUserToResizeRows = false;
+            this.dgwCantARep.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwCantARep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwCantARep.Location = new System.Drawing.Point(438, 19);
+            this.dgwCantARep.Name = "dgwCantARep";
+            this.dgwCantARep.Size = new System.Drawing.Size(192, 276);
+            this.dgwCantARep.TabIndex = 1;
+            this.dgwCantARep.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgwCantARep_CellValidating);
+            this.dgwCantARep.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgwCantARep_EditingControlShowing);
+            // 
             // dgwStock
             // 
             this.dgwStock.AllowUserToAddRows = false;
             this.dgwStock.AllowUserToDeleteRows = false;
+            this.dgwStock.AllowUserToResizeColumns = false;
             this.dgwStock.AllowUserToResizeRows = false;
+            this.dgwStock.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwStock.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwStock.Location = new System.Drawing.Point(15, 19);
             this.dgwStock.Name = "dgwStock";
             this.dgwStock.ReadOnly = true;
-            this.dgwStock.Size = new System.Drawing.Size(623, 276);
+            this.dgwStock.Size = new System.Drawing.Size(417, 276);
             this.dgwStock.TabIndex = 0;
             // 
             // buttonPedidoStockIndustrias
@@ -933,6 +943,7 @@
             this.dgwNoEntregados.AllowUserToAddRows = false;
             this.dgwNoEntregados.AllowUserToDeleteRows = false;
             this.dgwNoEntregados.AllowUserToResizeRows = false;
+            this.dgwNoEntregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwNoEntregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwNoEntregados.Location = new System.Drawing.Point(6, 19);
             this.dgwNoEntregados.Name = "dgwNoEntregados";
@@ -966,6 +977,7 @@
             this.dgwEntregados.AllowUserToAddRows = false;
             this.dgwEntregados.AllowUserToDeleteRows = false;
             this.dgwEntregados.AllowUserToResizeRows = false;
+            this.dgwEntregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwEntregados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwEntregados.Location = new System.Drawing.Point(6, 19);
             this.dgwEntregados.Name = "dgwEntregados";
@@ -1315,8 +1327,9 @@
             this.panelBienvenido.PerformLayout();
             this.panelStock.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwEntregasFabrica)).EndInit();
             this.groupBoxStockTabla.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCantARep)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).EndInit();
             this.groupBoxStockComercio.ResumeLayout(false);
             this.groupBoxStockComercio.PerformLayout();
@@ -1438,10 +1451,10 @@
         private System.Windows.Forms.PictureBox pbMinimizar;
         private System.Windows.Forms.PictureBox pbSalir;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgwEntregasFabrica;
         private System.Windows.Forms.Button buttonPedidosPendientes;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView dgwCantARep;
     }
 }
 

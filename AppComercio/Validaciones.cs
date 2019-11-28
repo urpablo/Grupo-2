@@ -31,22 +31,6 @@ namespace AppComercio
         // -------------------- revisar el dgw de stock y si el valor real esta por debajo del punto de reposición, marcarlo -----------------
         private void habilitarBotonPedidosIndustrias()
         {
-            foreach (DataGridViewRow dr in dgwStock.Rows)
-            {
-                if (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) < int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString()))
-                {
-                    System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
-                    boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = boldStyle;
-                    CARGAMESTOCK = true;
-                }
-                else
-                {
-                    System.Windows.Forms.DataGridViewCellStyle norStyle = new System.Windows.Forms.DataGridViewCellStyle();
-                    norStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
-                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = norStyle;
-                }
-
                 if (CARGAMESTOCK == true)
                 {
                     buttonPedidoStockIndustrias.Enabled = true;
@@ -55,7 +39,7 @@ namespace AppComercio
                 {
                     buttonPedidoStockIndustrias.Enabled = false;
                 }
-            }
+           
         }
 
         // ------------------ Habilitar botón de agregar item en ventas solo si los dos textboxes tienen contenido -------------

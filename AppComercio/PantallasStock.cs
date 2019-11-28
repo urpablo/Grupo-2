@@ -13,6 +13,7 @@ namespace AppComercio
     {
         DataTable tablaStock = new DataTable();
         DataTable tablaEntregas = new DataTable();
+        DataTable tablaCantARep = new DataTable();
 
 
 
@@ -31,6 +32,7 @@ namespace AppComercio
             textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
             textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
         }
+
 
 
         //---------------------  leer stock.txt al cargar el programa y preparar datagridviews y combobox -----------------------------------
@@ -60,13 +62,30 @@ namespace AppComercio
             comboBoxCodProducto.DataSource = tablaStock;
             comboBoxCodProducto.DisplayMember = "ID";
 
+            foreach (DataGridViewRow dr in dgwStock.Rows)
+            {
+                if (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) < int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString()))
+                {
+                    System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
+                    boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = boldStyle;
+                    CARGAMESTOCK = true;
+                }
+                else
+                {
+                    System.Windows.Forms.DataGridViewCellStyle norStyle = new System.Windows.Forms.DataGridViewCellStyle();
+                    norStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
+                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = norStyle;
+                }
+            }
+
         }
         //--------------------- leer AReponer.txt al cargar el programa y preparar datagridviews -----------------------------------
         private void refrescarEntregas()
         {
 
             tablaEntregas.Rows.Clear();
-            dataGridView1.Refresh();
+            dgwEntregasFabrica.Refresh();
 
             string[] lines = File.ReadAllLines(@"AReponer.txt");
             string[] values;
@@ -81,15 +100,45 @@ namespace AppComercio
                     row[j] = values[j].Trim();
                 }
                 tablaEntregas.Rows.Add(row);
-
             }
 
-            dataGridView1.DataSource = tablaEntregas;
+            foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)
+            {
+              dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
+            }
+
+            dgwEntregasFabrica.DataSource = tablaEntregas;
             habilitarBotonPedidosPendientes();
 
         }
 
+      
 
+        // ---------- leer las cantidades a reponer y cargarlas en el dgw correspondiente ----------
+        private void cargarCantidadesAReponer()
+        {
+            tablaCantARep.Rows.Clear();
+            dgwCantARep.Refresh();
+
+            string[] lines = File.ReadAllLines(@"CantidadesAReponer.txt");
+            string[] values;
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                values = lines[i].ToString().Split(';');
+                string[] row = new string[values.Length];
+
+                for (int j = 0; j < values.Length; j++)
+                {
+                    row[j] = values[j].Trim();
+                }
+                tablaCantARep.Rows.Add(row);
+
+            }
+
+            dgwCantARep.DataSource = tablaCantARep;
+
+        }
       
 
 // -------------------- hacer pedido de stock a industrias -----------------
@@ -122,56 +171,20 @@ private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
                 string parametrosinv;
                 int cantarepo = 0;
 
-                
 
                 if (((actual + pp) - comp) < pr)
                 {
-                    if (IdStock == 1)
-                    {
-                        cantarepo = 10000;
 
-                    }
-                    else if (IdStock == 2)
+                    foreach (DataGridViewRow dr in dgwCantARep.Rows)
                     {
-                        cantarepo = 10500;
+                        if (IdStock == int.Parse(dr.Cells["ID"].Value.ToString()))
+                        {
+                            cantarepo = int.Parse(dr.Cells["Cantidad reposición"].Value.ToString());
+                        }
                     }
-                    else if (IdStock == 3)
-                    {
-                        cantarepo = 11000;
-                    }
-                    else if (IdStock == 4)
-                    {
-                        cantarepo = 11500;
-                    }
-                    else if (IdStock == 5)
-                    {
-                        cantarepo = 12000;
-                    }
-                    else if (IdStock == 6)
-                    {
-                        cantarepo = 12500;
-                    }
-                    else if (IdStock == 7)
-                    {
-                        cantarepo = 13000;
-                    }
-                    else if (IdStock == 8)
-                    {
-                        cantarepo = 13500;
-                    }
-                    else if (IdStock == 9)
-                    {
-                        cantarepo = 14000;
-                    }
-                    else if (IdStock == 10)
-                    {
-                        cantarepo = 14500;
-                    }
-
 
                     InventarioTemporal.Add(IdStock, cantarepo.ToString());
 
-                    
                 }
 
                 
@@ -310,12 +323,17 @@ private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
                 Dictionary<int, string> InventarioTemporal3 = new Dictionary<int, string>();
                 Dictionary<int, int> NuevosPedidosAreponer = new Dictionary<int, int>();
 
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dgwEntregasFabrica.Rows.Count; i++)
                 {
-                    bool isCellChecked = (bool)dataGridView1.Rows[i].Cells[2].Value;
+                    if(dgwEntregasFabrica.Rows[i].Cells[2].Value == null)
+                    {
+                        dgwEntregasFabrica.Rows[i].Cells[2].Value = false;
+                    }   
+
+                    bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
                     if (isCellChecked == true)
                     {
-                        PedidosAreponer.Add(Int32.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+                        PedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
                     }
 
                 }
@@ -386,16 +404,16 @@ private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
 
                 refrescarstock();
 
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                for (int i = 0; i < dgwEntregasFabrica.Rows.Count; i++)
                 {
-                    bool isCellChecked = (bool)dataGridView1.Rows[i].Cells[2].Value;
+                    bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
                     if (isCellChecked == true)
                     {
 
                     }
                     else
                     {
-                        NuevosPedidosAreponer.Add(Int32.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+                        NuevosPedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
                     }
 
                 }
@@ -421,7 +439,6 @@ private void buttonPedidoStockIndustrias_Click(object sender, EventArgs e)
                     buttonPedidosPendientes.Enabled = false;
                 }
 
-            habilitarBotonPedidosIndustrias();
             CARGAMESTOCK = false;
 
    

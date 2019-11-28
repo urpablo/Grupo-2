@@ -11,8 +11,8 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        
-        
+
+
         // ------------------ carga del formulario ----------------------------------------------------------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -45,7 +45,7 @@ namespace AppComercio
 
             if (File.Exists("AReponer.txt"))
             {
-                File.Delete("AReponer.txt");          
+                File.Delete("AReponer.txt");
             }
 
             if (File.Exists("PedidosPendientes.txt"))
@@ -53,28 +53,32 @@ namespace AppComercio
                 File.Delete("PedidosPendientes.txt");
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt"));
-            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt"));
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
+            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
 
-                // borrar la salida de la ejecución anterior y recrear el directorio de salida
-                if (Directory.Exists(@"C:\Grupo2"))
-                {
-                    Directory.Delete(@"C:\Grupo2", true);
-                    Directory.CreateDirectory(@"C:\Grupo2");
-                }
-                else
-                {
-                    Directory.CreateDirectory(@"C:\Grupo2");
-                }
-            
+            // borrar la salida de la ejecución anterior y recrear el directorio de salida
+            if (Directory.Exists(@"C:\Grupo2"))
+            {
+                Directory.Delete(@"C:\Grupo2", true);
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
+            else
+            {
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
+
 
 
             //seteo de columnas para las tablas de datos
-            tablaStock.Columns.Add("ID",typeof(int));
+            tablaStock.Columns.Add("ID", typeof(int));
             tablaStock.Columns.Add("Real", typeof(int));
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Pendientes", typeof(int));
+
+
+            tablaCantARep.Columns.Add("ID", typeof(int));
+            tablaCantARep.Columns.Add("Cantidad reposición", typeof(int));
 
             tablaEntregas.Columns.Add("ID", typeof(int));
             tablaEntregas.Columns.Add("Cantidad a Reponer", typeof(int));
@@ -86,8 +90,6 @@ namespace AppComercio
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
-            dataGridView1.AllowUserToAddRows = false;
-
 
 
             //últimos ajustes iniciales
@@ -95,11 +97,11 @@ namespace AppComercio
             cargarDatosComercio();
             refrescarstock();
             refrescarEntregas();
-            habilitarBotonPedidosPendientes();
+            cargarCantidadesAReponer();
 
             listLoteClientes.Visible = false;
 
-            panelBienvenido.Location = new Point(186,38);
+            panelBienvenido.Location = new Point(186, 38);
             panelStock.Location = new Point(186, 38);
             panelPedidoIndustrias.Location = new Point(186, 38);
             panelEnviosClientesOnline.Location = new Point(186, 38);
@@ -107,6 +109,7 @@ namespace AppComercio
             panelAcuseRecibo.Location = new Point(186, 38);
 
             buttonAgregarItem.Enabled = false;
+            buttonGenerarTXTLote.Enabled = false;
             buttonGenerarPedido.Enabled = false;
             buttonPedidoStockIndustrias.Enabled = false;
             btnCargarStockNoEntregados.Enabled = false;
@@ -125,7 +128,7 @@ namespace AppComercio
             botonBotonera = 0;
             actualizarPantalla();
         }
-       
+
         // ------------------ hacer que una ventana borderless sea movible ------------------
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -197,20 +200,11 @@ namespace AppComercio
         {
             botonBotonera = 2;
             actualizarPantalla();
-            
+
         }
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
         {
-            if (File.Exists("Pedidos.txt"))
-            {
-                buttonGenerarTXTLote.Enabled = true;
-            }
-            else
-            {
-                buttonGenerarTXTLote.Enabled = false;
-            }
-
             botonBotonera = 3;
             actualizarPantalla();
         }
@@ -283,18 +277,6 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
-                    label13.Text = "Cantidades de reposición: \n \n" +
-                                   "ID 1: 10000u \n" +
-                                   "ID 2: 10500u \n" +
-                                   "ID 3: 11000u \n" +
-                                   "ID 4: 11500u \n" +
-                                   "ID 5: 12000u \n" +
-                                   "ID 6: 12500u \n" +
-                                   "ÏD 7: 13000u \n" +
-                                   "ID 8: 13500u \n" +
-                                   "ID 9: 14000u \n" +
-                                   "ID 10: 14500u \n";
-
                     label14.Text = "ATENCION \n \n" +
                                    "Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
                                    "está por debajo del nivel de reposición marcado en negrita, no dude en ir a la pantalla de pedidos " +
@@ -304,6 +286,16 @@ namespace AppComercio
                     refrescarEntregas();
                     habilitarBotonPedidosPendientes();
                     habilitarBotonPedidosIndustrias();
+
+
+                    dgwCantARep.ReadOnly = false;
+                    dgwCantARep.Columns["ID"].ReadOnly = true;
+                    dgwCantARep.Columns["Cantidad reposición"].ReadOnly = false;
+                    ((DataGridViewTextBoxColumn)dgwCantARep.Columns["Cantidad reposición"]).MaxInputLength = 5;
+
+                    dgwEntregasFabrica.ReadOnly = false;
+                    dgwEntregasFabrica.Columns["ID"].ReadOnly = true;
+                    dgwEntregasFabrica.Columns["Cantidad a Reponer"].ReadOnly = true;
 
                     break;
 
@@ -327,6 +319,9 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
+
+                    habilitarBotonPedidosIndustrias();
+
                     break;
 
                 case 3:
@@ -379,14 +374,14 @@ namespace AppComercio
                     break;
 
                 case 5:
-                    btnStock.BackColor =  Color.FromArgb(41, 57, 128);
+                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
                     btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
                     btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
                     btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnAcuseRecibo.BackColor = Color.FromArgb(52, 78, 103);
 
                     LabelTitulo.Visible = true;
-                    LabelTitulo.Text = "Reporte de Entregas";
+                    LabelTitulo.Text = "Reportes de Entrega";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Pasos para leer y procesar el reporte de entregas: \n \n" +
@@ -423,7 +418,43 @@ namespace AppComercio
             }
         }
 
-       
+        private void dgwCantARep_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(Column1_KeyPress);
+            if (dgwCantARep.CurrentCell.ColumnIndex == 1) //Desired Column
+            {
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
+                {
+                    tb.KeyPress += new KeyPressEventHandler(Column1_KeyPress);
+                }
+            }
 
+        }
+
+
+        private void Column1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void dgwCantARep_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dgwCantARep.Columns[e.ColumnIndex].Name == "Cantidad reposición")
+            {
+                if (String.IsNullOrEmpty(e.FormattedValue.ToString()) || e.FormattedValue.ToString() == "0")
+                {
+                    dgwCantARep.Rows[e.RowIndex].ErrorText = "La celda no puede quedar vacía o ser 0";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    dgwCantARep.Rows[e.RowIndex].ErrorText = "";
+                }
+            }
+        }
     }
 }

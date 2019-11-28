@@ -176,6 +176,7 @@ namespace AppComercio
             MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n " +
                 "Cuando termine de agregar ventas, puede generar el lote final diario " +
                 "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            buttonGenerarTXTLote.Enabled = true;
             limpiarlistapedidos();
         }
 
@@ -487,7 +488,8 @@ namespace AppComercio
             File.Delete("PedidosAEnviar.txt");
 
             refrescarEntregas();
-
+            refrescarstock();
+            habilitarBotonPedidosIndustrias();
         }
 
 
