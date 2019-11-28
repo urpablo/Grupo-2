@@ -127,6 +127,9 @@
     <Content Include="PedidosAEnviar.txt" />
     <Content Include="lineaindividual.txt" />
     <Content Include="Pedidos.txt" />
+    <Content Include="AReponer.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

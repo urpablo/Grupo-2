@@ -77,6 +77,7 @@
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.panelStock = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
             this.dgwStock = new System.Windows.Forms.DataGridView();
@@ -129,7 +130,6 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button1 = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
@@ -177,7 +177,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(840, 32);
+            this.TopPanel.Size = new System.Drawing.Size(2167, 32);
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
@@ -187,7 +187,7 @@
             this.pbMinimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
             this.pbMinimizar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("pbMinimizar.Image")));
-            this.pbMinimizar.Location = new System.Drawing.Point(788, 5);
+            this.pbMinimizar.Location = new System.Drawing.Point(2115, 5);
             this.pbMinimizar.Name = "pbMinimizar";
             this.pbMinimizar.Size = new System.Drawing.Size(20, 20);
             this.pbMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -211,7 +211,7 @@
             this.pbSalir.BackColor = System.Drawing.Color.Red;
             this.pbSalir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbSalir.Image = ((System.Drawing.Image)(resources.GetObject("pbSalir.Image")));
-            this.pbSalir.Location = new System.Drawing.Point(813, 5);
+            this.pbSalir.Location = new System.Drawing.Point(2140, 5);
             this.pbSalir.Name = "pbSalir";
             this.pbSalir.Size = new System.Drawing.Size(20, 20);
             this.pbSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -703,7 +703,7 @@
             // 
             this.panelStock.Controls.Add(this.groupBox3);
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
-            this.panelStock.Location = new System.Drawing.Point(183, 35);
+            this.panelStock.Location = new System.Drawing.Point(847, 38);
             this.panelStock.Name = "panelStock";
             this.panelStock.Size = new System.Drawing.Size(650, 550);
             this.panelStock.TabIndex = 16;
@@ -718,6 +718,16 @@
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Entregas pendientes de recepcion";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 197);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Cargar Pedido Pendiente";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
             // 
@@ -1232,20 +1242,11 @@
             this.columnHeader5.Text = "Dirección devolución";
             this.columnHeader5.Width = 205;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(14, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Cargar Pedido Pendiente";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(840, 590);
+            this.ClientSize = new System.Drawing.Size(2167, 1185);
             this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelPedidoIndustrias);
             this.Controls.Add(this.panelEnviosClientesOnline);
