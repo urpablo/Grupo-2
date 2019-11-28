@@ -143,6 +143,15 @@ namespace AppComercio
         }
 
         // ------------------------- boton de carga de pedidos no entregados -------------------
+
+        private void limpiarPantallaReporteEntrega()
+        {
+            tablaEntregados.Clear();
+            tablaNoEntregados.Clear();
+            textBoxCodClienteReporte.Clear();
+            textBoxCodLoteReporte.Clear();
+        }
+
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
             refrescarstock();
@@ -152,10 +161,7 @@ namespace AppComercio
            {
                 MessageBox.Show("Todavía no ha enviado ningún lote a logística, " +
                     "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                tablaEntregados.Clear();
-                tablaNoEntregados.Clear();
-                textBoxCodClienteReporte.Clear();
-                textBoxCodLoteReporte.Clear();
+                limpiarPantallaReporteEntrega();
             }
             else
             {
@@ -163,10 +169,7 @@ namespace AppComercio
                 if (reportesReingresados.Contains(nombreArchivo))
                 {
                     MessageBox.Show("Este reporte ya fue reingresado anteriormente. Se descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    tablaEntregados.Clear();
-                    tablaNoEntregados.Clear();
-                    textBoxCodClienteReporte.Clear();
-                    textBoxCodLoteReporte.Clear();
+                    limpiarPantallaReporteEntrega();
                 }
                 else
                 {
@@ -249,10 +252,7 @@ namespace AppComercio
                     {
                         MessageBox.Show("Este reporte de entrega no coincide " +
                         "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        tablaEntregados.Clear();
-                        tablaNoEntregados.Clear();
-                        textBoxCodClienteReporte.Clear();
-                        textBoxCodLoteReporte.Clear();
+                        limpiarPantallaReporteEntrega();
                     }
 
 
@@ -264,10 +264,10 @@ namespace AppComercio
                             for (Int32 row = 0; row < dgwStock.Rows.Count; row++)
                             {
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                                for (Int32 col = 0; col < dgwStock.Rows[row].Cells.Count - 1; col++)
+                                for (Int32 col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
                                 {
                                     if (!String.IsNullOrEmpty(sb.ToString()))
-                                        sb.Append(";");  //any delimiter you choose
+                                        sb.Append(";");
                                     sb.Append(dgwStock.Rows[row].Cells[col].Value.ToString());
                                 }
                                 objWriter.WriteLine(sb.ToString().Trim());
@@ -282,10 +282,7 @@ namespace AppComercio
 
                         // confirmación de que salió todo bien
                         MessageBox.Show("Pedidos no entregados del reporte de entrega " + nombreArchivo + " ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        tablaEntregados.Clear();
-                        tablaNoEntregados.Clear();
-                        textBoxCodClienteReporte.Clear();
-                        textBoxCodLoteReporte.Clear();
+                        limpiarPantallaReporteEntrega();
                     }
 
 

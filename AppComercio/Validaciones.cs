@@ -11,34 +11,52 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
+        bool CARGAMESTOCK = false;
 
+        // ------------------- si este archivo tiene un largo de 0 (es decir, vacío) no se habiilta el botón de pedidos pendientes
 
-        // ------------------  habilitar/desabilitar boton generar lote en envios de ventas si la vista previa está vacía------------
-        //private void HabilitarBotonGenerarLote()
-        //{
-        //    if (textBoxLote.Text == "")
-        //    {
-        //        buttonGenerarTXTLote.Enabled = true;
-        //    }
-        //    else
-        //    {
-        //        buttonGenerarTXTLote.Enabled = false;
-        //    }
-        //}
+        private void habilitarBotonPedidosPendientes()
+        {
+            if (new FileInfo("AReponer.txt").Length == 0)
+            {
+                buttonPedidosPendientes.Enabled = false;
+            }
+            else
+            {
+                buttonPedidosPendientes.Enabled = true;
+            }
 
-        // ------------------ habilitar/desabilitar boton pedido stock en pedidos a industrias si la vista previa está vacía -------------
-        //private void HabilitarBotonPedidoStock()
-        //{
-        //    if (textBoxPedidoIndustria.Text == "")
-        //    {
-        //        buttonPedidoStockIndustrias.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        buttonPedidoStockIndustrias.Enabled = true;
-        //    }
+        }
 
-        //}
+        // -------------------- revisar el dgw de stock y si el valor real esta por debajo del punto de reposición, marcarlo -----------------
+        private void habilitarBotonPedidosIndustrias()
+        {
+            foreach (DataGridViewRow dr in dgwStock.Rows)
+            {
+                if (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) < int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString()))
+                {
+                    System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
+                    boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = boldStyle;
+                    CARGAMESTOCK = true;
+                }
+                else
+                {
+                    System.Windows.Forms.DataGridViewCellStyle norStyle = new System.Windows.Forms.DataGridViewCellStyle();
+                    norStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
+                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = norStyle;
+                }
+
+                if (CARGAMESTOCK == true)
+                {
+                    buttonPedidoStockIndustrias.Enabled = true;
+                }
+                else
+                {
+                    buttonPedidoStockIndustrias.Enabled = false;
+                }
+            }
+        }
 
         // ------------------ Habilitar botón de agregar item en ventas solo si los dos textboxes tienen contenido -------------
 

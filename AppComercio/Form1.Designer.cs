@@ -76,8 +76,10 @@
             this.labelBienvenidoA = new System.Windows.Forms.Label();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.panelStock = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonPedidosPendientes = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
             this.dgwStock = new System.Windows.Forms.DataGridView();
@@ -656,37 +658,39 @@
             this.labelBienvenidoD.AutoSize = true;
             this.labelBienvenidoD.Location = new System.Drawing.Point(26, 145);
             this.labelBienvenidoD.Name = "labelBienvenidoD";
-            this.labelBienvenidoD.Size = new System.Drawing.Size(385, 13);
+            this.labelBienvenidoD.Size = new System.Drawing.Size(499, 13);
             this.labelBienvenidoD.TabIndex = 19;
             this.labelBienvenidoD.Text = "<-- Mandar a logística el lote de envíos a realizar en base a las ventas cargadas" +
-    "";
+    ", afectando el stock real";
             // 
             // labelBienvenidoC
             // 
             this.labelBienvenidoC.AutoSize = true;
             this.labelBienvenidoC.Location = new System.Drawing.Point(26, 101);
             this.labelBienvenidoC.Name = "labelBienvenidoC";
-            this.labelBienvenidoC.Size = new System.Drawing.Size(276, 13);
+            this.labelBienvenidoC.Size = new System.Drawing.Size(359, 13);
             this.labelBienvenidoC.TabIndex = 18;
-            this.labelBienvenidoC.Text = "<-- Cargar ventas de nuestra plataforma online por cliente";
+            this.labelBienvenidoC.Text = "<-- Cargar ventas de nuestra plataforma online por cliente para el lote diario";
             // 
             // labelBienvenidoB
             // 
             this.labelBienvenidoB.AutoSize = true;
             this.labelBienvenidoB.Location = new System.Drawing.Point(26, 57);
             this.labelBienvenidoB.Name = "labelBienvenidoB";
-            this.labelBienvenidoB.Size = new System.Drawing.Size(266, 13);
+            this.labelBienvenidoB.Size = new System.Drawing.Size(396, 13);
             this.labelBienvenidoB.TabIndex = 17;
-            this.labelBienvenidoB.Text = "<-- Hacer pedidos de stock a industrias para reposición";
+            this.labelBienvenidoB.Text = "<-- Hacer pedidos de stock a industrias para reposición si el stock cae lo sufici" +
+    "ente";
             // 
             // labelBienvenidoA
             // 
             this.labelBienvenidoA.AutoSize = true;
             this.labelBienvenidoA.Location = new System.Drawing.Point(26, 13);
             this.labelBienvenidoA.Name = "labelBienvenidoA";
-            this.labelBienvenidoA.Size = new System.Drawing.Size(134, 13);
+            this.labelBienvenidoA.Size = new System.Drawing.Size(396, 13);
             this.labelBienvenidoA.TabIndex = 16;
-            this.labelBienvenidoA.Text = "<-- Ver stock y su situación";
+            this.labelBienvenidoA.Text = "<-- Ver stock y su situación, e ingresar pedidos de stock provenientes de industr" +
+    "ias";
             // 
             // labelBienvenido1
             // 
@@ -701,6 +705,8 @@
             // 
             // panelStock
             // 
+            this.panelStock.Controls.Add(this.label14);
+            this.panelStock.Controls.Add(this.label13);
             this.panelStock.Controls.Add(this.groupBox3);
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
             this.panelStock.Location = new System.Drawing.Point(847, 38);
@@ -708,29 +714,54 @@
             this.panelStock.Size = new System.Drawing.Size(650, 550);
             this.panelStock.TabIndex = 16;
             // 
+            // label14
+            // 
+            this.label14.AutoEllipsis = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(493, 328);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(131, 200);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "Aviso sobre stock bajo";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label13
+            // 
+            this.label13.AutoEllipsis = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(397, 327);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(90, 200);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "Cantidades a reponer";
+            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.buttonPedidosPendientes);
             this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 318);
+            this.groupBox3.Location = new System.Drawing.Point(3, 315);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(393, 232);
+            this.groupBox3.Size = new System.Drawing.Size(379, 232);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Entregas pendientes de recepcion";
             // 
-            // button1
+            // buttonPedidosPendientes
             // 
-            this.button1.Location = new System.Drawing.Point(14, 197);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(149, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Cargar Pedido Pendiente";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonPedidosPendientes.Location = new System.Drawing.Point(14, 197);
+            this.buttonPedidosPendientes.Name = "buttonPedidosPendientes";
+            this.buttonPedidosPendientes.Size = new System.Drawing.Size(149, 23);
+            this.buttonPedidosPendientes.TabIndex = 1;
+            this.buttonPedidosPendientes.Text = "Cargar Pedido Pendiente";
+            this.buttonPedidosPendientes.UseVisualStyleBackColor = true;
+            this.buttonPedidosPendientes.Click += new System.EventHandler(this.buttonPedidosPendientes_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(14, 19);
             this.dataGridView1.Name = "dataGridView1";
@@ -1408,7 +1439,9 @@
         private System.Windows.Forms.PictureBox pbSalir;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonPedidosPendientes;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
     }
 }
 
