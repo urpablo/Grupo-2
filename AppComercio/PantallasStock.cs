@@ -211,7 +211,8 @@ namespace AppComercio
 
             // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
             File.Move("Pedido_A" + q + ".txt", @"c:\Grupo2\" + "Pedido_A" + q + ".txt");
-            MessageBox.Show("¡Pedido a industrias diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("¡Pedido a industrias diario generado! \n \n El archivo se encuentra " +
+                "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonPedidoStockIndustrias.Enabled = false;
             
 

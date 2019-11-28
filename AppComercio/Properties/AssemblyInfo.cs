@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("AppComercio")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Implementación de la app de comercio del TP CAI 2/2019, FCE-UBA")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Grupo2")]
 [assembly: AssemblyProduct("AppComercio")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]

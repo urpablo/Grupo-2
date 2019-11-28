@@ -11,10 +11,17 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-
+        List<string> listaCodNE = new List<string>();
         DataTable tablaEntregados = new DataTable();
         DataTable tablaNoEntregados = new DataTable();
-
+        List<int> posSeparador = new List<int>();
+        List<string> reportesReingresados = new List<string>();
+        Dictionary<string,int> dictSpliteado = new Dictionary<string,int>();
+        string nombreArchivo;
+        bool nada = true;
+        int cont = 0;
+        int contadorboludo = 1;
+        bool modificado = false;
 
         // ----------------------------------------------- cargar reporte, validar nombre de archivo y formato --------------------------
         private void buttonLeerReporteEntrega_Click(object sender, EventArgs e)
@@ -26,7 +33,7 @@ namespace AppComercio
             if (result == DialogResult.OK)
             {
 
-                string nombreArchivo = Path.GetFileName(openFileDialog1.FileName);
+                nombreArchivo = Path.GetFileName(openFileDialog1.FileName);
 
                 // valida el nombre del archivo
                 if (nombreArchivo.StartsWith("Entrega_")
@@ -81,6 +88,7 @@ namespace AppComercio
                         dgwEntregados.Refresh();
                         dgwNoEntregados.Refresh();
 
+                        
                         string[] linesR = File.ReadAllLines(openFileDialog1.FileName);
                         string[] valueR;
 
@@ -103,8 +111,13 @@ namespace AppComercio
                                 for (int j = 0; j < valueR.Length; j++)
                                 {
                                     rowR[j] = valueR[j].Trim();
+                                    if (rowR[j] != "false")
+                                    {
+                                         listaCodNE.Add(rowR[j].ToString());
+                                    }
                                 }
                                 tablaNoEntregados.Rows.Add(rowR);
+
                             }
 
 
@@ -128,11 +141,157 @@ namespace AppComercio
             }
         }
 
-
+        // ------------------------- boton de carga de pedidos no entregados -------------------
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
+
+            // reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote
+            if (codLote == 0)
+           {
+                MessageBox.Show("Todavía no ha enviado ningún lote a logística, " +
+                    "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tablaEntregados.Clear();
+                tablaNoEntregados.Clear();
+                textBoxCodClienteReporte.Clear();
+                textBoxCodLoteReporte.Clear();
+            }
+            else
+            {
+                // revisar si este reporte había sido reingresado anteriormente
+                if (reportesReingresados.Contains(nombreArchivo))
+                {
+                    MessageBox.Show("Este reporte ya fue reingresado anteriormente. Se descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    tablaEntregados.Clear();
+                    tablaNoEntregados.Clear();
+                    textBoxCodClienteReporte.Clear();
+                    textBoxCodLoteReporte.Clear();
+                }
+                else
+                {
+                    // dado que hubo al menos un envío, este reporte nos puede pertenecer, reviso la salida por los archivos de lotes que se generaron
+                    DirectoryInfo d = new DirectoryInfo(@"c:\Grupo2\");
+                    FileInfo[] Files = d.GetFiles("*.txt");
+                    foreach (FileInfo archivosLotes in Files)
+                    {
+                        // para cada uno que haya en el directorio, reviso que tenga el mismo 
+                        // codigo de cliente y de lote que el archivo de entrega que me dieron
+                        string nombresLotes = archivosLotes.ToString();
+                        if (nombresLotes.Substring(5) == nombreArchivo.Substring(8))
+                        {
+                            // dado que coincide, tengo el archivo que quiero para el reporte 
+                            // que me dieron de todos los que puede haber en el directorio, 
+                            // ahora quiero buscar las posiciones de los separadores "---" 
+                            nada = false;
+                            string[] contenidoLote = File.ReadAllLines(@"c:\Grupo2\" + nombresLotes);
+                            foreach (var line in contenidoLote)
+                            {
+                                if (line == "---")
+                                {
+                                    posSeparador.Add(cont);
+                                }
+                                cont++;
+                            }
+
+                            // teniendo la posición de cada separador, por cada separador se que en la posición inmediata
+                            // siguiente tengo la línea que comienza con el código de referencia
+                            foreach (var separador in posSeparador)
+                            {
+                                // Esto no incluye el último separador dado que se va del rango de la lista de separadores
+                                if (separador + 1 <= posSeparador.Count)
+                                {
+                                    // me quedo con el primer resultado del split de la línea inmediata siguiente para saber el código de referencia
+                                    // si la lista de no entregados contiene este número de referencia, leo las líneas siguientes. sino sigo
+                                    var nroRef = contenidoLote[separador + 1].Split(';')[0];
+                                    if (listaCodNE.Contains(nroRef))
+                                    {
+                                        // ahora leo de la posición +1 +1 en adelante hasta el próximo separador
+                                        // spliteo cada producto y su cantidad y lo acumulo en un dictionary
+                                        while (contenidoLote[(separador + 1 + contadorboludo)] != "---")
+                                        {
+                                            dictSpliteado.Add(contenidoLote[(separador + 1 + contadorboludo)].Split(';')[0], int.Parse(contenidoLote[(separador + 1 + contadorboludo)].Split(';')[1]));
+                                            contadorboludo++;
+                                        }
+
+                                        // ahora que tengo en un dictionary todos los productos y sus cantidades para 
+                                        // el codigo de referencia, veo que carajo hago por cada uno
+                                        foreach (var item in dictSpliteado)
+                                        {
+                                            // recorro el dgw de stock por la columna de IDproducto y al encontrar 
+                                            // el producto de este punto del dictionary, voy a su correspondiente
+                                            // fila con el stock real y lo sumo
+                                            foreach (DataGridViewRow dr in dgwStock.Rows)
+                                            {
+                                                if (dr.Cells[tablaStock.Columns.IndexOf("ID")].Value.ToString() == item.Key.ToString().Substring(1))
+                                                {
+                                                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Value = (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) + item.Value);
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                                // por cada separador que se revisa y se avanza en el archivo al próximo codref, borro las referencias anteriores para evitar duplicados
+                                // marco que modifiqué el stock, entonces debo pisar el stock.txt existente al terminar de iterar
+                                dictSpliteado.Clear();
+                                modificado = true;
+                            }
+                        }
+                    }
+
+                    // si ninguno de los archivos del directorio tuvo coincidencias, este reporte no nos pertenece. Se descarta
+                    if (nada == true)
+                    {
+                        MessageBox.Show("Este reporte de entrega no coincide " +
+                        "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tablaEntregados.Clear();
+                        tablaNoEntregados.Clear();
+                        textBoxCodClienteReporte.Clear();
+                        textBoxCodLoteReporte.Clear();
+                    }
+
+
+                    if (modificado == true)
+                    {
+                        // ahora que termine, piso el stock.txt con lo que tiene el datagridview de stock luego de este proceso
+                        using (StreamWriter objWriter = new StreamWriter("StockReingresado.txt"))
+                        {
+                            for (Int32 row = 0; row < dgwStock.Rows.Count; row++)
+                            {
+                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                                for (Int32 col = 0; col < dgwStock.Rows[row].Cells.Count - 1; col++)
+                                {
+                                    if (!String.IsNullOrEmpty(sb.ToString()))
+                                        sb.Append(";");  //any delimiter you choose
+                                    sb.Append(dgwStock.Rows[row].Cells[col].Value.ToString());
+                                }
+                                objWriter.WriteLine(sb.ToString().Trim());
+                            }
+                        }
+
+                        // guardo el nombre del archivo para no procesarlo nuevamente si se reingresa
+                        reportesReingresados.Add(nombreArchivo);
+
+                        File.Delete("Stock.txt");
+                        File.Move("StockReingresado.txt", "Stock.txt");
+
+                        // confirmación de que salió todo bien
+                        MessageBox.Show("Pedidos no entregados del reporte de entrega " + nombreArchivo + " ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tablaEntregados.Clear();
+                        tablaNoEntregados.Clear();
+                        textBoxCodClienteReporte.Clear();
+                        textBoxCodLoteReporte.Clear();
+                    }
+
+
+                }
+
+                
+               
+            }
 
         }
 
     }
+
 }

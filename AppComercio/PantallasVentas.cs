@@ -13,8 +13,8 @@ namespace AppComercio
     {
 
         // contadores de código de referencia y código de lote
-        int codRef = 1;
-        int codLote = 1;
+        int codRef = 0;
+        int codLote = 0;
         bool actualizo;
 
 
@@ -173,7 +173,9 @@ namespace AppComercio
                 }
             }
 
-            MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n Cuando termine de agregar ventas, puede generar el lote final diario para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n " +
+                "Cuando termine de agregar ventas, puede generar el lote final diario " +
+                "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             limpiarlistapedidos();
         }
 
@@ -192,7 +194,7 @@ namespace AppComercio
             textBoxCant.Clear();
         }
 
-
+        // ------------------ boton generar lote para logística 
         private void buttonGenerarTXTLote_Click(object sender, EventArgs e)
         {
             int IdStock = 0;
@@ -388,7 +390,7 @@ namespace AppComercio
 
             }
 
-            // reemplazo contadores para numero de referencia que sumaban de a 000 -> 111 -> 222 -> etc por un contador que suma +1 por pedido ingresado
+            // reemplazo contadores para numero de referencia que sumaban de a 000 -> 111 -> 222 -> etc por un contador que suma +1 por pedido ingresado, codRef
             
             //int i = 0;
             //int j = 0;
@@ -397,8 +399,8 @@ namespace AppComercio
             {
                 string cdRef = registroRef.e1;
                 string cdRef2 = registroRef.e2;
+                codRef++;
 
-                
 
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
@@ -411,7 +413,7 @@ namespace AppComercio
                     //sin este separador y esta nueva línea, la salida es igual a la de los lineamientos
                 }
 
-                codRef++;
+               
                 //i = i+1;
                 //j = j+1;
                 //z = z+1;
@@ -448,6 +450,8 @@ namespace AppComercio
 
                 }
 
+                
+
 
             }
 
@@ -463,16 +467,16 @@ namespace AppComercio
             // reemplazo numero random por un contador que suma por cada nuevo lote, codLote
             Random r= new Random();
             int codClienterng = r.Next(0, 999);
+            codLote++;
 
-            
             // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
 
             File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienterng + "_L" + codLote + ".txt");
 
             // aumenta el contador de lote una vez que se generó
             // notificación de que se completó exitosamente la generación del lote y del archivo de salida
-            codLote++;
-            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra " +
+                "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             buttonGenerarTXTLote.Enabled = false;
 
 

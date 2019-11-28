@@ -295,7 +295,7 @@
             // textBoxCant
             // 
             this.textBoxCant.Location = new System.Drawing.Point(9, 79);
-            this.textBoxCant.MaxLength = 6;
+            this.textBoxCant.MaxLength = 4;
             this.textBoxCant.Name = "textBoxCant";
             this.textBoxCant.Size = new System.Drawing.Size(192, 20);
             this.textBoxCant.TabIndex = 2;
