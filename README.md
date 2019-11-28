@@ -10,8 +10,8 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 - Recibe pedidos resultantes de ventas mediante los canales de venta online. Carga manual.
 - En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución. Confirmación manual diaria.
 - Recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock del comercio, haciendo pedidos a las industrias para reposición. Confirmación manual diaria.
-- Los archivos generados tienen el formato definido en los lineamientos.
+- Administra el stock del comercio, haciendo pedidos a las industrias para reposición en cantidades fijas. Confirmación manual diaria.
+- Los archivos generados y aceptados se condicen  el formato definido en los lineamientos.
 
 ### Uso
 
@@ -23,7 +23,7 @@ Viene con un stock inicial predefinido (Stock.txt), los datos del comercio a car
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Es creada por el programa si no existe.
 
-### Pruebas
+### Pruebas y comportamiento esperado
 
 Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesarios:
 
@@ -40,19 +40,32 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 
 #### Pantalla "Pedidos Stock"
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado
+- No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición
 
 #### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
 El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba/ejemplo:
-- "Entrega_C340_L643.txt" es aceptado, tiene su nombre y su contenido según el formato [CodReferencia];[true/false] (un par por línea) acorde al archivo modelo en los lineamientos
-- "Entrega_C332_L116.txt" falla por no respetar el separador ; entre código de referencia y estado del envío
-- "Entrega_C332_L115.txt" contiene una frase que no coincide con el formato esperado
+- `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos
+- `Entrega_C332_L116.txt` falla por no respetar el separador ; entre código de referencia y estado del envío
+- `Entrega_C332_L115.txt` contiene una frase que no coincide con el formato esperado
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
 - Cualquier otro archivo al que se le haya asignado un nombre correcto siendo cualquier otra cosa su contenido, no es aceptado
 
-Para probar esta funcionalidad, cargue un pedido o dos. De esta forma tendrá al menos un código de referencia R1 y R2. Luego cree un archivo de texto con el formato descripto marcando R1 o R2 (o ambos) como no entregados (false). Los productos despachados para estos pedidos deberían volver al stock real y aumentarlo.
+Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de la pantalla los pedidos enviados y no enviados pertenecientes a este reporte. Ahora puede reingresar los pedidos que no hayan sido entregados al stock real. 
 
+Para probar esta funcionalidad:
+1) Cargue algunas ventas en el sistema. 
+2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, al menos un número de referencia). Revise el estado del stock antes de seguir.
+3) En la carpeta de salida, tome el archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt`.
+4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado.
+5) Ingrese este archivo en la pantalla y luego apriete "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
+
+Validaciones de esta funcionalidad:
+
+- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, que existan en la carpeta de salida)
+- No permite reingresar más de una vez el mismo reporte
+- No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera si no se emitió al menos un lote desde la aplicación
 
 ### Varios
 
