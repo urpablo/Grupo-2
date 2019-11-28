@@ -10,7 +10,7 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 - Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
 - En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
 - Desde la pantalla `Reportes de entrega` recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con sucesivas ventas y envíos. Confirmación manual diaria.
+- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas (que pueden ser modificadas) desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con sucesivas ventas y envíos. Confirmación manual diaria.
 - Los archivos generados y aceptados se condicen con el formato definido en los lineamientos.
 
 ### Uso
@@ -30,7 +30,8 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 #### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt" y se va modificando a medida que se realizan transacciones en la aplicación, como confirmar un pedido o emitir un lote.
 - Si el stock real de algún producto baja lo suficiente para caer por debajo del punto de reposición, se marcará en negrita y con más tamaño de letra para alertar al usuario de que tiene que hacer un pedido prontamente.
-- Tabla entregas pendientes de recepción que permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón `Cargar pedido pendiente`.
+- La tabla de reposición indica el valor que se pide a fábrica cuando el stock de ese producto queda por debajo del punto de reposición. Los ID de producto son de solo lectura, los campos con las cantidades están limitados a 5 caracteres, solo se pueden ingresar números salvo el 0, y no se puede dejar vacía (queda marcado un error que no desaparece hasta que se llene con algo correcto).
+- Tabla entregas pendientes de recepción que permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón `Cargar pedido pendiente`. Solo se puede tildar dicho campo, los otros son de solo lectura.
 
 #### Pantalla "Cargar ventas a lote diario":
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter.
