@@ -396,6 +396,9 @@ namespace AppComercio
             }
         }
 
-
+        private void comboBoxCodProducto_TextChanged(object sender, EventArgs e)
+        {
+            textBoxCant.Focus();
+        }
     }
 }

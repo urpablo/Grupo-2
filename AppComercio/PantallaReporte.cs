@@ -20,6 +20,7 @@ namespace AppComercio
         string nombreArchivo;
         bool nada = true;
         int cont = 0;
+        int contSeparador = 1;
         int contadorboludo = 1;
         bool modificado = false;
 
@@ -144,6 +145,7 @@ namespace AppComercio
         // ------------------------- boton de carga de pedidos no entregados -------------------
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
+            refrescarstock();
 
             // reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote
             if (codLote == 0)
@@ -197,7 +199,7 @@ namespace AppComercio
                             foreach (var separador in posSeparador)
                             {
                                 // Esto no incluye el último separador dado que se va del rango de la lista de separadores
-                                if (separador + 1 <= posSeparador.Count)
+                                if (contSeparador < posSeparador.Count)
                                 {
                                     // me quedo con el primer resultado del split de la línea inmediata siguiente para saber el código de referencia
                                     // si la lista de no entregados contiene este número de referencia, leo las líneas siguientes. sino sigo
@@ -231,8 +233,11 @@ namespace AppComercio
                                     }
                                 }
 
+
                                 // por cada separador que se revisa y se avanza en el archivo al próximo codref, borro las referencias anteriores para evitar duplicados
                                 // marco que modifiqué el stock, entonces debo pisar el stock.txt existente al terminar de iterar
+                                contSeparador++;
+                                contadorboludo = 1;
                                 dictSpliteado.Clear();
                                 modificado = true;
                             }

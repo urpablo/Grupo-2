@@ -272,6 +272,7 @@
             this.comboBoxCodProducto.Name = "comboBoxCodProducto";
             this.comboBoxCodProducto.Size = new System.Drawing.Size(192, 21);
             this.comboBoxCodProducto.TabIndex = 23;
+            this.comboBoxCodProducto.TextChanged += new System.EventHandler(this.comboBoxCodProducto_TextChanged);
             // 
             // label3
             // 
