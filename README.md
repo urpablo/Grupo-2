@@ -7,11 +7,11 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 
 ![Descripción](https://i.imgur.com/Avfl25x.png)
 
-- Recibe pedidos resultantes de ventas mediante los canales de venta online. Carga manual.
-- En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución. Confirmación manual diaria.
-- Recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock del comercio, haciendo pedidos a las industrias para reposición en cantidades fijas. Confirmación manual diaria.
-- Los archivos generados y aceptados se condicen  el formato definido en los lineamientos.
+- Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
+- En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
+- Desde la pantalla `Reportes de entrega` Recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
+- Administra el stock del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición. Confirmación manual diaria.
+- Los archivos generados y aceptados se condicen con el formato definido en los lineamientos.
 
 ### Uso
 
@@ -19,7 +19,7 @@ Clonando el repositorio y compilando, se puede empezar a usar.
 
 La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
 
-Viene con un stock inicial predefinido (Stock.txt), los datos del comercio a cargar (DatosComercio.txt) y archivos de prueba para la funcionalidad de entrada en reportes de entrega. Todos estos archivos se encuentran junto al archivo de solución. Los necesarios para el funcionamiento del programa compilado (stock y datos de comercio) se copian automáticamente a la carpeta \bin\debug.
+Viene con un stock inicial predefinido (Stock.txt), los datos del comercio a cargar (DatosComercio.txt) y archivos de prueba para la funcionalidad de entrada en reportes de entrega. Todos estos archivos se encuentran junto al archivo de solución. Los necesarios para el funcionamiento del programa compilado (stock, datos de comercio y otros) se copian automáticamente a la carpeta \bin\debug junto al ejecutable compilado.
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Es creada por el programa si no existe.
 
@@ -29,10 +29,11 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 
 #### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt" y se va modificando a medida que se realizan transacciones en la aplicación, como confirmar un pedido o emitir un lote.
+- Si el stock real de algún producto baja lo suficiente para caer por debajo del punto de reposición, se marcará en negrita y con más tamaño de letra.
 - Tabla entregas pendientes de recepción, permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón "Cargar pedido pendiente".
 
 #### Pantalla "Cargar ventas a lote diario":
-- El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta seis dígitos, sin espacios ni ningún otro tipo de caracter
+- El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar
 
 #### Pantalla "Enviar lote diario a logística"
@@ -41,7 +42,7 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 
 #### Pantalla "Pedidos Stock"
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado
-- No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición
+- No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
 
 #### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
@@ -66,7 +67,7 @@ Validaciones de esta funcionalidad:
 
 - Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, que existan en la carpeta de salida)
 - No permite reingresar más de una vez el mismo reporte
-- No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera si no se emitió al menos un lote desde la aplicación
+- No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera, si no se emitió al menos un lote desde la aplicación
 
 ### Varios
 
