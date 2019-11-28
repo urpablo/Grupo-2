@@ -9,8 +9,8 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 
 - Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
 - En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
-- Desde la pantalla `Reportes de entrega` Recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición. Confirmación manual diaria.
+- Desde la pantalla `Reportes de entrega` recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
+- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con sucesivas ventas y envíos. Confirmación manual diaria.
 - Los archivos generados y aceptados se condicen con el formato definido en los lineamientos.
 
 ### Uso
@@ -29,19 +29,19 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 
 #### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt" y se va modificando a medida que se realizan transacciones en la aplicación, como confirmar un pedido o emitir un lote.
-- Si el stock real de algún producto baja lo suficiente para caer por debajo del punto de reposición, se marcará en negrita y con más tamaño de letra.
-- Tabla entregas pendientes de recepción, permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón "Cargar pedido pendiente".
+- Si el stock real de algún producto baja lo suficiente para caer por debajo del punto de reposición, se marcará en negrita y con más tamaño de letra para alertar al usuario de que tiene que hacer un pedido prontamente.
+- Tabla entregas pendientes de recepción que permite visualizar los productos que se pidieron a industria y están pendientes de recepción. Se deben tildar los pedidos que han ingresado y confirmarlos mediante el botón `Cargar pedido pendiente`.
 
 #### Pantalla "Cargar ventas a lote diario":
-- El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter
-- El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar
+- El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter.
+- El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
 
 #### Pantalla "Enviar lote diario a logística"
-- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos un pedido anteriormente
-- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado
+- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos un pedido anteriormente.
+- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
-- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado
+- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 - No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
 
 #### Pantalla "Reportes de entrega":
@@ -58,14 +58,14 @@ Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de 
 
 Para probar esta funcionalidad:
 1) Cargue algunas ventas en el sistema. 
-2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, al menos un número de referencia). Revise el estado del stock antes de seguir.
-3) En la carpeta de salida, tome el archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt`.
-4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado.
+2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, tener al menos un número de referencia). Revise el estado del stock antes de seguir.
+3) En la carpeta de salida, tome el archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt` usando el mismo código de cliente y el mismo código de lote.
+4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado. Un número de referencia por renglón, como dice el archivo de ejemplo en los lineamientos.
 5) Ingrese este archivo en la pantalla y luego apriete "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
 
 Validaciones de esta funcionalidad:
 
-- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, que existan en la carpeta de salida)
+- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, en base a lotes a logística que existan en la carpeta de salida)
 - No permite reingresar más de una vez el mismo reporte
 - No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera, si no se emitió al menos un lote desde la aplicación
 
