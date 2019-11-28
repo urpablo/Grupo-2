@@ -368,17 +368,19 @@ namespace AppComercio
                           e2 = record[1]
                       }).ToList();
 
-            var lineasPedidosaEnviar = File
-                      .ReadAllLines("PedidosAEnviar.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          f1 = record[0],
-                          f2 = record[1],
-                          f3 = record[2],
-                          f4 = Int32.Parse(record[3])
+           
+                var lineasPedidosaEnviar = File
+                     .ReadAllLines("PedidosAEnviar.txt")
+                     .Select(record => record.Split(';'))
+                     .Select(record => new
+                     {
+                         f1 = record[0],
+                         f2 = record[1],
+                         f3 = record[2],
+                         f4 = Int32.Parse(record[3])
 
-                      }).ToList();
+                     }).ToList();
+            
 
             // escribe header con los datos del remitente 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
@@ -483,6 +485,8 @@ namespace AppComercio
             // limpiar archivos de este lote para poder comenzar un nuevo ciclo
             File.Delete("Pedidos.txt");
             File.Delete("PedidosAEnviar.txt");
+
+            refrescarEntregas();
 
         }
 

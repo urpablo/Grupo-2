@@ -43,8 +43,16 @@ namespace AppComercio
                 File.Delete("lineaindividual.txt");
             }
 
-            // borrar la salida de la ejecución anterior y recrear el directorio de salida
-            if (Directory.Exists(@"C:\Grupo2"))
+            if (File.Exists("AReponer.txt"))
+            {
+                File.Delete("AReponer.txt");
+                using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
+            }
+
+            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
+
+                // borrar la salida de la ejecución anterior y recrear el directorio de salida
+                if (Directory.Exists(@"C:\Grupo2"))
             {
                 Directory.Delete(@"C:\Grupo2", true);
                 Directory.CreateDirectory(@"C:\Grupo2");
@@ -63,18 +71,29 @@ namespace AppComercio
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Pendientes", typeof(int));
 
+            tablaEntregas.Columns.Add("ID", typeof(int));
+            tablaEntregas.Columns.Add("Cantidad a Reponer", typeof(int));
+            tablaEntregas.Columns.Add("Recepción", typeof(bool));
+
             tablaEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaEntregados.Columns.Add("Entregado", typeof(bool));
 
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
+            dataGridView1.AllowUserToAddRows = false;
+
+
 
             //últimos ajustes iniciales
 
             cargarDatosComercio();
             refrescarstock();
-
+            refrescarEntregas();
+            if (!File.Exists("AReponer.txt"))
+            {
+                button1.Enabled = false;
+            }
 
             listLoteClientes.Visible = false;
 
@@ -171,7 +190,30 @@ namespace AppComercio
             botonBotonera = 1;
             actualizarPantalla();
 
-          
+            dataGridView1.Refresh();
+
+            string[] lines2 = File.ReadAllLines(@"AReponer.txt");
+            string[] values2;
+
+            for (int i = 0; i < lines2.Length; i++)
+            {
+                values2 = lines2[i].ToString().Split(';');
+                string[] row = new string[values2.Length];
+
+                for (int j = 0; j < values2.Length; j++)
+                {
+                    row[j] = values2[j].Trim();
+                }
+                tablaEntregas.Rows.Add(row);
+
+            }
+
+            if (!File.Exists("AReponer.txt"))
+            {
+                button1.Enabled = false;
+            }
+
+
             tablaStock.Rows.Clear();
             dgwStock.Refresh();
 
@@ -396,6 +438,126 @@ namespace AppComercio
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            {
+                Dictionary<int, int> PedidosAreponer = new Dictionary<int, int>();
+                Dictionary<int, string> InventarioTemporal3 = new Dictionary<int, string>();
+                Dictionary<int, int> NuevosPedidosAreponer = new Dictionary<int, int>();
 
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    bool isCellChecked = (bool)dataGridView1.Rows[i].Cells[2].Value;
+                    if (isCellChecked == true)
+                    {
+                        PedidosAreponer.Add(Int32.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+                    }
+
+                }
+
+                var lineasstock = File
+                          .ReadAllLines("Stock.txt")
+                          .Select(record => record.Split(';'))
+                          .Select(record => new
+                          {
+                              b1 = Int32.Parse(record[0]),
+                              b2 = Int32.Parse(record[1]),
+                              b3 = Int32.Parse(record[2]),
+                              b4 = Int32.Parse(record[3]),
+                              b5 = Int32.Parse(record[4])
+
+                          }).ToList();
+
+                foreach (var regStock in lineasstock)
+                {
+                    int actual = regStock.b2;
+                    int pp = regStock.b5;
+                    int comp = regStock.b4;
+                    int pr = regStock.b3;
+                    int IdStock = regStock.b1;
+                    string parametrosinv;
+
+
+                    foreach (KeyValuePair<int, int> item in PedidosAreponer)
+                    {
+
+
+                        int idDic = item.Key;
+                        int cantDic = item.Value;
+                        if (IdStock == idDic)
+                        {
+                            parametrosinv = (actual + cantDic) + ";" + pr + ";" + comp + ";" + (pp - cantDic);
+
+                            InventarioTemporal3.Add(IdStock, parametrosinv);
+
+                        }
+
+
+
+                    }
+                    if (!InventarioTemporal3.ContainsKey(IdStock))
+                    {
+                        parametrosinv = actual + ";" + pr + ";" + comp + ";" + pp;
+                        InventarioTemporal3.Add(IdStock, parametrosinv);
+                    }
+
+
+
+                }
+
+                using (StreamWriter sw100 = new StreamWriter("stockrepuesto.txt"))
+                {
+                    foreach (KeyValuePair<int, string> entry in InventarioTemporal3)
+                    {
+                        sw100.Write(entry.Key);
+                        sw100.Write(";");
+                        sw100.Write(entry.Value);
+                        sw100.Write("\n");
+                    }
+                }
+
+                File.Delete("Stock.txt");
+                File.Move("stockrepuesto.txt", "Stock.txt");
+
+                refrescarstock();
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    bool isCellChecked = (bool)dataGridView1.Rows[i].Cells[2].Value;
+                    if (isCellChecked == true)
+                    {
+
+                    }
+                    else
+                    {
+                        NuevosPedidosAreponer.Add(Int32.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dataGridView1.Rows[i].Cells[1].Value.ToString()));
+                    }
+
+                }
+
+                using (StreamWriter sw101 = new StreamWriter("nuevostockrepuesto.txt"))
+                {
+                    foreach (KeyValuePair<int, int> entry in NuevosPedidosAreponer)
+                    {
+                        sw101.Write(entry.Key);
+                        sw101.Write(";");
+                        sw101.Write(entry.Value);
+                        sw101.Write("\n");
+                    }
+                }
+
+                File.Delete("AReponer.txt");
+                File.Move("nuevostockrepuesto.txt", "AReponer.txt");
+
+                refrescarEntregas();
+
+                if (!File.Exists("AReponer.txt"))
+                {
+                    button1.Enabled = false;
+                }
+
+
+            }
+        }
     }
 }

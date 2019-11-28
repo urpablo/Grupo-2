@@ -76,6 +76,8 @@
             this.labelBienvenidoA = new System.Windows.Forms.Label();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.panelStock = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
             this.dgwStock = new System.Windows.Forms.DataGridView();
             this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
@@ -127,6 +129,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button1 = new System.Windows.Forms.Button();
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSalir)).BeginInit();
@@ -145,6 +148,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelBienvenido.SuspendLayout();
             this.panelStock.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBoxStockTabla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).BeginInit();
             this.groupBoxStockComercio.SuspendLayout();
@@ -696,18 +701,38 @@
             // 
             // panelStock
             // 
+            this.panelStock.Controls.Add(this.groupBox3);
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
-            this.panelStock.Location = new System.Drawing.Point(856, 38);
+            this.panelStock.Location = new System.Drawing.Point(183, 35);
             this.panelStock.Name = "panelStock";
             this.panelStock.Size = new System.Drawing.Size(650, 550);
             this.panelStock.TabIndex = 16;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Location = new System.Drawing.Point(3, 318);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(393, 232);
+            this.groupBox3.TabIndex = 21;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Entregas pendientes de recepcion";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(14, 19);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(357, 172);
+            this.dataGridView1.TabIndex = 0;
             // 
             // groupBoxStockTabla
             // 
             this.groupBoxStockTabla.Controls.Add(this.dgwStock);
             this.groupBoxStockTabla.Location = new System.Drawing.Point(3, 3);
             this.groupBoxStockTabla.Name = "groupBoxStockTabla";
-            this.groupBoxStockTabla.Size = new System.Drawing.Size(644, 544);
+            this.groupBoxStockTabla.Size = new System.Drawing.Size(644, 309);
             this.groupBoxStockTabla.TabIndex = 20;
             this.groupBoxStockTabla.TabStop = false;
             this.groupBoxStockTabla.Text = "Tabla de Stock";
@@ -721,7 +746,7 @@
             this.dgwStock.Location = new System.Drawing.Point(15, 19);
             this.dgwStock.Name = "dgwStock";
             this.dgwStock.ReadOnly = true;
-            this.dgwStock.Size = new System.Drawing.Size(623, 520);
+            this.dgwStock.Size = new System.Drawing.Size(623, 276);
             this.dgwStock.TabIndex = 0;
             // 
             // buttonPedidoStockIndustrias
@@ -1207,14 +1232,24 @@
             this.columnHeader5.Text = "Dirección devolución";
             this.columnHeader5.Width = 205;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 197);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(149, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Cargar Pedido Pendiente";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 590);
+            this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelPedidoIndustrias);
             this.Controls.Add(this.panelEnviosClientesOnline);
-            this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelBienvenido);
             this.Controls.Add(this.panelVentasOnline);
             this.Controls.Add(this.panelAcuseRecibo);
@@ -1248,6 +1283,8 @@
             this.panelBienvenido.ResumeLayout(false);
             this.panelBienvenido.PerformLayout();
             this.panelStock.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBoxStockTabla.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).EndInit();
             this.groupBoxStockComercio.ResumeLayout(false);
@@ -1369,6 +1406,9 @@
         private System.Windows.Forms.DataGridView dgwNoEntregados;
         private System.Windows.Forms.PictureBox pbMinimizar;
         private System.Windows.Forms.PictureBox pbSalir;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
