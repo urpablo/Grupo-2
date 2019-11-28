@@ -45,14 +45,28 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
 El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba/ejemplo:
-- "Entrega_C340_L643.txt" es aceptado, tiene su nombre y su contenido según el formato [CodReferencia];[true/false] (un par por línea) acorde al archivo modelo en los lineamientos
+- "Entrega_C340_L643.txt" es aceptado, tiene su nombre y su contenido según el formato [CodReferencia];[true/false] (un juego por línea) acorde al archivo modelo en los lineamientos
 - "Entrega_C332_L116.txt" falla por no respetar el separador ; entre código de referencia y estado del envío
 - "Entrega_C332_L115.txt" contiene una frase que no coincide con el formato esperado
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
 - Cualquier otro archivo al que se le haya asignado un nombre correcto siendo cualquier otra cosa su contenido, no es aceptado
 
-Para probar esta funcionalidad, cargue un pedido o dos. De esta forma tendrá al menos un código de referencia R1 y R2. Luego cree un archivo de texto con el formato descripto marcando R1 o R2 (o ambos) como no entregados (false). Los productos despachados para estos pedidos deberían volver al stock real y aumentarlo.
+Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de la pantalla los pedidos enviados y no enviados pertenecientes a este reporte. Ahora puede reingresar los pedidos que no hayan sido entregados al stock real. 
 
+Para probar esta funcionalidad:
+1) Cargue algunas ventas en el sistema. 
+2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, al menos un número de referencia). Revise el estado del stock antes de seguir.
+3) En la carpeta de salida, tome el archivo "Lote_(CodCliente)_(CodLote)_.txt" y cambie su nombre al formato esperado correspondiente, "Entrega_(CodCliente)_(CodLote)_.txt".
+4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote.
+
+
+5) Ingrese este archivo a la pantalla y luego apriete "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y volviendo al estado anterior.
+
+Validaciones de esta funcionalidad:
+
+- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, que existan en la carpeta de salida)
+- No permite reingresar más de una vez el mismo reporte
+- No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera si no se emitió al menos un lote desde la aplicación
 
 ### Varios
 
