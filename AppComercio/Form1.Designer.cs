@@ -177,7 +177,7 @@
             this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.TopPanel.Location = new System.Drawing.Point(0, 0);
             this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(2167, 32);
+            this.TopPanel.Size = new System.Drawing.Size(840, 32);
             this.TopPanel.TabIndex = 1;
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             // 
@@ -187,7 +187,7 @@
             this.pbMinimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(206)))), ((int)(((byte)(204)))), ((int)(((byte)(207)))));
             this.pbMinimizar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("pbMinimizar.Image")));
-            this.pbMinimizar.Location = new System.Drawing.Point(2115, 5);
+            this.pbMinimizar.Location = new System.Drawing.Point(788, 5);
             this.pbMinimizar.Name = "pbMinimizar";
             this.pbMinimizar.Size = new System.Drawing.Size(20, 20);
             this.pbMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -211,7 +211,7 @@
             this.pbSalir.BackColor = System.Drawing.Color.Red;
             this.pbSalir.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbSalir.Image = ((System.Drawing.Image)(resources.GetObject("pbSalir.Image")));
-            this.pbSalir.Location = new System.Drawing.Point(2140, 5);
+            this.pbSalir.Location = new System.Drawing.Point(813, 5);
             this.pbSalir.Name = "pbSalir";
             this.pbSalir.Size = new System.Drawing.Size(20, 20);
             this.pbSalir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1246,7 +1246,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2167, 1185);
+            this.ClientSize = new System.Drawing.Size(840, 590);
             this.Controls.Add(this.panelStock);
             this.Controls.Add(this.panelPedidoIndustrias);
             this.Controls.Add(this.panelEnviosClientesOnline);
