@@ -64,7 +64,11 @@ namespace AppComercio
 
             foreach (DataGridViewRow dr in dgwStock.Rows)
             {
-                if (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) < int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString()))
+
+                int real2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString());
+                int pend2= int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Pendientes")].Value.ToString());
+                int comp2= int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Comprometido")].Value.ToString());
+                if (((real2+pend2)-comp2) < int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString()))
                 {
                     System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
                     boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
