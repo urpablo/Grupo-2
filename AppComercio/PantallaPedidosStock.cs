@@ -65,16 +65,6 @@ namespace AppComercio
                 }
             }
 
-            using (StreamWriter sw12 = new StreamWriter("AReponer.txt"))
-            {
-                foreach (KeyValuePair<int, string> entry in InventarioTemporal)
-                {
-                    sw12.Write(entry.Key);
-                    sw12.Write(";");
-                    sw12.Write(entry.Value);
-                    sw12.Write("\n");
-                }
-            }
             var lineasrepone = File
                       .ReadAllLines("AReponer.txt")
                       .Select(record => record.Split(';'))

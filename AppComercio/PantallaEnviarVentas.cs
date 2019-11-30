@@ -238,9 +238,7 @@ namespace AppComercio
             // Número aleatorio para el código de cliente.
             // Valido que el número aleatorio que se genere no se repita
             Random r = new Random();
-            do
-            {
-                codClienteRNGLote = r.Next(0, 999);
+            do{codClienteRNGLote = r.Next(0, 999);
             } while (RNGexistenteLote.Contains(codClienteRNGLote));
             RNGexistenteLote.Add(codClienteRNGLote);
             codLote++;
