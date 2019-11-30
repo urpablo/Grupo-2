@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace AppComercio
 {
@@ -48,15 +51,8 @@ namespace AppComercio
                 File.Delete("PedidosPendientes.txt");
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt"))
-            {
-                ;
-            }
-
-            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt"))
-            {
-                ;
-            }
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
+            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
 
             // borrar la salida de la ejecución anterior y recrear el directorio de salida
             if (Directory.Exists(@"C:\Grupo2"))
@@ -121,7 +117,7 @@ namespace AppComercio
             CargarCantidadesAReponer();
             RefrescarStock();
             RefrescarEntregasStockIndustrias();
-
+            
             botonBotonera = 0;
             ActualizarPantalla();
 
@@ -416,7 +412,7 @@ namespace AppComercio
             }
         }
 
-        // ------------------  cargar datos del comercio 
+        // ----------------------------------- cargar datos del comercio---------------------------------------------------------
 
         private void CargarDatosComercio()
         {
@@ -431,8 +427,6 @@ namespace AppComercio
             textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
             textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
         }
-
-        // ------------------ QoL: selección en combobox -> foco en textbox de cantidad -> se puede presionar enter para ingresar, ahorrando dos clics
 
         private void comboBoxCodProducto_TextChanged(object sender, EventArgs e)
         {

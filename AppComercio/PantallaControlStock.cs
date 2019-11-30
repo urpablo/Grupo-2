@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        readonly DataTable tablaStock = new DataTable();
-        readonly DataTable tablaEntregas = new DataTable();
-        readonly DataTable tablaCantARep = new DataTable();
+        DataTable tablaStock = new DataTable();
+        DataTable tablaEntregas = new DataTable();
+        DataTable tablaCantARep = new DataTable();
 
         // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox, revisar stock real < punto rep, habilitar boton de pedido a industrias
 
@@ -44,11 +44,11 @@ namespace AppComercio
             {
 
                 int real2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString());
-                int pend2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Pendientes")].Value.ToString());
-                int comp2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Comprometido")].Value.ToString());
+                int pend2= int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Pendientes")].Value.ToString());
+                int comp2= int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Comprometido")].Value.ToString());
                 int ptorep = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString());
 
-                if (((real2 + pend2) - comp2) < ptorep)
+                if (((real2+pend2)-comp2) < ptorep)
                 {
                     System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
                     boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
@@ -96,7 +96,7 @@ namespace AppComercio
 
             foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)
             {
-                dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
+              dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
             }
 
             dgwEntregasFabrica.DataSource = tablaEntregas;
@@ -135,130 +135,130 @@ namespace AppComercio
         // -------------------- boton aceptar pedidos pendientes de industrias/stock
         private void btnCargarPedidosStockPendientesIndustrias_Click(object sender, EventArgs e)
         {
-
-            Dictionary<int, int> PedidosAreponer = new Dictionary<int, int>();
-            Dictionary<int, string> InventarioTemporal3 = new Dictionary<int, string>();
-            Dictionary<int, int> NuevosPedidosAreponer = new Dictionary<int, int>();
+         
+                Dictionary<int, int> PedidosAreponer = new Dictionary<int, int>();
+                Dictionary<int, string> InventarioTemporal3 = new Dictionary<int, string>();
+                Dictionary<int, int> NuevosPedidosAreponer = new Dictionary<int, int>();
 
             for (int i = 0; i < dgwEntregasFabrica.Rows.Count; i++)
-            {
-                if (dgwEntregasFabrica.Rows[i].Cells[2].Value == null)
                 {
-                    dgwEntregasFabrica.Rows[i].Cells[2].Value = false;
-                }
-
-                bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
-                if (isCellChecked == true)
-                {
-                    PedidosAreponer.Add(int.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), int.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
-                }
-
-            }
-
-            var lineasstock = File
-                      .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          b1 = int.Parse(record[0]),
-                          b2 = int.Parse(record[1]),
-                          b3 = int.Parse(record[2]),
-                          b4 = int.Parse(record[3]),
-                          b5 = int.Parse(record[4])
-
-                      }).ToList();
-
-            foreach (var regStock in lineasstock)
-            {
-                int actual = regStock.b2;
-                int pp = regStock.b5;
-                int comp = regStock.b4;
-                int pr = regStock.b3;
-                int IdStock = regStock.b1;
-                string parametrosinv;
-
-
-                foreach (KeyValuePair<int, int> item in PedidosAreponer)
-                {
-
-
-                    int idDic = item.Key;
-                    int cantDic = item.Value;
-                    if (IdStock == idDic)
+                    if(dgwEntregasFabrica.Rows[i].Cells[2].Value == null)
                     {
-                        parametrosinv = (actual + cantDic) + ";" + pr + ";" + comp + ";" + (pp - cantDic);
+                        dgwEntregasFabrica.Rows[i].Cells[2].Value = false;
+                    }   
 
+                    bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
+                    if (isCellChecked == true)
+                    {
+                        PedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
+                    }
+
+                }
+
+                var lineasstock = File
+                          .ReadAllLines("Stock.txt")
+                          .Select(record => record.Split(';'))
+                          .Select(record => new
+                          {
+                              b1 = Int32.Parse(record[0]),
+                              b2 = Int32.Parse(record[1]),
+                              b3 = Int32.Parse(record[2]),
+                              b4 = Int32.Parse(record[3]),
+                              b5 = Int32.Parse(record[4])
+
+                          }).ToList();
+
+                foreach (var regStock in lineasstock)
+                {
+                    int actual = regStock.b2;
+                    int pp = regStock.b5;
+                    int comp = regStock.b4;
+                    int pr = regStock.b3;
+                    int IdStock = regStock.b1;
+                    string parametrosinv;
+
+
+                    foreach (KeyValuePair<int, int> item in PedidosAreponer)
+                    {
+
+
+                        int idDic = item.Key;
+                        int cantDic = item.Value;
+                        if (IdStock == idDic)
+                        {
+                            parametrosinv = (actual + cantDic) + ";" + pr + ";" + comp + ";" + (pp - cantDic);
+
+                            InventarioTemporal3.Add(IdStock, parametrosinv);
+
+                        }
+
+
+
+                    }
+                    if (!InventarioTemporal3.ContainsKey(IdStock))
+                    {
+                        parametrosinv = actual + ";" + pr + ";" + comp + ";" + pp;
                         InventarioTemporal3.Add(IdStock, parametrosinv);
-
                     }
 
 
 
                 }
-                if (!InventarioTemporal3.ContainsKey(IdStock))
+
+                using (StreamWriter sw100 = new StreamWriter("stockrepuesto.txt"))
                 {
-                    parametrosinv = actual + ";" + pr + ";" + comp + ";" + pp;
-                    InventarioTemporal3.Add(IdStock, parametrosinv);
+                    foreach (KeyValuePair<int, string> entry in InventarioTemporal3)
+                    {
+                        sw100.Write(entry.Key);
+                        sw100.Write(";");
+                        sw100.Write(entry.Value);
+                        sw100.Write("\n");
+                    }
                 }
 
+                File.Delete("Stock.txt");
+                File.Move("stockrepuesto.txt", "Stock.txt");
 
+                RefrescarStock();
 
-            }
-
-            using (StreamWriter sw100 = new StreamWriter("stockrepuesto.txt"))
-            {
-                foreach (KeyValuePair<int, string> entry in InventarioTemporal3)
+                for (int i = 0; i < dgwEntregasFabrica.Rows.Count; i++)
                 {
-                    sw100.Write(entry.Key);
-                    sw100.Write(";");
-                    sw100.Write(entry.Value);
-                    sw100.Write("\n");
-                }
-            }
+                    bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
+                    if (isCellChecked == true)
+                    {
 
-            File.Delete("Stock.txt");
-            File.Move("stockrepuesto.txt", "Stock.txt");
-
-            RefrescarStock();
-
-            for (int i = 0; i < dgwEntregasFabrica.Rows.Count; i++)
-            {
-                bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
-                if (isCellChecked == true)
-                {
+                    }
+                    else
+                    {
+                        NuevosPedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
+                    }
 
                 }
-                else
+
+                using (StreamWriter sw101 = new StreamWriter("nuevostockrepuesto.txt"))
                 {
-                    NuevosPedidosAreponer.Add(int.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), int.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
+                    foreach (KeyValuePair<int, int> entry in NuevosPedidosAreponer)
+                    {
+                        sw101.Write(entry.Key);
+                        sw101.Write(";");
+                        sw101.Write(entry.Value);
+                        sw101.Write("\n");
+                    }
                 }
 
-            }
+                File.Delete("AReponer.txt");
+                File.Move("nuevostockrepuesto.txt", "AReponer.txt");
 
-            using (StreamWriter sw101 = new StreamWriter("nuevostockrepuesto.txt"))
-            {
-                foreach (KeyValuePair<int, int> entry in NuevosPedidosAreponer)
+                RefrescarEntregasStockIndustrias();
+
+                if (!File.Exists("AReponer.txt"))
                 {
-                    sw101.Write(entry.Key);
-                    sw101.Write(";");
-                    sw101.Write(entry.Value);
-                    sw101.Write("\n");
+                    btnCargarPedidosStockPendientesIndustrias.Enabled = false;
                 }
-            }
-
-            File.Delete("AReponer.txt");
-            File.Move("nuevostockrepuesto.txt", "AReponer.txt");
-
-            RefrescarEntregasStockIndustrias();
-
-            if (!File.Exists("AReponer.txt"))
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = false;
-            }
 
             CARGAMESTOCK = false;
 
-
+   
 
         }
     }
