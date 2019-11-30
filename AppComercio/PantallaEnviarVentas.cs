@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
@@ -13,7 +13,7 @@ namespace AppComercio
         // contadores de código de referencia y código de lote
         int codRef = 0;
         int codLote = 0;
-        List<int> RNGexistenteLote = new List<int>();
+        readonly List<int> RNGexistenteLote = new List<int>();
         int codClienteRNGLote = 0;
 
         // ------------------ boton generar lote para logística 
@@ -35,11 +35,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
 
                       }).ToList();
 
@@ -50,8 +50,8 @@ namespace AppComercio
                       {
                           a1 = record[0],
                           a2 = record[1],
-                          a3 = Int32.Parse(record[2]),
-                          a4 = Int32.Parse(record[3])
+                          a3 = int.Parse(record[2]),
+                          a4 = int.Parse(record[3])
                       }).ToList();
 
             foreach (var registroStock in lineasstock)
@@ -93,9 +93,9 @@ namespace AppComercio
                             .Select(record => new
                             {
                                 d1 = record[0],
-                                d2 = Int32.Parse(record[1]),
-                                d3 = Int32.Parse(record[2]),
-                                d4 = Int32.Parse(record[3])
+                                d2 = int.Parse(record[1]),
+                                d3 = int.Parse(record[2]),
+                                d4 = int.Parse(record[3])
                             }).ToList();
 
                                 foreach (var registroLinea in lineaspedido2)
@@ -164,7 +164,7 @@ namespace AppComercio
             {
                 foreach (KeyValuePair<string, string> entry in ArmaLote)
                 {
-                   
+
                     sw6.Write(entry.Key);
                     sw6.Write(";");
                     sw6.Write(entry.Value);
@@ -184,19 +184,19 @@ namespace AppComercio
                           e2 = record[1]
                       }).ToList();
 
-           
-                var lineasPedidosaEnviar = File
-                     .ReadAllLines("PedidosAEnviar.txt")
-                     .Select(record => record.Split(';'))
-                     .Select(record => new
-                     {
-                         f1 = record[0],
-                         f2 = record[1],
-                         f3 = record[2],
-                         f4 = Int32.Parse(record[3])
 
-                     }).ToList();
-            
+            var lineasPedidosaEnviar = File
+                 .ReadAllLines("PedidosAEnviar.txt")
+                 .Select(record => record.Split(';'))
+                 .Select(record => new
+                 {
+                     f1 = record[0],
+                     f2 = record[1],
+                     f3 = record[2],
+                     f4 = int.Parse(record[3])
+
+                 }).ToList();
+
 
             // escribe header con los datos del remitente 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
@@ -257,7 +257,7 @@ namespace AppComercio
 
             // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
             textBoxLote.Text = "";
-            foreach (var line in File.ReadLines("PedidosFinal.txt").Skip(1))
+            foreach (string line in File.ReadLines("PedidosFinal.txt").Skip(1))
             {
                 textBoxLote.AppendText(line + Environment.NewLine);
             }
@@ -305,6 +305,6 @@ namespace AppComercio
 
 
 
- 
+
     }
 }

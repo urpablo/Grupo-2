@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
@@ -35,7 +35,7 @@ namespace AppComercio
         {
             if (dgwCantidadesAReponer.Columns[e.ColumnIndex].Name == "Cantidad reposición")
             {
-                if (String.IsNullOrEmpty(e.FormattedValue.ToString()) || e.FormattedValue.ToString() == "0")
+                if (string.IsNullOrEmpty(e.FormattedValue.ToString()) || e.FormattedValue.ToString() == "0")
                 {
                     dgwCantidadesAReponer.Rows[e.RowIndex].ErrorText = "La celda no puede quedar vacía o ser 0";
                     e.Cancel = true;
@@ -170,4 +170,3 @@ namespace AppComercio
 
 }
 
-        

@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
@@ -15,31 +15,31 @@ namespace AppComercio
         {
 
             bool actualizo = false;
-            
-                // Reviso todos los items del LVI para ver si el código de producto ya fue ingresado
-                // si lo fue, sumo al valor existente el ingresado 
-                foreach (ListViewItem itemLVI in listviewPedidos.Items)
+
+            // Reviso todos los items del LVI para ver si el código de producto ya fue ingresado
+            // si lo fue, sumo al valor existente el ingresado 
+            foreach (ListViewItem itemLVI in listviewPedidos.Items)
+            {
+                if (itemLVI.SubItems[0].Text == comboBoxCodProducto.Text)
                 {
-                    if (itemLVI.SubItems[0].Text == comboBoxCodProducto.Text)
-                    {
-                        int.TryParse(itemLVI.SubItems[1].Text, out int original);
-                        int.TryParse(textBoxCantidadItem.Text, out int sumar);
+                    int.TryParse(itemLVI.SubItems[1].Text, out int original);
+                    int.TryParse(textBoxCantidadItem.Text, out int sumar);
 
-                        itemLVI.SubItems[1].Text = "" + (original + sumar);
+                    itemLVI.SubItems[1].Text = "" + (original + sumar);
 
-                        actualizo = true;
-                        textBoxCantidadItem.Clear();
-                    }
-                }
-
-                // Sino, lo agrego a la lista
-                if (actualizo == false)
-                {
-                    ListViewItem itemLVI = new ListViewItem(comboBoxCodProducto.Text);
-                    itemLVI.SubItems.Add(textBoxCantidadItem.Text);
-                    listviewPedidos.Items.Add(itemLVI);
+                    actualizo = true;
                     textBoxCantidadItem.Clear();
                 }
+            }
+
+            // Sino, lo agrego a la lista
+            if (actualizo == false)
+            {
+                ListViewItem itemLVI = new ListViewItem(comboBoxCodProducto.Text);
+                itemLVI.SubItems.Add(textBoxCantidadItem.Text);
+                listviewPedidos.Items.Add(itemLVI);
+                textBoxCantidadItem.Clear();
+            }
 
             habilitarBotonConfirmarPedido();
         }
@@ -52,7 +52,6 @@ namespace AppComercio
             int KStock = 0;
             int IdPed = 0;
             int KPed = 0;
-            int kComp = 0;
             string parametrosinv;
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
@@ -66,7 +65,10 @@ namespace AppComercio
                     sw.Write(textBoxCodClientePedido.Text + ";" + textBoxDireccionEntregaPedido.Text + ";");
                     sw.Write(item.Text);
                     for (int i = 1; i < item.SubItems.Count; i++)
+                    {
                         sw.Write(";" + item.SubItems[i].Text);
+                    }
+
                     sw.Write("\n");
                 }
             }
@@ -79,8 +81,8 @@ namespace AppComercio
                       {
                           a1 = record[0],
                           a2 = record[1],
-                          a3 = Int32.Parse(record[2]),
-                          a4 = Int32.Parse(record[3])
+                          a3 = int.Parse(record[2]),
+                          a4 = int.Parse(record[3])
                       }).ToList();
 
             // Levanta en memoria el stock actual
@@ -89,11 +91,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
 
                       }).ToList();
 

@@ -1,20 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        List<string> listaRefNE = new List<string>();
-        DataTable tablaEntregados = new DataTable();
-        DataTable tablaNoEntregados = new DataTable();
-        List<int> listaPosicionesSeparadores = new List<int>();
-        List<string> reportesReingresados = new List<string>();
-        Dictionary<string,int> contenidoSpliteado = new Dictionary<string,int>();
+        readonly List<string> listaRefNE = new List<string>();
+        readonly DataTable tablaEntregados = new DataTable();
+        readonly DataTable tablaNoEntregados = new DataTable();
+        readonly List<int> listaPosicionesSeparadores = new List<int>();
+        readonly List<string> reportesReingresados = new List<string>();
+        readonly Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
         string nombreArchivoReporte;
         bool nada = true;
         int contadorSeparador = 1;
@@ -43,10 +43,10 @@ namespace AppComercio
                     // Ahora valida el contenido
                     bool fallar = false;
                     string[] lineasReporte = File.ReadAllLines(openFileDialog1.FileName);
-                    foreach (var linea in lineasReporte)
+                    foreach (string linea in lineasReporte)
                     {
                         string[] lineaSpliteada = linea.Split(';');
-                        foreach (var sublinea in lineaSpliteada)
+                        foreach (string sublinea in lineaSpliteada)
                         {
                             if (sublinea.StartsWith("R") && int.TryParse(sublinea.Remove(0, 1), out int sublineaParseada))
                             {
@@ -86,7 +86,7 @@ namespace AppComercio
                         dgwEntregados.Refresh();
                         dgwNoEntregados.Refresh();
 
-                        
+
                         string[] linesR = File.ReadAllLines(openFileDialog1.FileName);
                         string[] valueR;
 
@@ -111,7 +111,7 @@ namespace AppComercio
                                     rowR[j] = valueR[j].Trim();
                                     if (rowR[j] != "false")
                                     {
-                                         listaRefNE.Add(rowR[j].ToString());
+                                        listaRefNE.Add(rowR[j].ToString());
                                     }
                                 }
                                 tablaNoEntregados.Rows.Add(rowR);
@@ -155,7 +155,7 @@ namespace AppComercio
 
             // Reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote. Si es, error y limpio pantalla
             if (codLote == 0)
-           {
+            {
                 MessageBox.Show("Todavía no ha enviado ningún lote a logística, " +
                     "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiarPantallaReporteEntrega();
@@ -186,7 +186,7 @@ namespace AppComercio
                             nada = false;
                             string[] contenidoLote = File.ReadAllLines(@"c:\Grupo2\" + nombresLotes);
                             int cont = 0;
-                            foreach (var linea in contenidoLote)
+                            foreach (string linea in contenidoLote)
                             {
                                 if (linea == "---")
                                 {
@@ -197,14 +197,14 @@ namespace AppComercio
 
                             // Teniendo la posición de cada separador, por cada separador se que en la posición inmediata
                             // siguiente tengo la línea que comienza con el código de referencia
-                            foreach (var posicionSeparador in listaPosicionesSeparadores)
+                            foreach (int posicionSeparador in listaPosicionesSeparadores)
                             {
                                 // Esto no incluye el último separador dado que se va del rango de la lista de separadores
                                 if (contadorSeparador < listaPosicionesSeparadores.Count)
                                 {
                                     // Me quedo con el primer resultado del split de la línea inmediata siguiente (+1) para saber el código de referencia
                                     // si la lista de no entregados contiene este número de referencia, leo las líneas siguientes. sino sigo
-                                    var nroRefReporte = contenidoLote[posicionSeparador + 1].Split(';')[0];
+                                    string nroRefReporte = contenidoLote[posicionSeparador + 1].Split(';')[0];
                                     if (listaRefNE.Contains(nroRefReporte))
                                     {
                                         // Ahora leo de la posición +1 +1 en adelante hasta el próximo separador
@@ -217,7 +217,7 @@ namespace AppComercio
 
                                         // Ahora que tengo en un dictionary todos los productos y sus cantidades para 
                                         // el codigo de referencia, veo que carajo hago por cada uno
-                                        foreach (var item in contenidoSpliteado)
+                                        foreach (KeyValuePair<string, int> item in contenidoSpliteado)
                                         {
                                             // Recorro el dgw de stock por la columna de IDproducto y al encontrar 
                                             // el producto de este punto del dictionary, voy a su correspondiente
@@ -261,13 +261,16 @@ namespace AppComercio
                         // Ahora que termine, piso el stock.txt con lo que tiene el datagridview de stock luego de este proceso
                         using (StreamWriter objWriter = new StreamWriter("StockReingresado.txt"))
                         {
-                            for (Int32 row = 0; row < dgwStock.Rows.Count; row++)
+                            for (int row = 0; row < dgwStock.Rows.Count; row++)
                             {
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                                for (Int32 col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
+                                for (int col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
                                 {
-                                    if (!String.IsNullOrEmpty(sb.ToString()))
+                                    if (!string.IsNullOrEmpty(sb.ToString()))
+                                    {
                                         sb.Append(";");
+                                    }
+
                                     sb.Append(dgwStock.Rows[row].Cells[col].Value.ToString());
                                 }
                                 objWriter.WriteLine(sb.ToString().Trim());
@@ -288,8 +291,8 @@ namespace AppComercio
 
                 }
 
-                
-               
+
+
             }
 
         }
