@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -32,7 +30,6 @@ namespace AppComercio
                         actualizo = true;
                         textBoxCantidadItem.Clear();
                     }
-
                 }
 
                 // Sino, lo agrego a la lista
@@ -42,7 +39,6 @@ namespace AppComercio
                     itemLVI.SubItems.Add(textBoxCantidadItem.Text);
                     listviewPedidos.Items.Add(itemLVI);
                     textBoxCantidadItem.Clear();
-
                 }
 
             habilitarBotonConfirmarPedido();

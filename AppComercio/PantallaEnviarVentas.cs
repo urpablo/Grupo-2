@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -15,6 +13,8 @@ namespace AppComercio
         // contadores de código de referencia y código de lote
         int codRef = 0;
         int codLote = 0;
+        List<int> RNGexistenteLote = new List<int>();
+        int codClienteRNGLote = 0;
 
         // ------------------ boton generar lote para logística 
         private void btnGenerarTXTLote_Click(object sender, EventArgs e)
@@ -201,7 +201,7 @@ namespace AppComercio
             // escribe header con los datos del remitente 
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
             {
-                sw8.Write(textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text);
+                sw8.Write(textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text);
                 sw8.Write("\n");
                 sw8.Write("---");
                 sw8.Write("\n");
@@ -263,17 +263,29 @@ namespace AppComercio
             }
 
 
-            // Reemplazo numero random por un contador que suma por cada nuevo lote, codLote
-            Random r= new Random();
-            int codClienterng = r.Next(0, 999);
+
+            // codLote suma por cada TXT generado
+            // Número aleatorio para el código de cliente. 
+            // Valido que el número aleatorio que se genere no se repita
+            Random r = new Random();
+            do
+            {
+                codClienteRNGLote = r.Next(0, 999);
+            } while (RNGexistenteLote.Contains(codClienteRNGLote));
+            RNGexistenteLote.Add(codClienteRNGLote);
             codLote++;
 
+
+
+
+
             // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
-            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienterng + "_L" + codLote + ".txt");
+            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
+            string LoteGenerado = ("Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
 
             // Aumenta el contador de lote una vez que se generó
             // Notificación de que se completó exitosamente la generación del lote y del archivo de salida
-            MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra " +
+            MessageBox.Show($"¡Lote diario generado! \n \nEl archivo {LoteGenerado} se encuentra " +
                 "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnGenerarTXTLote.Enabled = false;
 

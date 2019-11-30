@@ -130,7 +130,9 @@
     <Content Include="Entrega_C332_L116.txt" />
     <Content Include="Entrega_C340_L643.txt" />
     <Content Include="PedidosPendientes.txt" />
-    <Content Include="PedidosAEnviar.txt" />
+    <Content Include="PedidosAEnviar.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="lineaindividual.txt" />
     <Content Include="Pedidos.txt" />
     <Content Include="AReponer.txt">

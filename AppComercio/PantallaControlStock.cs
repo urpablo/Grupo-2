@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -15,7 +13,7 @@ namespace AppComercio
         DataTable tablaEntregas = new DataTable();
         DataTable tablaCantARep = new DataTable();
 
-        // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox, revisar stock real < punto rep
+        // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox, revisar stock real < punto rep, habilitar boton de pedido a industrias
 
         private void RefrescarStock()
         {
@@ -65,6 +63,14 @@ namespace AppComercio
                 }
             }
 
+            if (CARGAMESTOCK == true)
+            {
+                btnGenerarTXTPedidoStockIndustrias.Enabled = true;
+            }
+            else
+            {
+                btnGenerarTXTPedidoStockIndustrias.Enabled = false;
+            }
         }
 
         // -------------------- leer AReponer.txt y preparar datagridviews

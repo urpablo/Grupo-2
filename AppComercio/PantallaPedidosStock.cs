@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -11,6 +9,8 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
+        List<int> RNGexistentePedido = new List<int>();
+        int codPedidoRNG = 0;
 
         // -------------------- hacer pedido de stock a industrias
 
@@ -142,19 +142,34 @@ namespace AppComercio
             File.Delete("Stock.txt");
             File.Move("stockconpp.txt", "Stock.txt");
 
-            Random r = new Random();
-            int q = r.Next(0, 999);
 
-            using (StreamWriter sw14 = new StreamWriter("Pedido_A" + q + ".txt"))
+
+            // Número aleatorio para el número de pedido.
+            // Valido que el número aleatorio que se genere no se repita
+            Random r2 = new Random();
+
+
+
+            do
             {
-                sw14.Write(textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text);
+                codPedidoRNG = r2.Next(0, 999);
+            } while (RNGexistentePedido.Contains(codPedidoRNG));
+            RNGexistentePedido.Add(codPedidoRNG);
+
+            
+            
+
+
+            using (StreamWriter sw14 = new StreamWriter("Pedido_A" + codPedidoRNG + ".txt"))
+            {
+                sw14.Write(textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text);
                 sw14.Write("\n");
                 sw14.Write("---");
                 sw14.Write("\n");
 
             }
 
-            using (StreamWriter sw15 = File.AppendText("Pedido_A" + q + ".txt"))
+            using (StreamWriter sw15 = File.AppendText("Pedido_A" + codPedidoRNG + ".txt"))
             {
                 string[] readText = File.ReadAllLines("AReponer.txt");
                 foreach (string s in readText)
@@ -168,15 +183,15 @@ namespace AppComercio
 
             // Vuelco el pedido al textbox de vista previa
             textBoxPedidoIndustria.Text = "";
-            foreach (var line in File.ReadLines("Pedido_A" + q + ".txt").Skip(1))
+            foreach (var line in File.ReadLines("Pedido_A" + codPedidoRNG + ".txt").Skip(1))
             {
                 textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
             }
 
-
+            string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
             // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
-            File.Move("Pedido_A" + q + ".txt", @"c:\Grupo2\" + "Pedido_A" + q + ".txt");
-            MessageBox.Show("¡Pedido a industrias diario generado! \n \n El archivo se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + "Pedido_A" + codPedidoRNG + ".txt");
+            MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
             // Deshabilito botón de pedir stock a industrias, y veo si de este pedido de stock tengo que rellenar y habilitar el de pendientes
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;

@@ -70,6 +70,10 @@ namespace AppComercio
         // ------------------ carga del formulario -----------------------------
         private void Form1_Load(object sender, EventArgs e)
         {
+            // hacer ventana borderless movible
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
 
             //seteo de columnas para las tablas de datos
             tablaStock.Columns.Add("ID", typeof(int));
@@ -77,7 +81,6 @@ namespace AppComercio
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Pendientes", typeof(int));
-
 
             tablaCantARep.Columns.Add("ID", typeof(int));
             tablaCantARep.Columns.Add("Cantidad reposición", typeof(int));
@@ -92,16 +95,14 @@ namespace AppComercio
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
-
-
-            // últimos ajustes iniciales
+            // últimos ajustes iniciales de interfaz
 
             panelBienvenido.Location = new Point(186, 38);
             panelStock.Location = new Point(186, 38);
             panelPedidoIndustrias.Location = new Point(186, 38);
             panelEnviosClientesOnline.Location = new Point(186, 38);
             panelVentasOnline.Location = new Point(186, 38);
-            panelAcuseRecibo.Location = new Point(186, 38);
+            panelReportesEntrega.Location = new Point(186, 38);
 
             btnAgregarItemPedido.Enabled = false;
             btnGenerarTXTLote.Enabled = false;
@@ -113,17 +114,14 @@ namespace AppComercio
             // cargar los datos
 
             CargarDatosComercio();
-            RefrescarStock();
             CargarCantidadesAReponer();
+            RefrescarStock();
             RefrescarEntregasStockIndustrias();
             
             botonBotonera = 0;
             ActualizarPantalla();
 
-            // hacer ventana borderless movible
-            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
-            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
-            MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
+
         }
 
 
@@ -256,11 +254,11 @@ namespace AppComercio
             switch (botonBotonera)
             {
                 case 1:
-                    btnStock.BackColor = Color.FromArgb(52, 78, 103);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
-                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
+                    btnControlStock.BackColor = Color.FromArgb(52, 78, 103);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(41, 57, 128);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
                     LabelTitulo.Text = "Control de Stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -274,7 +272,7 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = false;
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
-                    panelAcuseRecibo.Visible = false;
+                    panelReportesEntrega.Visible = false;
 
                     label14.Text = "ATENCION \n \n" +
                                    "Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
@@ -284,7 +282,6 @@ namespace AppComercio
                     RefrescarStock();
                     RefrescarEntregasStockIndustrias();
                     HabilitarBotonPedidosPendientesStockIndustrias();
-                    HabilitarBotonPedidosIndustrias();
 
 
                     dgwCantidadesAReponer.ReadOnly = false;
@@ -299,11 +296,11 @@ namespace AppComercio
                     break;
 
                 case 2:
-                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(52, 78, 103);
-                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
+                    btnControlStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(52, 78, 103);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
                     LabelTitulo.Text = "Pedido diario de stock a industria";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -317,18 +314,18 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = true;
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
-                    panelAcuseRecibo.Visible = false;
+                    panelReportesEntrega.Visible = false;
 
-                    HabilitarBotonPedidosIndustrias();
+                    RefrescarStock();
 
                     break;
 
                 case 3:
-                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
-                    btnEnviarPedido.BackColor = Color.FromArgb(52, 78, 103);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
+                    btnControlStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(41, 57, 128);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(52, 78, 103);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
                     LabelTitulo.Text = "Confirmar lote diario de ventas a enviar";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -343,15 +340,15 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = false;
                     panelEnviosClientesOnline.Visible = true;
                     panelVentasOnline.Visible = false;
-                    panelAcuseRecibo.Visible = false;
+                    panelReportesEntrega.Visible = false;
                     break;
 
                 case 4:
-                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
-                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(52, 78, 103);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
+                    btnControlStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(41, 57, 128);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(52, 78, 103);
+                    btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
                     LabelTitulo.Text = "Ingresar pedidos de ventas Online";
                     labelAyuda.MaximumSize = new Size(140, 0);
@@ -367,15 +364,15 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = false;
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = true;
-                    panelAcuseRecibo.Visible = false;
+                    panelReportesEntrega.Visible = false;
                     break;
 
                 case 5:
-                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
-                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(52, 78, 103);
+                    btnControlStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(41, 57, 128);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnReportesEntrega.BackColor = Color.FromArgb(52, 78, 103);
 
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "Reportes de Entrega";
@@ -391,15 +388,15 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = false;
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
-                    panelAcuseRecibo.Visible = true;
+                    panelReportesEntrega.Visible = true;
                     break;
 
                 case 0:
-                    btnStock.BackColor = Color.FromArgb(41, 57, 128);
-                    btnPedidoIndustrias.BackColor = Color.FromArgb(41, 57, 128);
-                    btnEnviarPedido.BackColor = Color.FromArgb(41, 57, 71);
-                    btnRecibirPedidoOnline.BackColor = Color.FromArgb(41, 57, 71);
-                    btnAcuseRecibo.BackColor = Color.FromArgb(41, 47, 71);
+                    btnControlStock.BackColor = Color.FromArgb(41, 57, 128);
+                    btnPedidoStockIndustrias.BackColor = Color.FromArgb(41, 57, 128);
+                    btnEnviarLoteLogistica.BackColor = Color.FromArgb(41, 57, 71);
+                    btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
+                    btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
                     LabelTitulo.Visible = true;
                     LabelTitulo.Text = "CAI - Comercio";
@@ -410,7 +407,7 @@ namespace AppComercio
                     panelPedidoIndustrias.Visible = false;
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
-                    panelAcuseRecibo.Visible = false;
+                    panelReportesEntrega.Visible = false;
                     break;
             }
         }
@@ -421,14 +418,30 @@ namespace AppComercio
         {
             string[] dComercio = File.ReadAllLines(@"DatosComercio.txt");
             textBoxCodComercio.Text = dComercio[0];
-            textBoxRazSoc.Text = dComercio[1];
-            textBoxRzSoc.Text = dComercio[1];
+            textBoxRZ1.Text = dComercio[1];
+            textBoxRZ2.Text = dComercio[1];
             textBoxCUIT.Text = dComercio[2];
             textBoxCUIT2.Text = dComercio[2];
             textBoxDirEntComercio.Text = dComercio[3];
             textBoxDirDevComercio.Text = dComercio[4];
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
-            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+            textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+        }
+
+        private void comboBoxCodProducto_TextChanged(object sender, EventArgs e)
+        {
+            textBoxCantidadItem.Focus();
+        }
+
+        private void textBoxCantidadItem_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAgregarItemPedido.PerformClick();
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
         }
     }
 }

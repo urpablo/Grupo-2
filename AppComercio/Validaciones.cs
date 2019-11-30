@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Data;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace AppComercio
 {
@@ -65,21 +60,6 @@ namespace AppComercio
                 btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             }
 
-        }
-
-        // ------------------ revisar el dgw de stock y si el valor real esta por debajo del punto de reposición , marcarlo
-
-        private void HabilitarBotonPedidosIndustrias()
-        {
-                if (CARGAMESTOCK == true)
-                {
-                    btnGenerarTXTPedidoStockIndustrias.Enabled = true;
-                }
-                else
-                {
-                    btnGenerarTXTPedidoStockIndustrias.Enabled = false;
-                }
-           
         }
 
         // ------------------ Habilitar botón de agregar item en ventas solo si los dos textboxes tienen contenido
@@ -167,10 +147,13 @@ namespace AppComercio
 
         private void textBoxCantidadItem_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
+
+
 
         }
 
