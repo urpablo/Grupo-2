@@ -10,7 +10,7 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 - Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
 - En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
 - Desde la pantalla `Reportes de entrega` recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas (que pueden ser modificadas) desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con sucesivas ventas y envíos. Confirmación manual diaria.
+- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas (que pueden ser modificadas) desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con suficiente stock comprometido, o mediante ventas y envíos. Confirmación manual diaria.
 - Los archivos generados y aceptados se condicen con el formato definido en los lineamientos.
 
 ### Uso
@@ -44,6 +44,7 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 #### Pantalla "Pedidos Stock"
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 - No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
+- Permite encargar stock de un producto que ha comprometido el suficiente stock para bajar el real por debajo del punto de reposición, sin antes haberlo despachado via logística impactando en el real
 
 #### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
