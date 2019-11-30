@@ -11,11 +11,9 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-
-
-        // ------------------ carga del formulario ----------------------------------------------------------------------------
-        private void Form1_Load(object sender, EventArgs e)
+        public Form1()
         {
+            InitializeComponent();
 
             // borrar todo rastro de archivos de ejecuciones pasadas
             if (File.Exists("PedidoTemporal.txt"))
@@ -66,8 +64,12 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
+        }
 
 
+        // ------------------ carga del formulario -----------------------------
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
             //seteo de columnas para las tablas de datos
             tablaStock.Columns.Add("ID", typeof(int));
@@ -92,14 +94,7 @@ namespace AppComercio
 
 
 
-            //últimos ajustes iniciales
-
-            cargarDatosComercio();
-            refrescarstock();
-            refrescarEntregas();
-            cargarCantidadesAReponer();
-
-            listLoteClientes.Visible = false;
+            // últimos ajustes iniciales
 
             panelBienvenido.Location = new Point(186, 38);
             panelStock.Location = new Point(186, 38);
@@ -108,12 +103,22 @@ namespace AppComercio
             panelVentasOnline.Location = new Point(186, 38);
             panelAcuseRecibo.Location = new Point(186, 38);
 
-            buttonAgregarItem.Enabled = false;
-            buttonGenerarTXTLote.Enabled = false;
-            buttonGenerarPedido.Enabled = false;
-            buttonPedidoStockIndustrias.Enabled = false;
+            btnAgregarItemPedido.Enabled = false;
+            btnGenerarTXTLote.Enabled = false;
+            btnConfirmarPedidoVentas.Enabled = false;
+            btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             btnCargarStockNoEntregados.Enabled = false;
 
+
+            // cargar los datos
+
+            CargarDatosComercio();
+            RefrescarStock();
+            CargarCantidadesAReponer();
+            RefrescarEntregasStockIndustrias();
+            
+            botonBotonera = 0;
+            ActualizarPantalla();
 
             // hacer ventana borderless movible
             MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
@@ -122,12 +127,6 @@ namespace AppComercio
         }
 
 
-        public Form1()
-        {
-            InitializeComponent();
-            botonBotonera = 0;
-            actualizarPantalla();
-        }
 
         // ------------------ hacer que una ventana borderless sea movible ------------------
 
@@ -192,67 +191,67 @@ namespace AppComercio
         private void btnStock_Click(object sender, EventArgs e)
         {
             botonBotonera = 1;
-            actualizarPantalla();
+            ActualizarPantalla();
 
         }
 
         private void btnPedidoIndustrias_Click(object sender, EventArgs e)
         {
             botonBotonera = 2;
-            actualizarPantalla();
+            ActualizarPantalla();
 
         }
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
         {
             botonBotonera = 3;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void btnRecibirPedidoOnline_Click(object sender, EventArgs e)
         {
             botonBotonera = 4;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void btnAcuseRecibo_Click(object sender, EventArgs e)
         {
             botonBotonera = 5;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             botonBotonera = 1;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             botonBotonera = 2;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
             botonBotonera = 3;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             botonBotonera = 4;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             botonBotonera = 5;
-            actualizarPantalla();
+            ActualizarPantalla();
         }
 
-        private void actualizarPantalla()
+        private void ActualizarPantalla()
         {
             switch (botonBotonera)
             {
@@ -282,16 +281,16 @@ namespace AppComercio
                                    "está por debajo del nivel de reposición marcado en negrita, no dude en ir a la pantalla de pedidos " +
                                    "a industrias y hacer el encargo";
 
-                    refrescarstock();
-                    refrescarEntregas();
-                    habilitarBotonPedidosPendientes();
-                    habilitarBotonPedidosIndustrias();
+                    RefrescarStock();
+                    RefrescarEntregasStockIndustrias();
+                    HabilitarBotonPedidosPendientesStockIndustrias();
+                    HabilitarBotonPedidosIndustrias();
 
 
-                    dgwCantARep.ReadOnly = false;
-                    dgwCantARep.Columns["ID"].ReadOnly = true;
-                    dgwCantARep.Columns["Cantidad reposición"].ReadOnly = false;
-                    ((DataGridViewTextBoxColumn)dgwCantARep.Columns["Cantidad reposición"]).MaxInputLength = 5;
+                    dgwCantidadesAReponer.ReadOnly = false;
+                    dgwCantidadesAReponer.Columns["ID"].ReadOnly = true;
+                    dgwCantidadesAReponer.Columns["Cantidad reposición"].ReadOnly = false;
+                    ((DataGridViewTextBoxColumn)dgwCantidadesAReponer.Columns["Cantidad reposición"]).MaxInputLength = 5;
 
                     dgwEntregasFabrica.ReadOnly = false;
                     dgwEntregasFabrica.Columns["ID"].ReadOnly = true;
@@ -320,7 +319,7 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelAcuseRecibo.Visible = false;
 
-                    habilitarBotonPedidosIndustrias();
+                    HabilitarBotonPedidosIndustrias();
 
                     break;
 
@@ -362,8 +361,6 @@ namespace AppComercio
                         "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
                         "3) Ingrese de la misma forma hasta completar el pedido del cliente para la venta hecha. \n" +
                         "4) Clic en 'Confirmar Pedido' para ingresarlo al lote diario.";
-
-                    listLoteClientes.Visible = false;
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -418,43 +415,20 @@ namespace AppComercio
             }
         }
 
-        private void dgwCantARep_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        // ----------------------------------- cargar datos del comercio---------------------------------------------------------
+
+        private void CargarDatosComercio()
         {
-            e.Control.KeyPress -= new KeyPressEventHandler(Column1_KeyPress);
-            if (dgwCantARep.CurrentCell.ColumnIndex == 1) //Desired Column
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.KeyPress += new KeyPressEventHandler(Column1_KeyPress);
-                }
-            }
-
-        }
-
-
-        private void Column1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void dgwCantARep_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (dgwCantARep.Columns[e.ColumnIndex].Name == "Cantidad reposición")
-            {
-                if (String.IsNullOrEmpty(e.FormattedValue.ToString()) || e.FormattedValue.ToString() == "0")
-                {
-                    dgwCantARep.Rows[e.RowIndex].ErrorText = "La celda no puede quedar vacía o ser 0";
-                    e.Cancel = true;
-                }
-                else
-                {
-                    dgwCantARep.Rows[e.RowIndex].ErrorText = "";
-                }
-            }
+            string[] dComercio = File.ReadAllLines(@"DatosComercio.txt");
+            textBoxCodComercio.Text = dComercio[0];
+            textBoxRazSoc.Text = dComercio[1];
+            textBoxRzSoc.Text = dComercio[1];
+            textBoxCUIT.Text = dComercio[2];
+            textBoxCUIT2.Text = dComercio[2];
+            textBoxDirEntComercio.Text = dComercio[3];
+            textBoxDirDevComercio.Text = dComercio[4];
+            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRazSoc.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+            textBoxRemitente.Text = textBoxRzSoc.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
         }
     }
 }

@@ -15,188 +15,9 @@ namespace AppComercio
         // contadores de código de referencia y código de lote
         int codRef = 0;
         int codLote = 0;
-        bool actualizo;
-
-
-        // -------------------- boton agregar item de cargar ventas ------------------------------------
-        public void buttonAgregarItem_Click(object sender, EventArgs e)
-        {
-
-            
-
-            actualizo = false;
-            if (int.TryParse(textBoxCant.Text, out int sumar1) == false || sumar1 < 0)
-            {
-                DialogResult resultadoMSGbox = MessageBox.Show("No se puede ingresar una cantidad negativa " +
-                    "o algo que no sea un número, intente nuevamente", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            else
-            {
-
-                foreach (ListViewItem lvi in listPedidos.Items)
-                {
-                    if (lvi.SubItems[0].Text == comboBoxCodProducto.Text)
-                    {
-                        int.TryParse(lvi.SubItems[1].Text, out int original);
-                        int.TryParse(textBoxCant.Text, out int sumar);
-
-                        lvi.SubItems[1].Text = "" + (original + sumar);
-
-                        actualizo = true;
-                        textBoxCant.Clear();
-                    }
-
-                }
-
-                if (actualizo == false)
-                {
-                    ListViewItem lstPedido = new ListViewItem(comboBoxCodProducto.Text);
-                    lstPedido.SubItems.Add(textBoxCant.Text);
-                    listPedidos.Items.Add(lstPedido);
-                    textBoxCant.Clear();
-
-                }
-
-            }
-
-            HabilitarConfirmarPedido();
-
-        }
-        
-
-        // ---------------- boton confirmar pedido de cargar ventas ---------------------------------------
-        private void buttonGenerarPedido_Click(object sender, EventArgs e)
-        {
-            int IdStock = 0;
-            int KStock = 0;
-            int IdPed = 0;
-            int KPed = 0;
-            int kComp = 0;
-            string parametrosinv;
-
-            Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
-
-            using (StreamWriter sw = new StreamWriter("PedidoTemporal.txt"))
-            {
-                foreach (ListViewItem item in listPedidos.Items)
-                {
-                    sw.Write(textBoxCdCli.Text + ";" + textBoxDirEnt.Text + ";");
-                    sw.Write(item.Text);
-                    for (int i = 1; i < item.SubItems.Count; i++)
-                        sw.Write(";" + item.SubItems[i].Text);
-                    sw.Write("\n");
-                }
-            }
-
-            //levanta en memoria el pedido temporal
-            var lineaspedido = File
-                      .ReadAllLines("PedidoTemporal.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          a1 = record[0],
-                          a2 = record[1],
-                          a3 = Int32.Parse(record[2]),
-                          a4 = Int32.Parse(record[3])
-                      }).ToList();
-
-            //levanta en memoria el stock actual
-            var lineasstock = File
-                      .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
-
-                      }).ToList();
-
-            //agrega comprometido a stock temporal
-            foreach (var registroStock in lineasstock)
-            {
-                IdStock = registroStock.b1;
-                KStock = registroStock.b4;
-
-                foreach (var registroPedido in lineaspedido)
-                {
-                    IdPed = registroPedido.a3;
-                    KPed = registroPedido.a4;
-
-                    if (IdStock == IdPed)
-                    {
-                        int sumcomprometido = KStock + KPed;
-                        parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + sumcomprometido + ";" + registroStock.b5;
-
-                        InventarioTemporal.Add(IdStock, parametrosinv);
-
-                    }
-                }
-                if (!InventarioTemporal.ContainsKey(IdStock))
-                {
-                    parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + KStock + ";" + registroStock.b5;
-                    InventarioTemporal.Add(IdStock, parametrosinv);
-                }
-
-
-            }
-
-            //Crea el txt de stock temporal
-            using (StreamWriter sw2 = new StreamWriter("StockTemporal.txt"))
-            {
-                foreach (KeyValuePair<int, string> entry in InventarioTemporal)
-                {
-                    sw2.Write(entry.Key);
-                    sw2.Write(";");
-                    sw2.Write(entry.Value);
-                    sw2.Write("\n");
-                }
-            }
-
-            File.Delete("Stock.txt");
-            File.Move("StockTemporal.txt", "Stock.txt");
-
-            
-
-            using (StreamWriter sw3 = File.AppendText("Pedidos.txt"))
-            {
-
-                string[] leertexto = File.ReadAllLines("PedidoTemporal.txt");
-                foreach (string s in leertexto)
-                {
-                    sw3.Write(s);
-                    sw3.Write("\n");
-
-                }
-            }
-
-            MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n " +
-                "Cuando termine de agregar ventas, puede generar el lote final diario " +
-                "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            buttonGenerarTXTLote.Enabled = true;
-            limpiarlistapedidos();
-        }
-
-
-        // ----------------- boton limpiar pedidos de cargar ventas -------------------------------------------
-        private void buttonLimpiarListaPedidos_Click(object sender, EventArgs e)
-        {
-            limpiarlistapedidos();
-        }
-
-        private void limpiarlistapedidos()
-        {
-            listPedidos.Items.Clear();
-            textBoxDirEnt.Clear();
-            textBoxCdCli.Clear();
-            textBoxCant.Clear();
-        }
 
         // ------------------ boton generar lote para logística 
-        private void buttonGenerarTXTLote_Click(object sender, EventArgs e)
+        private void btnGenerarTXTLote_Click(object sender, EventArgs e)
         {
             int IdStock = 0;
             int KStock = 0;
@@ -303,8 +124,6 @@ namespace AppComercio
                                 ArmaLote.Add(RefPed, registroPedido.a2);
 
                             }
-
-
                         }
                         else
                         {
@@ -318,10 +137,7 @@ namespace AppComercio
                                 sw5.Write("\n");
                             }
                         }
-
                     }
-
-
                 }
                 if (!InventarioTemporalLote.ContainsKey(IdStock))
                 {
@@ -344,7 +160,6 @@ namespace AppComercio
                 }
             }
 
-            //
             using (StreamWriter sw6 = new StreamWriter("Listadereferencias.txt"))
             {
                 foreach (KeyValuePair<string, string> entry in ArmaLote)
@@ -393,11 +208,6 @@ namespace AppComercio
 
             }
 
-            // reemplazo contadores para numero de referencia que sumaban de a 000 -> 111 -> 222 -> etc por un contador que suma +1 por pedido ingresado, codRef
-            
-            //int i = 0;
-            //int j = 0;
-            //int z = 0;
             foreach (var registroRef in lineasreferencia)
             {
                 string cdRef = registroRef.e1;
@@ -407,19 +217,9 @@ namespace AppComercio
 
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
-
-                    //sw9.Write("R"+i.ToString()+j.ToString()+z.ToString()+ ";" + cdRef2);
                     sw9.Write("R" + codRef.ToString() + ";" + cdRef2);
                     sw9.Write("\n");
-                    //sw9.Write("---");
-                    //sw9.Write("\n");
-                    //sin este separador y esta nueva línea, la salida es igual a la de los lineamientos
                 }
-
-               
-                //i = i+1;
-                //j = j+1;
-                //z = z+1;
 
                 foreach (var registroPedEnv in lineasPedidosaEnviar)
                 {
@@ -452,14 +252,10 @@ namespace AppComercio
                     sw11.Write("\n");
 
                 }
-
-                
-
-
             }
 
 
-            // vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
+            // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
             textBoxLote.Text = "";
             foreach (var line in File.ReadLines("PedidosFinal.txt").Skip(1))
             {
@@ -467,29 +263,27 @@ namespace AppComercio
             }
 
 
-            // reemplazo numero random por un contador que suma por cada nuevo lote, codLote
+            // Reemplazo numero random por un contador que suma por cada nuevo lote, codLote
             Random r= new Random();
             int codClienterng = r.Next(0, 999);
             codLote++;
 
-            // como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
-
+            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
             File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienterng + "_L" + codLote + ".txt");
 
-            // aumenta el contador de lote una vez que se generó
-            // notificación de que se completó exitosamente la generación del lote y del archivo de salida
+            // Aumenta el contador de lote una vez que se generó
+            // Notificación de que se completó exitosamente la generación del lote y del archivo de salida
             MessageBox.Show("¡Lote diario generado! \n \n El archivo se encuentra " +
                 "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            buttonGenerarTXTLote.Enabled = false;
+            btnGenerarTXTLote.Enabled = false;
 
 
-            // limpiar archivos de este lote para poder comenzar un nuevo ciclo
+            // Limpiar archivos de este lote para poder comenzar un nuevo ciclo
             File.Delete("Pedidos.txt");
             File.Delete("PedidosAEnviar.txt");
 
-            refrescarEntregas();
-            refrescarstock();
-            habilitarBotonPedidosIndustrias();
+            RefrescarEntregasStockIndustrias();
+            RefrescarStock();
         }
 
 

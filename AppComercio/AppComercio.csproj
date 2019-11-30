@@ -67,16 +67,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PantallaCargarVentas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaPedidosStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Validaciones.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PantallaReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PantallasVentas.cs">
+    <Compile Include="PantallaEnviarVentas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PantallasStock.cs">
+    <Compile Include="PantallaControlStock.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.cs">

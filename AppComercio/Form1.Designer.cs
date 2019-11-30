@@ -40,18 +40,18 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBoxCodProducto = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.buttonAgregarItem = new System.Windows.Forms.Button();
-            this.textBoxCant = new System.Windows.Forms.TextBox();
+            this.btnAgregarItemPedido = new System.Windows.Forms.Button();
+            this.textBoxCantidadItem = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBoxDatosClienteOnline = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBoxCdCli = new System.Windows.Forms.TextBox();
+            this.textBoxCodClientePedido = new System.Windows.Forms.TextBox();
             this.labelRteRazSoc = new System.Windows.Forms.Label();
-            this.textBoxDirEnt = new System.Windows.Forms.TextBox();
+            this.textBoxDireccionEntregaPedido = new System.Windows.Forms.TextBox();
             this.groupBoxVentasOnline = new System.Windows.Forms.GroupBox();
-            this.buttonGenerarPedido = new System.Windows.Forms.Button();
-            this.buttonLimpiarListaPedidos = new System.Windows.Forms.Button();
-            this.listPedidos = new System.Windows.Forms.ListView();
+            this.btnConfirmarPedidoVentas = new System.Windows.Forms.Button();
+            this.btnLimpiarPantallaVentas = new System.Windows.Forms.Button();
+            this.listviewPedidos = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Sidebar = new System.Windows.Forms.Panel();
@@ -78,12 +78,12 @@
             this.panelStock = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonPedidosPendientes = new System.Windows.Forms.Button();
+            this.btnCargarPedidosStockPendientesIndustrias = new System.Windows.Forms.Button();
             this.dgwEntregasFabrica = new System.Windows.Forms.DataGridView();
             this.groupBoxStockTabla = new System.Windows.Forms.GroupBox();
-            this.dgwCantARep = new System.Windows.Forms.DataGridView();
+            this.dgwCantidadesAReponer = new System.Windows.Forms.DataGridView();
             this.dgwStock = new System.Windows.Forms.DataGridView();
-            this.buttonPedidoStockIndustrias = new System.Windows.Forms.Button();
+            this.btnGenerarTXTPedidoStockIndustrias = new System.Windows.Forms.Button();
             this.groupBoxStockComercio = new System.Windows.Forms.GroupBox();
             this.labelDireccion = new System.Windows.Forms.Label();
             this.textBoxDirEntComercio = new System.Windows.Forms.TextBox();
@@ -100,7 +100,7 @@
             this.btnCargarStockNoEntregados = new System.Windows.Forms.Button();
             this.groupBoxTablaAcuseRecibo = new System.Windows.Forms.GroupBox();
             this.dgwEntregados = new System.Windows.Forms.DataGridView();
-            this.buttonLeerReporteEntrega = new System.Windows.Forms.Button();
+            this.btnLeerReporteEntrega = new System.Windows.Forms.Button();
             this.textBoxCodClienteReporte = new System.Windows.Forms.TextBox();
             this.textBoxCodLoteReporte = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -111,17 +111,13 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
             this.panelEnviosClientesOnline = new System.Windows.Forms.Panel();
-            this.listLoteClientes = new System.Windows.Forms.ListView();
-            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBoxEnviosClientes = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxRemitente = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBoxLote = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.buttonGenerarTXTLote = new System.Windows.Forms.Button();
+            this.btnGenerarTXTLote = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxDirDevComercio = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -153,7 +149,7 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwEntregasFabrica)).BeginInit();
             this.groupBoxStockTabla.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwCantARep)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCantidadesAReponer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).BeginInit();
             this.groupBoxStockComercio.SuspendLayout();
             this.panelAcuseRecibo.SuspendLayout();
@@ -262,8 +258,8 @@
             // 
             this.groupBox1.Controls.Add(this.comboBoxCodProducto);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.buttonAgregarItem);
-            this.groupBox1.Controls.Add(this.textBoxCant);
+            this.groupBox1.Controls.Add(this.btnAgregarItemPedido);
+            this.groupBox1.Controls.Add(this.textBoxCantidadItem);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Location = new System.Drawing.Point(437, 133);
             this.groupBox1.Name = "groupBox1";
@@ -290,25 +286,25 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Cantidad";
             // 
-            // buttonAgregarItem
+            // btnAgregarItemPedido
             // 
-            this.buttonAgregarItem.Location = new System.Drawing.Point(10, 111);
-            this.buttonAgregarItem.Name = "buttonAgregarItem";
-            this.buttonAgregarItem.Size = new System.Drawing.Size(190, 42);
-            this.buttonAgregarItem.TabIndex = 23;
-            this.buttonAgregarItem.Text = "Agregar item al pedido";
-            this.buttonAgregarItem.UseVisualStyleBackColor = true;
-            this.buttonAgregarItem.Click += new System.EventHandler(this.buttonAgregarItem_Click);
+            this.btnAgregarItemPedido.Location = new System.Drawing.Point(10, 111);
+            this.btnAgregarItemPedido.Name = "btnAgregarItemPedido";
+            this.btnAgregarItemPedido.Size = new System.Drawing.Size(190, 42);
+            this.btnAgregarItemPedido.TabIndex = 23;
+            this.btnAgregarItemPedido.Text = "Agregar item al pedido";
+            this.btnAgregarItemPedido.UseVisualStyleBackColor = true;
+            this.btnAgregarItemPedido.Click += new System.EventHandler(this.btnAgregarItemPedido_Click);
             // 
-            // textBoxCant
+            // textBoxCantidadItem
             // 
-            this.textBoxCant.Location = new System.Drawing.Point(9, 79);
-            this.textBoxCant.MaxLength = 4;
-            this.textBoxCant.Name = "textBoxCant";
-            this.textBoxCant.Size = new System.Drawing.Size(192, 20);
-            this.textBoxCant.TabIndex = 2;
-            this.textBoxCant.TextChanged += new System.EventHandler(this.textBoxCant_TextChanged);
-            this.textBoxCant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCant_KeyPress);
+            this.textBoxCantidadItem.Location = new System.Drawing.Point(9, 79);
+            this.textBoxCantidadItem.MaxLength = 4;
+            this.textBoxCantidadItem.Name = "textBoxCantidadItem";
+            this.textBoxCantidadItem.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCantidadItem.TabIndex = 2;
+            this.textBoxCantidadItem.TextChanged += new System.EventHandler(this.textBoxCantidadItem_TextChanged);
+            this.textBoxCantidadItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCantidadItem_KeyPress);
             // 
             // label4
             // 
@@ -322,9 +318,9 @@
             // groupBoxDatosClienteOnline
             // 
             this.groupBoxDatosClienteOnline.Controls.Add(this.label6);
-            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCdCli);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxCodClientePedido);
             this.groupBoxDatosClienteOnline.Controls.Add(this.labelRteRazSoc);
-            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxDirEnt);
+            this.groupBoxDatosClienteOnline.Controls.Add(this.textBoxDireccionEntregaPedido);
             this.groupBoxDatosClienteOnline.Location = new System.Drawing.Point(437, 3);
             this.groupBoxDatosClienteOnline.Name = "groupBoxDatosClienteOnline";
             this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(210, 124);
@@ -341,15 +337,15 @@
             this.label6.TabIndex = 9;
             this.label6.Text = "Código de cliente";
             // 
-            // textBoxCdCli
+            // textBoxCodClientePedido
             // 
-            this.textBoxCdCli.Location = new System.Drawing.Point(6, 38);
-            this.textBoxCdCli.MaxLength = 5;
-            this.textBoxCdCli.Name = "textBoxCdCli";
-            this.textBoxCdCli.Size = new System.Drawing.Size(192, 20);
-            this.textBoxCdCli.TabIndex = 8;
-            this.textBoxCdCli.TextChanged += new System.EventHandler(this.textBoxCdCli_TextChanged);
-            this.textBoxCdCli.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCdCli_KeyPress);
+            this.textBoxCodClientePedido.Location = new System.Drawing.Point(6, 38);
+            this.textBoxCodClientePedido.MaxLength = 5;
+            this.textBoxCodClientePedido.Name = "textBoxCodClientePedido";
+            this.textBoxCodClientePedido.Size = new System.Drawing.Size(192, 20);
+            this.textBoxCodClientePedido.TabIndex = 8;
+            this.textBoxCodClientePedido.TextChanged += new System.EventHandler(this.textBoxCodClientePedido_TextChanged);
+            this.textBoxCodClientePedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodClientePedido_KeyPress);
             // 
             // labelRteRazSoc
             // 
@@ -360,21 +356,21 @@
             this.labelRteRazSoc.TabIndex = 3;
             this.labelRteRazSoc.Text = "Dirección de entrega";
             // 
-            // textBoxDirEnt
+            // textBoxDireccionEntregaPedido
             // 
-            this.textBoxDirEnt.Location = new System.Drawing.Point(7, 84);
-            this.textBoxDirEnt.MaxLength = 100;
-            this.textBoxDirEnt.Name = "textBoxDirEnt";
-            this.textBoxDirEnt.Size = new System.Drawing.Size(192, 20);
-            this.textBoxDirEnt.TabIndex = 4;
-            this.textBoxDirEnt.TextChanged += new System.EventHandler(this.textBoxDirEnt_TextChanged);
-            this.textBoxDirEnt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDirEnt_KeyPress);
+            this.textBoxDireccionEntregaPedido.Location = new System.Drawing.Point(7, 84);
+            this.textBoxDireccionEntregaPedido.MaxLength = 100;
+            this.textBoxDireccionEntregaPedido.Name = "textBoxDireccionEntregaPedido";
+            this.textBoxDireccionEntregaPedido.Size = new System.Drawing.Size(192, 20);
+            this.textBoxDireccionEntregaPedido.TabIndex = 4;
+            this.textBoxDireccionEntregaPedido.TextChanged += new System.EventHandler(this.textBoxDireccionEntregaPedido_TextChanged);
+            this.textBoxDireccionEntregaPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDireccionEntregaPedido_KeyPress);
             // 
             // groupBoxVentasOnline
             // 
-            this.groupBoxVentasOnline.Controls.Add(this.buttonGenerarPedido);
-            this.groupBoxVentasOnline.Controls.Add(this.buttonLimpiarListaPedidos);
-            this.groupBoxVentasOnline.Controls.Add(this.listPedidos);
+            this.groupBoxVentasOnline.Controls.Add(this.btnConfirmarPedidoVentas);
+            this.groupBoxVentasOnline.Controls.Add(this.btnLimpiarPantallaVentas);
+            this.groupBoxVentasOnline.Controls.Add(this.listviewPedidos);
             this.groupBoxVentasOnline.Location = new System.Drawing.Point(3, 3);
             this.groupBoxVentasOnline.Name = "groupBoxVentasOnline";
             this.groupBoxVentasOnline.Size = new System.Drawing.Size(428, 544);
@@ -382,38 +378,38 @@
             this.groupBoxVentasOnline.TabStop = false;
             this.groupBoxVentasOnline.Text = "Pedido a cargar";
             // 
-            // buttonGenerarPedido
+            // btnConfirmarPedidoVentas
             // 
-            this.buttonGenerarPedido.Location = new System.Drawing.Point(249, 496);
-            this.buttonGenerarPedido.Name = "buttonGenerarPedido";
-            this.buttonGenerarPedido.Size = new System.Drawing.Size(150, 42);
-            this.buttonGenerarPedido.TabIndex = 22;
-            this.buttonGenerarPedido.Text = "Confirmar pedido";
-            this.buttonGenerarPedido.UseVisualStyleBackColor = true;
-            this.buttonGenerarPedido.Click += new System.EventHandler(this.buttonGenerarPedido_Click);
+            this.btnConfirmarPedidoVentas.Location = new System.Drawing.Point(249, 496);
+            this.btnConfirmarPedidoVentas.Name = "btnConfirmarPedidoVentas";
+            this.btnConfirmarPedidoVentas.Size = new System.Drawing.Size(150, 42);
+            this.btnConfirmarPedidoVentas.TabIndex = 22;
+            this.btnConfirmarPedidoVentas.Text = "Confirmar pedido";
+            this.btnConfirmarPedidoVentas.UseVisualStyleBackColor = true;
+            this.btnConfirmarPedidoVentas.Click += new System.EventHandler(this.btnConfirmarPedidoVentas_Click);
             // 
-            // buttonLimpiarListaPedidos
+            // btnLimpiarPantallaVentas
             // 
-            this.buttonLimpiarListaPedidos.Location = new System.Drawing.Point(34, 496);
-            this.buttonLimpiarListaPedidos.Name = "buttonLimpiarListaPedidos";
-            this.buttonLimpiarListaPedidos.Size = new System.Drawing.Size(150, 42);
-            this.buttonLimpiarListaPedidos.TabIndex = 24;
-            this.buttonLimpiarListaPedidos.Text = "Limpiar pantalla";
-            this.buttonLimpiarListaPedidos.UseVisualStyleBackColor = true;
-            this.buttonLimpiarListaPedidos.Click += new System.EventHandler(this.buttonLimpiarListaPedidos_Click);
+            this.btnLimpiarPantallaVentas.Location = new System.Drawing.Point(34, 496);
+            this.btnLimpiarPantallaVentas.Name = "btnLimpiarPantallaVentas";
+            this.btnLimpiarPantallaVentas.Size = new System.Drawing.Size(150, 42);
+            this.btnLimpiarPantallaVentas.TabIndex = 24;
+            this.btnLimpiarPantallaVentas.Text = "Limpiar pantalla";
+            this.btnLimpiarPantallaVentas.UseVisualStyleBackColor = true;
+            this.btnLimpiarPantallaVentas.Click += new System.EventHandler(this.btnLimpiarPantallaVentas_Click);
             // 
-            // listPedidos
+            // listviewPedidos
             // 
-            this.listPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listviewPedidos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listPedidos.HideSelection = false;
-            this.listPedidos.Location = new System.Drawing.Point(6, 18);
-            this.listPedidos.Name = "listPedidos";
-            this.listPedidos.Size = new System.Drawing.Size(416, 472);
-            this.listPedidos.TabIndex = 0;
-            this.listPedidos.UseCompatibleStateImageBehavior = false;
-            this.listPedidos.View = System.Windows.Forms.View.Details;
+            this.listviewPedidos.HideSelection = false;
+            this.listviewPedidos.Location = new System.Drawing.Point(6, 18);
+            this.listviewPedidos.Name = "listviewPedidos";
+            this.listviewPedidos.Size = new System.Drawing.Size(416, 472);
+            this.listviewPedidos.TabIndex = 0;
+            this.listviewPedidos.UseCompatibleStateImageBehavior = false;
+            this.listviewPedidos.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -727,7 +723,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.buttonPedidosPendientes);
+            this.groupBox3.Controls.Add(this.btnCargarPedidosStockPendientesIndustrias);
             this.groupBox3.Controls.Add(this.dgwEntregasFabrica);
             this.groupBox3.Location = new System.Drawing.Point(3, 315);
             this.groupBox3.Name = "groupBox3";
@@ -736,15 +732,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Entregas pendientes de recepcion";
             // 
-            // buttonPedidosPendientes
+            // btnCargarPedidosStockPendientesIndustrias
             // 
-            this.buttonPedidosPendientes.Location = new System.Drawing.Point(14, 197);
-            this.buttonPedidosPendientes.Name = "buttonPedidosPendientes";
-            this.buttonPedidosPendientes.Size = new System.Drawing.Size(149, 23);
-            this.buttonPedidosPendientes.TabIndex = 1;
-            this.buttonPedidosPendientes.Text = "Cargar Pedido Pendiente";
-            this.buttonPedidosPendientes.UseVisualStyleBackColor = true;
-            this.buttonPedidosPendientes.Click += new System.EventHandler(this.buttonPedidosPendientes_Click);
+            this.btnCargarPedidosStockPendientesIndustrias.Location = new System.Drawing.Point(14, 197);
+            this.btnCargarPedidosStockPendientesIndustrias.Name = "btnCargarPedidosStockPendientesIndustrias";
+            this.btnCargarPedidosStockPendientesIndustrias.Size = new System.Drawing.Size(149, 23);
+            this.btnCargarPedidosStockPendientesIndustrias.TabIndex = 1;
+            this.btnCargarPedidosStockPendientesIndustrias.Text = "Cargar Pedido Pendiente";
+            this.btnCargarPedidosStockPendientesIndustrias.UseVisualStyleBackColor = true;
+            this.btnCargarPedidosStockPendientesIndustrias.Click += new System.EventHandler(this.btnCargarPedidosStockPendientesIndustrias_Click);
             // 
             // dgwEntregasFabrica
             // 
@@ -752,7 +748,6 @@
             this.dgwEntregasFabrica.AllowUserToDeleteRows = false;
             this.dgwEntregasFabrica.AllowUserToResizeColumns = false;
             this.dgwEntregasFabrica.AllowUserToResizeRows = false;
-            this.dgwEntregasFabrica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwEntregasFabrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwEntregasFabrica.Location = new System.Drawing.Point(14, 19);
             this.dgwEntregasFabrica.Name = "dgwEntregasFabrica";
@@ -761,7 +756,7 @@
             // 
             // groupBoxStockTabla
             // 
-            this.groupBoxStockTabla.Controls.Add(this.dgwCantARep);
+            this.groupBoxStockTabla.Controls.Add(this.dgwCantidadesAReponer);
             this.groupBoxStockTabla.Controls.Add(this.dgwStock);
             this.groupBoxStockTabla.Location = new System.Drawing.Point(3, 3);
             this.groupBoxStockTabla.Name = "groupBoxStockTabla";
@@ -770,21 +765,21 @@
             this.groupBoxStockTabla.TabStop = false;
             this.groupBoxStockTabla.Text = "Tabla de Stock";
             // 
-            // dgwCantARep
+            // dgwCantidadesAReponer
             // 
-            this.dgwCantARep.AllowUserToAddRows = false;
-            this.dgwCantARep.AllowUserToDeleteRows = false;
-            this.dgwCantARep.AllowUserToOrderColumns = true;
-            this.dgwCantARep.AllowUserToResizeColumns = false;
-            this.dgwCantARep.AllowUserToResizeRows = false;
-            this.dgwCantARep.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgwCantARep.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwCantARep.Location = new System.Drawing.Point(438, 19);
-            this.dgwCantARep.Name = "dgwCantARep";
-            this.dgwCantARep.Size = new System.Drawing.Size(192, 276);
-            this.dgwCantARep.TabIndex = 1;
-            this.dgwCantARep.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgwCantARep_CellValidating);
-            this.dgwCantARep.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgwCantARep_EditingControlShowing);
+            this.dgwCantidadesAReponer.AllowUserToAddRows = false;
+            this.dgwCantidadesAReponer.AllowUserToDeleteRows = false;
+            this.dgwCantidadesAReponer.AllowUserToOrderColumns = true;
+            this.dgwCantidadesAReponer.AllowUserToResizeColumns = false;
+            this.dgwCantidadesAReponer.AllowUserToResizeRows = false;
+            this.dgwCantidadesAReponer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwCantidadesAReponer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwCantidadesAReponer.Location = new System.Drawing.Point(438, 19);
+            this.dgwCantidadesAReponer.Name = "dgwCantidadesAReponer";
+            this.dgwCantidadesAReponer.Size = new System.Drawing.Size(192, 276);
+            this.dgwCantidadesAReponer.TabIndex = 1;
+            this.dgwCantidadesAReponer.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgwCantARep_CellValidating);
+            this.dgwCantidadesAReponer.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgwCantARep_EditingControlShowing);
             // 
             // dgwStock
             // 
@@ -800,20 +795,20 @@
             this.dgwStock.Size = new System.Drawing.Size(417, 276);
             this.dgwStock.TabIndex = 0;
             // 
-            // buttonPedidoStockIndustrias
+            // btnGenerarTXTPedidoStockIndustrias
             // 
-            this.buttonPedidoStockIndustrias.Location = new System.Drawing.Point(10, 218);
-            this.buttonPedidoStockIndustrias.Name = "buttonPedidoStockIndustrias";
-            this.buttonPedidoStockIndustrias.Size = new System.Drawing.Size(192, 42);
-            this.buttonPedidoStockIndustrias.TabIndex = 22;
-            this.buttonPedidoStockIndustrias.Text = "Confirmar Pedido de Stock a Industrias";
-            this.buttonPedidoStockIndustrias.UseVisualStyleBackColor = true;
-            this.buttonPedidoStockIndustrias.Click += new System.EventHandler(this.buttonPedidoStockIndustrias_Click);
+            this.btnGenerarTXTPedidoStockIndustrias.Location = new System.Drawing.Point(10, 218);
+            this.btnGenerarTXTPedidoStockIndustrias.Name = "btnGenerarTXTPedidoStockIndustrias";
+            this.btnGenerarTXTPedidoStockIndustrias.Size = new System.Drawing.Size(192, 42);
+            this.btnGenerarTXTPedidoStockIndustrias.TabIndex = 22;
+            this.btnGenerarTXTPedidoStockIndustrias.Text = "Confirmar Pedido de Stock a Industrias";
+            this.btnGenerarTXTPedidoStockIndustrias.UseVisualStyleBackColor = true;
+            this.btnGenerarTXTPedidoStockIndustrias.Click += new System.EventHandler(this.btnGenerarTXTPedidoStockIndustrias_Click);
             // 
             // groupBoxStockComercio
             // 
             this.groupBoxStockComercio.Controls.Add(this.labelDireccion);
-            this.groupBoxStockComercio.Controls.Add(this.buttonPedidoStockIndustrias);
+            this.groupBoxStockComercio.Controls.Add(this.btnGenerarTXTPedidoStockIndustrias);
             this.groupBoxStockComercio.Controls.Add(this.textBoxDirEntComercio);
             this.groupBoxStockComercio.Controls.Add(this.labelCUIT);
             this.groupBoxStockComercio.Controls.Add(this.textBoxCUIT);
@@ -964,7 +959,7 @@
             // groupBoxTablaAcuseRecibo
             // 
             this.groupBoxTablaAcuseRecibo.Controls.Add(this.dgwEntregados);
-            this.groupBoxTablaAcuseRecibo.Controls.Add(this.buttonLeerReporteEntrega);
+            this.groupBoxTablaAcuseRecibo.Controls.Add(this.btnLeerReporteEntrega);
             this.groupBoxTablaAcuseRecibo.Location = new System.Drawing.Point(4, 82);
             this.groupBoxTablaAcuseRecibo.Name = "groupBoxTablaAcuseRecibo";
             this.groupBoxTablaAcuseRecibo.Size = new System.Drawing.Size(320, 465);
@@ -985,15 +980,15 @@
             this.dgwEntregados.Size = new System.Drawing.Size(308, 390);
             this.dgwEntregados.TabIndex = 19;
             // 
-            // buttonLeerReporteEntrega
+            // btnLeerReporteEntrega
             // 
-            this.buttonLeerReporteEntrega.Location = new System.Drawing.Point(67, 415);
-            this.buttonLeerReporteEntrega.Name = "buttonLeerReporteEntrega";
-            this.buttonLeerReporteEntrega.Size = new System.Drawing.Size(186, 42);
-            this.buttonLeerReporteEntrega.TabIndex = 22;
-            this.buttonLeerReporteEntrega.Text = "Leer reporte de entrega de Logística";
-            this.buttonLeerReporteEntrega.UseVisualStyleBackColor = true;
-            this.buttonLeerReporteEntrega.Click += new System.EventHandler(this.buttonLeerReporteEntrega_Click);
+            this.btnLeerReporteEntrega.Location = new System.Drawing.Point(67, 415);
+            this.btnLeerReporteEntrega.Name = "btnLeerReporteEntrega";
+            this.btnLeerReporteEntrega.Size = new System.Drawing.Size(186, 42);
+            this.btnLeerReporteEntrega.TabIndex = 22;
+            this.btnLeerReporteEntrega.Text = "Leer reporte de entrega de Logística";
+            this.btnLeerReporteEntrega.UseVisualStyleBackColor = true;
+            this.btnLeerReporteEntrega.Click += new System.EventHandler(this.btnLeerReporteEntrega_Click);
             // 
             // textBoxCodClienteReporte
             // 
@@ -1094,42 +1089,12 @@
             // 
             // panelEnviosClientesOnline
             // 
-            this.panelEnviosClientesOnline.Controls.Add(this.listLoteClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
             this.panelEnviosClientesOnline.Location = new System.Drawing.Point(1525, 38);
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(650, 550);
             this.panelEnviosClientesOnline.TabIndex = 27;
-            // 
-            // listLoteClientes
-            // 
-            this.listLoteClientes.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader6,
-            this.columnHeader7,
-            this.columnHeader8});
-            this.listLoteClientes.HideSelection = false;
-            this.listLoteClientes.Location = new System.Drawing.Point(597, 295);
-            this.listLoteClientes.Name = "listLoteClientes";
-            this.listLoteClientes.Size = new System.Drawing.Size(30, 45);
-            this.listLoteClientes.TabIndex = 0;
-            this.listLoteClientes.UseCompatibleStateImageBehavior = false;
-            this.listLoteClientes.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Razón social";
-            this.columnHeader6.Width = 96;
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "CUIT";
-            this.columnHeader7.Width = 92;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Dirección devolución";
-            this.columnHeader8.Width = 113;
             // 
             // groupBoxEnviosClientes
             // 
@@ -1186,7 +1151,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.buttonGenerarTXTLote);
+            this.groupBox2.Controls.Add(this.btnGenerarTXTLote);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.textBoxDirDevComercio);
             this.groupBox2.Controls.Add(this.label1);
@@ -1200,15 +1165,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del remitente para logística";
             // 
-            // buttonGenerarTXTLote
+            // btnGenerarTXTLote
             // 
-            this.buttonGenerarTXTLote.Location = new System.Drawing.Point(8, 182);
-            this.buttonGenerarTXTLote.Name = "buttonGenerarTXTLote";
-            this.buttonGenerarTXTLote.Size = new System.Drawing.Size(190, 42);
-            this.buttonGenerarTXTLote.TabIndex = 24;
-            this.buttonGenerarTXTLote.Text = "Enviar lote a logística";
-            this.buttonGenerarTXTLote.UseVisualStyleBackColor = true;
-            this.buttonGenerarTXTLote.Click += new System.EventHandler(this.buttonGenerarTXTLote_Click);
+            this.btnGenerarTXTLote.Location = new System.Drawing.Point(8, 182);
+            this.btnGenerarTXTLote.Name = "btnGenerarTXTLote";
+            this.btnGenerarTXTLote.Size = new System.Drawing.Size(190, 42);
+            this.btnGenerarTXTLote.TabIndex = 24;
+            this.btnGenerarTXTLote.Text = "Enviar lote a logística";
+            this.btnGenerarTXTLote.UseVisualStyleBackColor = true;
+            this.btnGenerarTXTLote.Click += new System.EventHandler(this.btnGenerarTXTLote_Click);
             // 
             // label5
             // 
@@ -1329,7 +1294,7 @@
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgwEntregasFabrica)).EndInit();
             this.groupBoxStockTabla.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgwCantARep)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwCantidadesAReponer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgwStock)).EndInit();
             this.groupBoxStockComercio.ResumeLayout(false);
             this.groupBoxStockComercio.PerformLayout();
@@ -1381,35 +1346,35 @@
         private System.Windows.Forms.TextBox textBoxCUIT;
         private System.Windows.Forms.Label labelDireccion;
         private System.Windows.Forms.TextBox textBoxDirEntComercio;
-        private System.Windows.Forms.Button buttonPedidoStockIndustrias;
+        private System.Windows.Forms.Button btnGenerarTXTPedidoStockIndustrias;
         private System.Windows.Forms.Panel panelVentasOnline;
-        private System.Windows.Forms.Button buttonGenerarPedido;
+        private System.Windows.Forms.Button btnConfirmarPedidoVentas;
         private System.Windows.Forms.GroupBox groupBoxDatosClienteOnline;
         private System.Windows.Forms.Label labelRteRazSoc;
-        private System.Windows.Forms.TextBox textBoxDirEnt;
+        private System.Windows.Forms.TextBox textBoxDireccionEntregaPedido;
         private System.Windows.Forms.GroupBox groupBoxVentasOnline;
         private System.Windows.Forms.Panel panelAcuseRecibo;
         private System.Windows.Forms.GroupBox groupBoxReporteEntrega;
-        private System.Windows.Forms.Button buttonLeerReporteEntrega;
+        private System.Windows.Forms.Button btnLeerReporteEntrega;
         private System.Windows.Forms.GroupBox groupBoxTablaAcuseRecibo;
         private System.Windows.Forms.Panel panelPedidoIndustrias;
         private System.Windows.Forms.GroupBox groupBoxPedidoIndustrias;
         private System.Windows.Forms.TextBox textBoxPedidoIndustria;
         private System.Windows.Forms.Panel panelEnviosClientesOnline;
-        private System.Windows.Forms.Button buttonAgregarItem;
+        private System.Windows.Forms.Button btnAgregarItemPedido;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxCant;
+        private System.Windows.Forms.TextBox textBoxCantidadItem;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListView listPedidos;
+        private System.Windows.Forms.ListView listviewPedidos;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.Button buttonLimpiarListaPedidos;
+        private System.Windows.Forms.Button btnLimpiarPantallaVentas;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.Button buttonGenerarTXTLote;
+        private System.Windows.Forms.Button btnGenerarTXTLote;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxDirDevComercio;
@@ -1421,13 +1386,9 @@
         private System.Windows.Forms.DataGridView dgwStock;
         private System.Windows.Forms.Button btnCargarStockNoEntregados;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxCdCli;
+        private System.Windows.Forms.TextBox textBoxCodClientePedido;
         private System.Windows.Forms.GroupBox groupBoxEnviosClientes;
         private System.Windows.Forms.TextBox textBoxLote;
-        private System.Windows.Forms.ListView listLoteClientes;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.TextBox textBoxRemitente;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -1452,9 +1413,9 @@
         private System.Windows.Forms.PictureBox pbSalir;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgwEntregasFabrica;
-        private System.Windows.Forms.Button buttonPedidosPendientes;
+        private System.Windows.Forms.Button btnCargarPedidosStockPendientesIndustrias;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridView dgwCantARep;
+        private System.Windows.Forms.DataGridView dgwCantidadesAReponer;
     }
 }
 
