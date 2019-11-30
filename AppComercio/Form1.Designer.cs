@@ -715,9 +715,9 @@
             // 
             this.label14.AutoEllipsis = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(438, 325);
+            this.label14.Location = new System.Drawing.Point(428, 324);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(165, 191);
+            this.label14.Size = new System.Drawing.Size(180, 200);
             this.label14.TabIndex = 3;
             this.label14.Text = "Aviso sobre stock bajo";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

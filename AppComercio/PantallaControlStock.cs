@@ -13,7 +13,8 @@ namespace AppComercio
         DataTable tablaEntregas = new DataTable();
         DataTable tablaCantARep = new DataTable();
 
-        // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox, revisar stock real < punto rep, habilitar boton de pedido a industrias
+        // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox, 
+        // --------------------  revisar stock real < punto rep, habilitar boton de pedido a industrias
 
         private void RefrescarStock()
         {

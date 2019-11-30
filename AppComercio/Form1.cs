@@ -276,7 +276,8 @@ namespace AppComercio
 
                     label14.Text = "ATENCION \n \n" +
                                    "Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
-                                   "está por debajo del nivel de reposición marcado en negrita, no dude en ir a la pantalla de pedidos " +
+                                   "está por debajo del nivel de reposición marcado en negrita, o hay suficiente stock comprometido " +
+                                   "para llegar al mismo punto, no dude en ir a la pantalla de pedidos " +
                                    "a industrias y hacer el encargo";
 
                     RefrescarStock();
@@ -412,7 +413,7 @@ namespace AppComercio
             }
         }
 
-        // ----------------------------------- cargar datos del comercio---------------------------------------------------------
+        // ------------------ cargar datos del comercio
 
         private void CargarDatosComercio()
         {
@@ -428,6 +429,8 @@ namespace AppComercio
             textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
         }
 
+
+        // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos
         private void comboBoxCodProducto_TextChanged(object sender, EventArgs e)
         {
             textBoxCantidadItem.Focus();
