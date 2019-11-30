@@ -1,49 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-
         // -------------------- boton agregar item de cargar ventas
         private void btnAgregarItemPedido_Click(object sender, EventArgs e)
         {
-
             bool actualizo = false;
-            
-                // Reviso todos los items del LVI para ver si el código de producto ya fue ingresado
-                // si lo fue, sumo al valor existente el ingresado 
-                foreach (ListViewItem itemLVI in listviewPedidos.Items)
+
+            // Reviso todos los items del LVI para ver si el código de producto ya fue ingresado
+            // si lo fue, sumo al valor existente el ingresado
+            foreach (ListViewItem itemLVI in listviewPedidos.Items)
+            {
+                if (itemLVI.SubItems[0].Text == comboBoxCodProducto.Text)
                 {
-                    if (itemLVI.SubItems[0].Text == comboBoxCodProducto.Text)
-                    {
-                        int.TryParse(itemLVI.SubItems[1].Text, out int original);
-                        int.TryParse(textBoxCantidadItem.Text, out int sumar);
+                    int.TryParse(itemLVI.SubItems[1].Text, out int original);
+                    int.TryParse(textBoxCantidadItem.Text, out int sumar);
 
-                        itemLVI.SubItems[1].Text = "" + (original + sumar);
+                    itemLVI.SubItems[1].Text = "" + (original + sumar);
 
-                        actualizo = true;
-                        textBoxCantidadItem.Clear();
-                    }
-                }
-
-                // Sino, lo agrego a la lista
-                if (actualizo == false)
-                {
-                    ListViewItem itemLVI = new ListViewItem(comboBoxCodProducto.Text);
-                    itemLVI.SubItems.Add(textBoxCantidadItem.Text);
-                    listviewPedidos.Items.Add(itemLVI);
+                    actualizo = true;
                     textBoxCantidadItem.Clear();
                 }
+            }
+
+            // Sino, lo agrego a la lista
+            if (actualizo == false)
+            {
+                ListViewItem itemLVI = new ListViewItem(comboBoxCodProducto.Text);
+                itemLVI.SubItems.Add(textBoxCantidadItem.Text);
+                listviewPedidos.Items.Add(itemLVI);
+                textBoxCantidadItem.Clear();
+            }
 
             habilitarBotonConfirmarPedido();
         }
-
 
         // -------------------- boton confirmar pedido de cargar ventas
         private void btnConfirmarPedidoVentas_Click(object sender, EventArgs e)
@@ -56,7 +53,6 @@ namespace AppComercio
             string parametrosinv;
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
-
 
             // Escribe el pedido que se acaba de cargar en el listview a txt
             using (StreamWriter sw = new StreamWriter("PedidoTemporal.txt"))
@@ -94,7 +90,6 @@ namespace AppComercio
                           b3 = Int32.Parse(record[2]),
                           b4 = Int32.Parse(record[3]),
                           b5 = Int32.Parse(record[4])
-
                       }).ToList();
 
             // Agrega comprometido a stock temporal
@@ -114,7 +109,6 @@ namespace AppComercio
                         parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + sumcomprometido + ";" + registroStock.b5;
 
                         InventarioTemporal.Add(IdStock, parametrosinv);
-
                     }
                 }
                 if (!InventarioTemporal.ContainsKey(IdStock))
@@ -122,8 +116,6 @@ namespace AppComercio
                     parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + KStock + ";" + registroStock.b5;
                     InventarioTemporal.Add(IdStock, parametrosinv);
                 }
-
-
             }
 
             // Pisa el stock.txt anterior con el actualizado de estas operaciones
@@ -141,17 +133,14 @@ namespace AppComercio
             File.Delete("Stock.txt");
             File.Move("StockTemporal.txt", "Stock.txt");
 
-
             // Guarda los pedidos de esta venta cargada
             using (StreamWriter sw3 = File.AppendText("Pedidos.txt"))
             {
-
                 string[] leertexto = File.ReadAllLines("PedidoTemporal.txt");
                 foreach (string s in leertexto)
                 {
                     sw3.Write(s);
                     sw3.Write("\n");
-
                 }
             }
 
@@ -163,7 +152,6 @@ namespace AppComercio
             btnGenerarTXTLote.Enabled = true;
             limpiarPantallaCargarVentas();
         }
-
 
         // ----------------- boton limpiar pedidos de cargar ventas
         private void btnLimpiarPantallaVentas_Click(object sender, EventArgs e)
@@ -179,6 +167,4 @@ namespace AppComercio
             textBoxCantidadItem.Clear();
         }
     }
-
 }
-

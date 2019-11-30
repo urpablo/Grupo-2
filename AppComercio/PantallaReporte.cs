@@ -1,37 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        List<string> listaRefNE = new List<string>();
-        DataTable tablaEntregados = new DataTable();
-        DataTable tablaNoEntregados = new DataTable();
-        List<int> listaPosicionesSeparadores = new List<int>();
-        List<string> reportesReingresados = new List<string>();
-        Dictionary<string,int> contenidoSpliteado = new Dictionary<string,int>();
-        string nombreArchivoReporte;
-        bool nada = true;
-        int contadorSeparador = 1;
-        int contadorPosicion = 1;
-        bool modificado = false;
+        private List<string> listaRefNE = new List<string>();
+        private DataTable tablaEntregados = new DataTable();
+        private DataTable tablaNoEntregados = new DataTable();
+        private List<int> listaPosicionesSeparadores = new List<int>();
+        private List<string> reportesReingresados = new List<string>();
+        private Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
+        private string nombreArchivoReporte;
+        private bool nada = true;
+        private int contadorSeparador = 1;
+        private int contadorPosicion = 1;
+        private bool modificado = false;
 
         // -------------------- cargar reporte, validar nombre de archivo y formato
         private void btnLeerReporteEntrega_Click(object sender, EventArgs e)
         {
-
             // Abre dialogo de seleccion de archivo
-            DialogResult resultado = openFileDialog1.ShowDialog();
+            DialogResult resultado = elegirReporteEntrega.ShowDialog();
 
             if (resultado == DialogResult.OK)
             {
-
-                nombreArchivoReporte = Path.GetFileName(openFileDialog1.FileName);
+                nombreArchivoReporte = Path.GetFileName(elegirReporteEntrega.FileName);
 
                 // Valida el nombre del archivo
                 if (nombreArchivoReporte.StartsWith("Entrega_")
@@ -42,7 +40,7 @@ namespace AppComercio
                 {
                     // Ahora valida el contenido
                     bool fallar = false;
-                    string[] lineasReporte = File.ReadAllLines(openFileDialog1.FileName);
+                    string[] lineasReporte = File.ReadAllLines(elegirReporteEntrega.FileName);
                     foreach (var linea in lineasReporte)
                     {
                         string[] lineaSpliteada = linea.Split(';');
@@ -60,7 +58,6 @@ namespace AppComercio
                             {
                                 fallar = true;
                             }
-
                         }
                     }
 
@@ -86,8 +83,7 @@ namespace AppComercio
                         dgwEntregados.Refresh();
                         dgwNoEntregados.Refresh();
 
-                        
-                        string[] linesR = File.ReadAllLines(openFileDialog1.FileName);
+                        string[] linesR = File.ReadAllLines(elegirReporteEntrega.FileName);
                         string[] valueR;
 
                         for (int i = 0; i < linesR.Length; i++)
@@ -102,7 +98,6 @@ namespace AppComercio
                                     rowR[j] = valueR[j].Trim();
                                 }
                                 tablaEntregados.Rows.Add(rowR);
-
                             }
                             else
                             {
@@ -111,22 +106,13 @@ namespace AppComercio
                                     rowR[j] = valueR[j].Trim();
                                     if (rowR[j] != "false")
                                     {
-                                         listaRefNE.Add(rowR[j].ToString());
+                                        listaRefNE.Add(rowR[j].ToString());
                                     }
                                 }
                                 tablaNoEntregados.Rows.Add(rowR);
-
                             }
-
-
                         }
-
-
-
-
                     }
-
-
                 }
                 // Si el nombre de archivo no es correcto o no es un archivo .txt, falla
                 else
@@ -134,8 +120,6 @@ namespace AppComercio
                     MessageBox.Show($"{nombreArchivoReporte} tiene un nombre incorrecto, " +
                     "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-
             }
         }
 
@@ -155,7 +139,7 @@ namespace AppComercio
 
             // Reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote. Si es, error y limpio pantalla
             if (codLote == 0)
-           {
+            {
                 MessageBox.Show("Todavía no ha enviado ningún lote a logística, " +
                     "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiarPantallaReporteEntrega();
@@ -175,14 +159,14 @@ namespace AppComercio
                     FileInfo[] Archivo = d.GetFiles("*.txt");
                     foreach (FileInfo archivosLotes in Archivo)
                     {
-                        // Para cada uno que haya en el directorio, reviso que tenga el mismo 
+                        // Para cada uno que haya en el directorio, reviso que tenga el mismo
                         // codigo de cliente y de lote que el archivo de entrega que me dieron
                         string nombresLotes = archivosLotes.ToString();
                         if (nombresLotes.Substring(5) == nombreArchivoReporte.Substring(8))
                         {
-                            // Dado que coincide, tengo el archivo que quiero para el reporte 
-                            // que me dieron de todos los que puede haber en el directorio, 
-                            // ahora quiero buscar las posiciones de los separadores "---" 
+                            // Dado que coincide, tengo el archivo que quiero para el reporte
+                            // que me dieron de todos los que puede haber en el directorio,
+                            // ahora quiero buscar las posiciones de los separadores "---"
                             nada = false;
                             string[] contenidoLote = File.ReadAllLines(@"c:\Grupo2\" + nombresLotes);
                             int cont = 0;
@@ -215,11 +199,11 @@ namespace AppComercio
                                             contadorPosicion++;
                                         }
 
-                                        // Ahora que tengo en un dictionary todos los productos y sus cantidades para 
+                                        // Ahora que tengo en un dictionary todos los productos y sus cantidades para
                                         // el codigo de referencia, veo que carajo hago por cada uno
                                         foreach (var item in contenidoSpliteado)
                                         {
-                                            // Recorro el dgw de stock por la columna de IDproducto y al encontrar 
+                                            // Recorro el dgw de stock por la columna de IDproducto y al encontrar
                                             // el producto de este punto del dictionary, voy a su correspondiente
                                             // fila con el stock real y lo sumo
                                             foreach (DataGridViewRow dr in dgwStock.Rows)
@@ -229,13 +213,11 @@ namespace AppComercio
                                                     dr.Cells[tablaStock.Columns.IndexOf("Real")].Value = (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) + item.Value);
                                                 }
                                             }
-
                                         }
                                     }
                                 }
 
-
-                                // Por cada separador que se revisa y se avanza en el archivo al próximo codref, 
+                                // Por cada separador que se revisa y se avanza en el archivo al próximo codref,
                                 // borro las referencias anteriores para evitar duplicados.
                                 // Marco que modifiqué el stock, entonces debo pisar el stock.txt existente al terminar de iterar
                                 contadorSeparador++;
@@ -254,7 +236,6 @@ namespace AppComercio
                         "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         limpiarPantallaReporteEntrega();
                     }
-
 
                     if (modificado)
                     {
@@ -284,16 +265,8 @@ namespace AppComercio
                         MessageBox.Show($"Pedidos no entregados del reporte de entrega {nombreArchivoReporte} ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         limpiarPantallaReporteEntrega();
                     }
-
-
                 }
-
-                
-               
             }
-
         }
-
     }
-
 }

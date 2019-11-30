@@ -1,22 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        List<int> RNGexistentePedido = new List<int>();
-        int codPedidoRNG = 0;
+        private List<int> RNGexistentePedido = new List<int>();
+        private int codPedidoRNG = 0;
 
         // -------------------- hacer pedido de stock a industrias
 
         private void btnGenerarTXTPedidoStockIndustrias_Click(object sender, EventArgs e)
         {
-
             //levanta en memoria el stock actual
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
@@ -28,7 +27,6 @@ namespace AppComercio
                           b3 = Int32.Parse(record[2]),
                           b4 = Int32.Parse(record[3]),
                           b5 = Int32.Parse(record[4])
-
                       }).ToList();
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
@@ -44,7 +42,6 @@ namespace AppComercio
 
                 if (((actual + pp) - comp) < pr)
                 {
-
                     foreach (DataGridViewRow dr in dgwCantidadesAReponer.Rows)
                     {
                         if (IdStock == int.Parse(dr.Cells["ID"].Value.ToString()))
@@ -54,10 +51,7 @@ namespace AppComercio
                     }
 
                     InventarioTemporal.Add(IdStock, cantarepo.ToString());
-
                 }
-
-
             }
 
             using (StreamWriter sw12 = new StreamWriter("AReponer.txt"))
@@ -101,8 +95,6 @@ namespace AppComercio
                 int IdStock = regStock.b1;
                 string parametrosinv;
 
-
-
                 foreach (var regPed in lineasrepone)
                 {
                     string cdRepo = regPed.c1;
@@ -113,11 +105,7 @@ namespace AppComercio
                         parametrosinv = actual + ";" + pr + ";" + comp + ";" + cantRepo;
 
                         InventarioTemporal2.Add(IdStock, parametrosinv);
-
-
                     }
-
-
                 }
 
                 if (!InventarioTemporal2.ContainsKey(IdStock))
@@ -131,7 +119,6 @@ namespace AppComercio
             {
                 foreach (KeyValuePair<int, string> entry in InventarioTemporal2)
                 {
-
                     sw13.Write(entry.Key);
                     sw13.Write(";");
                     sw13.Write(entry.Value);
@@ -142,23 +129,14 @@ namespace AppComercio
             File.Delete("Stock.txt");
             File.Move("stockconpp.txt", "Stock.txt");
 
-
-
             // Número aleatorio para el número de pedido.
             // Valido que el número aleatorio que se genere no se repita
             Random r2 = new Random();
-
-
-
             do
             {
                 codPedidoRNG = r2.Next(0, 999);
             } while (RNGexistentePedido.Contains(codPedidoRNG));
             RNGexistentePedido.Add(codPedidoRNG);
-
-            
-            
-
 
             using (StreamWriter sw14 = new StreamWriter("Pedido_A" + codPedidoRNG + ".txt"))
             {
@@ -166,7 +144,6 @@ namespace AppComercio
                 sw14.Write("\n");
                 sw14.Write("---");
                 sw14.Write("\n");
-
             }
 
             using (StreamWriter sw15 = File.AppendText("Pedido_A" + codPedidoRNG + ".txt"))
@@ -177,8 +154,6 @@ namespace AppComercio
                     sw15.Write("P" + s);
                     sw15.Write("\n");
                 }
-
-
             }
 
             // Vuelco el pedido al textbox de vista previa
@@ -189,14 +164,13 @@ namespace AppComercio
             }
 
             string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
-            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
+            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo
             File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + "Pedido_A" + codPedidoRNG + ".txt");
             MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             // Deshabilito botón de pedir stock a industrias, y veo si de este pedido de stock tengo que rellenar y habilitar el de pendientes
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             HabilitarBotonPedidosPendientesStockIndustrias();
-
         }
     }
 }

@@ -1,22 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Windows.Forms;
 using System.IO;
 using System.Linq;
-using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-
         // contadores de código de referencia y código de lote
-        int codRef = 0;
-        int codLote = 0;
-        List<int> RNGexistenteLote = new List<int>();
-        int codClienteRNGLote = 0;
+        private int codRef = 0;
 
-        // ------------------ boton generar lote para logística 
+        private int codLote = 0;
+        private List<int> RNGexistenteLote = new List<int>();
+        private int codClienteRNGLote = 0;
+
+        // ------------------ boton generar lote para logística
         private void btnGenerarTXTLote_Click(object sender, EventArgs e)
         {
             int IdStock = 0;
@@ -40,7 +40,6 @@ namespace AppComercio
                           b3 = Int32.Parse(record[2]),
                           b4 = Int32.Parse(record[3]),
                           b5 = Int32.Parse(record[4])
-
                       }).ToList();
 
             var lineaspedido = File
@@ -76,16 +75,13 @@ namespace AppComercio
 
                             if (InventarioTemporalLote.ContainsKey(IdStock))
                             {
-
                                 using (StreamWriter sw7 = new StreamWriter("lineaindividual.txt"))
                                 {
-
                                     string valor = InventarioTemporalLote[IdStock];
                                     sw7.Write(IdStock);
                                     sw7.Write(";");
                                     sw7.Write(valor);
                                     sw7.Write("\n");
-
                                 }
                                 var lineaspedido2 = File
                             .ReadAllLines("lineaindividual.txt")
@@ -103,7 +99,6 @@ namespace AppComercio
                                     int actuallinea = registroLinea.d2;
                                     int actuallinea2 = registroLinea.d4;
                                     parametrosinv = (actuallinea - KPed) + ";" + registroStock.b3 + ";" + (actuallinea2 - KPed) + ";" + registroStock.b5;
-
                                 }
 
                                 InventarioTemporalLote.Remove(IdStock);
@@ -111,10 +106,8 @@ namespace AppComercio
 
                             InventarioTemporalLote.Add(IdStock, parametrosinv);
 
-
                             using (StreamWriter sw6 = File.AppendText("PedidosAEnviar.txt"))
                             {
-
                                 sw6.Write(registroPedido.a1 + ";" + registroPedido.a2 + ";" + IdPed + ";" + KPed);
                                 sw6.Write("\n");
                             }
@@ -122,7 +115,6 @@ namespace AppComercio
                             if (!ArmaLote.ContainsKey(RefPed))
                             {
                                 ArmaLote.Add(RefPed, registroPedido.a2);
-
                             }
                         }
                         else
@@ -132,7 +124,6 @@ namespace AppComercio
 
                             using (StreamWriter sw5 = File.AppendText("PedidosPendientes.txt"))
                             {
-
                                 sw5.Write(registroPedido.a1 + ";" + registroPedido.a2 + ";" + IdPed + ";" + KPed);
                                 sw5.Write("\n");
                             }
@@ -143,10 +134,7 @@ namespace AppComercio
                 {
                     parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + kComp + ";" + registroStock.b5;
                     InventarioTemporalLote.Add(IdStock, parametrosinv);
-
-
                 }
-
             }
 
             using (StreamWriter sw4 = new StreamWriter("StockTemporalSegundo.txt"))
@@ -164,7 +152,6 @@ namespace AppComercio
             {
                 foreach (KeyValuePair<string, string> entry in ArmaLote)
                 {
-                   
                     sw6.Write(entry.Key);
                     sw6.Write(";");
                     sw6.Write(entry.Value);
@@ -184,28 +171,24 @@ namespace AppComercio
                           e2 = record[1]
                       }).ToList();
 
-           
-                var lineasPedidosaEnviar = File
-                     .ReadAllLines("PedidosAEnviar.txt")
-                     .Select(record => record.Split(';'))
-                     .Select(record => new
-                     {
-                         f1 = record[0],
-                         f2 = record[1],
-                         f3 = record[2],
-                         f4 = Int32.Parse(record[3])
+            var lineasPedidosaEnviar = File
+                 .ReadAllLines("PedidosAEnviar.txt")
+                 .Select(record => record.Split(';'))
+                 .Select(record => new
+                 {
+                     f1 = record[0],
+                     f2 = record[1],
+                     f3 = record[2],
+                     f4 = Int32.Parse(record[3])
+                 }).ToList();
 
-                     }).ToList();
-            
-
-            // escribe header con los datos del remitente 
+            // escribe header con los datos del remitente
             using (StreamWriter sw8 = new StreamWriter("PedidosFinal.txt"))
             {
                 sw8.Write(textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text);
                 sw8.Write("\n");
                 sw8.Write("---");
                 sw8.Write("\n");
-
             }
 
             foreach (var registroRef in lineasreferencia)
@@ -213,7 +196,6 @@ namespace AppComercio
                 string cdRef = registroRef.e1;
                 string cdRef2 = registroRef.e2;
                 codRef++;
-
 
                 using (StreamWriter sw9 = File.AppendText("PedidosFinal.txt"))
                 {
@@ -227,33 +209,23 @@ namespace AppComercio
                     int CdPedEnv2 = registroPedEnv.f4;
                     string CdPedEnv3 = registroPedEnv.f1;
 
-
                     if (cdRef == CdPedEnv3)
                     {
                         using (StreamWriter sw10 = File.AppendText("PedidosFinal.txt"))
                         {
-
                             sw10.Write("P" + CdPedEnv + ";" + CdPedEnv2);
                             sw10.Write("\n");
-
                         }
-
-
-
                     }
-
                 }
 
                 // último ---
                 using (StreamWriter sw11 = File.AppendText("PedidosFinal.txt"))
                 {
-
                     sw11.Write("---");
                     sw11.Write("\n");
-
                 }
             }
-
 
             // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
             textBoxLote.Text = "";
@@ -262,10 +234,8 @@ namespace AppComercio
                 textBoxLote.AppendText(line + Environment.NewLine);
             }
 
-
-
             // codLote suma por cada TXT generado
-            // Número aleatorio para el código de cliente. 
+            // Número aleatorio para el código de cliente.
             // Valido que el número aleatorio que se genere no se repita
             Random r = new Random();
             do
@@ -275,11 +245,7 @@ namespace AppComercio
             RNGexistenteLote.Add(codClienteRNGLote);
             codLote++;
 
-
-
-
-
-            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo 
+            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo
             File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
             string LoteGenerado = ("Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
 
@@ -289,7 +255,6 @@ namespace AppComercio
                 "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnGenerarTXTLote.Enabled = false;
 
-
             // Limpiar archivos de este lote para poder comenzar un nuevo ciclo
             File.Delete("Pedidos.txt");
             File.Delete("PedidosAEnviar.txt");
@@ -297,14 +262,5 @@ namespace AppComercio
             RefrescarEntregasStockIndustrias();
             RefrescarStock();
         }
-
-
-
-
-
-
-
-
- 
     }
 }

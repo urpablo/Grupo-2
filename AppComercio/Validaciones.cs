@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        bool CARGAMESTOCK = false;
+        private bool CARGAMESTOCK = false;
 
         // ---------------------------- Validaciones dgw cantidades a reponer (solo dígitos, no ceros, no se puede dejar vacío)
         private void dgwCantARep_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -20,7 +20,6 @@ namespace AppComercio
                     tb.KeyPress += new KeyPressEventHandler(Column1_KeyPress);
                 }
             }
-
         }
 
         private void Column1_KeyPress(object sender, KeyPressEventArgs e)
@@ -59,7 +58,6 @@ namespace AppComercio
             {
                 btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             }
-
         }
 
         // ------------------ Habilitar botón de agregar item en ventas solo si los dos textboxes tienen contenido
@@ -122,7 +120,6 @@ namespace AppComercio
 
         private void habilitarBotonCargarNoEntregadosIndustrias()
         {
-
             if (!string.IsNullOrWhiteSpace(textBoxCodClienteReporte.Text)
                && !string.IsNullOrWhiteSpace(textBoxCodLoteReporte.Text))
             {
@@ -134,28 +131,15 @@ namespace AppComercio
             }
         }
 
-
         // ------------------ Validaciones: evitar entradas espurias en los textbox
         private void textBoxDireccionEntregaPedido_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (!char.IsControl(e.KeyChar) && !char.IsSeparator(e.KeyChar) && !char.IsLetter(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
-        private void textBoxCantidadItem_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-
-
-
-        }
 
         private void textBoxCodClientePedido_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -164,10 +148,5 @@ namespace AppComercio
                 e.Handled = true;
             }
         }
-
-
     }
-
 }
-
-        

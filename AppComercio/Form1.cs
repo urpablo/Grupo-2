@@ -446,5 +446,14 @@ namespace AppComercio
                 e.Handled = true;
             }
         }
+
+        private void textBoxCantidadItem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

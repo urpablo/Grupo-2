@@ -124,7 +124,7 @@
             this.textBoxCUIT2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxRZ2 = new System.Windows.Forms.TextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.elegirReporteEntrega = new System.Windows.Forms.OpenFileDialog();
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -306,6 +306,7 @@
             this.textBoxCantidadItem.TabIndex = 2;
             this.textBoxCantidadItem.TextChanged += new System.EventHandler(this.textBoxCantidadItem_TextChanged);
             this.textBoxCantidadItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxCantidadItem_KeyDown);
+            this.textBoxCantidadItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCantidadItem_KeyPress);
             // 
             // label4
             // 
@@ -1233,9 +1234,9 @@
             this.textBoxRZ2.Size = new System.Drawing.Size(192, 20);
             this.textBoxRZ2.TabIndex = 0;
             // 
-            // openFileDialog1
+            // elegirReporteEntrega
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.elegirReporteEntrega.FileName = "openFileDialog1";
             // 
             // columnHeader3
             // 
@@ -1371,7 +1372,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button btnLimpiarPantallaVentas;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog elegirReporteEntrega;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
