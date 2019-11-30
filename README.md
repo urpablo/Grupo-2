@@ -61,7 +61,7 @@ Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de 
 Para probar esta funcionalidad:
 1) Cargue algunas ventas en el sistema. 
 2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, tener al menos un número de referencia). Revise el estado del stock antes de seguir.
-3) En la carpeta de salida, tome el archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt` usando el mismo código de cliente y el mismo código de lote.
+3) En la carpeta de salida, haga una copia del archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt` usando el mismo código de cliente y el mismo código de lote.
 4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado. Un número de referencia por renglón, como dice el archivo de ejemplo en los lineamientos.
 5) Ingrese este archivo en la pantalla y luego apriete "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
 
