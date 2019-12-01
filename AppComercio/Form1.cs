@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,13 +15,13 @@ namespace AppComercio
             InitializeComponent();
 
             // borrar todo rastro de archivos de ejecuciones pasadas
-                File.Delete("PedidoTemporal.txt");
-                File.Delete("PedidosAEnviar.txt");
-                File.Delete("Pedidos.txt");
-                File.Delete("Listadereferencias.txt");
-                File.Delete("lineaindividual.txt");
-                File.Delete("EntregasStockIndustrias.txt");
-                File.Delete("PedidosPendientes.txt");
+            File.Delete("PedidoTemporal.txt");
+            File.Delete("PedidosAEnviar.txt");
+            File.Delete("Pedidos.txt");
+            File.Delete("Listadereferencias.txt");
+            File.Delete("lineaindividual.txt");
+            File.Delete("EntregasStockIndustrias.txt");
+            File.Delete("PedidosPendientes.txt");
 
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("EntregasStockIndustrias.txt")) ;
             using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
@@ -382,20 +383,104 @@ namespace AppComercio
             }
         }
 
-        // ------------------ cargar datos del comercio
+        // ------------------ validar y cargar datos del comercio
 
         private void CargarDatosComercio()
         {
-            string[] dComercio = File.ReadAllLines(@"DatosComercio.txt");
-            textBoxCodComercio.Text = dComercio[0];
-            textBoxRZ1.Text = dComercio[1];
-            textBoxRZ2.Text = dComercio[1];
-            textBoxCUIT.Text = dComercio[2];
-            textBoxCUIT2.Text = dComercio[2];
-            textBoxDirEntComercio.Text = dComercio[3];
-            textBoxDirDevComercio.Text = dComercio[4];
-            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
-            textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+            
+            bool lineas = false;
+            bool largosplit = false;
+            bool comercio = false;
+            bool cuit = false;
+
+            string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
+            string[] lineaSpliteada = lineaReporte.Split(';');
+
+            // Reviso la cantidad de líneas del archivo. Debe tener solo una.
+            if (File.ReadLines(@"DatosComercio.txt").Count() > 1)
+            {
+                lineas = true;
+            }
+
+            // Reviso la cantidad de elementos resultantes del split. Deben ser 5.
+            if (lineaSpliteada.Length != 5)
+            {
+                largosplit = true;
+            }
+
+            // Reviso si el código de comercio comienza con C y es un número, es válido
+            if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio))
+            {
+                comercio = true;
+
+            }
+
+            // si el cuit es parseable y tiene un largo de 11, es válido para nuestros propósitos
+            if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado))
+            {
+                // si no lo pudo parsear, vamos mal
+                cuit = true;
+            }
+            else
+            {
+                // si lo pudo parsear, reviso el largo del número
+                if (Digits_IfChain(cuitParseado) == 11)
+                {
+                    cuit = false;
+                }
+                else
+                {
+                    cuit = true;
+                }
+            }
+
+            // si alguno es verdadero, cerrar el programa
+            if (lineas || largosplit || comercio || cuit)
+            {
+                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                            "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+
+            }
+            else
+            {
+                textBoxCodComercio.Text = lineaSpliteada[0];
+                textBoxRZ1.Text = lineaSpliteada[1];
+                textBoxRZ2.Text = lineaSpliteada[1];
+                textBoxCUIT.Text = lineaSpliteada[2];
+                textBoxCUIT2.Text = lineaSpliteada[2];
+                textBoxDirEntComercio.Text = lineaSpliteada[3];
+                textBoxDirDevComercio.Text = lineaSpliteada[4];
+                textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+                textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+
+            }
+
+
+        }
+
+        private int Digits_IfChain(long n)
+        {
+            n = Math.Abs(n);
+            if (n < 10L) return 1;
+            if (n < 100L) return 2;
+            if (n < 1000L) return 3;
+            if (n < 10000L) return 4;
+            if (n < 100000L) return 5;
+            if (n < 1000000L) return 6;
+            if (n < 10000000L) return 7;
+            if (n < 100000000L) return 8;
+            if (n < 1000000000L) return 9;
+            if (n < 10000000000L) return 10;
+            if (n < 100000000000L) return 11;
+            if (n < 1000000000000L) return 12;
+            if (n < 10000000000000L) return 13;
+            if (n < 100000000000000L) return 14;
+            if (n < 1000000000000000L) return 15;
+            if (n < 10000000000000000L) return 16;
+            if (n < 100000000000000000L) return 17;
+            if (n < 1000000000000000000L) return 18;
+            return 19;
         }
 
         // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos

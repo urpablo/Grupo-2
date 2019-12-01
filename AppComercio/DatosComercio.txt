@@ -1,5 +1,1 @@
-C1234
-La Ponderosa SA
-20257778885
-Jujuy 2030 San Fernando
-Caracas 50 CABA
+C2148;La Ponderosa SA;20257778885;Jujuy 2030 San Fernando;Caracas 50 CABA
