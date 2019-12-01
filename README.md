@@ -19,13 +19,19 @@ Clonando el repositorio y compilando, se puede empezar a usar.
 
 La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
 
-Viene con un stock inicial predefinido (Stock.txt), los datos del comercio a cargar (DatosComercio.txt) y archivos de prueba para la funcionalidad de entrada en reportes de entrega. Todos estos archivos se encuentran junto al archivo de solución. Los necesarios para el funcionamiento del programa compilado (stock, datos de comercio y otros) se copian automáticamente a la carpeta \bin\debug junto al ejecutable compilado.
-
-Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Es creada por el programa si no existe.
-
 ### Pruebas y comportamiento esperado
 
-Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesarios:
+#### Archivos escenciales para el funcionamiento del programa:
+- `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema.
+
+- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
+
+- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa.
+
+Estos tres archivos se copian siempre a la carpeta del ejecutable.
+
+Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Si existe, borra el contenido (de la última ejecución), sino la crea.
+
 
 #### Pantalla "Control de stock":
 - Tabla de control de stock de solo lectura para el usuario, se llena al iniciar el programa desde el archivo "Stock.txt" y se va modificando a medida que se realizan transacciones en la aplicación, como confirmar un pedido o emitir un lote.
@@ -42,14 +48,15 @@ Validaciones implementadas en cuanto a la interfaz de usuario y archivos necesar
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
-- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 - No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
-- Permite encargar stock de un producto que ha comprometido el suficiente stock para bajar el real por debajo del punto de reposición, sin antes haberlo despachado via logística impactando en el real
+- Permite encargar stock de un producto que ha comprometido el suficiente stock para bajar el real por debajo del punto de reposición, sin antes haberlo despachado via logística impactando en el real.
+- Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
+
 
 #### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
-El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba/ejemplo:
+El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes`:
 - `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos
 - `Entrega_C332_L116.txt` falla por no respetar el separador ; entre código de referencia y estado del envío
 - `Entrega_C332_L115.txt` contiene una frase que no coincide con el formato esperado
