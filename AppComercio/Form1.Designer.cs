@@ -200,7 +200,7 @@
             this.LabelTitulo.Location = new System.Drawing.Point(187, 5);
             this.LabelTitulo.Name = "LabelTitulo";
             this.LabelTitulo.Size = new System.Drawing.Size(345, 23);
-            this.LabelTitulo.TabIndex = 0;
+            this.LabelTitulo.TabIndex = 1;
             this.LabelTitulo.Text = "Confeccionar lote de pedido a industria";
             this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitulo_MouseMove);
             // 
@@ -225,7 +225,7 @@
             this.TopPanelLeft.Location = new System.Drawing.Point(0, 0);
             this.TopPanelLeft.Name = "TopPanelLeft";
             this.TopPanelLeft.Size = new System.Drawing.Size(180, 32);
-            this.TopPanelLeft.TabIndex = 2;
+            this.TopPanelLeft.TabIndex = 0;
             this.TopPanelLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanelLeft_MouseMove);
             // 
             // Minimizar
@@ -252,7 +252,7 @@
             this.panelVentasOnline.Location = new System.Drawing.Point(700, 607);
             this.panelVentasOnline.Name = "panelVentasOnline";
             this.panelVentasOnline.Size = new System.Drawing.Size(650, 550);
-            this.panelVentasOnline.TabIndex = 24;
+            this.panelVentasOnline.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -264,7 +264,7 @@
             this.groupBox1.Location = new System.Drawing.Point(437, 133);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(210, 168);
-            this.groupBox1.TabIndex = 22;
+            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Productos a ingresar al pedido";
             // 
@@ -275,7 +275,7 @@
             this.comboBoxCodProducto.Location = new System.Drawing.Point(9, 36);
             this.comboBoxCodProducto.Name = "comboBoxCodProducto";
             this.comboBoxCodProducto.Size = new System.Drawing.Size(192, 21);
-            this.comboBoxCodProducto.TabIndex = 23;
+            this.comboBoxCodProducto.TabIndex = 1;
             this.comboBoxCodProducto.TextChanged += new System.EventHandler(this.comboBoxCodProducto_TextChanged);
             // 
             // label3
@@ -292,7 +292,7 @@
             this.btnAgregarItemPedido.Location = new System.Drawing.Point(10, 111);
             this.btnAgregarItemPedido.Name = "btnAgregarItemPedido";
             this.btnAgregarItemPedido.Size = new System.Drawing.Size(190, 42);
-            this.btnAgregarItemPedido.TabIndex = 23;
+            this.btnAgregarItemPedido.TabIndex = 3;
             this.btnAgregarItemPedido.Text = "Agregar item al pedido";
             this.btnAgregarItemPedido.UseVisualStyleBackColor = true;
             this.btnAgregarItemPedido.Click += new System.EventHandler(this.btnAgregarItemPedido_Click);
@@ -314,7 +314,7 @@
             this.label4.Location = new System.Drawing.Point(7, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(101, 13);
-            this.label4.TabIndex = 1;
+            this.label4.TabIndex = 4;
             this.label4.Text = "Código de Producto";
             // 
             // groupBoxDatosClienteOnline
@@ -326,7 +326,7 @@
             this.groupBoxDatosClienteOnline.Location = new System.Drawing.Point(437, 3);
             this.groupBoxDatosClienteOnline.Name = "groupBoxDatosClienteOnline";
             this.groupBoxDatosClienteOnline.Size = new System.Drawing.Size(210, 124);
-            this.groupBoxDatosClienteOnline.TabIndex = 21;
+            this.groupBoxDatosClienteOnline.TabIndex = 0;
             this.groupBoxDatosClienteOnline.TabStop = false;
             this.groupBoxDatosClienteOnline.Text = "Datos del cliente para esta venta";
             // 
@@ -336,7 +336,7 @@
             this.label6.Location = new System.Drawing.Point(3, 21);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 13);
-            this.label6.TabIndex = 9;
+            this.label6.TabIndex = 1;
             this.label6.Text = "Código de cliente";
             // 
             // textBoxCodClientePedido
@@ -345,7 +345,7 @@
             this.textBoxCodClientePedido.MaxLength = 5;
             this.textBoxCodClientePedido.Name = "textBoxCodClientePedido";
             this.textBoxCodClientePedido.Size = new System.Drawing.Size(192, 20);
-            this.textBoxCodClientePedido.TabIndex = 8;
+            this.textBoxCodClientePedido.TabIndex = 2;
             this.textBoxCodClientePedido.TextChanged += new System.EventHandler(this.textBoxCodClientePedido_TextChanged);
             this.textBoxCodClientePedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxCodClientePedido_KeyPress);
             // 
@@ -364,7 +364,7 @@
             this.textBoxDireccionEntregaPedido.MaxLength = 100;
             this.textBoxDireccionEntregaPedido.Name = "textBoxDireccionEntregaPedido";
             this.textBoxDireccionEntregaPedido.Size = new System.Drawing.Size(192, 20);
-            this.textBoxDireccionEntregaPedido.TabIndex = 4;
+            this.textBoxDireccionEntregaPedido.TabIndex = 2;
             this.textBoxDireccionEntregaPedido.TextChanged += new System.EventHandler(this.textBoxDireccionEntregaPedido_TextChanged);
             this.textBoxDireccionEntregaPedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxDireccionEntregaPedido_KeyPress);
             // 
@@ -376,7 +376,7 @@
             this.groupBoxVentasOnline.Location = new System.Drawing.Point(3, 3);
             this.groupBoxVentasOnline.Name = "groupBoxVentasOnline";
             this.groupBoxVentasOnline.Size = new System.Drawing.Size(428, 544);
-            this.groupBoxVentasOnline.TabIndex = 20;
+            this.groupBoxVentasOnline.TabIndex = 2;
             this.groupBoxVentasOnline.TabStop = false;
             this.groupBoxVentasOnline.Text = "Pedido a cargar";
             // 
@@ -385,7 +385,7 @@
             this.btnConfirmarPedidoVentas.Location = new System.Drawing.Point(249, 496);
             this.btnConfirmarPedidoVentas.Name = "btnConfirmarPedidoVentas";
             this.btnConfirmarPedidoVentas.Size = new System.Drawing.Size(150, 42);
-            this.btnConfirmarPedidoVentas.TabIndex = 22;
+            this.btnConfirmarPedidoVentas.TabIndex = 2;
             this.btnConfirmarPedidoVentas.Text = "Confirmar pedido";
             this.btnConfirmarPedidoVentas.UseVisualStyleBackColor = true;
             this.btnConfirmarPedidoVentas.Click += new System.EventHandler(this.btnConfirmarPedidoVentas_Click);
@@ -395,7 +395,7 @@
             this.btnLimpiarPantallaVentas.Location = new System.Drawing.Point(34, 496);
             this.btnLimpiarPantallaVentas.Name = "btnLimpiarPantallaVentas";
             this.btnLimpiarPantallaVentas.Size = new System.Drawing.Size(150, 42);
-            this.btnLimpiarPantallaVentas.TabIndex = 24;
+            this.btnLimpiarPantallaVentas.TabIndex = 1;
             this.btnLimpiarPantallaVentas.Text = "Limpiar pantalla";
             this.btnLimpiarPantallaVentas.UseVisualStyleBackColor = true;
             this.btnLimpiarPantallaVentas.Click += new System.EventHandler(this.btnLimpiarPantallaVentas_Click);
@@ -410,6 +410,7 @@
             this.listviewPedidos.Name = "listviewPedidos";
             this.listviewPedidos.Size = new System.Drawing.Size(416, 472);
             this.listviewPedidos.TabIndex = 0;
+            this.listviewPedidos.TabStop = false;
             this.listviewPedidos.UseCompatibleStateImageBehavior = false;
             this.listviewPedidos.View = System.Windows.Forms.View.Details;
             // 
@@ -439,7 +440,7 @@
             this.Sidebar.Location = new System.Drawing.Point(0, 32);
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Size = new System.Drawing.Size(180, 558);
-            this.Sidebar.TabIndex = 2;
+            this.Sidebar.TabIndex = 0;
             // 
             // pictureBox5
             // 
@@ -466,7 +467,7 @@
             this.btnReportesEntrega.Location = new System.Drawing.Point(45, 176);
             this.btnReportesEntrega.Name = "btnReportesEntrega";
             this.btnReportesEntrega.Size = new System.Drawing.Size(135, 44);
-            this.btnReportesEntrega.TabIndex = 17;
+            this.btnReportesEntrega.TabIndex = 5;
             this.btnReportesEntrega.Text = "Reportes de Entrega";
             this.btnReportesEntrega.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReportesEntrega.UseVisualStyleBackColor = false;
@@ -555,7 +556,7 @@
             this.btnRecibirVentasOnline.Location = new System.Drawing.Point(45, 88);
             this.btnRecibirVentasOnline.Name = "btnRecibirVentasOnline";
             this.btnRecibirVentasOnline.Size = new System.Drawing.Size(135, 44);
-            this.btnRecibirVentasOnline.TabIndex = 12;
+            this.btnRecibirVentasOnline.TabIndex = 3;
             this.btnRecibirVentasOnline.Text = "Cargar ventas a lote diario";
             this.btnRecibirVentasOnline.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRecibirVentasOnline.UseVisualStyleBackColor = false;
@@ -574,7 +575,7 @@
             this.btnEnviarLoteLogistica.Location = new System.Drawing.Point(45, 132);
             this.btnEnviarLoteLogistica.Name = "btnEnviarLoteLogistica";
             this.btnEnviarLoteLogistica.Size = new System.Drawing.Size(135, 44);
-            this.btnEnviarLoteLogistica.TabIndex = 11;
+            this.btnEnviarLoteLogistica.TabIndex = 4;
             this.btnEnviarLoteLogistica.Text = "Enviar lote diario a logística";
             this.btnEnviarLoteLogistica.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEnviarLoteLogistica.UseVisualStyleBackColor = false;
@@ -593,7 +594,7 @@
             this.btnPedidoStockIndustrias.Location = new System.Drawing.Point(45, 44);
             this.btnPedidoStockIndustrias.Name = "btnPedidoStockIndustrias";
             this.btnPedidoStockIndustrias.Size = new System.Drawing.Size(135, 44);
-            this.btnPedidoStockIndustrias.TabIndex = 10;
+            this.btnPedidoStockIndustrias.TabIndex = 2;
             this.btnPedidoStockIndustrias.Text = "Pedidos Stock";
             this.btnPedidoStockIndustrias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPedidoStockIndustrias.UseVisualStyleBackColor = false;
@@ -612,7 +613,7 @@
             this.btnControlStock.Location = new System.Drawing.Point(45, 0);
             this.btnControlStock.Name = "btnControlStock";
             this.btnControlStock.Size = new System.Drawing.Size(135, 44);
-            this.btnControlStock.TabIndex = 9;
+            this.btnControlStock.TabIndex = 1;
             this.btnControlStock.Text = "Control de stock";
             this.btnControlStock.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnControlStock.UseVisualStyleBackColor = false;
@@ -739,7 +740,7 @@
             this.btnCargarPedidosStockPendientesIndustrias.Location = new System.Drawing.Point(14, 197);
             this.btnCargarPedidosStockPendientesIndustrias.Name = "btnCargarPedidosStockPendientesIndustrias";
             this.btnCargarPedidosStockPendientesIndustrias.Size = new System.Drawing.Size(149, 23);
-            this.btnCargarPedidosStockPendientesIndustrias.TabIndex = 1;
+            this.btnCargarPedidosStockPendientesIndustrias.TabIndex = 0;
             this.btnCargarPedidosStockPendientesIndustrias.Text = "Cargar Pedido Pendiente";
             this.btnCargarPedidosStockPendientesIndustrias.UseVisualStyleBackColor = true;
             this.btnCargarPedidosStockPendientesIndustrias.Click += new System.EventHandler(this.btnCargarPedidosStockPendientesIndustrias_Click);
@@ -754,7 +755,7 @@
             this.dgwEntregasFabrica.Location = new System.Drawing.Point(14, 19);
             this.dgwEntregasFabrica.Name = "dgwEntregasFabrica";
             this.dgwEntregasFabrica.Size = new System.Drawing.Size(357, 172);
-            this.dgwEntregasFabrica.TabIndex = 0;
+            this.dgwEntregasFabrica.TabIndex = 1;
             // 
             // groupBoxStockTabla
             // 
@@ -802,7 +803,7 @@
             this.btnGenerarTXTPedidoStockIndustrias.Location = new System.Drawing.Point(10, 218);
             this.btnGenerarTXTPedidoStockIndustrias.Name = "btnGenerarTXTPedidoStockIndustrias";
             this.btnGenerarTXTPedidoStockIndustrias.Size = new System.Drawing.Size(192, 42);
-            this.btnGenerarTXTPedidoStockIndustrias.TabIndex = 22;
+            this.btnGenerarTXTPedidoStockIndustrias.TabIndex = 0;
             this.btnGenerarTXTPedidoStockIndustrias.Text = "Confirmar Pedido de Stock a Industrias";
             this.btnGenerarTXTPedidoStockIndustrias.UseVisualStyleBackColor = true;
             this.btnGenerarTXTPedidoStockIndustrias.Click += new System.EventHandler(this.btnGenerarTXTPedidoStockIndustrias_Click);
@@ -843,6 +844,7 @@
             this.textBoxDirEntComercio.ReadOnly = true;
             this.textBoxDirEntComercio.Size = new System.Drawing.Size(196, 20);
             this.textBoxDirEntComercio.TabIndex = 6;
+            this.textBoxDirEntComercio.TabStop = false;
             // 
             // labelCUIT
             // 
@@ -862,6 +864,7 @@
             this.textBoxCUIT.ReadOnly = true;
             this.textBoxCUIT.Size = new System.Drawing.Size(196, 20);
             this.textBoxCUIT.TabIndex = 4;
+            this.textBoxCUIT.TabStop = false;
             // 
             // labelRazSoc
             // 
@@ -881,6 +884,7 @@
             this.textBoxRZ1.ReadOnly = true;
             this.textBoxRZ1.Size = new System.Drawing.Size(196, 20);
             this.textBoxRZ1.TabIndex = 2;
+            this.textBoxRZ1.TabStop = false;
             // 
             // labelCodComercio
             // 
@@ -900,6 +904,7 @@
             this.textBoxCodComercio.ReadOnly = true;
             this.textBoxCodComercio.Size = new System.Drawing.Size(196, 20);
             this.textBoxCodComercio.TabIndex = 0;
+            this.textBoxCodComercio.TabStop = false;
             // 
             // panelReportesEntrega
             // 
@@ -947,13 +952,14 @@
             this.dgwNoEntregados.ReadOnly = true;
             this.dgwNoEntregados.Size = new System.Drawing.Size(308, 390);
             this.dgwNoEntregados.TabIndex = 24;
+            this.dgwNoEntregados.TabStop = false;
             // 
             // btnCargarStockNoEntregados
             // 
             this.btnCargarStockNoEntregados.Location = new System.Drawing.Point(70, 415);
             this.btnCargarStockNoEntregados.Name = "btnCargarStockNoEntregados";
             this.btnCargarStockNoEntregados.Size = new System.Drawing.Size(186, 42);
-            this.btnCargarStockNoEntregados.TabIndex = 23;
+            this.btnCargarStockNoEntregados.TabIndex = 0;
             this.btnCargarStockNoEntregados.Text = "Cargar Stock de no entregados";
             this.btnCargarStockNoEntregados.UseVisualStyleBackColor = true;
             this.btnCargarStockNoEntregados.Click += new System.EventHandler(this.btnCargarStockNoEntregados_Click);
@@ -981,13 +987,14 @@
             this.dgwEntregados.ReadOnly = true;
             this.dgwEntregados.Size = new System.Drawing.Size(308, 390);
             this.dgwEntregados.TabIndex = 19;
+            this.dgwEntregados.TabStop = false;
             // 
             // btnLeerReporteEntrega
             // 
             this.btnLeerReporteEntrega.Location = new System.Drawing.Point(67, 415);
             this.btnLeerReporteEntrega.Name = "btnLeerReporteEntrega";
             this.btnLeerReporteEntrega.Size = new System.Drawing.Size(186, 42);
-            this.btnLeerReporteEntrega.TabIndex = 22;
+            this.btnLeerReporteEntrega.TabIndex = 0;
             this.btnLeerReporteEntrega.Text = "Leer reporte de entrega de Logística";
             this.btnLeerReporteEntrega.UseVisualStyleBackColor = true;
             this.btnLeerReporteEntrega.Click += new System.EventHandler(this.btnLeerReporteEntrega_Click);
@@ -1002,6 +1009,7 @@
             this.textBoxCodClienteReporte.ReadOnly = true;
             this.textBoxCodClienteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodClienteReporte.TabIndex = 24;
+            this.textBoxCodClienteReporte.TabStop = false;
             this.textBoxCodClienteReporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxCodClienteReporte.TextChanged += new System.EventHandler(this.textBoxCodClienteReporte_TextChanged);
             // 
@@ -1015,6 +1023,7 @@
             this.textBoxCodLoteReporte.ReadOnly = true;
             this.textBoxCodLoteReporte.Size = new System.Drawing.Size(142, 26);
             this.textBoxCodLoteReporte.TabIndex = 26;
+            this.textBoxCodLoteReporte.TabStop = false;
             this.textBoxCodLoteReporte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBoxCodLoteReporte.TextChanged += new System.EventHandler(this.textBoxCodLoteReporte_TextChanged);
             // 
@@ -1059,6 +1068,7 @@
             this.textBoxDatosComercio.ReadOnly = true;
             this.textBoxDatosComercio.Size = new System.Drawing.Size(416, 39);
             this.textBoxDatosComercio.TabIndex = 26;
+            this.textBoxDatosComercio.TabStop = false;
             // 
             // label11
             // 
@@ -1088,6 +1098,7 @@
             this.textBoxPedidoIndustria.ReadOnly = true;
             this.textBoxPedidoIndustria.Size = new System.Drawing.Size(415, 432);
             this.textBoxPedidoIndustria.TabIndex = 0;
+            this.textBoxPedidoIndustria.TabStop = false;
             // 
             // panelEnviosClientesOnline
             // 
@@ -1130,6 +1141,7 @@
             this.textBoxRemitente.ReadOnly = true;
             this.textBoxRemitente.Size = new System.Drawing.Size(416, 39);
             this.textBoxRemitente.TabIndex = 2;
+            this.textBoxRemitente.TabStop = false;
             // 
             // label8
             // 
@@ -1150,6 +1162,7 @@
             this.textBoxLote.ReadOnly = true;
             this.textBoxLote.Size = new System.Drawing.Size(415, 432);
             this.textBoxLote.TabIndex = 1;
+            this.textBoxLote.TabStop = false;
             // 
             // groupBox2
             // 
@@ -1172,7 +1185,7 @@
             this.btnGenerarTXTLote.Location = new System.Drawing.Point(8, 182);
             this.btnGenerarTXTLote.Name = "btnGenerarTXTLote";
             this.btnGenerarTXTLote.Size = new System.Drawing.Size(190, 42);
-            this.btnGenerarTXTLote.TabIndex = 24;
+            this.btnGenerarTXTLote.TabIndex = 0;
             this.btnGenerarTXTLote.Text = "Enviar lote a logística";
             this.btnGenerarTXTLote.UseVisualStyleBackColor = true;
             this.btnGenerarTXTLote.Click += new System.EventHandler(this.btnGenerarTXTLote_Click);
@@ -1195,6 +1208,7 @@
             this.textBoxDirDevComercio.ReadOnly = true;
             this.textBoxDirDevComercio.Size = new System.Drawing.Size(192, 20);
             this.textBoxDirDevComercio.TabIndex = 4;
+            this.textBoxDirDevComercio.TabStop = false;
             // 
             // label1
             // 
@@ -1214,6 +1228,7 @@
             this.textBoxCUIT2.ReadOnly = true;
             this.textBoxCUIT2.Size = new System.Drawing.Size(192, 20);
             this.textBoxCUIT2.TabIndex = 2;
+            this.textBoxCUIT2.TabStop = false;
             // 
             // label2
             // 
@@ -1233,6 +1248,7 @@
             this.textBoxRZ2.ReadOnly = true;
             this.textBoxRZ2.Size = new System.Drawing.Size(192, 20);
             this.textBoxRZ2.TabIndex = 0;
+            this.textBoxRZ2.TabStop = false;
             // 
             // elegirReporteEntrega
             // 
