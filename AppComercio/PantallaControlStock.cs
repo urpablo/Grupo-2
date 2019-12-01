@@ -12,26 +12,27 @@ namespace AppComercio
         private DataTable tablaStock = new DataTable();
         private DataTable tablaEntregas = new DataTable();
         private DataTable tablaCantARep = new DataTable();
+        private bool CARGAMESTOCK = false;
 
         // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox,
         // --------------------  revisar stock real < punto rep, habilitar boton de pedido a industrias
 
         private void RefrescarStock()
         {
-            tablaStock.Rows.Clear();
+            tablaStock.Clear();
             dgwStock.Refresh();
 
-            string[] lines = File.ReadAllLines(@"Stock.txt");
-            string[] values;
+            string[] LineasStock = File.ReadAllLines(@"Stock.txt");
+            string[] ValoresStock;
 
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < LineasStock.Length; i++)
             {
-                values = lines[i].ToString().Split(';');
-                string[] row = new string[values.Length];
+                ValoresStock = LineasStock[i].ToString().Split(';');
+                string[] row = new string[ValoresStock.Length];
 
-                for (int j = 0; j < values.Length; j++)
+                for (int j = 0; j < ValoresStock.Length; j++)
                 {
-                    row[j] = values[j].Trim();
+                    row[j] = ValoresStock[j].Trim();
                 }
                 tablaStock.Rows.Add(row);
             }
@@ -40,25 +41,26 @@ namespace AppComercio
             comboBoxCodProducto.DataSource = tablaStock;
             comboBoxCodProducto.DisplayMember = "ID";
 
-            foreach (DataGridViewRow dr in dgwStock.Rows)
-            {
-                int real2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString());
-                int pend2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Pendientes")].Value.ToString());
-                int comp2 = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Comprometido")].Value.ToString());
-                int ptorep = int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Punto de Reposición")].Value.ToString());
 
-                if (((real2 + pend2) - comp2) < ptorep)
+            for (int i = 0; i < dgwStock.Rows.Count; i++)
+            {
+                int.TryParse(dgwStock[1, i].Value.ToString(), out int StockReal);
+                int.TryParse(dgwStock[4, i].Value.ToString(), out int StockPendiente);
+                int.TryParse(dgwStock[3, i].Value.ToString(), out int StockComprometido);
+                int.TryParse(dgwStock[2, i].Value.ToString(), out int PuntoReposicion);
+
+                if ((StockReal + StockPendiente - StockComprometido) < PuntoReposicion)
                 {
-                    System.Windows.Forms.DataGridViewCellStyle boldStyle = new System.Windows.Forms.DataGridViewCellStyle();
-                    boldStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = boldStyle;
+                    System.Windows.Forms.DataGridViewCellStyle Negrita = new System.Windows.Forms.DataGridViewCellStyle();
+                    Negrita.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    dgwStock[1, i].Style = Negrita;
                     CARGAMESTOCK = true;
                 }
                 else
                 {
-                    System.Windows.Forms.DataGridViewCellStyle norStyle = new System.Windows.Forms.DataGridViewCellStyle();
-                    norStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
-                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Style = norStyle;
+                    System.Windows.Forms.DataGridViewCellStyle Normal = new System.Windows.Forms.DataGridViewCellStyle();
+                    Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
+                    dgwStock[1, i].Style = Normal;
                 }
             }
 
@@ -75,7 +77,7 @@ namespace AppComercio
         // -------------------- leer AReponer.txt y preparar datagridviews
         private void RefrescarEntregasStockIndustrias()
         {
-            tablaEntregas.Rows.Clear();
+            tablaEntregas.Clear();
             dgwEntregasFabrica.Refresh();
 
             string[] lines = File.ReadAllLines(@"AReponer.txt");
@@ -105,7 +107,7 @@ namespace AppComercio
         // -------------------- leer las cantidades a reponer y cargarlas en el dgw correspondiente
         private void CargarCantidadesAReponer()
         {
-            tablaCantARep.Rows.Clear();
+            tablaCantARep.Clear();
             dgwCantidadesAReponer.Refresh();
 
             string[] lines = File.ReadAllLines(@"CantidadesAReponer.txt");
@@ -143,7 +145,7 @@ namespace AppComercio
                 bool isCellChecked = (bool)dgwEntregasFabrica.Rows[i].Cells[2].Value;
                 if (isCellChecked == true)
                 {
-                    PedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
+                    PedidosAreponer.Add(int.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), int.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
                 }
             }
 
@@ -152,11 +154,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
                       }).ToList();
 
             foreach (var regStock in lineasstock)
@@ -210,7 +212,7 @@ namespace AppComercio
                 }
                 else
                 {
-                    NuevosPedidosAreponer.Add(Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), Int32.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
+                    NuevosPedidosAreponer.Add(int.Parse(dgwEntregasFabrica.Rows[i].Cells[0].Value.ToString()), int.Parse(dgwEntregasFabrica.Rows[i].Cells[1].Value.ToString()));
                 }
             }
 

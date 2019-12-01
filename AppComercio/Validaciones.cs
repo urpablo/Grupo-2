@@ -6,7 +6,7 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        private bool CARGAMESTOCK = false;
+        
 
         // ---------------------------- Validaciones dgw cantidades a reponer (solo dígitos, no ceros, no se puede dejar vacío)
         private void dgwCantARep_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -14,8 +14,7 @@ namespace AppComercio
             e.Control.KeyPress -= new KeyPressEventHandler(Column1_KeyPress);
             if (dgwCantidadesAReponer.CurrentCell.ColumnIndex == 1)
             {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
+                if (e.Control is TextBox tb)
                 {
                     tb.KeyPress += new KeyPressEventHandler(Column1_KeyPress);
                 }

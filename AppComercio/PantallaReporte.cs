@@ -242,10 +242,10 @@ namespace AppComercio
                         // Ahora que termine, piso el stock.txt con lo que tiene el datagridview de stock luego de este proceso
                         using (StreamWriter objWriter = new StreamWriter("StockReingresado.txt"))
                         {
-                            for (Int32 row = 0; row < dgwStock.Rows.Count; row++)
+                            for (int row = 0; row < dgwStock.Rows.Count; row++)
                             {
                                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                                for (Int32 col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
+                                for (int col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
                                 {
                                     if (!String.IsNullOrEmpty(sb.ToString()))
                                         sb.Append(";");

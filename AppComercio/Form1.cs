@@ -51,8 +51,8 @@ namespace AppComercio
                 File.Delete("PedidosPendientes.txt");
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
-            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt"));
+            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt"));
 
             // borrar la salida de la ejecución anterior y recrear el directorio de salida
             if (Directory.Exists(@"C:\Grupo2"))

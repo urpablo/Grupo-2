@@ -49,7 +49,7 @@ namespace AppComercio
             int KStock = 0;
             int IdPed = 0;
             int KPed = 0;
-            int kComp = 0;
+            //int kComp = 0;
             string parametrosinv;
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
@@ -75,8 +75,8 @@ namespace AppComercio
                       {
                           a1 = record[0],
                           a2 = record[1],
-                          a3 = Int32.Parse(record[2]),
-                          a4 = Int32.Parse(record[3])
+                          a3 = int.Parse(record[2]),
+                          a4 = int.Parse(record[3])
                       }).ToList();
 
             // Levanta en memoria el stock actual
@@ -85,11 +85,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
                       }).ToList();
 
             // Agrega comprometido a stock temporal

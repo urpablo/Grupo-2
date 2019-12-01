@@ -11,7 +11,6 @@ namespace AppComercio
     {
         // contadores de código de referencia y código de lote
         private int codRef = 0;
-
         private int codLote = 0;
         private List<int> RNGexistenteLote = new List<int>();
         private int codClienteRNGLote = 0;
@@ -35,11 +34,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
                       }).ToList();
 
             var lineaspedido = File
@@ -49,8 +48,8 @@ namespace AppComercio
                       {
                           a1 = record[0],
                           a2 = record[1],
-                          a3 = Int32.Parse(record[2]),
-                          a4 = Int32.Parse(record[3])
+                          a3 = int.Parse(record[2]),
+                          a4 = int.Parse(record[3])
                       }).ToList();
 
             foreach (var registroStock in lineasstock)
@@ -89,9 +88,9 @@ namespace AppComercio
                             .Select(record => new
                             {
                                 d1 = record[0],
-                                d2 = Int32.Parse(record[1]),
-                                d3 = Int32.Parse(record[2]),
-                                d4 = Int32.Parse(record[3])
+                                d2 = int.Parse(record[1]),
+                                d3 = int.Parse(record[2]),
+                                d4 = int.Parse(record[3])
                             }).ToList();
 
                                 foreach (var registroLinea in lineaspedido2)
@@ -179,7 +178,7 @@ namespace AppComercio
                      f1 = record[0],
                      f2 = record[1],
                      f3 = record[2],
-                     f4 = Int32.Parse(record[3])
+                     f4 = int.Parse(record[3])
                  }).ToList();
 
             // escribe header con los datos del remitente

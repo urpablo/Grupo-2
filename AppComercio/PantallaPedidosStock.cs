@@ -22,11 +22,11 @@ namespace AppComercio
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
-                          b1 = Int32.Parse(record[0]),
-                          b2 = Int32.Parse(record[1]),
-                          b3 = Int32.Parse(record[2]),
-                          b4 = Int32.Parse(record[3]),
-                          b5 = Int32.Parse(record[4])
+                          b1 = int.Parse(record[0]),
+                          b2 = int.Parse(record[1]),
+                          b3 = int.Parse(record[2]),
+                          b4 = int.Parse(record[3]),
+                          b5 = int.Parse(record[4])
                       }).ToList();
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
@@ -37,7 +37,7 @@ namespace AppComercio
                 int comp = regStock.b4;
                 int pr = regStock.b3;
                 int IdStock = regStock.b1;
-                string parametrosinv;
+                // string parametrosinv;
                 int cantarepo = 0;
 
                 if (((actual + pp) - comp) < pr)
@@ -71,7 +71,7 @@ namespace AppComercio
                       .Select(record => new
                       {
                           c1 = record[0],
-                          c2 = Int32.Parse(record[1]),
+                          c2 = int.Parse(record[1]),
                       }).ToList();
 
             Dictionary<int, string> InventarioTemporal2 = new Dictionary<int, string>();
@@ -122,9 +122,7 @@ namespace AppComercio
             // Número aleatorio para el número de pedido.
             // Valido que el número aleatorio que se genere no se repita
             Random r2 = new Random();
-            do
-            {
-                codPedidoRNG = r2.Next(0, 999);
+            do {codPedidoRNG = r2.Next(0, 999);
             } while (RNGexistentePedido.Contains(codPedidoRNG));
             RNGexistentePedido.Add(codPedidoRNG);
 
