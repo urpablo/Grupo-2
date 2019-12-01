@@ -282,7 +282,6 @@ namespace AppComercio
 
                     RefrescarStock();
                     RefrescarEntregasStockIndustrias();
-                    HabilitarBotonPedidosPendientesStockIndustrias();
 
 
                     dgwCantidadesAReponer.ReadOnly = false;

@@ -20,7 +20,6 @@ namespace AppComercio
         private void RefrescarStock()
         {
             tablaStock.Clear();
-            dgwStock.Refresh();
 
             string[] LineasStock = File.ReadAllLines(@"Stock.txt");
             string[] ValoresStock;
@@ -38,9 +37,10 @@ namespace AppComercio
             }
 
             dgwStock.DataSource = tablaStock;
+            dgwStock.Refresh();
+
             comboBoxCodProducto.DataSource = tablaStock;
             comboBoxCodProducto.DisplayMember = "ID";
-
 
             for (int i = 0; i < dgwStock.Rows.Count; i++)
             {
@@ -78,7 +78,6 @@ namespace AppComercio
         private void RefrescarEntregasStockIndustrias()
         {
             tablaEntregas.Clear();
-            dgwEntregasFabrica.Refresh();
 
             string[] lines = File.ReadAllLines(@"AReponer.txt");
             string[] values;
@@ -101,6 +100,7 @@ namespace AppComercio
             }
 
             dgwEntregasFabrica.DataSource = tablaEntregas;
+            dgwEntregasFabrica.Refresh();
             HabilitarBotonPedidosPendientesStockIndustrias();
         }
 
@@ -108,24 +108,24 @@ namespace AppComercio
         private void CargarCantidadesAReponer()
         {
             tablaCantARep.Clear();
-            dgwCantidadesAReponer.Refresh();
+       
+            string[] LineasAReponer = File.ReadAllLines(@"CantidadesAReponer.txt");
+            string[] ValoresAReponer;
 
-            string[] lines = File.ReadAllLines(@"CantidadesAReponer.txt");
-            string[] values;
-
-            for (int i = 0; i < lines.Length; i++)
+            for (int i = 0; i < LineasAReponer.Length; i++)
             {
-                values = lines[i].ToString().Split(';');
-                string[] row = new string[values.Length];
+                ValoresAReponer = LineasAReponer[i].ToString().Split(';');
+                string[] row = new string[ValoresAReponer.Length];
 
-                for (int j = 0; j < values.Length; j++)
+                for (int j = 0; j < ValoresAReponer.Length; j++)
                 {
-                    row[j] = values[j].Trim();
+                    row[j] = ValoresAReponer[j].Trim();
                 }
                 tablaCantARep.Rows.Add(row);
             }
 
             dgwCantidadesAReponer.DataSource = tablaCantARep;
+            dgwCantidadesAReponer.Refresh();
         }
 
         // -------------------- boton aceptar pedidos pendientes de industrias/stock
