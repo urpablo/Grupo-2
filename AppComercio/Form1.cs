@@ -14,45 +14,18 @@ namespace AppComercio
             InitializeComponent();
 
             // borrar todo rastro de archivos de ejecuciones pasadas
-            if (File.Exists("PedidoTemporal.txt"))
-            {
                 File.Delete("PedidoTemporal.txt");
-            }
-
-            if (File.Exists("PedidosAEnviar.txt"))
-            {
                 File.Delete("PedidosAEnviar.txt");
-            }
-
-            if (File.Exists("Pedidos.txt"))
-            {
                 File.Delete("Pedidos.txt");
-            }
-
-            if (File.Exists("Listadereferencias.txt"))
-            {
                 File.Delete("Listadereferencias.txt");
-            }
-
-            if (File.Exists("lineaindividual.txt"))
-            {
                 File.Delete("lineaindividual.txt");
-            }
-
-            if (File.Exists("AReponer.txt"))
-            {
-                File.Delete("AReponer.txt");
-            }
-
-            if (File.Exists("PedidosPendientes.txt"))
-            {
+                File.Delete("EntregasStockIndustrias.txt");
                 File.Delete("PedidosPendientes.txt");
-            }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("EntregasStockIndustrias.txt")) ;
             using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
 
-            // borrar la salida de la ejecución anterior y recrear el directorio de salida
+            // borrar la salida de la ejecución anterior y recrear el directorio de salida si no existe
             if (Directory.Exists(@"C:\Grupo2"))
             {
                 Directory.Delete(@"C:\Grupo2", true);
@@ -62,11 +35,8 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
-            
-            // medio segundo de delay para asegurarse que este directorio se cree,
-            // cambiar de pantalla rápidamente apenas se abre el programa a veces
-            // da como resultado que no se crea el directorio
-            System.Threading.Thread.Sleep(500);
+
+
         }
 
         // ------------------ carga del formulario -----------------------------

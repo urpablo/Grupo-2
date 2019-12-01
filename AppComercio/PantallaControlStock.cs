@@ -71,13 +71,13 @@ namespace AppComercio
             }
         }
 
-        // -------------------- leer AReponer.txt, preparar dgwEntregasFabrica y en base al contenido de AReponer.txt
+        // -------------------- leer EntregasStockIndustrias.txt, preparar dgwEntregasFabrica y en base al contenido de EntregasStockIndustrias.txt
         // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
         private void RefrescarEntregasStockIndustrias()
         {
             tablaEntregas.Clear();
 
-            string[] lines = File.ReadAllLines(@"AReponer.txt");
+            string[] lines = File.ReadAllLines(@"EntregasStockIndustrias.txt");
             string[] values;
 
             for (int i = 0; i < lines.Length; i++)
@@ -99,7 +99,7 @@ namespace AppComercio
 
             dgwEntregasFabrica.Refresh();
 
-            if (new FileInfo("AReponer.txt").Length == 0)
+            if (new FileInfo("EntregasStockIndustrias.txt").Length == 0)
             {
                 btnCargarPedidosStockPendientesIndustrias.Enabled = false;
             }
@@ -109,12 +109,12 @@ namespace AppComercio
             }
         }
 
-        // -------------------- leer las cantidades a reponer y cargarlas en dgwCantidadesAReponer en pantalla de stock
+        // -------------------- leer las cantidades a reponer de CantidadesReposicionStock.txt y cargarlas en dgwCantidadesAReponer en pantalla de stock
         private void CargarCantidadesAReponer()
         {
             tablaCantARep.Clear();
 
-            string[] LineasAReponer = File.ReadAllLines(@"CantidadesAReponer.txt");
+            string[] LineasAReponer = File.ReadAllLines(@"CantidadesReposicionStock.txt");
             string[] ValoresAReponer;
 
             for (int i = 0; i < LineasAReponer.Length; i++)
@@ -231,8 +231,8 @@ namespace AppComercio
                 }
             }
 
-            File.Delete("AReponer.txt");
-            File.Move("nuevostockrepuesto.txt", "AReponer.txt");
+            File.Delete("EntregasStockIndustrias.txt");
+            File.Move("nuevostockrepuesto.txt", "EntregasStockIndustrias.txt");
 
             RefrescarEntregasStockIndustrias();
             CARGAMESTOCK = false;

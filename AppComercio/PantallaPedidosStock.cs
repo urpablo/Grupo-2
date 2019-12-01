@@ -54,7 +54,7 @@ namespace AppComercio
                 }
             }
 
-            using (StreamWriter sw12 = new StreamWriter("AReponer.txt"))
+            using (StreamWriter sw12 = new StreamWriter("EntregasStockIndustrias.txt"))
             {
                 foreach (KeyValuePair<int, string> entry in InventarioTemporal)
                 {
@@ -66,7 +66,7 @@ namespace AppComercio
             }
 
             var lineasrepone = File
-                      .ReadAllLines("AReponer.txt")
+                      .ReadAllLines("EntregasStockIndustrias.txt")
                       .Select(record => record.Split(';'))
                       .Select(record => new
                       {
@@ -138,7 +138,7 @@ namespace AppComercio
 
             using (StreamWriter sw15 = File.AppendText("Pedido_A" + codPedidoRNG + ".txt"))
             {
-                string[] readText = File.ReadAllLines("AReponer.txt");
+                string[] readText = File.ReadAllLines("EntregasStockIndustrias.txt");
                 foreach (string s in readText)
                 {
                     sw15.Write("P" + s);
