@@ -1,13 +1,10 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        
-
         // ---------------------------- Validaciones dgw cantidades a reponer (solo dígitos, no ceros, no se puede dejar vacío)
         private void dgwCantARep_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -42,20 +39,6 @@ namespace AppComercio
                 {
                     dgwCantidadesAReponer.Rows[e.RowIndex].ErrorText = "";
                 }
-            }
-        }
-
-        // ------------------ si este archivo tiene un largo de 0 (es decir, vacío) no se habiilta el botón de pedidos pendientes
-
-        private void HabilitarBotonPedidosPendientesStockIndustrias()
-        {
-            if (new FileInfo("AReponer.txt").Length == 0)
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = false;
-            }
-            else
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             }
         }
 

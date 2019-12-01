@@ -11,6 +11,7 @@ namespace AppComercio
     {
         // contadores de código de referencia y código de lote
         private int codRef = 0;
+
         private int codLote = 0;
         private List<int> RNGexistenteLote = new List<int>();
         private int codClienteRNGLote = 0;
@@ -237,7 +238,9 @@ namespace AppComercio
             // Número aleatorio para el código de cliente.
             // Valido que el número aleatorio que se genere no se repita
             Random r = new Random();
-            do{codClienteRNGLote = r.Next(0, 999);
+            do
+            {
+                codClienteRNGLote = r.Next(0, 999);
             } while (RNGexistenteLote.Contains(codClienteRNGLote));
             RNGexistenteLote.Add(codClienteRNGLote);
             codLote++;

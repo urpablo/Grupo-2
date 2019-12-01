@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Forms;
 
 namespace AppComercio
 {
@@ -51,8 +49,8 @@ namespace AppComercio
                 File.Delete("PedidosPendientes.txt");
             }
 
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt"));
-            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt"));
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter("AReponer.txt")) ;
+            using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
 
             // borrar la salida de la ejecución anterior y recrear el directorio de salida
             if (Directory.Exists(@"C:\Grupo2"))
@@ -64,8 +62,12 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
+            
+            // medio segundo de delay para asegurarse que este directorio se cree,
+            // cambiar de pantalla rápidamente apenas se abre el programa a veces
+            // da como resultado que no se crea el directorio
+            System.Threading.Thread.Sleep(500);
         }
-
 
         // ------------------ carga del formulario -----------------------------
         private void Form1_Load(object sender, EventArgs e)
@@ -95,6 +97,16 @@ namespace AppComercio
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
+            // asocio tablas a dgws y al combobox de ID de producto
+
+            dgwStock.DataSource = tablaStock;
+            comboBoxCodProducto.DataSource = tablaStock;
+            comboBoxCodProducto.DisplayMember = "ID";
+            dgwEntregasFabrica.DataSource = tablaEntregas;
+            dgwCantidadesAReponer.DataSource = tablaCantARep;
+            dgwEntregados.DataSource = tablaEntregados;
+            dgwNoEntregados.DataSource = tablaNoEntregados;
+
             // últimos ajustes iniciales de interfaz
 
             panelBienvenido.Location = new Point(186, 38);
@@ -110,21 +122,16 @@ namespace AppComercio
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             btnCargarStockNoEntregados.Enabled = false;
 
-
             // cargar los datos
 
             CargarDatosComercio();
             CargarCantidadesAReponer();
             RefrescarStock();
             RefrescarEntregasStockIndustrias();
-            
+
             botonBotonera = 0;
             ActualizarPantalla();
-
-
         }
-
-
 
         // ------------------ hacer que una ventana borderless sea movible ------------------
 
@@ -133,8 +140,10 @@ namespace AppComercio
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
         private void TopPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -162,10 +171,6 @@ namespace AppComercio
             }
         }
 
-
-
-
-
         // ------------------ controles ventana ------------------
         private void pbSalir_Click(object sender, EventArgs e)
         {
@@ -180,24 +185,22 @@ namespace AppComercio
         private void pbMinimizar_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
-
         }
 
         // ------------------ botonera menú ------------------
 
         public int botonBotonera;
+
         private void btnStock_Click(object sender, EventArgs e)
         {
             botonBotonera = 1;
             ActualizarPantalla();
-
         }
 
         private void btnPedidoIndustrias_Click(object sender, EventArgs e)
         {
             botonBotonera = 2;
             ActualizarPantalla();
-
         }
 
         private void btnEnviarPedido_Click(object sender, EventArgs e)
@@ -217,7 +220,6 @@ namespace AppComercio
             botonBotonera = 5;
             ActualizarPantalla();
         }
-
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -266,7 +268,6 @@ namespace AppComercio
                     labelAyuda.Text = "Aquí podemos ver la situación de stock actual y confirmar la entrada de los pedidos de stock, previamente habiendo hecho uno. \n \n" +
                                       "Ingrese las ventas del día, haga los envíos a logística y luego revise el stock para encargar si es necesario.";
 
-
                     panelBienvenido.Visible = false;
                     panelStock.Visible = true;
                     panelPedidoIndustrias.Visible = false;
@@ -282,7 +283,6 @@ namespace AppComercio
 
                     RefrescarStock();
                     RefrescarEntregasStockIndustrias();
-
 
                     dgwCantidadesAReponer.ReadOnly = false;
                     dgwCantidadesAReponer.Columns["ID"].ReadOnly = true;
@@ -428,7 +428,6 @@ namespace AppComercio
             textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
         }
 
-
         // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos
         private void comboBoxCodProducto_TextChanged(object sender, EventArgs e)
         {
@@ -437,7 +436,6 @@ namespace AppComercio
 
         private void textBoxCantidadItem_KeyDown(object sender, KeyEventArgs e)
         {
-
             if (e.KeyCode == Keys.Enter)
             {
                 btnAgregarItemPedido.PerformClick();
@@ -448,7 +446,6 @@ namespace AppComercio
 
         private void textBoxCantidadItem_KeyPress(object sender, KeyPressEventArgs e)
         {
-
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;

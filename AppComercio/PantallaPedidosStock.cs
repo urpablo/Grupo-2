@@ -122,7 +122,9 @@ namespace AppComercio
             // Número aleatorio para el número de pedido.
             // Valido que el número aleatorio que se genere no se repita
             Random r2 = new Random();
-            do {codPedidoRNG = r2.Next(0, 999);
+            do
+            {
+                codPedidoRNG = r2.Next(0, 999);
             } while (RNGexistentePedido.Contains(codPedidoRNG));
             RNGexistentePedido.Add(codPedidoRNG);
 
@@ -158,7 +160,7 @@ namespace AppComercio
 
             // Deshabilito botón de pedir stock a industrias, y veo si de este pedido de stock tengo que rellenar y habilitar el de pendientes
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
-            HabilitarBotonPedidosPendientesStockIndustrias();
+            RefrescarEntregasStockIndustrias();
         }
     }
 }

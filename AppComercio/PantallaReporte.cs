@@ -75,13 +75,8 @@ namespace AppComercio
                         textBoxCodClienteReporte.Text = archivoCodCliente;
                         textBoxCodLoteReporte.Text = archivoCodLote;
 
-                        dgwEntregados.DataSource = tablaEntregados;
-                        dgwNoEntregados.DataSource = tablaNoEntregados;
-
-                        tablaEntregados.Rows.Clear();
-                        tablaNoEntregados.Rows.Clear();
-                        dgwEntregados.Refresh();
-                        dgwNoEntregados.Refresh();
+                        tablaEntregados.Clear();
+                        tablaNoEntregados.Clear();
 
                         string[] linesR = File.ReadAllLines(elegirReporteEntrega.FileName);
                         string[] valueR;
@@ -112,6 +107,9 @@ namespace AppComercio
                                 tablaNoEntregados.Rows.Add(rowR);
                             }
                         }
+
+                        dgwEntregados.Refresh();
+                        dgwNoEntregados.Refresh();
                     }
                 }
                 // Si el nombre de archivo no es correcto o no es un archivo .txt, falla
@@ -224,18 +222,21 @@ namespace AppComercio
                                 contadorPosicion = 1;
                                 contenidoSpliteado.Clear();
                                 modificado = true;
+
                             }
                         }
                     }
 
                     // Si ninguno de los archivos del directorio tuvo coincidencias, este reporte no nos pertenece. Se descarta
                     // y se limpia la pantalla
-                    if (nada == true)
+                    if (nada)
                     {
-                        MessageBox.Show($"El reporte de entrega {nombreArchivoReporte} no tiene coincidencias " +
+                        MessageBox.Show($"El reporte {nombreArchivoReporte} no tiene coincidencias " +
                         "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         limpiarPantallaReporteEntrega();
                     }
+
+                    
 
                     if (modificado)
                     {
@@ -258,13 +259,19 @@ namespace AppComercio
                         // Guardo el nombre del archivo para no procesarlo nuevamente si se reingresa
                         reportesReingresados.Add(nombreArchivoReporte);
 
+                        // piso el stock actual con el reingresado
                         File.Delete("Stock.txt");
                         File.Move("StockReingresado.txt", "Stock.txt");
 
-                        // Confirmación de que salió todo bien, limpio la pantalla
+                        // Confirmación de que salió todo bien, limpio la pantalla y seteo modificado en false, nada en true como al principio,
+                        // para evitar ingresos de reportes de formato válido, no emitidos por el programa 
                         MessageBox.Show($"Pedidos no entregados del reporte de entrega {nombreArchivoReporte} ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        modificado = false;
+                        nada = true;
                         limpiarPantallaReporteEntrega();
                     }
+
+
                 }
             }
         }

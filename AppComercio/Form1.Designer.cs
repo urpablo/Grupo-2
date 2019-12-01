@@ -733,7 +733,7 @@
             this.groupBox3.Size = new System.Drawing.Size(379, 232);
             this.groupBox3.TabIndex = 21;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Entregas pendientes de recepcion";
+            this.groupBox3.Text = "Entregas de stock pendientes de recepción";
             // 
             // btnCargarPedidosStockPendientesIndustrias
             // 
@@ -751,6 +751,7 @@
             this.dgwEntregasFabrica.AllowUserToDeleteRows = false;
             this.dgwEntregasFabrica.AllowUserToResizeColumns = false;
             this.dgwEntregasFabrica.AllowUserToResizeRows = false;
+            this.dgwEntregasFabrica.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgwEntregasFabrica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwEntregasFabrica.Location = new System.Drawing.Point(14, 19);
             this.dgwEntregasFabrica.Name = "dgwEntregasFabrica";
@@ -772,7 +773,6 @@
             // 
             this.dgwCantidadesAReponer.AllowUserToAddRows = false;
             this.dgwCantidadesAReponer.AllowUserToDeleteRows = false;
-            this.dgwCantidadesAReponer.AllowUserToOrderColumns = true;
             this.dgwCantidadesAReponer.AllowUserToResizeColumns = false;
             this.dgwCantidadesAReponer.AllowUserToResizeRows = false;
             this.dgwCantidadesAReponer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;

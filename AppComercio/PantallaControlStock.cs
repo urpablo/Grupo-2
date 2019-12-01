@@ -14,8 +14,9 @@ namespace AppComercio
         private DataTable tablaCantARep = new DataTable();
         private bool CARGAMESTOCK = false;
 
-        // --------------------  actualizar desde stock.txt, preparar datagridviews y combobox,
-        // --------------------  revisar stock real < punto rep, habilitar boton de pedido a industrias
+        // --------------------  actualizar desde stock.txt, preparar dgwStock y combobox de ventas con el ID producto,
+        // --------------------  revisar (stock real + pendiente - comprometido) < punto rep, marcar en negrita el stock real bajo
+        // --------------------  habilitar boton de pedido de stock a industrias en base a este chequeo
 
         private void RefrescarStock()
         {
@@ -35,12 +36,6 @@ namespace AppComercio
                 }
                 tablaStock.Rows.Add(row);
             }
-
-            dgwStock.DataSource = tablaStock;
-            dgwStock.Refresh();
-
-            comboBoxCodProducto.DataSource = tablaStock;
-            comboBoxCodProducto.DisplayMember = "ID";
 
             for (int i = 0; i < dgwStock.Rows.Count; i++)
             {
@@ -64,6 +59,8 @@ namespace AppComercio
                 }
             }
 
+            dgwStock.Refresh();
+
             if (CARGAMESTOCK == true)
             {
                 btnGenerarTXTPedidoStockIndustrias.Enabled = true;
@@ -74,7 +71,8 @@ namespace AppComercio
             }
         }
 
-        // -------------------- leer AReponer.txt y preparar datagridviews
+        // -------------------- leer AReponer.txt, preparar dgwEntregasFabrica y en base al contenido de AReponer.txt
+        // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
         private void RefrescarEntregasStockIndustrias()
         {
             tablaEntregas.Clear();
@@ -99,16 +97,23 @@ namespace AppComercio
                 dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
             }
 
-            dgwEntregasFabrica.DataSource = tablaEntregas;
             dgwEntregasFabrica.Refresh();
-            HabilitarBotonPedidosPendientesStockIndustrias();
+
+            if (new FileInfo("AReponer.txt").Length == 0)
+            {
+                btnCargarPedidosStockPendientesIndustrias.Enabled = false;
+            }
+            else
+            {
+                btnCargarPedidosStockPendientesIndustrias.Enabled = true;
+            }
         }
 
-        // -------------------- leer las cantidades a reponer y cargarlas en el dgw correspondiente
+        // -------------------- leer las cantidades a reponer y cargarlas en dgwCantidadesAReponer en pantalla de stock
         private void CargarCantidadesAReponer()
         {
             tablaCantARep.Clear();
-       
+
             string[] LineasAReponer = File.ReadAllLines(@"CantidadesAReponer.txt");
             string[] ValoresAReponer;
 
@@ -124,11 +129,10 @@ namespace AppComercio
                 tablaCantARep.Rows.Add(row);
             }
 
-            dgwCantidadesAReponer.DataSource = tablaCantARep;
             dgwCantidadesAReponer.Refresh();
         }
 
-        // -------------------- boton aceptar pedidos pendientes de industrias/stock
+        // -------------------- boton aceptar pedidos pendientes de industrias/stock en pantalla de control de stock
         private void btnCargarPedidosStockPendientesIndustrias_Click(object sender, EventArgs e)
         {
             Dictionary<int, int> PedidosAreponer = new Dictionary<int, int>();
@@ -231,12 +235,6 @@ namespace AppComercio
             File.Move("nuevostockrepuesto.txt", "AReponer.txt");
 
             RefrescarEntregasStockIndustrias();
-
-            if (!File.Exists("AReponer.txt"))
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = false;
-            }
-
             CARGAMESTOCK = false;
         }
     }
