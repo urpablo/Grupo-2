@@ -394,70 +394,97 @@ namespace AppComercio
             bool comercio = false;
             bool cuit = false;
 
-            string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
-            string[] lineaSpliteada = lineaReporte.Split(';');
 
-            // Reviso la cantidad de líneas del archivo. Debe tener solo una.
-            if (File.ReadLines(@"DatosComercio.txt").Count() > 1)
+            // primero reviso si el archivo no está vacío
+            if (new FileInfo(@"DatosComercio.txt").Length == 0)
             {
-                lineas = true;
-            }
-
-            // Reviso la cantidad de elementos resultantes del split. Deben ser 5.
-            if (lineaSpliteada.Length != 5)
-            {
-                largosplit = true;
-            }
-
-            // Reviso si el código de comercio comienza con C y es un número, es válido
-            if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio))
-            {
-                comercio = true;
-
-            }
-
-            // si el cuit es parseable y tiene un largo de 11, es válido para nuestros propósitos
-            if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado))
-            {
-                // si no lo pudo parsear, vamos mal
-                cuit = true;
+                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio está vacío. \n \n" +
+                                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
             }
             else
             {
-                // si lo pudo parsear, reviso el largo del número
-                if (Digits_IfChain(cuitParseado) == 11)
+                // dado que no está vacío me quedo con la primera y única linea del archivo
+                string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
+
+                // reviso si la línea contiene al menos un delimitador de split, 
+                // si no son 4 fallará posteriormente de todas formas al no tener 5 items
+                if (lineaReporte.Contains(';'))
                 {
-                    cuit = false;
+                    string[] lineaSpliteada = lineaReporte.Split(';');
+                    // Reviso la cantidad de líneas del archivo. Debe tener solo una.
+                    if (File.ReadLines(@"DatosComercio.txt").Count() > 1)
+                    {
+                        lineas = true;
+                    }
+
+                    // Reviso la cantidad de elementos resultantes del split. Deben ser 5.
+                    // Indirectamente es un chequeo por los separadores ; del split
+                    if (lineaSpliteada.Length != 5)
+                    {
+                        largosplit = true;
+                    }
+
+                    // Reviso si el código de comercio comienza con C y es un número, es válido
+                    if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio))
+                    {
+                        comercio = true;
+
+                    }
+
+                    // si el cuit es parseable y tiene un largo de 11, es válido para nuestros propósitos
+                    if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado))
+                    {
+                        // si no lo pudo parsear, vamos mal
+                        cuit = true;
+                    }
+                    else
+                    {
+                        // si lo pudo parsear, reviso el largo del número
+                        if (Digits_IfChain(cuitParseado) == 11)
+                        {
+                            cuit = false;
+                        }
+                        else
+                        {
+                            cuit = true;
+                        }
+                    }
+
+                    // si alguno es verdadero, cerrar el programa
+                    if (lineas || largosplit || comercio || cuit)
+                    {
+                        MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Application.Exit();
+
+                    }
+                    else
+                    {
+                        textBoxCodComercio.Text = lineaSpliteada[0];
+                        textBoxRZ1.Text = lineaSpliteada[1];
+                        textBoxRZ2.Text = lineaSpliteada[1];
+                        textBoxCUIT.Text = lineaSpliteada[2];
+                        textBoxCUIT2.Text = lineaSpliteada[2];
+                        textBoxDirEntComercio.Text = lineaSpliteada[3];
+                        textBoxDirDevComercio.Text = lineaSpliteada[4];
+                        textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+                        textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+
+                    }
                 }
+                // como no tenía ni un delimitador ; el archivo no sirve
                 else
                 {
-                    cuit = true;
+                    MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
                 }
             }
 
-            // si alguno es verdadero, cerrar el programa
-            if (lineas || largosplit || comercio || cuit)
-            {
-                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
-                            "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-
-            }
-            else
-            {
-                textBoxCodComercio.Text = lineaSpliteada[0];
-                textBoxRZ1.Text = lineaSpliteada[1];
-                textBoxRZ2.Text = lineaSpliteada[1];
-                textBoxCUIT.Text = lineaSpliteada[2];
-                textBoxCUIT2.Text = lineaSpliteada[2];
-                textBoxDirEntComercio.Text = lineaSpliteada[3];
-                textBoxDirDevComercio.Text = lineaSpliteada[4];
-                textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
-                textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
-
-            }
 
 
+           
         }
 
         // no logro que cuitParseado.ToString().Length devuelva la cantidad de caracteres por algún motivo (un long rompe esa funcionalidad?)

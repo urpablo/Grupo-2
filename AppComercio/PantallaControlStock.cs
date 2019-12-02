@@ -120,69 +120,83 @@ namespace AppComercio
             bool noparseable = false;
             bool splitmalvado = false;
 
-            // Reviso la cantidad de líneas del archivo. Debe tener diez al igual que el de stock.
-            if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10)
-            {
-                lineas = true;
-            }
-
-            // Reviso la cantidad de elementos resultantes del split. Deben ser 2
-            // trato de parsear ambos
-            foreach (var producto in LineasAReponer)
-            {
-                // pero primero veo si no me modificaron el separador para el split
-                if (producto.Contains(';'))
-                {
-                    var productoSpliteado = producto.Split(';');
-                    if (productoSpliteado.Length != 2)
-                    {
-                        largosplit = true;
-                    }
-
-                    bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
-                    bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
-
-                    if (a == false || b == false)
-                    {
-                        noparseable = true;
-                    }
-                }
-                else
-                {
-                    splitmalvado = true;
-                }
-
-            }
-
-            // si alguno de los 4 es verdadero, el archivo fue alterado y no sirve, se cierra el programa
-            if (lineas || largosplit || noparseable || splitmalvado)
+            // Primero reviso si el archivo está vacío
+            if (new FileInfo(@"CantidadesReposicionStock.txt").Length == 0)
             {
                 MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                $" no coincide con lo esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                $" está vacío. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
-
             }
             else
             {
-                tablaCantARep.Clear();
-                for (int i = 0; i < LineasAReponer.Length; i++)
+                // Dado que no está vacío,
+                // Reviso la cantidad de líneas del archivo. Debe tener diez al igual que el de stock.
+                if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10)
                 {
-                    ValoresAReponer = LineasAReponer[i].ToString().Split(';');
-                    string[] row = new string[ValoresAReponer.Length];
-
-                    for (int j = 0; j < ValoresAReponer.Length; j++)
-                    {
-                        row[j] = ValoresAReponer[j].Trim();
-                    }
-                    tablaCantARep.Rows.Add(row);
+                    lineas = true;
                 }
-                dgwCantidadesAReponer.Refresh();
 
-                lineas = false;
-                largosplit = false;
-                noparseable = false;
-                splitmalvado = false;
+                // Reviso la cantidad de elementos resultantes del split. Deben ser 2
+                // trato de parsear ambos
+                foreach (var producto in LineasAReponer)
+                {
+                    // pero primero veo si no me modificaron el separador para el split
+                    if (producto.Contains(';'))
+                    {
+                        var productoSpliteado = producto.Split(';');
+                        if (productoSpliteado.Length != 2)
+                        {
+                            largosplit = true;
+                        }
+
+                        bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
+                        bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
+
+                        if (a == false || b == false)
+                        {
+                            noparseable = true;
+                        }
+                    }
+                    else
+                    {
+                        splitmalvado = true;
+                    }
+
+                }
+
+                // si alguno de los 4 es verdadero, el archivo fue alterado y no sirve, se cierra el programa
+                if (lineas || largosplit || noparseable || splitmalvado)
+                {
+                    MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
+                                    $" no coincide con lo esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Application.Exit();
+
+                }
+                else
+                {
+                    tablaCantARep.Clear();
+                    for (int i = 0; i < LineasAReponer.Length; i++)
+                    {
+                        ValoresAReponer = LineasAReponer[i].ToString().Split(';');
+                        string[] row = new string[ValoresAReponer.Length];
+
+                        for (int j = 0; j < ValoresAReponer.Length; j++)
+                        {
+                            row[j] = ValoresAReponer[j].Trim();
+                        }
+                        tablaCantARep.Rows.Add(row);
+                    }
+                    dgwCantidadesAReponer.Refresh();
+
+                    lineas = false;
+                    largosplit = false;
+                    noparseable = false;
+                    splitmalvado = false;
+                }
+
             }
+
+           
         }
 
         // -------------------- boton aceptar pedidos pendientes de industrias/stock en pantalla de control de stock
