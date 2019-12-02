@@ -11,8 +11,7 @@ namespace AppComercio
     {
         // contadores de código de referencia y código de lote
         private int codRef = 0;
-
-        private int codLote = 0;
+        private int codLote = 1;
         private List<int> RNGexistenteLote = new List<int>();
         private int codClienteRNGLote = 0;
 
@@ -229,29 +228,28 @@ namespace AppComercio
                 }
             }
 
-            // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
-            textBoxLote.Text = "";
-            foreach (var line in File.ReadLines("PedidosFinal.txt").Skip(1))
-            {
-                textBoxLote.AppendText(line + Environment.NewLine);
-            }
-
             // codLote suma por cada TXT generado
             // Número aleatorio para el código de cliente.
             // Valido que el número aleatorio que se genere no se repita
             Random r = new Random();
-            do
-            {
-                codClienteRNGLote = r.Next(0, 999);
+            do {codClienteRNGLote = r.Next(0, 999);
             } while (RNGexistenteLote.Contains(codClienteRNGLote));
-            RNGexistenteLote.Add(codClienteRNGLote);
+            RNGexistenteLote.Add(codClienteRNGLote);          
+
+            // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
+            // Genero el nombre de archivo para este lote
+            // El codigo de lote me sirve para avanzar el día, dado que es un lote diario
+            string LoteGenerado = ("Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
+            textBoxLote.AppendText($"*** Día {codLote}: {LoteGenerado} ***" + Environment.NewLine);
+            foreach (var line in File.ReadLines("PedidosFinal.txt").Skip(1))
+            {
+                textBoxLote.AppendText(line + Environment.NewLine);
+            }
             codLote++;
 
-            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo
-            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + "Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
-            string LoteGenerado = ("Lote_C" + codClienteRNGLote + "_L" + codLote + ".txt");
+            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo, aparte de tener chequeo por el RNG
+            File.Move("PedidosFinal.txt", @"c:\Grupo2\" + LoteGenerado);
 
-            // Aumenta el contador de lote una vez que se generó
             // Notificación de que se completó exitosamente la generación del lote y del archivo de salida
             MessageBox.Show($"¡Lote diario generado! \n \nEl archivo {LoteGenerado} se encuentra " +
                 "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);

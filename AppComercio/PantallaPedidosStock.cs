@@ -12,6 +12,7 @@ namespace AppComercio
         private List<int> RNGexistentePedido = new List<int>();
         private int codPedidoRNG = 0;
 
+
         // -------------------- hacer pedido de stock a industrias
 
         private void btnGenerarTXTPedidoStockIndustrias_Click(object sender, EventArgs e)
@@ -151,17 +152,19 @@ namespace AppComercio
                 }
             }
 
-            // Vuelco el pedido al textbox de vista previa
-            textBoxPedidoIndustria.Text = "";
+            // Vuelco el pedido al textbox de vista previa, armando el historial visual para esta sesión.
+            // Genero el nombre del archivo de pedido para esta tanda
+            // Uso el contador de lote para avanzar los días, que solo avanza con cada lote enviado
+            // La lógica es que el stock se pide causado por ventas que están atadas a los lotes, no son pedidos independientes
+            string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
+            textBoxPedidoIndustria.AppendText($"*** Día {codLote}: {PedidoGenerado} ***" + Environment.NewLine);
             foreach (var line in File.ReadLines("Pedido_A" + codPedidoRNG + ".txt").Skip(1))
             {
                 textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
             }
 
-            string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
-            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo
-            
-            File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + "Pedido_A" + codPedidoRNG + ".txt");
+           // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo ni por el chequeo del RNG anterior
+            File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + PedidoGenerado);
             MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Deshabilito botón de pedir stock a industrias, y veo si de este pedido de stock tengo que rellenar y habilitar el de pendientes

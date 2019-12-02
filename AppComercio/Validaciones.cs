@@ -92,15 +92,15 @@ namespace AppComercio
 
         private void textBoxCodClienteReporte_TextChanged(object sender, EventArgs e)
         {
-            habilitarBotonCargarNoEntregadosIndustrias();
+            habilitarBotonCargarReporteNoEntregados();
         }
 
         private void textBoxCodLoteReporte_TextChanged(object sender, EventArgs e)
         {
-            habilitarBotonCargarNoEntregadosIndustrias();
+            habilitarBotonCargarReporteNoEntregados();
         }
 
-        private void habilitarBotonCargarNoEntregadosIndustrias()
+        private void habilitarBotonCargarReporteNoEntregados()
         {
             if (!string.IsNullOrWhiteSpace(textBoxCodClienteReporte.Text)
                && !string.IsNullOrWhiteSpace(textBoxCodLoteReporte.Text))

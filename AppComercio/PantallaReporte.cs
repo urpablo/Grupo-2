@@ -10,27 +10,21 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         private List<string> listaRefNE = new List<string>();
-        private List<string> listaEntregados = new List<string>();
-        private List<string> listaNoEntregados = new List<string>();
         private DataTable tablaEntregados = new DataTable();
         private DataTable tablaNoEntregados = new DataTable();
-        private List<int> listaPosicionesSeparadores = new List<int>();
-        private List<string> reportesReingresados = new List<string>();
-        private Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
         private string nombreArchivoReporte;
-        private bool nada = true;
-        private bool fallar = false;
-        private bool ArchivoOK = false;
-        private int contadorSeparador = 1;
-        private int contadorPosicion = 1;
-        private bool modificado = false;
 
         // -------------------- cargar reporte, validar nombre de archivo y formato
         private void btnLeerReporteEntrega_Click(object sender, EventArgs e)
         {
+            List<string> listaEntregados = new List<string>();
+            List<string> listaNoEntregados = new List<string>();
+            bool ArchivoOK = false;
+            bool fallar = false;
+
             limpiezaValidacionesCarga();
 
-            // Abre dialogo de seleccion de archivo
+            // Abre diálogo de seleccion de archivo
             DialogResult resultado = elegirReporteEntrega.ShowDialog();
             if (resultado == DialogResult.OK)
             {
@@ -39,7 +33,7 @@ namespace AppComercio
                 if (new FileInfo(elegirReporteEntrega.FileName).Length == 0)
                 {
                     MessageBox.Show($"El archivo {nombreArchivoReporte} está vacío." +
-                                    $"\n \nSe lo descarta", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    $"\n \nSe lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     ArchivoOK = false;
 
                 }
@@ -78,7 +72,7 @@ namespace AppComercio
                         if (fallar == true)
                         {
                             MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un formato incorrecto. " +
-                            "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             limpiezaValidacionesCarga();
                         }
                         else
@@ -91,7 +85,7 @@ namespace AppComercio
                     else
                     {
                         MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un nombre incorrecto, " +
-                        "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         limpiezaValidacionesCarga();
                         ArchivoOK = false;
                     }
@@ -157,7 +151,7 @@ namespace AppComercio
                 if (BuscarDuplicadosNoEntregados.Count() >= 1 || BuscarDuplicadosEntregados.Count() >= 1 || BuscarDuplicadosEnAmbasListas.Count() >= 1)
                 {
                     MessageBox.Show($"El reporte {nombreArchivoReporte} contiene códigos de referencia duplicados. \n \n" +
-                                    $"Se lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    $"Se lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
                     tablaEntregados.Clear();
@@ -169,7 +163,7 @@ namespace AppComercio
                 // chequeo por reporte vacío 
                 if (listaEntregados.Count() == 0 && listaNoEntregados.Count() == 0)
                 {
-                    MessageBox.Show($"El reporte {nombreArchivoReporte} está vacío. \n \nSe lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"El reporte {nombreArchivoReporte} está vacío. \n \nSe lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
                     limpiezaValidacionesCarga();
@@ -180,14 +174,10 @@ namespace AppComercio
 
         private void limpiezaValidacionesCarga()
         {
-            fallar = false;
-            ArchivoOK = false;
             tablaEntregados.Clear();
             tablaNoEntregados.Clear();
             dgwEntregados.Refresh();
             dgwNoEntregados.Refresh();
-            listaEntregados.Clear();
-            listaNoEntregados.Clear();
         }
 
         // -------------------- boton de carga de pedidos no entregados
@@ -202,7 +192,21 @@ namespace AppComercio
 
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
+        
+            List<int> listaPosicionesSeparadores = new List<int>();
+            List<string> reportesReingresados = new List<string>();
+            Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
+            bool nada = true;
+            bool modificado = false;
+            int contadorSeparador = 1;
+            int contadorPosicion = 1;
+
+            // Resfresco stock para operar contra el último stock.txt cargado en el dgw de stock
             RefrescarStock();
+
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------
+            // -------------------------------------------------------------- validaciones iniciales --------------------------------------------------------------
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
             // Reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote. Si es, error y limpio pantalla
             if (codLote == 0)
@@ -211,136 +215,155 @@ namespace AppComercio
                     "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 limpiarPantallaReporteEntrega();
             }
-            else
+
+            // Revisar si este reporte había sido reingresado anteriormente. Si lo fue, error y limpio pantalla
+            if (reportesReingresados.Contains(nombreArchivoReporte))
             {
-                // Revisar si este reporte había sido reingresado anteriormente. Si lo fue, error y limpio pantalla
-                if (reportesReingresados.Contains(nombreArchivoReporte))
+                MessageBox.Show($"El reporte {nombreArchivoReporte} ya fue reingresado anteriormente. Se descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                limpiarPantallaReporteEntrega();
+            }
+
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------
+            // ------------------------------------------ comienza proceso de lectura de la salida y reingreso de stock -------------------------------------------
+            // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+            // Si este reporte no fue reingresado y el código de lote es distinto de cero, prosigo
+            if (codLote != 0 && !reportesReingresados.Contains(nombreArchivoReporte))
+            {
+                // Dado que hubo al menos un envío, este reporte nos puede pertenecer, reviso la salida por cada lote que fue enviado
+                DirectoryInfo d = new DirectoryInfo(@"c:\Grupo2\");
+                FileInfo[] Archivo = d.GetFiles("*.txt");
+                foreach (FileInfo archivosLotes in Archivo)
                 {
-                    MessageBox.Show($"El reporte {nombreArchivoReporte} ya fue reingresado anteriormente. Se descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    limpiarPantallaReporteEntrega();
-                }
-                else
-                {
-                    // Dado que hubo al menos un envío, este reporte nos puede pertenecer, reviso la salida por los archivos de lotes que se generaron
-                    DirectoryInfo d = new DirectoryInfo(@"c:\Grupo2\");
-                    FileInfo[] Archivo = d.GetFiles("*.txt");
-                    foreach (FileInfo archivosLotes in Archivo)
+                    // Para cada uno que haya en el directorio, reviso que tenga el mismo
+                    // codigo de cliente y de lote que el archivo de entrega que me dieron.
+                    // Según la lógica de funcionamiento del programa y de los lineamientos
+                    // el reporte de entrega y el número de lote coinciden en los datos
+                    // que representan sus nombres de archivo.
+                    string nombresLotes = archivosLotes.ToString();
+                    if (nombresLotes.Substring(5) == nombreArchivoReporte.Substring(8))
                     {
-                        // Para cada uno que haya en el directorio, reviso que tenga el mismo
-                        // codigo de cliente y de lote que el archivo de entrega que me dieron
-                        string nombresLotes = archivosLotes.ToString();
-                        if (nombresLotes.Substring(5) == nombreArchivoReporte.Substring(8))
+                        // Dado que coincide, tengo el archivo que quiero para el reporte
+                        // que me dieron de todos los que puede haber en el directorio,
+                        // ahora quiero buscar las posiciones de los separadores "---"
+                        nada = false;
+                        string[] contenidoLote = File.ReadAllLines(@"c:\Grupo2\" + nombresLotes);
+                        int cont = 0;
+                        foreach (var linea in contenidoLote)
                         {
-                            // Dado que coincide, tengo el archivo que quiero para el reporte
-                            // que me dieron de todos los que puede haber en el directorio,
-                            // ahora quiero buscar las posiciones de los separadores "---"
-                            nada = false;
-                            string[] contenidoLote = File.ReadAllLines(@"c:\Grupo2\" + nombresLotes);
-                            int cont = 0;
-                            foreach (var linea in contenidoLote)
+                            if (linea == "---")
                             {
-                                if (linea == "---")
-                                {
-                                    listaPosicionesSeparadores.Add(cont);
-                                }
-                                cont++;
+                                listaPosicionesSeparadores.Add(cont);
                             }
+                            cont++;
 
-                            // Teniendo la posición de cada separador, por cada separador se que en la posición inmediata
-                            // siguiente tengo la línea que comienza con el código de referencia
-                            foreach (var posicionSeparador in listaPosicionesSeparadores)
+                            // podría agregar chequeo de no encontrar los divisores
+                            // si fuese un archivo modificado maliciosamente
+                            // luego de que el programa lo hubiera emitido
+                        }
+
+                        // Teniendo la posición de cada separador, por cada separador se que en la posición inmediata
+                        // siguiente tengo la línea que comienza con el código de referencia
+                        foreach (var posicionSeparador in listaPosicionesSeparadores)
+                        {
+                            // Esto no incluye el último separador dado que se va del rango de la lista de separadores
+                            if (contadorSeparador < listaPosicionesSeparadores.Count)
                             {
-                                // Esto no incluye el último separador dado que se va del rango de la lista de separadores
-                                if (contadorSeparador < listaPosicionesSeparadores.Count)
+                                // Me quedo con el primer resultado del split de la línea inmediata siguiente (+1) para saber el código de referencia
+                                // si la lista de no entregados contiene este número de referencia, leo las líneas siguientes. sino sigo
+                                var nroRefReporte = contenidoLote[posicionSeparador + 1].Split(';')[0];
+                                if (listaRefNE.Contains(nroRefReporte))
                                 {
-                                    // Me quedo con el primer resultado del split de la línea inmediata siguiente (+1) para saber el código de referencia
-                                    // si la lista de no entregados contiene este número de referencia, leo las líneas siguientes. sino sigo
-                                    var nroRefReporte = contenidoLote[posicionSeparador + 1].Split(';')[0];
-                                    if (listaRefNE.Contains(nroRefReporte))
+                                    // Ahora leo de la posición +1 +1 en adelante hasta el próximo separador
+                                    // spliteo cada producto y su cantidad y lo acumulo en un dictionary
+                                    while (contenidoLote[(posicionSeparador + 1 + contadorPosicion)] != "---")
                                     {
-                                        // Ahora leo de la posición +1 +1 en adelante hasta el próximo separador
-                                        // spliteo cada producto y su cantidad y lo acumulo en un dictionary
-                                        while (contenidoLote[(posicionSeparador + 1 + contadorPosicion)] != "---")
-                                        {
-                                            contenidoSpliteado.Add(contenidoLote[(posicionSeparador + 1 + contadorPosicion)].Split(';')[0], int.Parse(contenidoLote[(posicionSeparador + 1 + contadorPosicion)].Split(';')[1]));
-                                            contadorPosicion++;
-                                        }
+                                        contenidoSpliteado.Add(contenidoLote[(posicionSeparador + 1 + contadorPosicion)].Split(';')[0], int.Parse(contenidoLote[(posicionSeparador + 1 + contadorPosicion)].Split(';')[1]));
+                                        contadorPosicion++;
+                                    }
 
-                                        // Ahora que tengo en un dictionary todos los productos y sus cantidades para
-                                        // el codigo de referencia, veo que carajo hago por cada uno
-                                        foreach (var item in contenidoSpliteado)
+                                    // Ahora que tengo en un dictionary todos los productos y sus cantidades para
+                                    // el codigo de referencia, veo que carajo hago por cada uno
+
+                                    // podría agregar chequeos de consistencia del reporte leído antes de modificar el stock
+                                    // se supone que es correcto porque fue generado por el sistema
+                                    // pero si alguien malicioso lo editó con códigos de producto distintos al del stock cargado o no existentes
+                                    // o bien cambió la cantidad por algo no parseable
+                                    // o bien códigos de referencia no emitidos, no es una situación ideal
+                                    // a implementar luego en esta parte
+
+
+                                    foreach (var item in contenidoSpliteado)
+                                    {
+                                        // Recorro el dgw de stock por la columna de IDproducto y al encontrar
+                                        // el producto de este punto del dictionary, voy a su correspondiente
+                                        // fila con el stock real y lo sumo
+                                        for (int i = 0; i < dgwStock.Rows.Count; i++)
                                         {
-                                            // Recorro el dgw de stock por la columna de IDproducto y al encontrar
-                                            // el producto de este punto del dictionary, voy a su correspondiente
-                                            // fila con el stock real y lo sumo
-                                            foreach (DataGridViewRow dr in dgwStock.Rows)
+                                            if (dgwStock[0,i].Value.ToString() == item.Key.ToString().Substring(1))
                                             {
-                                                if (dr.Cells[tablaStock.Columns.IndexOf("ID")].Value.ToString() == item.Key.ToString().Substring(1))
-                                                {
-                                                    dr.Cells[tablaStock.Columns.IndexOf("Real")].Value = (int.Parse(dr.Cells[tablaStock.Columns.IndexOf("Real")].Value.ToString()) + item.Value);
-                                                }
+                                                dgwStock[1, i].Value = (int.Parse(dgwStock[1, i].Value.ToString()) + item.Value);
                                             }
+
                                         }
                                     }
                                 }
-
-                                // Por cada separador que se revisa y se avanza en el archivo al próximo codref,
-                                // borro las referencias anteriores para evitar duplicados.
-                                // Marco que modifiqué el stock, entonces debo pisar el stock.txt existente al terminar de iterar
-                                contadorSeparador++;
-                                contadorPosicion = 1;
-                                contenidoSpliteado.Clear();
-                                modificado = true;
-
                             }
+
+                            // Por cada separador que se revisa y se avanza en el archivo al próximo codref,
+                            // borro las referencias anteriores para evitar duplicados.
+                            // Marco que modifiqué el stock, entonces debo pisar el stock.txt existente al terminar de iterar
+                            contadorSeparador++;
+                            contadorPosicion = 1;
+                            contenidoSpliteado.Clear();
+                            modificado = true;
+
                         }
                     }
+                }
 
-                    // Si ninguno de los archivos del directorio tuvo coincidencias, este reporte no nos pertenece. Se descarta
-                    // y se limpia la pantalla
-                    if (nada)
+                // ----------------------------------------------------------------------------------------------------------------------------------------------------
+                // ------------------------------ terminado proceso de lectura de todos los archivos pertinentes en la carpeta de salida ------------------------------
+                // ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+                // Si ninguno de los archivos del directorio tuvo coincidencias, este reporte no nos pertenece. Se descarta
+                // y se limpia la pantalla
+                if (nada)
+                {
+                    MessageBox.Show($"El reporte {nombreArchivoReporte} no tiene coincidencias " +
+                    "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    limpiarPantallaReporteEntrega();
+                }
+
+                // Si hubo modificaciones, las llevo al stock.txt guardando los cambios
+                if (modificado)
+                {
+                    // Ahora que termine, piso el stock.txt con lo que tiene el datagridview de stock luego de este proceso
+                    using (StreamWriter objWriter = new StreamWriter("StockReingresado.txt"))
                     {
-                        MessageBox.Show($"El reporte {nombreArchivoReporte} no tiene coincidencias " +
-                        "con ninguno de los lotes enviados a logística", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        limpiarPantallaReporteEntrega();
-                    }
-
-                    
-
-                    if (modificado)
-                    {
-                        // Ahora que termine, piso el stock.txt con lo que tiene el datagridview de stock luego de este proceso
-                        using (StreamWriter objWriter = new StreamWriter("StockReingresado.txt"))
+                        for (int row = 0; row < dgwStock.Rows.Count; row++)
                         {
-                            for (int row = 0; row < dgwStock.Rows.Count; row++)
+                            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                            for (int col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
                             {
-                                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                                for (int col = 0; col < dgwStock.Rows[row].Cells.Count; col++)
-                                {
-                                    if (!String.IsNullOrEmpty(sb.ToString()))
-                                        sb.Append(";");
-                                    sb.Append(dgwStock.Rows[row].Cells[col].Value.ToString());
-                                }
-                                objWriter.WriteLine(sb.ToString().Trim());
+                                if (!String.IsNullOrEmpty(sb.ToString()))
+                                    sb.Append(";");
+                                sb.Append(dgwStock.Rows[row].Cells[col].Value.ToString());
                             }
+                            objWriter.WriteLine(sb.ToString().Trim());
                         }
-
-                        // Guardo el nombre del archivo para no procesarlo nuevamente si se reingresa
-                        reportesReingresados.Add(nombreArchivoReporte);
-
-                        // piso el stock actual con el reingresado
-                        File.Delete("Stock.txt");
-                        File.Move("StockReingresado.txt", "Stock.txt");
-
-                        // Confirmación de que salió todo bien, limpio la pantalla y seteo modificado en false, nada en true como al principio,
-                        // para evitar ingresos de reportes de formato válido, no emitidos por el programa 
-                        MessageBox.Show($"Pedidos no entregados del reporte de entrega {nombreArchivoReporte} ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        modificado = false;
-                        nada = true;
-                        limpiarPantallaReporteEntrega();
                     }
 
+                    // Guardo el nombre del archivo para no procesarlo nuevamente si se reingresa
+                    reportesReingresados.Add(nombreArchivoReporte);
 
+                    // piso el stock actual con el reingresado
+                    File.Delete("Stock.txt");
+                    File.Move("StockReingresado.txt", "Stock.txt");
+
+                    // Confirmación de que salió todo bien, limpio la pantalla
+                    MessageBox.Show($"Pedidos no entregados del reporte {nombreArchivoReporte} ingresados nuevamente al stock", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpiarPantallaReporteEntrega();
                 }
             }
         }
