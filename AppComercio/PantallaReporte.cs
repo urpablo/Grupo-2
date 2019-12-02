@@ -19,138 +19,175 @@ namespace AppComercio
         private Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
         private string nombreArchivoReporte;
         private bool nada = true;
+        private bool fallar = false;
+        private bool ArchivoOK = false;
         private int contadorSeparador = 1;
         private int contadorPosicion = 1;
         private bool modificado = false;
-        private bool RefDuplicadas = false;
 
         // -------------------- cargar reporte, validar nombre de archivo y formato
         private void btnLeerReporteEntrega_Click(object sender, EventArgs e)
         {
+            limpiezaValidacionesCarga();
+
             // Abre dialogo de seleccion de archivo
             DialogResult resultado = elegirReporteEntrega.ShowDialog();
-
             if (resultado == DialogResult.OK)
             {
                 nombreArchivoReporte = Path.GetFileName(elegirReporteEntrega.FileName);
-                // Valida el nombre del archivo
-                if (nombreArchivoReporte.StartsWith("Entrega_")
-                    && nombreArchivoReporte.Contains("_C")
-                    && nombreArchivoReporte.Contains("_L")
-                    && (nombreArchivoReporte.IndexOf("C") < nombreArchivoReporte.IndexOf("L"))
-                    && nombreArchivoReporte.Contains(".txt"))
+                // Primero, quiero ver si el archivo está vacío
+                if (new FileInfo(elegirReporteEntrega.FileName).Length == 0)
                 {
-                    // Ahora valida el contenido
-                    bool fallar = false;
-                    string[] lineasReporte = File.ReadAllLines(elegirReporteEntrega.FileName);
-                    foreach (var linea in lineasReporte)
+                    MessageBox.Show($"El archivo {nombreArchivoReporte} está vacío." +
+                                    $"\n \nSe lo descarta", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ArchivoOK = false;
+
+                }
+                else // como no está vacío,
+                {
+                    // Valida el nombre del archivo
+                    if (nombreArchivoReporte.StartsWith("Entrega_")
+                        && nombreArchivoReporte.Contains("_C")
+                        && nombreArchivoReporte.Contains("_L")
+                        && (nombreArchivoReporte.IndexOf("C") < nombreArchivoReporte.IndexOf("L"))
+                        && nombreArchivoReporte.Contains(".txt"))
                     {
-                        string[] lineaSpliteada = linea.Split(';');
-                        foreach (var sublinea in lineaSpliteada)
+                        // Ahora valida el contenido
+                        string[] lineasReporte = File.ReadAllLines(elegirReporteEntrega.FileName);
+                        foreach (var linea in lineasReporte)
                         {
-                            if (sublinea.StartsWith("R") && int.TryParse(sublinea.Remove(0, 1), out int sublineaParseada))
+                            string[] lineaSpliteada = linea.Split(';');
+                            foreach (var sublinea in lineaSpliteada)
                             {
-                                fallar = false;
-                            }
-                            else if ((sublinea.ToLower() == "true" || sublinea.ToLower() == "false"))
-                            {
-                                fallar = false;
-                            }
-                            else
-                            {
-                                fallar = true;
+                                if (sublinea.StartsWith("R") && int.TryParse(sublinea.Remove(0, 1), out int sublineaParseada))
+                                {
+                                    fallar = false;
+                                }
+                                else if ((sublinea.ToLower() == "true" || sublinea.ToLower() == "false"))
+                                {
+                                    fallar = false;
+                                }
+                                else
+                                {
+                                    fallar = true;
+                                }
                             }
                         }
+
+                        // Si el nombre de archivo es correcto pero el contenido no es correcto, falla...
+                        if (fallar == true)
+                        {
+                            MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un formato incorrecto. " +
+                            "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            limpiezaValidacionesCarga();
+                        }
+                        else
+                        {
+                            // tengo un archivo válido en nombre con contenido válido, puedo proseguir a la sección siguiente
+                            ArchivoOK = true;
+                        }
+                    }
+                    // Si el nombre de archivo no es correcto o no es un archivo .txt, falla
+                    else
+                    {
+                        MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un nombre incorrecto, " +
+                        "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        limpiezaValidacionesCarga();
+                        ArchivoOK = false;
                     }
 
-                    // Si el nombre de archivo es correcto pero el contenido no es correcto, falla...
-                    if (fallar == true)
+                }
+
+                
+            }
+
+            // pasadas las validaciones iniciales y teniendo un archivo válido,
+            if (ArchivoOK)
+            {
+                // carga el archivo y separa entre entregados / no entregados, tanto para los dgws como en listas. 
+                // Busca referencias duplicadas y prepara las cosas para un chequeo de reporte vacío.
+                string archivoCodCliente = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("C"), (nombreArchivoReporte.IndexOf("_L") - nombreArchivoReporte.IndexOf("C")));
+                string archivoCodLote = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("L"), (nombreArchivoReporte.IndexOf(".txt") - nombreArchivoReporte.IndexOf("L")));
+                textBoxCodClienteReporte.Text = archivoCodCliente;
+                textBoxCodLoteReporte.Text = archivoCodLote;
+
+                tablaEntregados.Clear();
+                tablaNoEntregados.Clear();
+
+                string[] linesR = File.ReadAllLines(elegirReporteEntrega.FileName);
+                string[] valueR;
+
+                for (int i = 0; i < linesR.Length; i++)
+                {
+                    valueR = linesR[i].ToString().Split(';');
+                    string[] rowR = new string[valueR.Length];
+
+                    if (valueR.Contains("true"))
                     {
-                        MessageBox.Show("Ha elegido un archivo con un formato incorrecto. " +
-                        "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        for (int j = 0; j < valueR.Length; j++)
+                        {
+                            rowR[j] = valueR[j].Trim();
+                        }
+                        tablaEntregados.Rows.Add(rowR);
+                        listaEntregados.Add(rowR[0].ToString());
+
                     }
                     else
                     {
-                        // ...sino, lo carga y separa entre entregados / no entregados. Busca referencias duplicadas
-                        string archivoCodCliente = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("C"), (nombreArchivoReporte.IndexOf("_L") - nombreArchivoReporte.IndexOf("C")));
-                        string archivoCodLote = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("L"), (nombreArchivoReporte.IndexOf(".txt") - nombreArchivoReporte.IndexOf("L")));
-                        textBoxCodClienteReporte.Text = archivoCodCliente;
-                        textBoxCodLoteReporte.Text = archivoCodLote;
-
-                        tablaEntregados.Clear();
-                        tablaNoEntregados.Clear();
-
-                        string[] linesR = File.ReadAllLines(elegirReporteEntrega.FileName);
-                        string[] valueR;
-
-                        for (int i = 0; i < linesR.Length; i++)
+                        for (int j = 0; j < valueR.Length; j++)
                         {
-                            valueR = linesR[i].ToString().Split(';');
-                            string[] rowR = new string[valueR.Length];
-
-                            if (valueR.Contains("true"))
+                            rowR[j] = valueR[j].Trim();
+                            if (rowR[j] != "false")
                             {
-                                for (int j = 0; j < valueR.Length; j++)
-                                {
-                                    rowR[j] = valueR[j].Trim();
-                                }
-                                tablaEntregados.Rows.Add(rowR);
-                                listaEntregados.Add(rowR[0].ToString().Substring(0, 1));
-
-                            }
-                            else
-                            {
-                                for (int j = 0; j < valueR.Length; j++)
-                                {
-                                    rowR[j] = valueR[j].Trim();
-                                    if (rowR[j] != "false")
-                                    {
-                                        listaRefNE.Add(rowR[j].ToString());
-                                    }
-                                }
-                                tablaNoEntregados.Rows.Add(rowR);
-                                listaNoEntregados.Add(rowR[0].ToString().Substring(0,1));
+                                listaRefNE.Add(rowR[j].ToString());
                             }
                         }
-
-                        dgwEntregados.Refresh();
-                        dgwNoEntregados.Refresh();
-
-                        // ahora reviso si hay duplicados en los codigos de referencia. Si los hay, error
-                        var BuscarDuplicadosEntregados = listaEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                        if (BuscarDuplicadosEntregados.Count >= 1)
-                        {
-                            RefDuplicadas = true;
-                        }
-
-                        var BuscarDuplicadosNoEntregados = listaNoEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                        if (BuscarDuplicadosNoEntregados.Count >= 1)
-                        {
-                            RefDuplicadas = true;
-                        }
-
-                        if (RefDuplicadas == true)
-                        {
-                            MessageBox.Show($"El reporte {nombreArchivoReporte} contiene códigos de referencia duplicados. \n \nSe lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            tablaEntregados.Clear();
-                            tablaNoEntregados.Clear();
-                            dgwEntregados.Refresh();
-                            dgwNoEntregados.Refresh();
-
-                            // reseteo el chequeo de duplicados para una nueva carga
-                            RefDuplicadas = false;
-                            listaEntregados.Clear();
-                            listaNoEntregados.Clear();
-                        }
+                        tablaNoEntregados.Rows.Add(rowR);
+                        listaNoEntregados.Add(rowR[0].ToString());
                     }
                 }
-                // Si el nombre de archivo no es correcto o no es un archivo .txt, falla
-                else
+
+                dgwEntregados.Refresh();
+                dgwNoEntregados.Refresh();
+
+                // ahora reviso si hay duplicados en los codigos de referencia del reporte cargado. Si hay, error
+                var BuscarDuplicadosEntregados = listaEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                var BuscarDuplicadosNoEntregados = listaNoEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                var BuscarDuplicadosEnAmbasListas = listaEntregados.Intersect(listaNoEntregados);
+                if (BuscarDuplicadosNoEntregados.Count() >= 1 || BuscarDuplicadosEntregados.Count() >= 1 || BuscarDuplicadosEnAmbasListas.Count() >= 1)
                 {
-                    MessageBox.Show($"{nombreArchivoReporte} tiene un nombre incorrecto, " +
-                    "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"El reporte {nombreArchivoReporte} contiene códigos de referencia duplicados. \n \n" +
+                                    $"Se lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    BuscarDuplicadosEntregados.Clear();
+                    BuscarDuplicadosNoEntregados.Clear();
+                    tablaEntregados.Clear();
+                    tablaNoEntregados.Clear();
+                    dgwEntregados.Refresh();
+                    dgwNoEntregados.Refresh();
                 }
+
+                // chequeo por reporte vacío 
+                if (listaEntregados.Count() == 0 && listaNoEntregados.Count() == 0)
+                {
+                    MessageBox.Show($"El reporte {nombreArchivoReporte} está vacío. \n \nSe lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    BuscarDuplicadosEntregados.Clear();
+                    BuscarDuplicadosNoEntregados.Clear();
+                    limpiezaValidacionesCarga();
+                }
+
             }
+        }
+
+        private void limpiezaValidacionesCarga()
+        {
+            fallar = false;
+            ArchivoOK = false;
+            tablaEntregados.Clear();
+            tablaNoEntregados.Clear();
+            dgwEntregados.Refresh();
+            dgwNoEntregados.Refresh();
+            listaEntregados.Clear();
+            listaNoEntregados.Clear();
         }
 
         // -------------------- boton de carga de pedidos no entregados

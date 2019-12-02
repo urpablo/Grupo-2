@@ -160,6 +160,7 @@ namespace AppComercio
 
             string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
             // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo
+            
             File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + "Pedido_A" + codPedidoRNG + ".txt");
             MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
