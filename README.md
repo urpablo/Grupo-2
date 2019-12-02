@@ -24,11 +24,11 @@ La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección
 #### Archivos escenciales para el funcionamiento del programa:
 - `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema.
 
-- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
+- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split, chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
 
-- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa.
+- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos), por archivo vacío y por posibilidad de parsear cada item de cada línea.
 
-Estos tres archivos se copian siempre a la carpeta del ejecutable.
+Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución.
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Si existe, borra el contenido (de la última ejecución), sino la crea.
 
