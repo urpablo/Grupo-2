@@ -19,6 +19,10 @@ Clonando el repositorio y compilando, se puede empezar a usar.
 
 La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
 
+La interfaz se puede navegar con la ayuda de la tecla tab para ahorrar clics.
+
+Una vez que se eligió un producto en la lista desplegable en la pantalla de ventas online, la cantidad puede ser ingresada directamente dado que el foco pasa al cuadro de texto inmediatamente debajo, y se puede agregar a la lista de pedidos presionando la tecla enter en el mismo cuadro de texto, ahorrando el uso del mouse para buena parte de esta operatoria repetitiva.
+
 ### Descripciones, comportamiento esperado y validaciones implementadas
 
 #### Archivos escenciales para el funcionamiento del programa:
@@ -44,12 +48,12 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
 
 #### Pantalla "Enviar lote diario a logística"
-- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos un pedido anteriormente.
+- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
+- El botón se deshabilita al enviar un lote, se vuelve a habilitar en cuanto se cargue al menos una nueva venta.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
-- No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
-- Permite encargar stock de un producto que ha comprometido el suficiente stock para bajar el real por debajo del punto de reposición, sin antes haberlo despachado via logística impactando en el real.
+- El botón "Confirmar Pedido de Stock a industrias" se habilita en cuanto algún producto de la lista tiene su stock real + comprometido + pendiente debajo del punto de reposición (cuando se marca en negrita en la pantalla de control de stock). Al presionar se genera un pedido que incluye todos los que se encuentran en esa condición y en la carpeta de salida se lo puede leer.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 
 
