@@ -19,16 +19,20 @@ Clonando el repositorio y compilando, se puede empezar a usar.
 
 La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
 
-### Pruebas y comportamiento esperado
+La interfaz se puede navegar con la ayuda de la tecla tab para ahorrar clics.
+
+Una vez que se eligió un producto en la lista desplegable en la pantalla de ventas online, la cantidad puede ser ingresada directamente dado que el foco pasa al cuadro de texto inmediatamente debajo, y se puede agregar a la lista de pedidos presionando la tecla enter en el mismo cuadro de texto, ahorrando el uso del mouse para buena parte de esta operatoria repetitiva.
+
+### Descripciones, comportamiento esperado y validaciones implementadas
 
 #### Archivos escenciales para el funcionamiento del programa:
 - `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema.
 
-- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split, chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
+- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split ";", chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
 
-- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos), por archivo vacío y por posibilidad de parsear cada item de cada línea.
+- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos, `IDproduto;Cantidad`), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
-Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución.
+Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución. Si alguno de los tres falla en su chequeo durante la carga, el programa se cierra con error fatal.
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Si existe, borra el contenido (de la última ejecución), sino la crea.
 
@@ -44,20 +48,21 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
 
 #### Pantalla "Enviar lote diario a logística"
-- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos un pedido anteriormente.
+- No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
+- El botón se deshabilita al enviar un lote, se vuelve a habilitar en cuanto se cargue al menos una nueva venta.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
-- No se habilita el botón "Confirmar Pedido de Stock a industrias" si no hay al menos un producto que tenga su stock por debajo del punto de reposición en la pantalla de stock. Se deshabilita en cuanto se hace el pedido a industrias. Se vuelve a habilitar si con sucesivas ventas y envíos a logística vuelve a caer el stock de algún producto.
-- Permite encargar stock de un producto que ha comprometido el suficiente stock para bajar el real por debajo del punto de reposición, sin antes haberlo despachado via logística impactando en el real.
+- El botón "Confirmar Pedido de Stock a industrias" se habilita en cuanto algún producto de la lista tiene su stock real + comprometido + pendiente debajo del punto de reposición (cuando se marca en negrita en la pantalla de control de stock). Al presionar se genera un pedido que incluye todos los que se encuentran en esa condición y en la carpeta de salida se lo puede leer.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 
 
 #### Pantalla "Reportes de entrega":
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
-El archivo de entrada de logística está validado por contenido, por extensión y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes`:
+El archivo de entrada de logística está validado por contenido (formato esperado según lineamientos, archivo vacío, entradas duplicadas), por extensión (debe ser .txt) y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes`:
 - `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos
+- `Entrega_C332_L117.txt` falla por tener entradas duplicadas
 - `Entrega_C332_L116.txt` falla por no respetar el separador ; entre código de referencia y estado del envío
 - `Entrega_C332_L115.txt` contiene una frase que no coincide con el formato esperado
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
@@ -72,11 +77,11 @@ Para probar esta funcionalidad:
 4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado. Un número de referencia por renglón, como dice el archivo de ejemplo en los lineamientos.
 5) Ingrese este archivo en la pantalla y luego apriete "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
 
-Validaciones de esta funcionalidad:
+Esta funcionalidad posee las siguientes validaciones:
 
-- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, en base a lotes a logística que existan en la carpeta de salida)
+- Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, en base a lotes a logística que existan en la carpeta de salida, asumiendo que la salida del programa es válida porque pasó todas las validaciones internas consideradas correctas por coincidir con el formato de salida de los lineamientos tras suficiente prueba => error => corrección)
 - No permite reingresar más de una vez el mismo reporte
-- No permite presionar el botón de reingresar stock si se cargó un reporte cualquiera, si no se emitió al menos un lote desde la aplicación
+- Si se cargó un reporte cualquiera que no encuentra su par en la carpeta de salida, no permite su reingreso
 
 ### Varios
 
