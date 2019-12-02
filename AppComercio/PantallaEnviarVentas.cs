@@ -30,6 +30,7 @@ namespace AppComercio
             Dictionary<int, string> InventarioTemporalLote = new Dictionary<int, string>();
             Dictionary<string, string> ArmaLote = new Dictionary<string, string>();
 
+            // levanta a memoria el stock actual
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
                       .Select(record => record.Split(';'))
@@ -42,6 +43,7 @@ namespace AppComercio
                           b5 = int.Parse(record[4])
                       }).ToList();
 
+            // levanta a memoria los pedidos que se hayan hecho para este lote
             var lineaspedido = File
                       .ReadAllLines("Pedidos.txt")
                       .Select(record => record.Split(';'))

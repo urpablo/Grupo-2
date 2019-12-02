@@ -15,6 +15,7 @@ namespace AppComercio
             InitializeComponent();
 
             // borrar todo rastro de archivos de ejecuciones pasadas
+            // no hace falta el test de existencia previo dado que si el archivo no existe, no tira excepción
             File.Delete("PedidoTemporal.txt");
             File.Delete("PedidosAEnviar.txt");
             File.Delete("Pedidos.txt");
@@ -459,6 +460,8 @@ namespace AppComercio
 
         }
 
+        // no logro que cuitParseado.ToString().Length devuelva la cantidad de caracteres por algún motivo (un long rompe esa funcionalidad?)
+        // pero este pedazo de codigo lo soluciona
         private int Digits_IfChain(long n)
         {
             n = Math.Abs(n);

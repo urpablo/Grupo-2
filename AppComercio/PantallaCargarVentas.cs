@@ -67,7 +67,7 @@ namespace AppComercio
                 }
             }
 
-            // Levanta en memoria el pedido temporal
+            // Levanta a memoria el pedido temporal
             var lineaspedido = File
                       .ReadAllLines("PedidoTemporal.txt")
                       .Select(record => record.Split(';'))
@@ -79,7 +79,7 @@ namespace AppComercio
                           a4 = int.Parse(record[3])
                       }).ToList();
 
-            // Levanta en memoria el stock actual
+            // Levanta a memoria el stock actual
             var lineasstock = File
                       .ReadAllLines("Stock.txt")
                       .Select(record => record.Split(';'))

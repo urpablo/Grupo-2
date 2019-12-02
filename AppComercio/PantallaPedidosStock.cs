@@ -17,17 +17,22 @@ namespace AppComercio
         private void btnGenerarTXTPedidoStockIndustrias_Click(object sender, EventArgs e)
         {
             //levanta en memoria el stock actual
-            var lineasstock = File
-                      .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          b1 = int.Parse(record[0]),
-                          b2 = int.Parse(record[1]),
-                          b3 = int.Parse(record[2]),
-                          b4 = int.Parse(record[3]),
-                          b5 = int.Parse(record[4])
-                      }).ToList();
+    
+                var lineasstock = File
+                     .ReadAllLines("Stock.txt")
+                     .Select(record => record.Split(';'))
+                     .Select(record => new
+                     {
+                         b1 = int.Parse(record[0]),
+                         b2 = int.Parse(record[1]),
+                         b3 = int.Parse(record[2]),
+                         b4 = int.Parse(record[3]),
+                         b5 = int.Parse(record[4])
+                     }).ToList();
+
+            
+    
+           
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
             foreach (var regStock in lineasstock)
