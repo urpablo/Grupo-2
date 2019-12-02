@@ -10,6 +10,8 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         private List<string> listaRefNE = new List<string>();
+        private List<string> listaEntregados = new List<string>();
+        private List<string> listaNoEntregados = new List<string>();
         private DataTable tablaEntregados = new DataTable();
         private DataTable tablaNoEntregados = new DataTable();
         private List<int> listaPosicionesSeparadores = new List<int>();
@@ -20,6 +22,7 @@ namespace AppComercio
         private int contadorSeparador = 1;
         private int contadorPosicion = 1;
         private bool modificado = false;
+        private bool RefDuplicadas = false;
 
         // -------------------- cargar reporte, validar nombre de archivo y formato
         private void btnLeerReporteEntrega_Click(object sender, EventArgs e)
@@ -30,7 +33,6 @@ namespace AppComercio
             if (resultado == DialogResult.OK)
             {
                 nombreArchivoReporte = Path.GetFileName(elegirReporteEntrega.FileName);
-
                 // Valida el nombre del archivo
                 if (nombreArchivoReporte.StartsWith("Entrega_")
                     && nombreArchivoReporte.Contains("_C")
@@ -69,7 +71,7 @@ namespace AppComercio
                     }
                     else
                     {
-                        // ...sino, lo carga y separa entre entregados / no entregados
+                        // ...sino, lo carga y separa entre entregados / no entregados. Busca referencias duplicadas
                         string archivoCodCliente = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("C"), (nombreArchivoReporte.IndexOf("_L") - nombreArchivoReporte.IndexOf("C")));
                         string archivoCodLote = nombreArchivoReporte.Substring(nombreArchivoReporte.IndexOf("L"), (nombreArchivoReporte.IndexOf(".txt") - nombreArchivoReporte.IndexOf("L")));
                         textBoxCodClienteReporte.Text = archivoCodCliente;
@@ -93,6 +95,8 @@ namespace AppComercio
                                     rowR[j] = valueR[j].Trim();
                                 }
                                 tablaEntregados.Rows.Add(rowR);
+                                listaEntregados.Add(rowR[0].ToString().Substring(0, 1));
+
                             }
                             else
                             {
@@ -105,11 +109,39 @@ namespace AppComercio
                                     }
                                 }
                                 tablaNoEntregados.Rows.Add(rowR);
+                                listaNoEntregados.Add(rowR[0].ToString().Substring(0,1));
                             }
                         }
 
                         dgwEntregados.Refresh();
                         dgwNoEntregados.Refresh();
+
+                        // ahora reviso si hay duplicados en los codigos de referencia. Si los hay, error
+                        var BuscarDuplicadosEntregados = listaEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                        if (BuscarDuplicadosEntregados.Count >= 1)
+                        {
+                            RefDuplicadas = true;
+                        }
+
+                        var BuscarDuplicadosNoEntregados = listaNoEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                        if (BuscarDuplicadosNoEntregados.Count >= 1)
+                        {
+                            RefDuplicadas = true;
+                        }
+
+                        if (RefDuplicadas == true)
+                        {
+                            MessageBox.Show($"El reporte {nombreArchivoReporte} contiene códigos de referencia duplicados. \n \nSe lo descarta", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            tablaEntregados.Clear();
+                            tablaNoEntregados.Clear();
+                            dgwEntregados.Refresh();
+                            dgwNoEntregados.Refresh();
+
+                            // reseteo el chequeo de duplicados para una nueva carga
+                            RefDuplicadas = false;
+                            listaEntregados.Clear();
+                            listaNoEntregados.Clear();
+                        }
                     }
                 }
                 // Si el nombre de archivo no es correcto o no es un archivo .txt, falla

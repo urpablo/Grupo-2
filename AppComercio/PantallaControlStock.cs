@@ -119,6 +119,8 @@ namespace AppComercio
             bool largosplit = false;
             bool noparseable = false;
             bool splitmalvado = false;
+            bool IDDuplicados = false;
+            List<int> IDDuplicado = new List<int>();
 
             // Primero reviso si el archivo está vacío
             if (new FileInfo(@"CantidadesReposicionStock.txt").Length == 0)
@@ -151,6 +153,7 @@ namespace AppComercio
 
                         bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
                         bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
+                        IDDuplicado.Add(IDSpliteado);
 
                         if (a == false || b == false)
                         {
@@ -164,11 +167,19 @@ namespace AppComercio
 
                 }
 
-                // si alguno de los 4 es verdadero, el archivo fue alterado y no sirve, se cierra el programa
-                if (lineas || largosplit || noparseable || splitmalvado)
+                // ahora busco IDs duplicados
+                var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                if (BuscarDuplicados.Count > 0)
+                {
+                    IDDuplicados = true;
+                }
+                
+
+                // si alguno de los 5 es verdadero, el archivo fue alterado y no sirve, se cierra el programa
+                if (lineas || largosplit || noparseable || splitmalvado || IDDuplicados)
                 {
                     MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                    $" no coincide con lo esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    $" no es un archivo que corresponda al formato esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Application.Exit();
 
                 }
@@ -192,6 +203,7 @@ namespace AppComercio
                     largosplit = false;
                     noparseable = false;
                     splitmalvado = false;
+                    IDDuplicados = false;
                 }
 
             }
