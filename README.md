@@ -26,7 +26,7 @@ Una vez que se eligió un producto en la lista desplegable en la pantalla de ven
 ### Descripciones, comportamiento esperado y validaciones implementadas
 
 #### Archivos escenciales para el funcionamiento del programa:
-- `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema.
+- `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema. Está validado por cantidad de líneas (deben ser diez como el archivo de cantidades de reposición), por existencia del delimitador de split, por cantidad de items por línea (deben ser cinco), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
 - `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split ";", chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
 
@@ -50,10 +50,12 @@ Todos los archivos de salida como se muestran en el diagrama se guardan en la ca
 #### Pantalla "Enviar lote diario a logística"
 - No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
 - El botón se deshabilita al enviar un lote, se vuelve a habilitar en cuanto se cargue al menos una nueva venta.
+- Cuenta las ventas cargadas sin enviar. En cuanto se envían, el contador vuelve a cero, y en el historial/vista previa queda escrito el día y el nombre del archivo generado para ese día, con el pedido. Para comodidad del usuario aparte de los archivos de salida necesarios.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
 - El botón "Confirmar Pedido de Stock a industrias" se habilita en cuanto algún producto de la lista tiene su stock real + comprometido + pendiente debajo del punto de reposición (cuando se marca en negrita en la pantalla de control de stock). Al presionar se genera un pedido que incluye todos los que se encuentran en esa condición y en la carpeta de salida se lo puede leer.
+- Cuenta los productos cuyo stock es bajo, listos para ser pedidos. En cuanto se piden, el contador vuelve a cero, y en el historial/vista previa queda escrito el día y el nombre del archivo generado para ese día, con el pedido. Para comodidad del usuario aparte de los archivos de salida necesarios.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 
 
