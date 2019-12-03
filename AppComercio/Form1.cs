@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace AppComercio
@@ -37,8 +35,6 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
-
-
         }
 
         // ------------------ carga del formulario -----------------------------
@@ -145,11 +141,7 @@ namespace AppComercio
         private void pbSalir_Click(object sender, EventArgs e)
         {
             DialogResult resultadoMSGbox = MessageBox.Show("¿Desea realmente salir?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
-
-            if (resultadoMSGbox == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            if (resultadoMSGbox == DialogResult.Yes) Application.Exit();
         }
 
         private void pbMinimizar_Click(object sender, EventArgs e)
@@ -388,34 +380,6 @@ namespace AppComercio
                     panelReportesEntrega.Visible = false;
                     break;
             }
-        }
-
-
-
-        // no logro que cuitParseado.ToString().Length devuelva la cantidad de caracteres por algún motivo (un long rompe esa funcionalidad?)
-        // pero este pedazo de codigo lo soluciona
-        private int Digits_IfChain(long n)
-        {
-            n = Math.Abs(n);
-            if (n < 10L) return 1;
-            if (n < 100L) return 2;
-            if (n < 1000L) return 3;
-            if (n < 10000L) return 4;
-            if (n < 100000L) return 5;
-            if (n < 1000000L) return 6;
-            if (n < 10000000L) return 7;
-            if (n < 100000000L) return 8;
-            if (n < 1000000000L) return 9;
-            if (n < 10000000000L) return 10;
-            if (n < 100000000000L) return 11;
-            if (n < 1000000000000L) return 12;
-            if (n < 10000000000000L) return 13;
-            if (n < 100000000000000L) return 14;
-            if (n < 1000000000000000L) return 15;
-            if (n < 10000000000000000L) return 16;
-            if (n < 100000000000000000L) return 17;
-            if (n < 1000000000000000000L) return 18;
-            return 19;
         }
 
         // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos

@@ -12,24 +12,23 @@ namespace AppComercio
         private List<int> RNGexistentePedido = new List<int>();
         private int codPedidoRNG = 0;
 
-
         // -------------------- hacer pedido de stock a industrias
 
         private void btnGenerarTXTPedidoStockIndustrias_Click(object sender, EventArgs e)
         {
             //levanta en memoria el stock actual
-    
-                var lineasstock = File
-                     .ReadAllLines("Stock.txt")
-                     .Select(record => record.Split(';'))
-                     .Select(record => new
-                     {
-                         b1 = int.Parse(record[0]),
-                         b2 = int.Parse(record[1]),
-                         b3 = int.Parse(record[2]),
-                         b4 = int.Parse(record[3]),
-                         b5 = int.Parse(record[4])
-                     }).ToList();
+
+            var lineasstock = File
+                 .ReadAllLines("Stock.txt")
+                 .Select(record => record.Split(';'))
+                 .Select(record => new
+                 {
+                     b1 = int.Parse(record[0]),
+                     b2 = int.Parse(record[1]),
+                     b3 = int.Parse(record[2]),
+                     b4 = int.Parse(record[3]),
+                     b5 = int.Parse(record[4])
+                 }).ToList();
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
             foreach (var regStock in lineasstock)
@@ -160,7 +159,7 @@ namespace AppComercio
                 textBoxPedidoIndustria.AppendText(line + Environment.NewLine);
             }
 
-           // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo ni por el chequeo del RNG anterior
+            // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo ni por el chequeo del RNG anterior
             File.Move("Pedido_A" + codPedidoRNG + ".txt", @"c:\Grupo2\" + PedidoGenerado);
             MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -182,7 +181,6 @@ namespace AppComercio
             {
                 labelEstadoPedidos.Text = "No hay productos con stock bajo";
                 labelEstadoPedidos.Refresh();
-
             }
 
             if (cantidadProductosStockBajo == 1)

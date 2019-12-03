@@ -74,7 +74,6 @@ namespace AppComercio
             }
         }
 
-
         // -------------------- leer EntregasStockIndustrias.txt, preparar dgwEntregasFabrica y en base al contenido de EntregasStockIndustrias.txt
         // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
         private void RefrescarEntregasStockIndustrias()

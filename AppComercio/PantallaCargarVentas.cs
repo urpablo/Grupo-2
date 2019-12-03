@@ -153,7 +153,6 @@ namespace AppComercio
                 "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnGenerarTXTLote.Enabled = true;
             limpiarPantallaCargarVentas();
-
             cantidadVentasCargadas++;
         }
 

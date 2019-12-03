@@ -9,7 +9,6 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        // contadores de código de referencia y código de lote
         private int codRef = 0;
         private int codLote = 1;
         private List<int> RNGexistenteLote = new List<int>();
@@ -240,10 +239,7 @@ namespace AppComercio
             RNGexistenteLote.Add(codClienteRNGLote);
 
             // formaeto de la vista previa
-            if (almenosunlotedespachado == false)
-            {
-                textBoxLote.AppendText("---" + Environment.NewLine);
-            }
+            if (almenosunlotedespachado == false) textBoxLote.AppendText("---" + Environment.NewLine);
 
             // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
             // Genero el nombre de archivo para este lote
@@ -259,11 +255,6 @@ namespace AppComercio
             // Como borro el directorio Grupo2 en la carga del formulario, nunca va a haber una colisión por mismo nombre de archivo, aparte de tener chequeo por el RNG
             File.Move("PedidosFinal.txt", @"c:\Grupo2\" + LoteGenerado);
 
-            // Notificación de que se completó exitosamente la generación del lote y del archivo de salida
-            MessageBox.Show($"¡Lote diario generado! \n \nEl archivo {LoteGenerado} se encuentra " +
-                "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            btnGenerarTXTLote.Enabled = false;
-
             // Limpiar archivos de este lote para poder comenzar un nuevo ciclo
             File.Delete("Pedidos.txt");
             File.Delete("PedidosAEnviar.txt");
@@ -277,6 +268,11 @@ namespace AppComercio
 
             // para funcionalidad de chequeo por carga de reporte sin despacho anterior en reportes de entregas
             almenosunlotedespachado = true;
+
+            // Notificación de que se completó exitosamente la generación del lote y del archivo de salida
+            MessageBox.Show($"¡Lote diario generado! \n \nEl archivo {LoteGenerado} se encuentra " +
+                "en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnGenerarTXTLote.Enabled = false;
         }
 
         private void LabelEstadoLotes()
