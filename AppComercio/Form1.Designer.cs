@@ -87,7 +87,6 @@
             this.labelBienvenidoA = new System.Windows.Forms.Label();
             this.labelBienvenido1 = new System.Windows.Forms.Label();
             this.panelStock = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCargarPedidosStockPendientesIndustrias = new System.Windows.Forms.Button();
             this.dgwEntregasFabrica = new System.Windows.Forms.DataGridView();
@@ -116,7 +115,6 @@
             this.textBoxCodLoteReporte = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panelPedidoIndustrias = new System.Windows.Forms.Panel();
-            this.labelIndustriasRecordatorio = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.labelEstadoPedidos = new System.Windows.Forms.Label();
             this.groupBoxPedidoIndustrias = new System.Windows.Forms.GroupBox();
@@ -125,7 +123,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.textBoxPedidoIndustria = new System.Windows.Forms.TextBox();
             this.panelEnviosClientesOnline = new System.Windows.Forms.Panel();
-            this.labelLotesRecordatorio = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.labelEstadoLotes = new System.Windows.Forms.Label();
             this.btnGenerarTXTLote = new System.Windows.Forms.Button();
@@ -220,7 +217,7 @@
             this.LabelTitulo.Name = "LabelTitulo";
             this.LabelTitulo.Size = new System.Drawing.Size(345, 23);
             this.LabelTitulo.TabIndex = 1;
-            this.LabelTitulo.Text = "Confeccionar lote de pedido a industria";
+            this.LabelTitulo.Text = "Título";
             this.LabelTitulo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.LabelTitulo_MouseMove);
             // 
             // pbSalir
@@ -528,11 +525,11 @@
             // 
             this.labelAyuda.AutoEllipsis = true;
             this.labelAyuda.AutoSize = true;
-            this.labelAyuda.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAyuda.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAyuda.ForeColor = System.Drawing.SystemColors.Control;
             this.labelAyuda.Location = new System.Drawing.Point(10, 10);
             this.labelAyuda.Name = "labelAyuda";
-            this.labelAyuda.Size = new System.Drawing.Size(44, 17);
+            this.labelAyuda.Size = new System.Drawing.Size(39, 13);
             this.labelAyuda.TabIndex = 0;
             this.labelAyuda.Text = "Ayuda";
             // 
@@ -636,7 +633,7 @@
             this.btnPedidoStockIndustrias.Name = "btnPedidoStockIndustrias";
             this.btnPedidoStockIndustrias.Size = new System.Drawing.Size(135, 44);
             this.btnPedidoStockIndustrias.TabIndex = 2;
-            this.btnPedidoStockIndustrias.Text = "Pedidos Stock";
+            this.btnPedidoStockIndustrias.Text = "Pedidos de stock";
             this.btnPedidoStockIndustrias.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPedidoStockIndustrias.UseVisualStyleBackColor = false;
             this.btnPedidoStockIndustrias.Click += new System.EventHandler(this.btnPedidoIndustrias_Click);
@@ -751,25 +748,12 @@
             // 
             // panelStock
             // 
-            this.panelStock.Controls.Add(this.label14);
             this.panelStock.Controls.Add(this.groupBox3);
             this.panelStock.Controls.Add(this.groupBoxStockTabla);
             this.panelStock.Location = new System.Drawing.Point(847, 38);
             this.panelStock.Name = "panelStock";
             this.panelStock.Size = new System.Drawing.Size(650, 550);
             this.panelStock.TabIndex = 16;
-            // 
-            // label14
-            // 
-            this.label14.AutoEllipsis = true;
-            this.label14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(428, 324);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(180, 200);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "Aviso sobre stock bajo";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
@@ -1206,7 +1190,6 @@
             // 
             // panelPedidoIndustrias
             // 
-            this.panelPedidoIndustrias.Controls.Add(this.labelIndustriasRecordatorio);
             this.panelPedidoIndustrias.Controls.Add(this.groupBox5);
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxStockComercio);
             this.panelPedidoIndustrias.Controls.Add(this.groupBoxPedidoIndustrias);
@@ -1214,18 +1197,6 @@
             this.panelPedidoIndustrias.Name = "panelPedidoIndustrias";
             this.panelPedidoIndustrias.Size = new System.Drawing.Size(650, 550);
             this.panelPedidoIndustrias.TabIndex = 26;
-            // 
-            // labelIndustriasRecordatorio
-            // 
-            this.labelIndustriasRecordatorio.AutoEllipsis = true;
-            this.labelIndustriasRecordatorio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelIndustriasRecordatorio.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelIndustriasRecordatorio.Location = new System.Drawing.Point(444, 426);
-            this.labelIndustriasRecordatorio.Name = "labelIndustriasRecordatorio";
-            this.labelIndustriasRecordatorio.Size = new System.Drawing.Size(187, 100);
-            this.labelIndustriasRecordatorio.TabIndex = 26;
-            this.labelIndustriasRecordatorio.Text = "Aviso sobre vista previa industrias";
-            this.labelIndustriasRecordatorio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox5
             // 
@@ -1312,7 +1283,6 @@
             // 
             // panelEnviosClientesOnline
             // 
-            this.panelEnviosClientesOnline.Controls.Add(this.labelLotesRecordatorio);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox4);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBoxEnviosClientes);
             this.panelEnviosClientesOnline.Controls.Add(this.groupBox2);
@@ -1320,18 +1290,6 @@
             this.panelEnviosClientesOnline.Name = "panelEnviosClientesOnline";
             this.panelEnviosClientesOnline.Size = new System.Drawing.Size(650, 550);
             this.panelEnviosClientesOnline.TabIndex = 27;
-            // 
-            // labelLotesRecordatorio
-            // 
-            this.labelLotesRecordatorio.AutoEllipsis = true;
-            this.labelLotesRecordatorio.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLotesRecordatorio.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.labelLotesRecordatorio.Location = new System.Drawing.Point(443, 403);
-            this.labelLotesRecordatorio.Name = "labelLotesRecordatorio";
-            this.labelLotesRecordatorio.Size = new System.Drawing.Size(187, 100);
-            this.labelLotesRecordatorio.TabIndex = 22;
-            this.labelLotesRecordatorio.Text = "Aviso sobre vista previa lotes";
-            this.labelLotesRecordatorio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox4
             // 
@@ -1697,14 +1655,11 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.DataGridView dgwEntregasFabrica;
         private System.Windows.Forms.Button btnCargarPedidosStockPendientesIndustrias;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.DataGridView dgwCantidadesAReponer;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label labelEstadoLotes;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label labelEstadoPedidos;
-        private System.Windows.Forms.Label labelIndustriasRecordatorio;
-        private System.Windows.Forms.Label labelLotesRecordatorio;
     }
 }
 

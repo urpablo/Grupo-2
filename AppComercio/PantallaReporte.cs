@@ -172,23 +172,8 @@ namespace AppComercio
             }
         }
 
-        private void limpiezaValidacionesCarga()
-        {
-            tablaEntregados.Clear();
-            tablaNoEntregados.Clear();
-            dgwEntregados.Refresh();
-            dgwNoEntregados.Refresh();
-        }
-
         // -------------------- boton de carga de pedidos no entregados
 
-        private void limpiarPantallaReporteEntrega()
-        {
-            tablaEntregados.Clear();
-            tablaNoEntregados.Clear();
-            textBoxCodClienteReporte.Clear();
-            textBoxCodLoteReporte.Clear();
-        }
 
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
@@ -367,5 +352,24 @@ namespace AppComercio
                 }
             }
         }
+
+
+        private void limpiezaValidacionesCarga()
+        {
+            tablaEntregados.Clear();
+            tablaNoEntregados.Clear();
+            dgwEntregados.Refresh();
+            dgwNoEntregados.Refresh();
+        }
+
+
+        private void limpiarPantallaReporteEntrega()
+        {
+            tablaEntregados.Clear();
+            tablaNoEntregados.Clear();
+            textBoxCodClienteReporte.Clear();
+            textBoxCodLoteReporte.Clear();
+        }
+
     }
 }

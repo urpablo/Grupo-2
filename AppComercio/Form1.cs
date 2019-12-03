@@ -55,22 +55,17 @@ namespace AppComercio
             tablaStock.Columns.Add("Punto de Reposición", typeof(int));
             tablaStock.Columns.Add("Comprometido", typeof(int));
             tablaStock.Columns.Add("Pendientes", typeof(int));
-
             tablaCantARep.Columns.Add("ID", typeof(int));
             tablaCantARep.Columns.Add("Cantidad reposición", typeof(int));
-
             tablaEntregas.Columns.Add("ID", typeof(int));
             tablaEntregas.Columns.Add("Cantidad a Reponer", typeof(int));
             tablaEntregas.Columns.Add("Recepción", typeof(bool));
-
             tablaEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaEntregados.Columns.Add("Entregado", typeof(bool));
-
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaNoEntregados.Columns.Add("Entregado", typeof(bool));
 
             // asocio tablas a dgws y al combobox de ID de producto
-
             dgwStock.DataSource = tablaStock;
             comboBoxCodProducto.DataSource = tablaStock;
             comboBoxCodProducto.DisplayMember = "ID";
@@ -80,7 +75,6 @@ namespace AppComercio
             dgwNoEntregados.DataSource = tablaNoEntregados;
 
             // últimos ajustes iniciales de interfaz
-
             panelBienvenido.Location = new Point(186, 38);
             panelStock.Location = new Point(186, 38);
             panelPedidoIndustrias.Location = new Point(186, 38);
@@ -99,13 +93,12 @@ namespace AppComercio
             dgwEntregasFabrica.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgwCantidadesAReponer.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            // cargar los datos
-
+            // cargar los tres archivos escenciales
+            CargarStockInicial();
             CargarDatosComercio();
             CargarCantidadesAReponer();
-            RefrescarStock();
-            RefrescarEntregasStockIndustrias();
 
+            // iniciar interfaz en la bienvenida
             botonBotonera = 0;
             ActualizarPantalla();
         }
@@ -242,9 +235,11 @@ namespace AppComercio
                     LabelTitulo.Text = "Control de stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver la situación de stock actual y confirmar la entrada de los pedidos de stock, previamente habiendo hecho uno. \n \n" +
-                                      "ATENCION \n" +
-                                      "Si ve un producto cuyo stock real está marcado en negrita, esto indica stock bajo. Haga el encargo a industrias";
+                    labelAyuda.Text = "Aquí podemos ver la situación de stock actual y confirmar la entrada de los pedidos de stock, previamente habiendo hecho uno." +
+                                      "\n \nATENCION" +
+                                      "\nSi ve un producto cuyo stock real está marcado en negrita, esto indica stock bajo. Haga el encargo a industrias." +
+                                      "\n\nLas cantidades de reposición por stock bajo pueden ser modificadas." +
+                                      "\n\nDebe recepcionar las entregas de stock de industrias antes de poder contar con dicho stock.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = true;
@@ -252,10 +247,6 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
                     panelReportesEntrega.Visible = false;
-
-
-                    label14.Text = "Recordatorios\n\nLas cantidades de reposición por stock bajo pueden ser modificadas" +
-                        "\n\nDebe recepcionar las entregas de stock de industrias antes de poder contar con dicho stock";
 
                     //label14.Text = "ATENCION \n \n" +
                     //"Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
@@ -287,14 +278,11 @@ namespace AppComercio
                     LabelTitulo.Text = "Pedido de stock a industrias";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Si tuvo algún aviso de stock bajo en la grilla, haga el pedido correspondiente con el botón a su derecha." +
-                        "\n \nLuego vaya a la pantalla de stock para recibir el stock nuevo y cargarlo al sistema." +
-                        "\n \nRecuerde que sólo se puede hacer un solo pedido por día.";
-
-                    labelIndustriasRecordatorio.Text = "";
-
-                    //labelIndustriasRecordatorio.Text = "Recordatorio\n\nEl historial de pedidos realizados está para su comodidad. " +
-                    //  "Los archivos diarios se encuentran en la carpeta de salida del programa.";
+                    labelAyuda.Text = "Puede hacer el pedido por stock bajo a industrias desde aquí." +
+                        "\n \nRecuerde luego recibir el stock nuevo y cargarlo al sistema." +
+                        "\n \nRecuerde que sólo se puede hacer un solo pedido por día." +
+                        "\n \nEl historial de pedidos realizados está para su comodidad." +
+                        "\n \nLos archivos diarios se encuentran en la carpeta de salida del programa.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -318,13 +306,10 @@ namespace AppComercio
                     LabelTitulo.Text = "Envíos a logística";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "En cuanto cargue las ventas del día, haga clic en el botón para despachar el lote a logística. \n \n " +
-                        "Recuerde que se hace un sólo envío diario.";
-
-                    labelLotesRecordatorio.Text = "";
-
-                    //labelLotesRecordatorio.Text = "Recordatorio\n\nEl historial de lotes enviados a logística está para su comodidad. " +
-                    //    "Los archivos diarios se encuentran en la carpeta de salida del programa.";
+                    labelAyuda.Text = "En cuanto cargue las ventas del día, despache el lote a logística." +
+                        "\n \nRecuerde que se hace un sólo envío diario." +
+                        "\n \nEl historial de lotes enviados a logística está para su comodidad." +
+                        "\n \nLos archivos diarios se encuentran en la carpeta de salida del programa.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -346,11 +331,11 @@ namespace AppComercio
                     LabelTitulo.Text = "Ingresar pedidos de ventas online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Pasos para ingresar un pedido: \n \n" +
-                        "1) Ingrese los datos del cliente. \n" +
-                        "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
-                        "3) Ingrese nuevamente hasta completar el pedido del cliente para la venta hecha. \n" +
-                        "4) Clic en 'Confirmar Pedido' para ingresarlo al lote diario.";
+                    labelAyuda.Text = "Pasos para ingresar un pedido:" +
+                        "\n \n1) Ingrese los datos del cliente." +
+                        "\n \n2) Ingrese código de producto y cantidad, y agregue este producto al pedido." +
+                        "\n \n3) Ingrese nuevamente hasta completar el pedido del cliente para la venta hecha." +
+                        "\n \n4) Clic en 'Confirmar Pedido' para ingresarlo al lote diario.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -371,10 +356,10 @@ namespace AppComercio
                     LabelTitulo.Text = "Reportes de entrega";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Pasos para leer y procesar el reporte de entregas: \n \n" +
-                        "1) Haga clic en 'Leer Reporte...' y elija el archivo \n" +
-                        "2) Se visualizará el reporte. Luego haga clic en 'Cargar Stock...' \n" +
-                        "3) Los pedidos que no hayan sido entregados habrán sido reingresados al stock";
+                    labelAyuda.Text = "Pasos para leer y procesar el reporte de entregas:" +
+                        "\n \n1) Haga clic en 'Leer Reporte...' y elija el archivo." +
+                        "\n \n2) Se visualizará el reporte. Luego haga clic en 'Cargar Stock...'" +
+                        "\n \n3) Los pedidos que no hayan sido entregados habrán sido reingresados al stock.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -405,108 +390,7 @@ namespace AppComercio
             }
         }
 
-        // ------------------ validar y cargar datos del comercio
 
-        private void CargarDatosComercio()
-        {
-            
-            bool lineas = false;
-            bool largosplit = false;
-            bool comercio = false;
-            bool cuit = false;
-
-
-            // primero reviso si el archivo no está vacío
-            if (new FileInfo(@"DatosComercio.txt").Length == 0)
-            {
-                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio está vacío. \n \n" +
-                                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            else
-            {
-                // dado que no está vacío me quedo con la primera y única linea del archivo
-                string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
-
-                // reviso si la línea contiene al menos un delimitador de split, 
-                // si no son 4 fallará posteriormente de todas formas al no tener 5 items
-                if (lineaReporte.Contains(';'))
-                {
-                    string[] lineaSpliteada = lineaReporte.Split(';');
-                    // Reviso la cantidad de líneas del archivo. Debe tener solo una.
-                    if (File.ReadLines(@"DatosComercio.txt").Count() > 1)
-                    {
-                        lineas = true;
-                    }
-
-                    // Reviso la cantidad de elementos resultantes del split. Deben ser 5.
-                    // Indirectamente es un chequeo por los separadores ; del split
-                    if (lineaSpliteada.Length != 5)
-                    {
-                        largosplit = true;
-                    }
-
-                    // Reviso si el código de comercio comienza con C y es un número, es válido
-                    if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio))
-                    {
-                        comercio = true;
-
-                    }
-
-                    // si el cuit es parseable y tiene un largo de 11, es válido para nuestros propósitos
-                    if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado))
-                    {
-                        // si no lo pudo parsear, vamos mal
-                        cuit = true;
-                    }
-                    else
-                    {
-                        // si lo pudo parsear, reviso el largo del número
-                        if (Digits_IfChain(cuitParseado) == 11)
-                        {
-                            cuit = false;
-                        }
-                        else
-                        {
-                            cuit = true;
-                        }
-                    }
-
-                    // si alguno es verdadero, cerrar el programa
-                    if (lineas || largosplit || comercio || cuit)
-                    {
-                        MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
-                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Application.Exit();
-
-                    }
-                    else
-                    {
-                        textBoxCodComercio.Text = lineaSpliteada[0];
-                        textBoxRZ1.Text = lineaSpliteada[1];
-                        textBoxRZ2.Text = lineaSpliteada[1];
-                        textBoxCUIT.Text = lineaSpliteada[2];
-                        textBoxCUIT2.Text = lineaSpliteada[2];
-                        textBoxDirEntComercio.Text = lineaSpliteada[3];
-                        textBoxDirDevComercio.Text = lineaSpliteada[4];
-                        textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
-                        textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
-
-                    }
-                }
-                // como no tenía ni un delimitador ; el archivo no sirve
-                else
-                {
-                    MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
-                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
-                }
-            }
-
-
-
-           
-        }
 
         // no logro que cuitParseado.ToString().Length devuelva la cantidad de caracteres por algún motivo (un long rompe esa funcionalidad?)
         // pero este pedazo de codigo lo soluciona

@@ -48,7 +48,7 @@ namespace AppComercio
 
                 if ((StockReal + StockPendiente - StockComprometido) < PuntoReposicion)
                 {
-                    System.Windows.Forms.DataGridViewCellStyle Negrita = new System.Windows.Forms.DataGridViewCellStyle();
+                    DataGridViewCellStyle Negrita = new DataGridViewCellStyle();
                     Negrita.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
                     dgwStock[1, i].Style = Negrita;
                     CARGAMESTOCK = true;
@@ -56,9 +56,9 @@ namespace AppComercio
                 }
                 else
                 {
-                    System.Windows.Forms.DataGridViewCellStyle Normal = new System.Windows.Forms.DataGridViewCellStyle();
+                    DataGridViewCellStyle Normal = new DataGridViewCellStyle();
                     Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
-                     dgwStock[1, i].Style = Normal;
+                    dgwStock[1, i].Style = Normal;
                 }
             }
 
@@ -111,108 +111,6 @@ namespace AppComercio
             {
                 btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             }
-        }
-
-        // --------------------validar + leer las cantidades a reponer de CantidadesReposicionStock.txt, cargarlas en dgwCantidadesAReponer en pantalla de stock
-        private void CargarCantidadesAReponer()
-        {
-            string[] LineasAReponer = File.ReadAllLines(@"CantidadesReposicionStock.txt");
-            string[] ValoresAReponer;
-
-            bool lineas = false;
-            bool largosplit = false;
-            bool noparseable = false;
-            bool splitmalvado = false;
-            bool IDDuplicados = false;
-            List<int> IDDuplicado = new List<int>();
-
-            // Primero reviso si el archivo está vacío
-            if (new FileInfo(@"CantidadesReposicionStock.txt").Length == 0)
-            {
-                MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                $" está vacío. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            else
-            {
-                // Dado que no está vacío,
-                // Reviso la cantidad de líneas del archivo. Debe tener diez al igual que el de stock.
-                if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10)
-                {
-                    lineas = true;
-                }
-
-                // Reviso la cantidad de elementos resultantes del split. Deben ser 2
-                // trato de parsear ambos
-                foreach (var producto in LineasAReponer)
-                {
-                    // pero primero veo si no me modificaron el separador para el split
-                    if (producto.Contains(';'))
-                    {
-                        var productoSpliteado = producto.Split(';');
-                        if (productoSpliteado.Length != 2)
-                        {
-                            largosplit = true;
-                        }
-
-                        bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
-                        bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
-                        IDDuplicado.Add(IDSpliteado);
-
-                        if (a == false || b == false)
-                        {
-                            noparseable = true;
-                        }
-                    }
-                    else
-                    {
-                        splitmalvado = true;
-                    }
-
-                }
-
-                // ahora busco IDs duplicados
-                var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                if (BuscarDuplicados.Count > 0)
-                {
-                    IDDuplicados = true;
-                }
-                
-
-                // si alguno de los 5 es verdadero, el archivo fue alterado y no sirve, se cierra el programa
-                if (lineas || largosplit || noparseable || splitmalvado || IDDuplicados)
-                {
-                    MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                    $" no es un archivo que corresponda al formato esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
-
-                }
-                else
-                {
-                    tablaCantARep.Clear();
-                    for (int i = 0; i < LineasAReponer.Length; i++)
-                    {
-                        ValoresAReponer = LineasAReponer[i].ToString().Split(';');
-                        string[] row = new string[ValoresAReponer.Length];
-
-                        for (int j = 0; j < ValoresAReponer.Length; j++)
-                        {
-                            row[j] = ValoresAReponer[j].Trim();
-                        }
-                        tablaCantARep.Rows.Add(row);
-                    }
-                    dgwCantidadesAReponer.Refresh();
-
-                    lineas = false;
-                    largosplit = false;
-                    noparseable = false;
-                    splitmalvado = false;
-                    IDDuplicados = false;
-                }
-
-            }
-
-           
         }
 
         // -------------------- boton aceptar pedidos pendientes de industrias/stock en pantalla de control de stock

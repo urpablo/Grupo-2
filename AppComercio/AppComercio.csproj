@@ -67,6 +67,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CargarArchivosEsenciales.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="PantallaCargarVentas.cs">
       <SubType>Form</SubType>
     </Compile>
