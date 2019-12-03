@@ -209,7 +209,7 @@ namespace AppComercio
             // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
             // Reviso si se ha enviado algún lote, por si se cargo un reporte antes de confirmar un lote. Si es, error y limpio pantalla
-            if (codLote == 0)
+            if (almenosunlotedespachado == false)
             {
                 MessageBox.Show("Todavía no ha enviado ningún lote a logística, " +
                     "por lo tanto no podemos ingresar stock que no salió", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -228,7 +228,7 @@ namespace AppComercio
             // ----------------------------------------------------------------------------------------------------------------------------------------------------
 
             // Si este reporte no fue reingresado y el código de lote es distinto de cero, prosigo
-            if (codLote != 0 && !reportesReingresados.Contains(nombreArchivoReporte))
+            if (almenosunlotedespachado == true && !reportesReingresados.Contains(nombreArchivoReporte))
             {
                 // Dado que hubo al menos un envío, este reporte nos puede pertenecer, reviso la salida por cada lote que fue enviado
                 DirectoryInfo d = new DirectoryInfo(@"c:\Grupo2\");

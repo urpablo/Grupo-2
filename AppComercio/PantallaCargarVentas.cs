@@ -9,6 +9,8 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
+        private int cantidadVentasCargadas = 0;
+
         // -------------------- boton agregar item de cargar ventas
         private void btnAgregarItemPedido_Click(object sender, EventArgs e)
         {
@@ -151,6 +153,8 @@ namespace AppComercio
                 "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnGenerarTXTLote.Enabled = true;
             limpiarPantallaCargarVentas();
+
+            cantidadVentasCargadas++;
         }
 
         // ----------------- boton limpiar pedidos de cargar ventas

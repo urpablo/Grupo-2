@@ -94,6 +94,11 @@ namespace AppComercio
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             btnCargarStockNoEntregados.Enabled = false;
 
+            dgwStock.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgwStock.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgwEntregasFabrica.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgwCantidadesAReponer.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
             // cargar los datos
 
             CargarDatosComercio();
@@ -234,11 +239,12 @@ namespace AppComercio
                     btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Control de Stock";
+                    LabelTitulo.Text = "Control de stock";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos ver la situación de stock actual y confirmar la entrada de los pedidos de stock, previamente habiendo hecho uno. \n \n" +
-                                      "Ingrese las ventas del día, haga los envíos a logística y luego revise el stock para encargar si es necesario.";
+                                      "ATENCION \n" +
+                                      "Si ve un producto cuyo stock real está marcado en negrita, esto indica stock bajo. Haga el encargo a industrias";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = true;
@@ -247,11 +253,15 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelReportesEntrega.Visible = false;
 
-                    label14.Text = "ATENCION \n \n" +
-                                   "Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
-                                   "está por debajo del nivel de reposición marcado en negrita, o hay suficiente stock comprometido " +
-                                   "para llegar al mismo punto, no dude en ir a la pantalla de pedidos " +
-                                   "a industrias y hacer el encargo";
+
+                    label14.Text = "Recordatorios\n\nLas cantidades de reposición por stock bajo pueden ser modificadas" +
+                        "\n\nDebe recepcionar las entregas de stock de industrias antes de poder contar con dicho stock";
+
+                    //label14.Text = "ATENCION \n \n" +
+                    //"Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
+                    //"está por debajo del nivel de reposición marcado en negrita, o hay suficiente stock comprometido " +
+                    //"para llegar a la misma situación, no dude en ir a la pantalla de pedidos " +
+                    //"a industrias y hacer el encargo";
 
                     RefrescarStock();
                     RefrescarEntregasStockIndustrias();
@@ -274,12 +284,17 @@ namespace AppComercio
                     btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Pedido diario de stock a industria";
+                    LabelTitulo.Text = "Pedido de stock a industrias";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Si tuvo algún aviso de stock bajo en la grilla, haga el pedido correspondiente con el botón a su derecha.  \n \n" +
-                        "Luego vaya a la pantalla de stock para recibir el stock nuevo y cargarlo al sistema.  \n \n" +
-                        "Recuerde que sólo se puede hacer un solo pedido por día.";
+                    labelAyuda.Text = "Si tuvo algún aviso de stock bajo en la grilla, haga el pedido correspondiente con el botón a su derecha." +
+                        "\n \nLuego vaya a la pantalla de stock para recibir el stock nuevo y cargarlo al sistema." +
+                        "\n \nRecuerde que sólo se puede hacer un solo pedido por día.";
+
+                    labelIndustriasRecordatorio.Text = "";
+
+                    //labelIndustriasRecordatorio.Text = "Recordatorio\n\nEl historial de pedidos realizados está para su comodidad. " +
+                    //  "Los archivos diarios se encuentran en la carpeta de salida del programa.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -289,6 +304,7 @@ namespace AppComercio
                     panelReportesEntrega.Visible = false;
 
                     RefrescarStock();
+                    LabelEstadoPedidos();
 
                     break;
 
@@ -299,13 +315,16 @@ namespace AppComercio
                     btnRecibirVentasOnline.BackColor = Color.FromArgb(41, 57, 71);
                     btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Confirmar lote diario de ventas a enviar";
+                    LabelTitulo.Text = "Envíos a logística";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
-                    labelAyuda.Text = "Aquí podemos ver el lote generado por las ventas a clientes en el día, " +
-                        " para ser distribuídos por la empresa de logística. \n \n" +
-                        "Recuerde que solo se puede enviar UN solo lote por día. \n \n" +
-                        "Cargue todas sus ventas antes de confirmarlo.";
+                    labelAyuda.Text = "En cuanto cargue las ventas del día, haga clic en el botón para despachar el lote a logística. \n \n " +
+                        "Recuerde que se hace un sólo envío diario.";
+
+                    labelLotesRecordatorio.Text = "";
+
+                    //labelLotesRecordatorio.Text = "Recordatorio\n\nEl historial de lotes enviados a logística está para su comodidad. " +
+                    //    "Los archivos diarios se encuentran en la carpeta de salida del programa.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = false;
@@ -313,6 +332,8 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = true;
                     panelVentasOnline.Visible = false;
                     panelReportesEntrega.Visible = false;
+
+                    LabelEstadoLotes();
                     break;
 
                 case 4:
@@ -322,13 +343,13 @@ namespace AppComercio
                     btnRecibirVentasOnline.BackColor = Color.FromArgb(52, 78, 103);
                     btnReportesEntrega.BackColor = Color.FromArgb(41, 47, 71);
 
-                    LabelTitulo.Text = "Ingresar pedidos de ventas Online";
+                    LabelTitulo.Text = "Ingresar pedidos de ventas online";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Pasos para ingresar un pedido: \n \n" +
                         "1) Ingrese los datos del cliente. \n" +
                         "2) Ingrese código de producto y cantidad, y agregue este producto al pedido. \n" +
-                        "3) Ingrese de la misma forma hasta completar el pedido del cliente para la venta hecha. \n" +
+                        "3) Ingrese nuevamente hasta completar el pedido del cliente para la venta hecha. \n" +
                         "4) Clic en 'Confirmar Pedido' para ingresarlo al lote diario.";
 
                     panelBienvenido.Visible = false;
@@ -347,7 +368,7 @@ namespace AppComercio
                     btnReportesEntrega.BackColor = Color.FromArgb(52, 78, 103);
 
                     LabelTitulo.Visible = true;
-                    LabelTitulo.Text = "Reportes de Entrega";
+                    LabelTitulo.Text = "Reportes de entrega";
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Pasos para leer y procesar el reporte de entregas: \n \n" +

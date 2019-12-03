@@ -14,6 +14,7 @@ namespace AppComercio
         private int codLote = 1;
         private List<int> RNGexistenteLote = new List<int>();
         private int codClienteRNGLote = 0;
+        private bool almenosunlotedespachado = false;
 
         // ------------------ boton generar lote para logística
         private void btnGenerarTXTLote_Click(object sender, EventArgs e)
@@ -232,9 +233,17 @@ namespace AppComercio
             // Número aleatorio para el código de cliente.
             // Valido que el número aleatorio que se genere no se repita
             Random r = new Random();
-            do {codClienteRNGLote = r.Next(0, 999);
+            do
+            {
+                codClienteRNGLote = r.Next(0, 999);
             } while (RNGexistenteLote.Contains(codClienteRNGLote));
-            RNGexistenteLote.Add(codClienteRNGLote);          
+            RNGexistenteLote.Add(codClienteRNGLote);
+
+            // formaeto de la vista previa
+            if (almenosunlotedespachado == false)
+            {
+                textBoxLote.AppendText("---" + Environment.NewLine);
+            }
 
             // Vuelco el lote en el textbox de vista previa sin la primera línea dado que ya la muestro en el textbox de arriba
             // Genero el nombre de archivo para este lote
@@ -261,6 +270,33 @@ namespace AppComercio
 
             RefrescarEntregasStockIndustrias();
             RefrescarStock();
+
+            // como despache este lote, no tengo ventas cargadas pendientes, lo dejo en 0 y actualizo el label de estado
+            cantidadVentasCargadas = 0;
+            LabelEstadoLotes();
+
+            // para funcionalidad de chequeo por carga de reporte sin despacho anterior en reportes de entregas
+            almenosunlotedespachado = true;
+        }
+
+        private void LabelEstadoLotes()
+        {
+            if (cantidadVentasCargadas == 0)
+            {
+                labelEstadoLotes.Text = "No hay ventas para enviar a logística";
+                labelEstadoLotes.Refresh();
+            }
+
+            if (cantidadVentasCargadas == 1)
+            {
+                labelEstadoLotes.Text = $"Hay {cantidadVentasCargadas} venta para enviar a logística";
+                labelEstadoLotes.Refresh();
+            }
+            else
+            {
+                labelEstadoLotes.Text = $"Hay {cantidadVentasCargadas} ventas para enviar a logística";
+                labelEstadoLotes.Refresh();
+            }
         }
     }
 }

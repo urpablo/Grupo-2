@@ -31,10 +31,6 @@ namespace AppComercio
                          b5 = int.Parse(record[4])
                      }).ToList();
 
-            
-    
-           
-
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
             foreach (var regStock in lineasstock)
             {
@@ -157,6 +153,7 @@ namespace AppComercio
             // Uso el contador de lote para avanzar los días, que solo avanza con cada lote enviado
             // La lógica es que el stock se pide causado por ventas que están atadas a los lotes, no son pedidos independientes
             string PedidoGenerado = ("Pedido_A" + codPedidoRNG + ".txt");
+            textBoxPedidoIndustria.AppendText("---" + Environment.NewLine);
             textBoxPedidoIndustria.AppendText($"*** Día {codLote}: {PedidoGenerado} ***" + Environment.NewLine);
             foreach (var line in File.ReadLines("Pedido_A" + codPedidoRNG + ".txt").Skip(1))
             {
@@ -168,8 +165,36 @@ namespace AppComercio
             MessageBox.Show($"¡Pedido a industrias diario generado! \n \n El archivo {PedidoGenerado} se encuentra en la carpeta Grupo2 en la raíz del disco C. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Deshabilito botón de pedir stock a industrias, y veo si de este pedido de stock tengo que rellenar y habilitar el de pendientes
+            // CARGAMESTOCK = false dado que acabo de hacer el pedido
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
+            CARGAMESTOCK = false;
             RefrescarEntregasStockIndustrias();
+
+            // seteo la cantidad en 0, se recalculará cuando corra refrescarstock();, pero como acabo de hacer el pedido
+            // ya puedo considerar los productos con stock bajo en 0
+            cantidadProductosStockBajo = 0;
+            LabelEstadoPedidos();
+        }
+
+        private void LabelEstadoPedidos()
+        {
+            if (cantidadProductosStockBajo == 0)
+            {
+                labelEstadoPedidos.Text = "No hay productos con stock bajo";
+                labelEstadoPedidos.Refresh();
+
+            }
+
+            if (cantidadProductosStockBajo == 1)
+            {
+                labelEstadoPedidos.Text = $"Hay {cantidadProductosStockBajo} producto con stock bajo";
+                labelEstadoPedidos.Refresh();
+            }
+            else
+            {
+                labelEstadoPedidos.Text = $"Hay {cantidadProductosStockBajo} productos con stock bajo";
+                labelEstadoPedidos.Refresh();
+            }
         }
     }
 }

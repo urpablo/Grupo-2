@@ -12,6 +12,7 @@ namespace AppComercio
         private DataTable tablaStock = new DataTable();
         private DataTable tablaEntregas = new DataTable();
         private DataTable tablaCantARep = new DataTable();
+        private int cantidadProductosStockBajo = 0;
         private bool CARGAMESTOCK = false;
 
         // --------------------  actualizar desde stock.txt, preparar dgwStock y combobox de ventas con el ID producto,
@@ -37,6 +38,7 @@ namespace AppComercio
                 tablaStock.Rows.Add(row);
             }
 
+            cantidadProductosStockBajo = 0;
             for (int i = 0; i < dgwStock.Rows.Count; i++)
             {
                 int.TryParse(dgwStock[1, i].Value.ToString(), out int StockReal);
@@ -47,15 +49,16 @@ namespace AppComercio
                 if ((StockReal + StockPendiente - StockComprometido) < PuntoReposicion)
                 {
                     System.Windows.Forms.DataGridViewCellStyle Negrita = new System.Windows.Forms.DataGridViewCellStyle();
-                    Negrita.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+                    Negrita.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
                     dgwStock[1, i].Style = Negrita;
                     CARGAMESTOCK = true;
+                    cantidadProductosStockBajo++;
                 }
                 else
                 {
                     System.Windows.Forms.DataGridViewCellStyle Normal = new System.Windows.Forms.DataGridViewCellStyle();
-                    Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular);
-                    dgwStock[1, i].Style = Normal;
+                    Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
+                     dgwStock[1, i].Style = Normal;
                 }
             }
 
@@ -70,6 +73,7 @@ namespace AppComercio
                 btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             }
         }
+
 
         // -------------------- leer EntregasStockIndustrias.txt, preparar dgwEntregasFabrica y en base al contenido de EntregasStockIndustrias.txt
         // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
