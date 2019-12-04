@@ -7,32 +7,30 @@ Esta app implementa la sección de comercio de los lineamientos del trabajo prá
 
 ![Descripción](https://i.imgur.com/v1CuPCd.png)
 
-- Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual.
-- En base a las ventas confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
-- Desde la pantalla `Reportes de entrega` recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados.
-- Administra el stock inicial del comercio (ventas cargadas suman stock comprometido, envíos via logística bajan el stock real en las cantidades comprometidas), pudiendo hacer pedidos a las industrias para reposición en cantidades fijas (que pueden ser modificadas) desde la pantalla `Pedidos stock` si el stock real cae por debajo del punto de reposición con suficiente stock comprometido, o mediante ventas y envíos. Confirmación manual diaria.
+- Recibe pedidos resultantes de ventas mediante los canales de venta online en la pantalla `Cargar ventas a lote diario`. Carga manual para el lote del día.
+- En base a las ventas del día confecciona un lote de bultos para enviar a la empresa de logística para su distribución desde la pantalla `Enviar lote diario a logística`. Confirmación manual diaria.
+- Desde la pantalla `Reportes de entrega` recibe de la empresa de logística un reporte de entrega de donde se puede reingresar el stock de los pedidos no entregados o devueltos. Este reingreso va a aumentar el stock real disponible.
+- Administra el stock inicial del comercio. Las ventas ingresadas al sistema comprometen stock, que es deducido del real con los envíos a logística. En cuanto el stock real cae por debajo del punto de reposición ya sea por repetidas ventas o por tener más stock comprometido que real, se pueden hacer pedidos diarios a industrias en la pantalla `Pedidos de stock ` para reposición y recepción del stock en cantidades fijas por producto (modificables) en la pantalla `Control de stock`
 - Los archivos generados y aceptados se condicen con el formato definido en los lineamientos.
 
 ### Uso
 
 Clonando el repositorio y compilando, se puede empezar a usar. 
 
-La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
-
-La interfaz se puede navegar con la ayuda de la tecla tab para ahorrar clics.
-
-Una vez que se eligió un producto en la lista desplegable en la pantalla de ventas online, la cantidad puede ser ingresada directamente dado que el foco pasa al cuadro de texto inmediatamente debajo, y se puede agregar a la lista de pedidos presionando la tecla enter en el mismo cuadro de texto, ahorrando el uso del mouse para buena parte de esta operatoria repetitiva.
-
-El programa opera con un inventario de diez productos distintos.
+- La pantalla de bienvenida da una clara idea de la funcionalidad de cada sección, aparte de tener un panel de ayuda en cada una con una breve guía de uso. El flujo entre pantallas está ilustrado en el diagrama más arriba.
+- El programa opera con un inventario de diez productos distintos.
+- La interfaz se puede navegar con la ayuda de la tecla tab para ahorrar clics.
+- Una vez que se eligió un producto en la lista desplegable en la pantalla de ventas online, la cantidad puede ser ingresada directamente dado que el foco pasa al cuadro de texto inmediatamente debajo, y se puede agregar a la lista de pedidos presionando la tecla enter en el mismo cuadro de texto, ahorrando el uso del mouse para buena parte de esta operatoria repetitiva.
+- Las pantallas `Pedidos de stock` y `Enviar lote diario a logística` guardan un historial de los pedidos y lotes enviados (en base a los archivos generados) para comodidad y referencia del usuario.
 
 ### Descripciones, comportamiento esperado y validaciones implementadas
 
 #### Archivos escenciales para el funcionamiento del programa:
-- `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de cantidades de reposición), por existencia del delimitador de split, por cantidad de items por línea (deben ser cinco), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
+- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por existencia del archivo, por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split ";" (y por ende líneas vacías), chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo parseable, y el CUIT se valida por ser un número entero positivo parseable y tener 11 dígitos.
 
-- `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por existencia del archivo, por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split ";", chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
+- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por producto por stock bajo que se cargan al iniciar el programa, con el formato `IDproduto;Cantidad`. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split ';' (y por ende líneas vacías), por cantidad de items por línea (deben ser dos), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
-- `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos, `IDproduto;Cantidad`), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
+- `Stock.txt` contiene el stock inicial que se cargará. Su formato es el de líneas de números enteros delimitados por separadores ";" del tipo `IDproducto;StockReal;PuntoReposicion;StockComprometido;StockPendiente`. Contiene diez líneas, por ende diez productos a cargar al sistema. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de cantidades de reposición), por existencia del delimitador de split ';' (y por ende líneas vacías), por cantidad de items por línea (deben ser cinco), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
 `DatosComercio.txt` y `CantidadesReposicionStock.txt` se validan uno contra el otro sobre la columna de IDs de producto, tanto en orden de los productos como en cantidad de productos totales, luego de pasar todas las validaciones que los harían válidos cada uno por separado. Ambos deben coincidir en este dato.
 
@@ -71,10 +69,11 @@ Todos los archivos que el programa crea para funcionar donde corre el ejecutable
 - No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
 
 El archivo de entrada de logística está validado por contenido (formato esperado según lineamientos, archivo vacío, entradas duplicadas), por extensión (debe ser .txt) y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes`:
-- `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos
+- `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos. Contiene entradas tanto entregadas como no entregadas.
+- `Entrega_C340_L644.txt` es aceptado, y contiene todas sus entradas entregadas.
 - `Entrega_C332_L117.txt` falla por tener entradas duplicadas
-- `Entrega_C332_L116.txt` falla por no respetar el separador ; entre código de referencia y estado del envío
-- `Entrega_C332_L115.txt` contiene una frase que no coincide con el formato esperado
+- `Entrega_C332_L116.txt` falla por no respetar el separador ';' entre código de referencia y estado del envío
+- `Entrega_C332_L115.txt` falla por contener una frase que no coincide con el formato esperado
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
 - Cualquier otro archivo al que se le haya asignado un nombre correcto siendo cualquier otra cosa su contenido, no es aceptado
 
@@ -87,7 +86,7 @@ Para probar esta funcionalidad:
 4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado. Un número de referencia por renglón, como dice el archivo de ejemplo en los lineamientos. Números de referencia que no corresponden al lote se ignoran.
 5) Ingrese este archivo en la pantalla y luego presione "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
 
-Esta funcionalidad posee las siguientes validaciones:
+La funcionalidad de reingreso posee las siguientes validaciones:
 
 - Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, en base a lotes a logística que existan en la carpeta de salida, asumiendo que la salida del programa es válida porque pasó todas las validaciones internas consideradas correctas por coincidir con el formato de salida de los lineamientos tras suficiente prueba => error => corrección)
 - No permite reingresar más de una vez el mismo reporte
