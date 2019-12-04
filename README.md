@@ -23,6 +23,8 @@ La interfaz se puede navegar con la ayuda de la tecla tab para ahorrar clics.
 
 Una vez que se eligió un producto en la lista desplegable en la pantalla de ventas online, la cantidad puede ser ingresada directamente dado que el foco pasa al cuadro de texto inmediatamente debajo, y se puede agregar a la lista de pedidos presionando la tecla enter en el mismo cuadro de texto, ahorrando el uso del mouse para buena parte de esta operatoria repetitiva.
 
+El programa opera con un inventario de diez productos distintos.
+
 ### Descripciones, comportamiento esperado y validaciones implementadas
 
 #### Archivos escenciales para el funcionamiento del programa:
@@ -31,6 +33,8 @@ Una vez que se eligió un producto en la lista desplegable en la pantalla de ven
 - `DatosComercio.txt` contiene la información del comercio a cargar. Posee una sola línea de items delimitados por separadores ";" del tipo `CodigoComercio;RazonSocial;CUIT;DireccionEntregaPedidosStock;DireccionDevolucionLotesVentas`. Está validado por existencia del archivo, por cantidad de líneas (debe ser una sola), cantidad de elementos en la línea (deben ser 5), existencia del delimitador de split ";", chequeo por archivo vacío, y el código de comercio debe consistir de la letra C + un número positivo, y el CUIT se valida por ser un número entero positivo y tener 11 dígitos.
 
 - `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos, `IDproduto;Cantidad`), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
+
+`DatosComercio.txt` y `CantidadesReposicionStock.txt` se validan uno contra el otro sobre la columna de IDs de producto, tanto en orden de los productos como en cantidad de productos totales, luego de pasar todas las validaciones que los harían válidos cada uno por separado. Ambos deben coincidir en este dato.
 
 Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución. Si alguno de los tres falla en su chequeo durante la carga, el programa se cierra con error fatal.
 
@@ -48,6 +52,7 @@ Todos los archivos que el programa crea para funcionar donde corre el ejecutable
 #### Pantalla "Cargar ventas a lote diario":
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter.
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
+- No permite ingresar pedidos que contengan algún producto cuya cantidad sea 0. Fuerza reingreso de la venta.
 
 #### Pantalla "Enviar lote diario a logística"
 - No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
@@ -89,6 +94,5 @@ Esta funcionalidad posee las siguientes validaciones:
 - Si se cargó un reporte cualquiera que no encuentra su par en la carpeta de salida, no permite su reingreso
 
 ### Varios
-
 Naturalmente es trabajo en progreso y es un concepto, no debería ser usado por ningún negocio real (momentaneamente)
 
