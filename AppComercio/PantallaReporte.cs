@@ -78,6 +78,7 @@ namespace AppComercio
                         else
                         {
                             ArchivoOK = true;
+                            btnCargarStockNoEntregados.Enabled = true;
                         }
                     }
                     // Si el nombre de archivo no es correcto o no es un archivo .txt, falla
@@ -93,6 +94,7 @@ namespace AppComercio
             else
             {
                 btnCargarStockNoEntregados.Enabled = false;
+                limpiezaValidacionesCarga();
             }
 
             // pasadas las validaciones iniciales y teniendo un archivo válido,
@@ -142,6 +144,7 @@ namespace AppComercio
 
                 dgwEntregados.Refresh();
                 dgwNoEntregados.Refresh();
+                
 
                 // ahora reviso si hay duplicados en los codigos de referencia del reporte cargado. Si hay, error
                 var BuscarDuplicadosEntregados = listaEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
@@ -163,6 +166,16 @@ namespace AppComercio
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
                     limpiezaValidacionesCarga();
+                }
+
+                //chequeo por todos verdaderos
+                if (listaNoEntregados.Count() == 0)
+                {
+                    btnCargarStockNoEntregados.Enabled = false;
+                    MessageBox.Show($"El reporte {nombreArchivoReporte} no contiene lotes devueltos o no entregados", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    BuscarDuplicadosEntregados.Clear();
+                    BuscarDuplicadosNoEntregados.Clear();
+
                 }
             }
         }

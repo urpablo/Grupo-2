@@ -814,6 +814,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgwEntregasFabrica.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgwEntregasFabrica.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgwEntregasFabrica.Size = new System.Drawing.Size(367, 164);
             this.dgwEntregasFabrica.TabIndex = 1;
             // 
@@ -1057,6 +1058,7 @@
             // 
             this.dgwNoEntregados.AllowUserToAddRows = false;
             this.dgwNoEntregados.AllowUserToDeleteRows = false;
+            this.dgwNoEntregados.AllowUserToResizeColumns = false;
             this.dgwNoEntregados.AllowUserToResizeRows = false;
             this.dgwNoEntregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1080,6 +1082,7 @@
             this.dgwNoEntregados.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.dgwNoEntregados.Name = "dgwNoEntregados";
             this.dgwNoEntregados.ReadOnly = true;
+            this.dgwNoEntregados.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgwNoEntregados.Size = new System.Drawing.Size(308, 402);
             this.dgwNoEntregados.TabIndex = 24;
             this.dgwNoEntregados.TabStop = false;
@@ -1111,6 +1114,7 @@
             // 
             this.dgwEntregados.AllowUserToAddRows = false;
             this.dgwEntregados.AllowUserToDeleteRows = false;
+            this.dgwEntregados.AllowUserToResizeColumns = false;
             this.dgwEntregados.AllowUserToResizeRows = false;
             this.dgwEntregados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -1134,6 +1138,7 @@
             this.dgwEntregados.Margin = new System.Windows.Forms.Padding(3, 8, 3, 3);
             this.dgwEntregados.Name = "dgwEntregados";
             this.dgwEntregados.ReadOnly = true;
+            this.dgwEntregados.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgwEntregados.Size = new System.Drawing.Size(308, 402);
             this.dgwEntregados.TabIndex = 19;
             this.dgwEntregados.TabStop = false;

@@ -15,51 +15,68 @@ namespace AppComercio
             bool comercio = false;
             bool cuit = false;
 
-            if (new FileInfo(@"DatosComercio.txt").Length == 0)
+
+
+            if (new FileInfo(@"DatosComercio.txt").Exists == true)
             {
-                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio está vacío. \n \n" +
-                                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            else
-            {
-                string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
-                if (lineaReporte.Contains(';'))
+                if (new FileInfo(@"DatosComercio.txt").Length == 0)
                 {
-                    string[] lineaSpliteada = lineaReporte.Split(';');
-                    if (File.ReadLines(@"DatosComercio.txt").Count() > 1) lineas = true;
-                    if (lineaSpliteada.Length != 5) largosplit = true;
-                    if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio)) comercio = true;
-
-                    if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado)) cuit = true;
-                    else if (Digits_IfChain(cuitParseado) == 11) cuit = false; else cuit = true;
-
-                    if (lineas || largosplit || comercio || cuit)
-                    {
-                        MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                    MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio está vacío. \n \n" +
                                     "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        textBoxCodComercio.Text = lineaSpliteada[0];
-                        textBoxRZ1.Text = lineaSpliteada[1];
-                        textBoxRZ2.Text = lineaSpliteada[1];
-                        textBoxCUIT.Text = lineaSpliteada[2];
-                        textBoxCUIT2.Text = lineaSpliteada[2];
-                        textBoxDirEntComercio.Text = lineaSpliteada[3];
-                        textBoxDirDevComercio.Text = lineaSpliteada[4];
-                        textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
-                        textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
-                    }
+                    
+                    Application.Exit();
                 }
                 else
                 {
-                    MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
-                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Application.Exit();
+                    string lineaReporte = File.ReadLines(@"DatosComercio.txt").First();
+                    if (lineaReporte.Contains(';'))
+                    {
+                        string[] lineaSpliteada = lineaReporte.Split(';');
+                        if (File.ReadLines(@"DatosComercio.txt").Count() > 1) lineas = true;
+                        if (lineaSpliteada.Length != 5) largosplit = true;
+                        if (lineaSpliteada[0].Substring(0, 1) != "C" && !int.TryParse(lineaSpliteada[0].Substring(1), out int codComercio)) comercio = true;
+
+                        if (!long.TryParse(lineaSpliteada[2].ToString(), out long cuitParseado)) cuit = true;
+                        else if (Digits_IfChain(cuitParseado) == 11) cuit = false; else cuit = true;
+
+                        if (lineas || largosplit || comercio || cuit)
+                        {
+                            MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                                        "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            textBoxCodComercio.Text = lineaSpliteada[0];
+                            textBoxRZ1.Text = lineaSpliteada[1];
+                            textBoxRZ2.Text = lineaSpliteada[1];
+                            textBoxCUIT.Text = lineaSpliteada[2];
+                            textBoxCUIT2.Text = lineaSpliteada[2];
+                            textBoxDirEntComercio.Text = lineaSpliteada[3];
+                            textBoxDirDevComercio.Text = lineaSpliteada[4];
+                            textBoxDatosComercio.Text = textBoxCodComercio.Text + ";" + textBoxRZ1.Text + ";" + textBoxCUIT.Text + ";" + textBoxDirEntComercio.Text;
+                            textBoxRemitente.Text = textBoxRZ2.Text + ";" + textBoxCUIT2.Text + ";" + textBoxDirDevComercio.Text;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no coincide con lo esperado. \n \n" +
+                                        "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                        Application.Exit();
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio no existe. \n \n" +
+                                        "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                Application.Exit();
+            }
+
+           
         }
 
         // -------------------- validar + leer las cantidades a reponer de CantidadesReposicionStock.txt, cargarlas en dgwCantidadesAReponer en pantalla de stock
@@ -75,59 +92,74 @@ namespace AppComercio
             bool IDDuplicados = false;
             List<int> IDDuplicado = new List<int>();
 
-            if (new FileInfo(@"CantidadesReposicionStock.txt").Length == 0)
+            if (new FileInfo(@"CantidadesReposicionStock.txt").Exists == true)
             {
-                MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                $" está vacío. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            else
-            {
-                if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10) lineas = true;
-
-                foreach (var producto in LineasAReponer)
-                {
-                    if (producto.Contains(';'))
-                    {
-                        var productoSpliteado = producto.Split(';');
-
-                        if (productoSpliteado.Length != 2) largosplit = true;
-
-                        bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
-                        bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
-                        if (a == false || b == false) noparseable = true;
-                        IDDuplicado.Add(IDSpliteado);
-                    }
-                    else splitmalvado = true;
-                }
-
-                var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                if (BuscarDuplicados.Count > 0) IDDuplicados = true;
-
-                if (lineas || largosplit || noparseable || splitmalvado || IDDuplicados)
+                if (new FileInfo(@"CantidadesReposicionStock.txt").Length == 0)
                 {
                     MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
-                                    $" no es un archivo que corresponda al formato esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    $" está vacío. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
                     Application.Exit();
                 }
                 else
                 {
-                    tablaCantARep.Clear();
-                    for (int i = 0; i < LineasAReponer.Length; i++)
-                    {
-                        ValoresAReponer = LineasAReponer[i].ToString().Split(';');
-                        string[] row = new string[ValoresAReponer.Length];
+                    if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10) lineas = true;
 
-                        for (int j = 0; j < ValoresAReponer.Length; j++)
+                    foreach (var producto in LineasAReponer)
+                    {
+                        if (producto.Contains(';'))
                         {
-                            row[j] = ValoresAReponer[j].Trim();
+                            var productoSpliteado = producto.Split(';');
+
+                            if (productoSpliteado.Length != 2) largosplit = true;
+
+                            bool a = int.TryParse(productoSpliteado[0].ToString(), out int IDSpliteado);
+                            bool b = int.TryParse(productoSpliteado[1].ToString(), out int cantSpliteada);
+                            if (a == false || b == false) noparseable = true;
+                            IDDuplicado.Add(IDSpliteado);
                         }
-                        tablaCantARep.Rows.Add(row);
+                        else splitmalvado = true;
                     }
 
-                    dgwCantidadesAReponer.Refresh();
+                    var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                    if (BuscarDuplicados.Count > 0) IDDuplicados = true;
+
+                    if (lineas || largosplit || noparseable || splitmalvado || IDDuplicados)
+                    {
+                        MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
+                                        $" no es un archivo que corresponda al formato esperado. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                        Application.Exit();
+                    }
+                    else
+                    {
+                        tablaCantARep.Clear();
+                        for (int i = 0; i < LineasAReponer.Length; i++)
+                        {
+                            ValoresAReponer = LineasAReponer[i].ToString().Split(';');
+                            string[] row = new string[ValoresAReponer.Length];
+
+                            for (int j = 0; j < ValoresAReponer.Length; j++)
+                            {
+                                row[j] = ValoresAReponer[j].Trim();
+                            }
+                            tablaCantARep.Rows.Add(row);
+                        }
+
+                        dgwCantidadesAReponer.Refresh();
+                    }
                 }
+
             }
+            else
+            {
+                MessageBox.Show($"El archivo 'CantidadesReposicionStock.txt' que contiene las cantidades de reposición por producto por stock bajo" +
+                                        $" no existe. \n \nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                Application.Exit();
+            }
+
+             
         }
 
         // -------------------- validar + cargar stock.txt inicialmente. Las proximas iteraciones sobre este archivo van a ser
@@ -144,52 +176,65 @@ namespace AppComercio
             List<int> IDDuplicado = new List<int>();
             string[] LineasStock = File.ReadAllLines(@"Stock.txt");
 
-            if (new FileInfo(@"Stock.txt").Length == 0)
-            {
-                MessageBox.Show($"El archivo 'Stock.txt' que contiene el stock inicial está vacío. \n \n" +
-                                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            else
-            {
-                if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10) lineas = true;
 
-                foreach (var producto in LineasStock)
+            if (new FileInfo(@"CantidadesReposicionStock.txt").Exists == true)
+            {
+                if (new FileInfo(@"Stock.txt").Length == 0)
                 {
-                    if (producto.Contains(';'))
+                    MessageBox.Show($"El archivo 'Stock.txt' que contiene el stock inicial está vacío. \n \n" +
+                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    Application.Exit();
+                }
+                else
+                {
+                    if (File.ReadLines(@"CantidadesReposicionStock.txt").Count() != 10) lineas = true;
+
+                    foreach (var producto in LineasStock)
                     {
-                        var productoSpliteado = producto.Split(';');
-
-                        if (productoSpliteado.Count() != 5) largosplit = true;
-
-                        foreach (var item in productoSpliteado)
+                        if (producto.Contains(';'))
                         {
-                            if (!int.TryParse(item.ToString(), out int itemParseado)) noparseable = true;
-                        }
+                            var productoSpliteado = producto.Split(';');
 
-                        if (noparseable == false)
-                        {
-                            int.TryParse(productoSpliteado[0].ToString(), out int IDParseado);
-                            IDDuplicado.Add(IDParseado);
+                            if (productoSpliteado.Count() != 5) largosplit = true;
+
+                            foreach (var item in productoSpliteado)
+                            {
+                                if (!int.TryParse(item.ToString(), out int itemParseado)) noparseable = true;
+                            }
+
+                            if (noparseable == false)
+                            {
+                                int.TryParse(productoSpliteado[0].ToString(), out int IDParseado);
+                                IDDuplicado.Add(IDParseado);
+                            }
                         }
+                        else nosplit = true;
                     }
-                    else nosplit = true;
+
+                    var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                    if (BuscarDuplicados.Count > 0) IDDuplicados = true;
                 }
 
-                var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                if (BuscarDuplicados.Count > 0) IDDuplicados = true;
-            }
-
-            if (lineas || largosplit || noparseable || nosplit || IDDuplicados)
-            {
-                MessageBox.Show($"El archivo 'Stock.txt' que contiene el stock inicial para operar no coincide con lo esperado. \n \n" +
-                                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                if (lineas || largosplit || noparseable || nosplit || IDDuplicados)
+                {
+                    MessageBox.Show($"El archivo 'Stock.txt' que contiene el stock inicial para operar no coincide con lo esperado. \n \n" +
+                                    "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    
+                    Application.Exit();
+                }
+                else
+                {
+                    RefrescarStock();
+                    RefrescarEntregasStockIndustrias();
+                }
             }
             else
             {
-                RefrescarStock();
-                RefrescarEntregasStockIndustrias();
+                MessageBox.Show($"El archivo 'Stock.txt' que contiene el stock inicial no existe. \n \n" +
+                "No se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+                Application.Exit();
             }
         }
 

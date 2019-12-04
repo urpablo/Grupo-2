@@ -53,107 +53,126 @@ namespace AppComercio
             int IdPed = 0;
             int KPed = 0;
             string parametrosinv;
+            bool fail = false;
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();
 
-            // Escribe el pedido que se acaba de cargar en el listview a txt
-            using (StreamWriter sw = new StreamWriter("PedidoTemporal.txt"))
+            foreach (ListViewItem itemLVI in listviewPedidos.Items)
             {
-                foreach (ListViewItem item in listviewPedidos.Items)
+                int.TryParse(itemLVI.SubItems[1].Text, out int cantidadAPedir);
+                if (cantidadAPedir == 0)
                 {
-                    sw.Write(textBoxCodClientePedido.Text + ";" + textBoxDireccionEntregaPedido.Text + ";");
-                    sw.Write(item.Text);
-                    for (int i = 1; i < item.SubItems.Count; i++)
-                        sw.Write(";" + item.SubItems[i].Text);
-                    sw.Write("\n");
+                    MessageBox.Show("No se puede ingresar un pedido de un producto con 0 ventas. Ingrese nuevamente el pedido", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    fail = true;
                 }
             }
 
-            // Levanta a memoria el pedido temporal
-            var lineaspedido = File
-                      .ReadAllLines("PedidoTemporal.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          a1 = record[0],
-                          a2 = record[1],
-                          a3 = int.Parse(record[2]),
-                          a4 = int.Parse(record[3])
-                      }).ToList();
-
-            // Levanta a memoria el stock actual
-            var lineasstock = File
-                      .ReadAllLines("Stock.txt")
-                      .Select(record => record.Split(';'))
-                      .Select(record => new
-                      {
-                          b1 = int.Parse(record[0]),
-                          b2 = int.Parse(record[1]),
-                          b3 = int.Parse(record[2]),
-                          b4 = int.Parse(record[3]),
-                          b5 = int.Parse(record[4])
-                      }).ToList();
-
-            // Agrega comprometido a stock temporal
-            foreach (var registroStock in lineasstock)
+            if (!fail)
             {
-                IdStock = registroStock.b1;
-                KStock = registroStock.b4;
-
-                foreach (var registroPedido in lineaspedido)
+                // Escribe el pedido que se acaba de cargar en el listview a txt
+                using (StreamWriter sw = new StreamWriter("PedidoTemporal.txt"))
                 {
-                    IdPed = registroPedido.a3;
-                    KPed = registroPedido.a4;
-
-                    if (IdStock == IdPed)
+                    foreach (ListViewItem item in listviewPedidos.Items)
                     {
-                        int sumcomprometido = KStock + KPed;
-                        parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + sumcomprometido + ";" + registroStock.b5;
+                        sw.Write(textBoxCodClientePedido.Text + ";" + textBoxDireccionEntregaPedido.Text + ";");
+                        sw.Write(item.Text);
+                        for (int i = 1; i < item.SubItems.Count; i++)
+                            sw.Write(";" + item.SubItems[i].Text);
+                        sw.Write("\n");
+                    }
+                }
 
+                // Levanta a memoria el pedido temporal
+                var lineaspedido = File
+                          .ReadAllLines("PedidoTemporal.txt")
+                          .Select(record => record.Split(';'))
+                          .Select(record => new
+                          {
+                              a1 = record[0],
+                              a2 = record[1],
+                              a3 = int.Parse(record[2]),
+                              a4 = int.Parse(record[3])
+                          }).ToList();
+
+                // Levanta a memoria el stock actual
+                var lineasstock = File
+                          .ReadAllLines("Stock.txt")
+                          .Select(record => record.Split(';'))
+                          .Select(record => new
+                          {
+                              b1 = int.Parse(record[0]),
+                              b2 = int.Parse(record[1]),
+                              b3 = int.Parse(record[2]),
+                              b4 = int.Parse(record[3]),
+                              b5 = int.Parse(record[4])
+                          }).ToList();
+
+                // Agrega comprometido a stock temporal
+                foreach (var registroStock in lineasstock)
+                {
+                    IdStock = registroStock.b1;
+                    KStock = registroStock.b4;
+
+                    foreach (var registroPedido in lineaspedido)
+                    {
+                        IdPed = registroPedido.a3;
+                        KPed = registroPedido.a4;
+
+                        if (IdStock == IdPed)
+                        {
+                            int sumcomprometido = KStock + KPed;
+                            parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + sumcomprometido + ";" + registroStock.b5;
+
+                            InventarioTemporal.Add(IdStock, parametrosinv);
+                        }
+                    }
+                    if (!InventarioTemporal.ContainsKey(IdStock))
+                    {
+                        parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + KStock + ";" + registroStock.b5;
                         InventarioTemporal.Add(IdStock, parametrosinv);
                     }
                 }
-                if (!InventarioTemporal.ContainsKey(IdStock))
+
+                // Pisa el stock.txt anterior con el actualizado de estas operaciones
+                using (StreamWriter sw2 = new StreamWriter("StockTemporal.txt"))
                 {
-                    parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + KStock + ";" + registroStock.b5;
-                    InventarioTemporal.Add(IdStock, parametrosinv);
+                    foreach (KeyValuePair<int, string> entry in InventarioTemporal)
+                    {
+                        sw2.Write(entry.Key);
+                        sw2.Write(";");
+                        sw2.Write(entry.Value);
+                        sw2.Write("\n");
+                    }
                 }
+
+                File.Delete("Stock.txt");
+                File.Move("StockTemporal.txt", "Stock.txt");
+
+                // Guarda los pedidos de esta venta cargada
+                using (StreamWriter sw3 = File.AppendText("Pedidos.txt"))
+                {
+                    string[] leertexto = File.ReadAllLines("PedidoTemporal.txt");
+                    foreach (string s in leertexto)
+                    {
+                        sw3.Write(s);
+                        sw3.Write("\n");
+                    }
+                }
+
+                // Muestra el aviso de que se completó la carga del pedido con exito, habilita el botón de generar lote
+                // dado que tenemos al menos un pedido para despachar, y limpia la pantalla
+                MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n " +
+                    "Cuando termine de agregar ventas, puede generar el lote final diario " +
+                    "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnGenerarTXTLote.Enabled = true;
+                limpiarPantallaCargarVentas();
+                cantidadVentasCargadas++;
+
+
             }
 
-            // Pisa el stock.txt anterior con el actualizado de estas operaciones
-            using (StreamWriter sw2 = new StreamWriter("StockTemporal.txt"))
-            {
-                foreach (KeyValuePair<int, string> entry in InventarioTemporal)
-                {
-                    sw2.Write(entry.Key);
-                    sw2.Write(";");
-                    sw2.Write(entry.Value);
-                    sw2.Write("\n");
-                }
-            }
-
-            File.Delete("Stock.txt");
-            File.Move("StockTemporal.txt", "Stock.txt");
-
-            // Guarda los pedidos de esta venta cargada
-            using (StreamWriter sw3 = File.AppendText("Pedidos.txt"))
-            {
-                string[] leertexto = File.ReadAllLines("PedidoTemporal.txt");
-                foreach (string s in leertexto)
-                {
-                    sw3.Write(s);
-                    sw3.Write("\n");
-                }
-            }
-
-            // Muestra el aviso de que se completó la carga del pedido con exito, habilita el botón de generar lote
-            // dado que tenemos al menos un pedido para despachar, y limpia la pantalla
-            MessageBox.Show("¡Pedido agregado exitosamente al lote actual! \n \n " +
-                "Cuando termine de agregar ventas, puede generar el lote final diario " +
-                "para logística desde la sección enviar ventas.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            btnGenerarTXTLote.Enabled = true;
             limpiarPantallaCargarVentas();
-            cantidadVentasCargadas++;
+
         }
 
         // ----------------- boton limpiar pedidos de cargar ventas

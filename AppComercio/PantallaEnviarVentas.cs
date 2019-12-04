@@ -149,11 +149,27 @@ namespace AppComercio
                         }
                     }
                 }
-                if (!InventarioTemporalLote.ContainsKey(IdStock))
+                try
                 {
-                    parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + kComp + ";" + registroStock.b5;
-                    InventarioTemporalLote.Add(IdStock, parametrosinv);
+                    if (InventarioTemporalLote.ContainsKey(IdStock) == false)
+                    {
+                        parametrosinv = registroStock.b2 + ";" + registroStock.b3 + ";" + kComp + ";" + registroStock.b5;
+                        InventarioTemporalLote.Add(IdStock, parametrosinv);
+                    }
                 }
+                catch (ArgumentException)
+                {
+                    // por algún motivo ante cierta cantidad de ingresos y acciones concurrentes
+                    // aparece un error de key duplicado (ID = 1) al intentar agregar al diccionario
+                    // al menos de esta forma no rompe el programa, pero el estado puede quedar
+                    // inconsistente
+
+                    // cambie condición originalmente (!InventarioTemporalLote.ContainsKey(IdStock)) por == false
+
+                    MessageBox.Show($"Error de ID duplicado en inventario temporal. \n\n" +
+                                    $"Presione aceptar para continuar. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+               
             }
 
             using (StreamWriter sw4 = new StreamWriter("StockTemporalSegundo.txt"))
@@ -278,10 +294,10 @@ namespace AppComercio
             File.WriteAllText("PedidosAEnviar.txt", String.Empty);
 
             RefrescarStock();
+            LabelEstadoLotes();
 
             // como despache este lote, no tengo ventas cargadas pendientes, lo dejo en 0 y actualizo el label de estado
             cantidadVentasCargadas = 0;
-          
 
             // para funcionalidad de chequeo por carga de reporte sin despacho anterior en reportes de entregas
             almenosunlotedespachado = true;

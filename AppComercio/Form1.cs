@@ -158,7 +158,9 @@ namespace AppComercio
         private void pbSalir_Click(object sender, EventArgs e)
         {
             DialogResult resultadoMSGbox = MessageBox.Show("¿Desea realmente salir?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
-            if (resultadoMSGbox == DialogResult.Yes) Application.Exit();
+            if (resultadoMSGbox == DialogResult.Yes) LimpiezaSalida(); Application.Exit(); 
+
+
         }
 
         private void pbMinimizar_Click(object sender, EventArgs e)
@@ -256,12 +258,6 @@ namespace AppComercio
                     panelEnviosClientesOnline.Visible = false;
                     panelVentasOnline.Visible = false;
                     panelReportesEntrega.Visible = false;
-
-                    //label14.Text = "ATENCION \n \n" +
-                    //"Si ya hizo todas las ventas del día y ve algún producto cuyo stock real " +
-                    //"está por debajo del nivel de reposición marcado en negrita, o hay suficiente stock comprometido " +
-                    //"para llegar a la misma situación, no dude en ir a la pantalla de pedidos " +
-                    //"a industrias y hacer el encargo";
 
                     RefrescarStock();
                     RefrescarEntregasStockIndustrias();
@@ -397,6 +393,20 @@ namespace AppComercio
                     panelReportesEntrega.Visible = false;
                     break;
             }
+        }
+
+        private void LimpiezaSalida()
+        {
+            File.Delete("PedidoTemporal.txt");
+            File.Delete("PedidosAEnviar.txt");
+            File.Delete("Pedidos.txt");
+            File.Delete("Listadereferencias.txt");
+            File.Delete("lineaindividual.txt");
+            File.Delete("EntregasStockIndustrias.txt");
+            File.Delete("PedidosPendientes.txt");
+            File.Delete("CantidadesReposicionStock.txt");
+            File.Delete("DatosComercio.txt");
+            File.Delete("Stock.txt");
         }
 
         // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos
