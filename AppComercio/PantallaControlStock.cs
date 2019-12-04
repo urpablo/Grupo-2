@@ -13,6 +13,7 @@ namespace AppComercio
         private DataTable tablaEntregas = new DataTable();
         private DataTable tablaCantARep = new DataTable();
         private int cantidadProductosStockBajo = 0;
+        private int cantidadProductosSobrecomprometidos = 0;
         private bool CARGAMESTOCK = false;
 
         // --------------------  actualizar desde stock.txt, preparar dgwStock y combobox de ventas con el ID producto,
@@ -39,6 +40,7 @@ namespace AppComercio
             }
 
             cantidadProductosStockBajo = 0;
+            cantidadProductosSobrecomprometidos = 0;
             for (int i = 0; i < dgwStock.Rows.Count; i++)
             {
                 int.TryParse(dgwStock[1, i].Value.ToString(), out int StockReal);
@@ -60,56 +62,33 @@ namespace AppComercio
                     Normal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular);
                     dgwStock[1, i].Style = Normal;
                 }
+
+                if (StockComprometido > StockReal)
+                {
+                    cantidadProductosSobrecomprometidos++;
+                }
+
+                if (CARGAMESTOCK == true)
+                {
+                    btnGenerarTXTPedidoStockIndustrias.Enabled = true;
+                }
+                else
+                {
+                    btnGenerarTXTPedidoStockIndustrias.Enabled = false;
+                }
             }
 
             dgwStock.Refresh();
-
-            if (CARGAMESTOCK == true)
-            {
-                btnGenerarTXTPedidoStockIndustrias.Enabled = true;
-            }
-            else
-            {
-                btnGenerarTXTPedidoStockIndustrias.Enabled = false;
-            }
         }
 
         // -------------------- leer EntregasStockIndustrias.txt, preparar dgwEntregasFabrica y en base al contenido de EntregasStockIndustrias.txt
         // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
         private void RefrescarEntregasStockIndustrias()
         {
-            tablaEntregas.Clear();
-
-            string[] lines = File.ReadAllLines(@"EntregasStockIndustrias.txt");
-            string[] values;
-
-            for (int i = 0; i < lines.Length; i++)
-            {
-                values = lines[i].ToString().Split(';');
-                string[] row = new string[values.Length];
-
-                for (int j = 0; j < values.Length; j++)
-                {
-                    row[j] = values[j].Trim();
-                }
-                tablaEntregas.Rows.Add(row);
-            }
-
-            foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)
-            {
-                dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
-            }
-
-            dgwEntregasFabrica.Refresh();
-
-            if (new FileInfo("EntregasStockIndustrias.txt").Length == 0)
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = false;
-            }
-            else
-            {
-                btnCargarPedidosStockPendientesIndustrias.Enabled = true;
-            }
+            if (tablaEntregas.Rows.Count > 0) btnCargarPedidosStockPendientesIndustrias.Enabled = true;
+            else btnCargarPedidosStockPendientesIndustrias.Enabled = false;
+            LabelEstadoPedidos();
+            LabelEstadoLotes();
         }
 
         // -------------------- boton aceptar pedidos pendientes de industrias/stock en pantalla de control de stock
@@ -214,8 +193,31 @@ namespace AppComercio
             File.Delete("EntregasStockIndustrias.txt");
             File.Move("nuevostockrepuesto.txt", "EntregasStockIndustrias.txt");
 
+            //recargo el archivo con menos líneas y actualizo el dgw, eventualmente se vaciará
+            tablaEntregas.Clear();
+            string[] linesASD = File.ReadAllLines(@"EntregasStockIndustrias.txt");
+            string[] valuesASD;
+
+            for (int i = 0; i < linesASD.Length; i++)
+            {
+                valuesASD = linesASD[i].ToString().Split(';');
+                string[] row = new string[valuesASD.Length];
+
+                for (int j = 0; j < valuesASD.Length; j++)
+                {
+                    row[j] = valuesASD[j].Trim();
+                }
+                tablaEntregas.Rows.Add(row);
+            }
+
+            foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)
+            {
+                dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
+            }
+
             RefrescarEntregasStockIndustrias();
-            CARGAMESTOCK = false;
+            dgwEntregasFabrica.Refresh();
+            dgwStock.Refresh();
         }
     }
 }

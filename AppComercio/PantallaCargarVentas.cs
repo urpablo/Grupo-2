@@ -10,6 +10,7 @@ namespace AppComercio
     public partial class Form1 : Form
     {
         private int cantidadVentasCargadas = 0;
+        private int cantidadVentasPendientes = 0;
 
         // -------------------- boton agregar item de cargar ventas
         private void btnAgregarItemPedido_Click(object sender, EventArgs e)
@@ -51,7 +52,6 @@ namespace AppComercio
             int KStock = 0;
             int IdPed = 0;
             int KPed = 0;
-            //int kComp = 0;
             string parametrosinv;
 
             Dictionary<int, string> InventarioTemporal = new Dictionary<int, string>();

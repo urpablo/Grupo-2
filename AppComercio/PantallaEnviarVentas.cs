@@ -43,7 +43,7 @@ namespace AppComercio
                       }).ToList();
 
             // levanta a memoria los pedidos que se hayan hecho para este lote
-            var lineaspedido = File
+            var lineaspedidoArchivo = File
                       .ReadAllLines("Pedidos.txt")
                       .Select(record => record.Split(';'))
                       .Select(record => new
@@ -53,6 +53,24 @@ namespace AppComercio
                           a3 = int.Parse(record[2]),
                           a4 = int.Parse(record[3])
                       }).ToList();
+
+            // levanta cualquier pedido pendiente de lotes anteriores por falta de stock
+            var lineaspendientesArchivo = File
+                     .ReadAllLines("PedidosPendientes.txt")
+                     .Select(record => record.Split(';'))
+                     .Select(record => new
+                     {
+                         a1 = record[0],
+                         a2 = record[1],
+                         a3 = int.Parse(record[2]),
+                         a4 = int.Parse(record[3])
+                     }).ToList();
+
+            // los combino
+            var lineaspedido = lineaspedidoArchivo.Concat(lineaspendientesArchivo).ToArray();
+
+            // y vacío los pendientes para escribir luego el archivo con los pendientes de este lote
+            File.WriteAllText("PedidosPendientes.txt", String.Empty);
 
             foreach (var registroStock in lineasstock)
             {
@@ -256,15 +274,14 @@ namespace AppComercio
             File.Move("PedidosFinal.txt", @"c:\Grupo2\" + LoteGenerado);
 
             // Limpiar archivos de este lote para poder comenzar un nuevo ciclo
-            File.Delete("Pedidos.txt");
-            File.Delete("PedidosAEnviar.txt");
+            File.WriteAllText("Pedidos.txt", String.Empty);
+            File.WriteAllText("PedidosAEnviar.txt", String.Empty);
 
-            RefrescarEntregasStockIndustrias();
             RefrescarStock();
 
             // como despache este lote, no tengo ventas cargadas pendientes, lo dejo en 0 y actualizo el label de estado
             cantidadVentasCargadas = 0;
-            LabelEstadoLotes();
+          
 
             // para funcionalidad de chequeo por carga de reporte sin despacho anterior en reportes de entregas
             almenosunlotedespachado = true;
@@ -277,22 +294,10 @@ namespace AppComercio
 
         private void LabelEstadoLotes()
         {
-            if (cantidadVentasCargadas == 0)
-            {
-                labelEstadoLotes.Text = "No hay ventas para enviar a logística";
-                labelEstadoLotes.Refresh();
-            }
+            cantidadVentasPendientes = File.ReadAllLines("PedidosPendientes.txt").Count();
 
-            if (cantidadVentasCargadas == 1)
-            {
-                labelEstadoLotes.Text = $"Hay {cantidadVentasCargadas} venta para enviar a logística";
-                labelEstadoLotes.Refresh();
-            }
-            else
-            {
-                labelEstadoLotes.Text = $"Hay {cantidadVentasCargadas} ventas para enviar a logística";
-                labelEstadoLotes.Refresh();
-            }
+            labelEstadoLotes.Text = $"Ventas en lote diario: {cantidadVentasCargadas}\nVentas pendientes de stock: {cantidadVentasPendientes}";
+            labelEstadoLotes.Refresh();
         }
     }
 }

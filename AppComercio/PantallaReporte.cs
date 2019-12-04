@@ -12,6 +12,7 @@ namespace AppComercio
         private List<string> listaRefNE = new List<string>();
         private DataTable tablaEntregados = new DataTable();
         private DataTable tablaNoEntregados = new DataTable();
+        private List<string> reportesReingresados = new List<string>();
         private string nombreArchivoReporte;
 
         // -------------------- cargar reporte, validar nombre de archivo y formato
@@ -171,7 +172,6 @@ namespace AppComercio
         private void btnCargarStockNoEntregados_Click(object sender, EventArgs e)
         {
             List<int> listaPosicionesSeparadores = new List<int>();
-            List<string> reportesReingresados = new List<string>();
             Dictionary<string, int> contenidoSpliteado = new Dictionary<string, int>();
             bool nada = true;
             bool modificado = false;

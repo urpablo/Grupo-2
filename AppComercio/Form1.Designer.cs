@@ -662,7 +662,7 @@
             this.labelBienvenido2.AutoSize = true;
             this.labelBienvenido2.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBienvenido2.ForeColor = System.Drawing.Color.Gray;
-            this.labelBienvenido2.Location = new System.Drawing.Point(56, 369);
+            this.labelBienvenido2.Location = new System.Drawing.Point(56, 382);
             this.labelBienvenido2.Name = "labelBienvenido2";
             this.labelBienvenido2.Size = new System.Drawing.Size(518, 32);
             this.labelBienvenido2.TabIndex = 14;
@@ -740,7 +740,7 @@
             this.labelBienvenido1.AutoSize = true;
             this.labelBienvenido1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelBienvenido1.ForeColor = System.Drawing.Color.Gray;
-            this.labelBienvenido1.Location = new System.Drawing.Point(229, 312);
+            this.labelBienvenido1.Location = new System.Drawing.Point(229, 325);
             this.labelBienvenido1.Name = "labelBienvenido1";
             this.labelBienvenido1.Size = new System.Drawing.Size(180, 32);
             this.labelBienvenido1.TabIndex = 15;
@@ -897,7 +897,7 @@
             // btnGenerarTXTPedidoStockIndustrias
             // 
             this.btnGenerarTXTPedidoStockIndustrias.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarTXTPedidoStockIndustrias.Location = new System.Drawing.Point(6, 101);
+            this.btnGenerarTXTPedidoStockIndustrias.Location = new System.Drawing.Point(6, 85);
             this.btnGenerarTXTPedidoStockIndustrias.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnGenerarTXTPedidoStockIndustrias.Name = "btnGenerarTXTPedidoStockIndustrias";
             this.btnGenerarTXTPedidoStockIndustrias.Size = new System.Drawing.Size(196, 42);
@@ -1205,7 +1205,7 @@
             this.groupBox5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(437, 262);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(210, 150);
+            this.groupBox5.Size = new System.Drawing.Size(210, 136);
             this.groupBox5.TabIndex = 22;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Estado";
@@ -1213,13 +1213,12 @@
             // labelEstadoPedidos
             // 
             this.labelEstadoPedidos.AutoEllipsis = true;
-            this.labelEstadoPedidos.Location = new System.Drawing.Point(42, 24);
+            this.labelEstadoPedidos.Location = new System.Drawing.Point(7, 26);
             this.labelEstadoPedidos.Margin = new System.Windows.Forms.Padding(3);
             this.labelEstadoPedidos.Name = "labelEstadoPedidos";
-            this.labelEstadoPedidos.Size = new System.Drawing.Size(128, 64);
+            this.labelEstadoPedidos.Size = new System.Drawing.Size(195, 48);
             this.labelEstadoPedidos.TabIndex = 2;
             this.labelEstadoPedidos.Text = "Estado de lotes a enviar";
-            this.labelEstadoPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBoxPedidoIndustrias
             // 
@@ -1277,6 +1276,7 @@
             this.textBoxPedidoIndustria.Multiline = true;
             this.textBoxPedidoIndustria.Name = "textBoxPedidoIndustria";
             this.textBoxPedidoIndustria.ReadOnly = true;
+            this.textBoxPedidoIndustria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxPedidoIndustria.Size = new System.Drawing.Size(415, 409);
             this.textBoxPedidoIndustria.TabIndex = 0;
             this.textBoxPedidoIndustria.TabStop = false;
@@ -1298,7 +1298,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(437, 206);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(210, 150);
+            this.groupBox4.Size = new System.Drawing.Size(210, 136);
             this.groupBox4.TabIndex = 25;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Estado";
@@ -1306,18 +1306,17 @@
             // labelEstadoLotes
             // 
             this.labelEstadoLotes.AutoEllipsis = true;
-            this.labelEstadoLotes.Location = new System.Drawing.Point(36, 25);
+            this.labelEstadoLotes.Location = new System.Drawing.Point(9, 29);
             this.labelEstadoLotes.Margin = new System.Windows.Forms.Padding(3);
             this.labelEstadoLotes.Name = "labelEstadoLotes";
-            this.labelEstadoLotes.Size = new System.Drawing.Size(128, 64);
+            this.labelEstadoLotes.Size = new System.Drawing.Size(189, 48);
             this.labelEstadoLotes.TabIndex = 1;
             this.labelEstadoLotes.Text = "Estado de lotes a enviar";
-            this.labelEstadoLotes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnGenerarTXTLote
             // 
             this.btnGenerarTXTLote.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarTXTLote.Location = new System.Drawing.Point(6, 102);
+            this.btnGenerarTXTLote.Location = new System.Drawing.Point(6, 86);
             this.btnGenerarTXTLote.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
             this.btnGenerarTXTLote.Name = "btnGenerarTXTLote";
             this.btnGenerarTXTLote.Size = new System.Drawing.Size(192, 42);
@@ -1382,6 +1381,7 @@
             this.textBoxLote.Multiline = true;
             this.textBoxLote.Name = "textBoxLote";
             this.textBoxLote.ReadOnly = true;
+            this.textBoxLote.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxLote.Size = new System.Drawing.Size(415, 410);
             this.textBoxLote.TabIndex = 1;
             this.textBoxLote.TabStop = false;

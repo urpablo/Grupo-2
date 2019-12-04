@@ -38,10 +38,9 @@ namespace AppComercio
                 int comp = regStock.b4;
                 int pr = regStock.b3;
                 int IdStock = regStock.b1;
-                // string parametrosinv;
                 int cantarepo = 0;
 
-                if (((actual + pp) - comp) < pr)
+                if (((actual + pp) - comp) <= pr)
                 {
                     foreach (DataGridViewRow dr in dgwCantidadesAReponer.Rows)
                     {
@@ -167,32 +166,44 @@ namespace AppComercio
             // CARGAMESTOCK = false dado que acabo de hacer el pedido
             btnGenerarTXTPedidoStockIndustrias.Enabled = false;
             CARGAMESTOCK = false;
-            RefrescarEntregasStockIndustrias();
 
             // seteo la cantidad en 0, se recalculará cuando corra refrescarstock();, pero como acabo de hacer el pedido
-            // ya puedo considerar los productos con stock bajo en 0
+            // ya puedo considerar los productos con stock bajo en 0 y puedo actualizar el label ahora
             cantidadProductosStockBajo = 0;
             LabelEstadoPedidos();
+
+            // -----------------------------------------------------------------------------------------------------------------
+
+            // como ya tengo mi pedido y su correspondiente EEI.txt, lo reflejo en la pantalla de stock
+            // y habilito el botón de recepción de entregas de stock
+            string[] linesASD = File.ReadAllLines(@"EntregasStockIndustrias.txt");
+            string[] valuesASD;
+
+            for (int i = 0; i < linesASD.Length; i++)
+            {
+                valuesASD = linesASD[i].ToString().Split(';');
+                string[] row = new string[valuesASD.Length];
+
+                for (int j = 0; j < valuesASD.Length; j++)
+                {
+                    row[j] = valuesASD[j].Trim();
+                }
+                tablaEntregas.Rows.Add(row);
+            }
+
+            foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)
+            {
+                dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
+            }
+
+            dgwEntregasFabrica.Refresh();
+            RefrescarEntregasStockIndustrias();
         }
 
         private void LabelEstadoPedidos()
         {
-            if (cantidadProductosStockBajo == 0)
-            {
-                labelEstadoPedidos.Text = "No hay productos con stock bajo";
-                labelEstadoPedidos.Refresh();
-            }
-
-            if (cantidadProductosStockBajo == 1)
-            {
-                labelEstadoPedidos.Text = $"Hay {cantidadProductosStockBajo} producto con stock bajo";
-                labelEstadoPedidos.Refresh();
-            }
-            else
-            {
-                labelEstadoPedidos.Text = $"Hay {cantidadProductosStockBajo} productos con stock bajo";
-                labelEstadoPedidos.Refresh();
-            }
+            labelEstadoPedidos.Text = $"Stock bajo: {cantidadProductosStockBajo} \nSobrecomprometidos: {cantidadProductosSobrecomprometidos} ";
+            labelEstadoPedidos.Refresh();
         }
     }
 }

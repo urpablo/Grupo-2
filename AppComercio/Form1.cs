@@ -21,9 +21,11 @@ namespace AppComercio
             File.Delete("lineaindividual.txt");
             File.Delete("EntregasStockIndustrias.txt");
             File.Delete("PedidosPendientes.txt");
-
+            
+            // Crear archivos varios necesarios
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("EntregasStockIndustrias.txt")) ;
             using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
+            File.WriteAllText("PedidosPendientes.txt", String.Empty);
 
             // borrar la salida de la ejecución anterior y recrear el directorio de salida si no existe
             if (Directory.Exists(@"C:\Grupo2"))
@@ -35,6 +37,8 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
+
+
         }
 
         // ------------------ carga del formulario -----------------------------
@@ -97,6 +101,19 @@ namespace AppComercio
             // iniciar interfaz en la bienvenida
             botonBotonera = 0;
             ActualizarPantalla();
+
+            // borrar la salida de la ejecución anterior y recrear el directorio de salida si no existe
+            // Intento nuevamente por si el usuario tenía la carpeta abierta en el explorador impidiendo su creación
+            // y un fallo posterior al no tener carpeta de salida
+            if (Directory.Exists(@"C:\Grupo2"))
+            {
+                Directory.Delete(@"C:\Grupo2", true);
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
+            else
+            {
+                Directory.CreateDirectory(@"C:\Grupo2");
+            }
         }
 
         // ------------------ hacer que una ventana borderless sea movible ------------------
