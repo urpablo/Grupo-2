@@ -56,19 +56,17 @@ Todos los archivos que el programa crea para funcionar donde corre el ejecutable
 - No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
 - El botón se deshabilita al enviar un lote, se vuelve a habilitar en cuanto se cargue al menos una nueva venta.
 - Cuenta las ventas cargadas en el lote diario esperando ser enviadas, y las ventas pendientes por falta de stock. En cuanto se envían las diarias, el contador vuelve a cero, y en el historial/vista previa queda escrito el día y el nombre del archivo generado para ese día, con el pedido. Para comodidad del usuario aparte de los archivos de salida necesarios.
-- Las ventas pendientes dependen de que se haga el pedido de stock a industrias, y se ingrese el stock. Recién con estas condiciones es que van a ser enviadas con el lote diario.
+- Las ventas pendientes dependen de que se haga el pedido de stock a industrias, y se recepcione el nuevo stock. Recién con estas condiciones (stock real > stock comprometido) es que van a ser enviadas con el lote diario siguiente.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del lote generado.
 
 #### Pantalla "Pedidos Stock"
-- El botón "Confirmar Pedido de Stock a industrias" se habilita en cuanto algún producto de la lista tiene su stock real + comprometido + pendiente debajo del punto de reposición (cuando se marca en negrita en la pantalla de control de stock). Al presionar se genera un pedido que incluye todos los que se encuentran en esa condición y en la carpeta de salida se lo puede leer.
+- El botón "Realizar pedido de stock a industrias" se habilita en cuanto algún producto de la lista tiene su stock real + comprometido + pendiente debajo del punto de reposición (cuando se marca en negrita en la pantalla de control de stock). Al presionar se genera un pedido que incluye todos los que se encuentran en esa condición y en la carpeta de salida se lo puede leer.
 - Cuenta los productos cuyo stock es bajo y aquellos sobrecomprometidos por ventas (más cantidad que el stock real disponible), listos para ser pedidos. En cuanto se piden, el contador vuelve a cero, y en el historial/vista previa queda escrito el día y el nombre del archivo generado para ese día, con el pedido. Para comodidad del usuario aparte de los archivos de salida necesarios.
 - Todos los campos y vistas previas en esta pantalla son de solo lectura, a modo informativo de los datos cargados desde "DatosComercio.txt" y del pedido generado.
 
 
 #### Pantalla "Reportes de entrega":
-- No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero.
-
-El archivo de entrada de logística está validado por contenido (formato esperado según lineamientos, archivo vacío, entradas duplicadas), por extensión (debe ser .txt) y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes`:
+El archivo de entrada de logística está validado por contenido (formato esperado según lineamientos, archivo vacío, entradas duplicadas), por extensión (debe ser .txt) y por nombre. En particular, de los archivos de prueba/ejemplo disponibles en la carpeta `EjemplosReportes` junto al archivo de solución:
 - `Entrega_C340_L643.txt` es aceptado, tiene su nombre y su contenido según el formato `[CodReferencia];[true/false]` (un juego por línea) acorde al archivo modelo en los lineamientos. Contiene entradas tanto entregadas como no entregadas.
 - `Entrega_C340_L644.txt` es aceptado, y contiene todas sus entradas entregadas.
 - `Entrega_C332_L117.txt` falla por tener entradas duplicadas
@@ -77,16 +75,17 @@ El archivo de entrada de logística está validado por contenido (formato espera
 - Cualquier otro archivo con otro formato de nombre (sea su contenido válido como el del primero, o no) no es aceptado
 - Cualquier otro archivo al que se le haya asignado un nombre correcto siendo cualquier otra cosa su contenido, no es aceptado
 
-Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de la pantalla los pedidos enviados y no enviados pertenecientes a este reporte. Ahora puede reingresar los pedidos que no hayan sido entregados al stock real. En caso de que el reporte contenga todos pedidos entregados, lo notifica y no permite ingresar nada al sistema.
 
-Para probar esta funcionalidad:
+No se puede apretar el botón "Cargar stock de no entregados" si no se carga un reporte primero. Una vez que haya cargado un archivo válido, se van a mostrar en ambos lados de la pantalla los pedidos enviados y no enviados pertenecientes a este reporte. Ahora puede reingresar los pedidos que no hayan sido entregados al stock real. En caso de que el reporte contenga todos pedidos entregados, lo notifica y no permite ingresar nada al sistema.
+
+Para probar la funcionaildad de reingreso:
 1) Cargue algunas ventas en el sistema. 
 2) Envíe la/s ventas que haya cargado. Necesita enviar al menos un lote con una venta (es decir, tener al menos un número de referencia). Revise el estado del stock antes de seguir.
 3) En la carpeta de salida `C:\Grupo2`, haga una copia del archivo `Lote_(CodCliente)_(CodLote)_.txt` y cambie su nombre al formato esperado correspondiente, `Entrega_(CodCliente)_(CodLote)_.txt` usando el mismo código de cliente y el mismo código de lote.
 4) Cambie el contenido del archivo para reflejar el estado de los números de referencia de los pedidos que se han entregado en el lote. Por ejemplo si su archivo de lote tiene un pedido con referencia `R1`, el contenido respectivo en el archivo de Entrega debe ser `R1;false` para denotar que no fue entregado, o `R1;true` para decir que fue entregado. Un número de referencia por renglón, como dice el archivo de ejemplo en los lineamientos. Números de referencia que no corresponden al lote se ignoran.
-5) Ingrese este archivo en la pantalla y luego presione "Cargar stock de no entregados". Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
+5) Ingrese este archivo en la pantalla y luego presione "Cargar stock de no entregados" si su reporte contiene algún número de referencia marcado como `false`. Revise el estado del stock, verá las cantidades vendidas reingresadas al stock real y habiendo vuelto al estado anterior.
 
-La funcionalidad de reingreso posee las siguientes validaciones:
+Esta funcionalidad posee las siguientes validaciones:
 
 - Solo reingresa reportes que hayan sido emitidos por la aplicación (es decir, en base a lotes a logística que existan en la carpeta de salida, asumiendo que la salida del programa es válida porque pasó todas las validaciones internas consideradas correctas por coincidir con el formato de salida de los lineamientos tras suficiente prueba => error => corrección)
 - No permite reingresar más de una vez el mismo reporte
