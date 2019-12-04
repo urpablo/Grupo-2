@@ -14,14 +14,8 @@ namespace AppComercio
 
             // borrar todo rastro de archivos de ejecuciones pasadas
             // no hace falta el test de existencia previo dado que si el archivo no existe, no tira excepción
-            File.Delete("PedidoTemporal.txt");
-            File.Delete("PedidosAEnviar.txt");
-            File.Delete("Pedidos.txt");
-            File.Delete("Listadereferencias.txt");
-            File.Delete("lineaindividual.txt");
-            File.Delete("EntregasStockIndustrias.txt");
-            File.Delete("PedidosPendientes.txt");
-            
+            LimpiezaArchivos();
+
             // Crear archivos varios necesarios
             using (System.IO.StreamWriter file = new System.IO.StreamWriter("EntregasStockIndustrias.txt")) ;
             using (System.IO.StreamWriter filearepo = new System.IO.StreamWriter("PedidosAEnviar.txt")) ;
@@ -37,17 +31,6 @@ namespace AppComercio
             {
                 Directory.CreateDirectory(@"C:\Grupo2");
             }
-
-
-        }
-
-        // ------------------ carga del formulario -----------------------------
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            // hacer ventana borderless movible
-            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
-            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
-            MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
 
             //seteo de columnas para las tablas de datos
             tablaStock.Columns.Add("ID", typeof(int));
@@ -93,10 +76,22 @@ namespace AppComercio
             dgwEntregasFabrica.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgwCantidadesAReponer.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
-            // cargar los tres archivos escenciales
-            CargarStockInicial();
+
+        }
+
+        // ------------------ carga del formulario -----------------------------
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // hacer ventana borderless movible
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanel_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(TopPanelLeft_MouseMove);
+            MouseDown += new System.Windows.Forms.MouseEventHandler(LabelTitulo_MouseMove);
+
+            // cargar los tres archivos escenciales y validar IDs
             CargarDatosComercio();
+            CargarStockInicial();
             CargarCantidadesAReponer();
+            RevisarIDs();
 
             // iniciar interfaz en la bienvenida
             botonBotonera = 0;
@@ -158,9 +153,11 @@ namespace AppComercio
         private void pbSalir_Click(object sender, EventArgs e)
         {
             DialogResult resultadoMSGbox = MessageBox.Show("¿Desea realmente salir?", "Atención", MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
-            if (resultadoMSGbox == DialogResult.Yes) LimpiezaSalida(); Application.Exit(); 
-
-
+            if (resultadoMSGbox == DialogResult.Yes)
+            {
+                LimpiezaArchivos();
+                Application.Exit();
+            }
         }
 
         private void pbMinimizar_Click(object sender, EventArgs e)
@@ -260,7 +257,7 @@ namespace AppComercio
                     panelReportesEntrega.Visible = false;
 
                     RefrescarStock();
-                    RefrescarEntregasStockIndustrias();
+                    RefrescarPedidosPendientesIndustriasyEstado();
 
                     dgwCantidadesAReponer.ReadOnly = false;
                     dgwCantidadesAReponer.Columns["ID"].ReadOnly = true;
@@ -395,7 +392,7 @@ namespace AppComercio
             }
         }
 
-        private void LimpiezaSalida()
+        private void LimpiezaArchivos()
         {
             File.Delete("PedidoTemporal.txt");
             File.Delete("PedidosAEnviar.txt");
@@ -404,9 +401,6 @@ namespace AppComercio
             File.Delete("lineaindividual.txt");
             File.Delete("EntregasStockIndustrias.txt");
             File.Delete("PedidosPendientes.txt");
-            File.Delete("CantidadesReposicionStock.txt");
-            File.Delete("DatosComercio.txt");
-            File.Delete("Stock.txt");
         }
 
         // ------------------ QoL: combobox selección -> foco a textbox cantidad -> enter. 2 clicks menos

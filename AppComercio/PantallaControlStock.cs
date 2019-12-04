@@ -16,10 +16,6 @@ namespace AppComercio
         private int cantidadProductosSobrecomprometidos = 0;
         private bool CARGAMESTOCK = false;
 
-        // --------------------  actualizar desde stock.txt, preparar dgwStock y combobox de ventas con el ID producto,
-        // --------------------  revisar (stock real + pendiente - comprometido) < punto rep, marcar en negrita el stock real bajo
-        // --------------------  habilitar boton de pedido de stock a industrias en base a este chequeo
-
         private void RefrescarStock()
         {
             tablaStock.Clear();
@@ -81,9 +77,7 @@ namespace AppComercio
             dgwStock.Refresh();
         }
 
-        // -------------------- leer EntregasStockIndustrias.txt, preparar dgwEntregasFabrica y en base al contenido de EntregasStockIndustrias.txt
-        // -------------------- habilitar o no el boton de cargar pedidos pendientes de entrega de fabrica en la pantalla de control de stock
-        private void RefrescarEntregasStockIndustrias()
+        private void RefrescarPedidosPendientesIndustriasyEstado()
         {
             if (tablaEntregas.Rows.Count > 0) btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             else btnCargarPedidosStockPendientesIndustrias.Enabled = false;
@@ -91,7 +85,6 @@ namespace AppComercio
             LabelEstadoLotes();
         }
 
-        // -------------------- boton aceptar pedidos pendientes de industrias/stock en pantalla de control de stock
         private void btnCargarPedidosStockPendientesIndustrias_Click(object sender, EventArgs e)
         {
             Dictionary<int, int> PedidosAreponer = new Dictionary<int, int>();
@@ -215,7 +208,7 @@ namespace AppComercio
                 dr1.Cells["Recepción"].Value = Convert.ToBoolean(0);
             }
 
-            RefrescarEntregasStockIndustrias();
+            RefrescarPedidosPendientesIndustriasyEstado();
             dgwEntregasFabrica.Refresh();
             dgwStock.Refresh();
         }

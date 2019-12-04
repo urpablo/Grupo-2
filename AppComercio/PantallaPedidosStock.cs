@@ -197,7 +197,7 @@ namespace AppComercio
             }
 
             dgwEntregasFabrica.Refresh();
-            RefrescarEntregasStockIndustrias();
+            RefrescarPedidosPendientesIndustriasyEstado();
         }
 
         private void LabelEstadoPedidos()

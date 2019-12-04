@@ -144,7 +144,6 @@ namespace AppComercio
 
                 dgwEntregados.Refresh();
                 dgwNoEntregados.Refresh();
-                
 
                 // ahora reviso si hay duplicados en los codigos de referencia del reporte cargado. Si hay, error
                 var BuscarDuplicadosEntregados = listaEntregados.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
@@ -175,7 +174,6 @@ namespace AppComercio
                     MessageBox.Show($"El reporte {nombreArchivoReporte} no contiene lotes devueltos o no entregados", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
-
                 }
             }
         }

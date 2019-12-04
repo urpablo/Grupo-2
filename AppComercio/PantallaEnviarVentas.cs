@@ -169,7 +169,6 @@ namespace AppComercio
                     MessageBox.Show($"Error de ID duplicado en inventario temporal. \n\n" +
                                     $"Presione aceptar para continuar. ", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-               
             }
 
             using (StreamWriter sw4 = new StreamWriter("StockTemporalSegundo.txt"))

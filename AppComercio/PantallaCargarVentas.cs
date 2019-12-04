@@ -62,7 +62,6 @@ namespace AppComercio
                 int.TryParse(itemLVI.SubItems[1].Text, out int cantidadAPedir);
                 if (cantidadAPedir == 0)
                 {
-                    MessageBox.Show("No se puede ingresar un pedido de un producto con 0 ventas. Ingrese nuevamente el pedido", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     fail = true;
                 }
             }
@@ -167,12 +166,13 @@ namespace AppComercio
                 btnGenerarTXTLote.Enabled = true;
                 limpiarPantallaCargarVentas();
                 cantidadVentasCargadas++;
-
-
+            }
+            else
+            {
+                MessageBox.Show("No se puede ingresar un pedido de un producto con 0 ventas. Ingrese nuevamente el pedido", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             limpiarPantallaCargarVentas();
-
         }
 
         // ----------------- boton limpiar pedidos de cargar ventas
