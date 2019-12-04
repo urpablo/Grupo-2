@@ -48,6 +48,7 @@ Todos los archivos que el programa crea para funcionar donde corre el ejecutable
 #### Pantalla "Cargar ventas a lote diario":
 - El botón "Agregar item al pedido" no se habilita si no hay un ingreso en el campo "Cantidad". Este campo solo permite números enteros positivos de hasta cuatro dígitos, sin espacios ni ningún otro tipo de caracter.
 - El botón "Confirmar pedido" se habilita si se ingresó un código de cliente (solo permite números enteros positivos de hasta 5 dígitos), una dirección de entrega (solo caracteres alfanuméricos) y si se ingresó al menos un producto para la venta a cargar.
+- No permite ingresar pedidos que contengan algún producto cuya cantidad sea 0. Fuerza reingreso de la venta.
 
 #### Pantalla "Enviar lote diario a logística"
 - No permite usar el botón "Enviar lote a logística" si no se ha cargado al menos una venta anteriormente.
