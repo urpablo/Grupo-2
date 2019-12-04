@@ -7,8 +7,8 @@ namespace AppComercio
 {
     public partial class Form1 : Form
     {
-        List<int> IDStock = new List<int>();
-        List<int> IDReposicion = new List<int>();
+        private List<int> IDStock = new List<int>();
+        private List<int> IDReposicion = new List<int>();
 
         // ------------------ validar y cargar datos del comercio
         private void CargarDatosComercio()
@@ -172,11 +172,11 @@ namespace AppComercio
                     IDDuplicado.Add(IDSpliteado);
                 }
                 var BuscarDuplicados = IDDuplicado.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
-                if (BuscarDuplicados.Count > 0) 
+                if (BuscarDuplicados.Count > 0)
                 {
                     IDDuplicados = true;
                 }
-                else 
+                else
                 {
                     IDStock = IDDuplicado;
                 }
@@ -371,15 +371,14 @@ namespace AppComercio
         }
 
         private void RevisarIDs()
-        {     
-            if (!IDStock.SequenceEqual(IDReposicion)) 
+        {
+            if (!IDStock.SequenceEqual(IDReposicion))
             {
                 MessageBox.Show($"Los archivos 'Stock.txt' y 'CantidadesReposicionStock.txt' no coinciden en los IDs de producto o en el orden en que los describen. Revise los archivos." +
                                 $"\n\nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
         }
-
 
         // no logro que cuitParseado.ToString().Length devuelva la cantidad de caracteres por algún motivo (un long rompe esa funcionalidad?)
         // pero este pedazo de codigo lo soluciona

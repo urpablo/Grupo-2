@@ -127,6 +127,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="EjemplosReportes\Entrega_C332_L117.txt" />
+    <Content Include="EjemplosReportes\Entrega_C340_L644.txt" />
     <Content Include="Stock.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

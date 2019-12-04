@@ -75,8 +75,6 @@ namespace AppComercio
             dgwStock.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgwEntregasFabrica.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dgwCantidadesAReponer.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-
-
         }
 
         // ------------------ carga del formulario -----------------------------
@@ -244,10 +242,11 @@ namespace AppComercio
                     labelAyuda.MaximumSize = new Size(140, 0);
                     labelAyuda.AutoSize = true;
                     labelAyuda.Text = "Aquí podemos ver la situación de stock actual y confirmar la entrada de los pedidos de stock, previamente habiendo hecho uno." +
-                                      "\n \nATENCION" +
+                                      "\n\nAtención:" +
                                       "\nSi ve un producto cuyo stock real está marcado en negrita, esto indica stock bajo. Haga el encargo a industrias." +
-                                      "\n\nLas cantidades de reposición por stock bajo pueden ser modificadas." +
-                                      "\n\nDebe recepcionar las entregas de stock de industrias antes de poder contar con dicho stock.";
+                                      "\n\nRecuerde:" +
+                                      "\nLas cantidades de reposición por stock bajo pueden ser modificadas." +
+                                      "\nDebe recepcionar las entregas de stock de industrias antes de poder contar con dicho stock.";
 
                     panelBienvenido.Visible = false;
                     panelStock.Visible = true;
@@ -294,7 +293,7 @@ namespace AppComercio
                     panelReportesEntrega.Visible = false;
 
                     RefrescarStock();
-                    LabelEstadoPedidos();
+                    RefrescarPedidosPendientesIndustriasyEstado();
 
                     break;
 
@@ -320,7 +319,7 @@ namespace AppComercio
                     panelVentasOnline.Visible = false;
                     panelReportesEntrega.Visible = false;
 
-                    LabelEstadoLotes();
+                    RefrescarPedidosPendientesIndustriasyEstado();
                     break;
 
                 case 4:

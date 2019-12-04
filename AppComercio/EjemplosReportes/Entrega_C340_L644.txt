@@ -1,0 +1,8 @@
+﻿R113;true
+R332;true
+R112;true
+R440;true
+R666;true
+R328;true
+R482;true
+R980;true

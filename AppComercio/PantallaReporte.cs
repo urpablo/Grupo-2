@@ -34,7 +34,7 @@ namespace AppComercio
                 {
                     MessageBox.Show($"El archivo {nombreArchivoReporte} está vacío." +
                                     $"\n \nSe lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    limpiezaValidacionesCarga();
+                    limpiarPantallaReporteEntrega();
                     ArchivoOK = false;
                 }
                 else // como no está vacío,
@@ -51,20 +51,15 @@ namespace AppComercio
                         foreach (var linea in lineasReporte)
                         {
                             string[] lineaSpliteada = linea.Split(';');
-                            foreach (var sublinea in lineaSpliteada)
+                            if(lineaSpliteada.Length == 2)
                             {
-                                if (sublinea.StartsWith("R") && int.TryParse(sublinea.Remove(0, 1), out int sublineaParseada))
-                                {
-                                    fallar = false;
-                                }
-                                else if ((sublinea.ToLower() == "true" || sublinea.ToLower() == "false"))
-                                {
-                                    fallar = false;
-                                }
-                                else
-                                {
-                                    fallar = true;
-                                }
+                                if (!lineaSpliteada[0].StartsWith("R")) fallar = true; // debe comenzar con R
+                                if(!int.TryParse(lineaSpliteada[0].Remove(0, 1), out int sublineaParseada)) fallar = true; //el número debe ser parseable, no hay un límite de referencias 
+                                if (!(lineaSpliteada[1].ToString() == "true" || lineaSpliteada[1].ToString() == "false")) fallar = true; // debe ser true o false
+                            }
+                            else
+                            {
+                                fallar = true; //la linea no tiene dos elementos como es esperado, o bien es una línea vacía
                             }
                         }
 
@@ -72,8 +67,8 @@ namespace AppComercio
                         if (fallar == true)
                         {
                             MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un formato incorrecto. " +
-                            "Debe tener líneas del estilo \n \n 'Rxxx;true' o bien 'Rxxx;false'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            limpiezaValidacionesCarga();
+                            "Debe tener líneas del estilo \n \n 'R[NroReferencia];true' o bien 'R[NroReferencia];false'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            limpiarPantallaReporteEntrega();
                         }
                         else
                         {
@@ -85,16 +80,15 @@ namespace AppComercio
                     else
                     {
                         MessageBox.Show($"El archivo {nombreArchivoReporte} tiene un nombre incorrecto, " +
-                        "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_Cxxx_Lxxx.txt'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        limpiezaValidacionesCarga();
+                        "o no es un archivo de texto. Debe ser del estilo \n \n'Entrega_C[CódigoCliente]_L[CódigoLote].txt'", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        limpiarPantallaReporteEntrega();
                         ArchivoOK = false;
                     }
                 }
             }
             else
             {
-                btnCargarStockNoEntregados.Enabled = false;
-                limpiezaValidacionesCarga();
+                limpiarPantallaReporteEntrega();
             }
 
             // pasadas las validaciones iniciales y teniendo un archivo válido,
@@ -155,7 +149,7 @@ namespace AppComercio
                                     $"Se lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
-                    limpiezaValidacionesCarga();
+                    limpiarPantallaReporteEntrega();
                 }
 
                 // chequeo por reporte vacío
@@ -164,7 +158,7 @@ namespace AppComercio
                     MessageBox.Show($"El reporte {nombreArchivoReporte} está vacío. \n \nSe lo descarta", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     BuscarDuplicadosEntregados.Clear();
                     BuscarDuplicadosNoEntregados.Clear();
-                    limpiezaValidacionesCarga();
+                    limpiarPantallaReporteEntrega();
                 }
 
                 //chequeo por todos verdaderos
@@ -340,7 +334,6 @@ namespace AppComercio
             tablaNoEntregados.Clear();
             dgwEntregados.Refresh();
             dgwNoEntregados.Refresh();
-            btnCargarStockNoEntregados.Enabled = false;
         }
 
         private void limpiarPantallaReporteEntrega()
@@ -349,6 +342,11 @@ namespace AppComercio
             tablaNoEntregados.Clear();
             textBoxCodClienteReporte.Clear();
             textBoxCodLoteReporte.Clear();
+            dgwEntregados.Refresh();
+            dgwNoEntregados.Refresh();
+            textBoxCodClienteReporte.Refresh();
+            textBoxCodLoteReporte.Refresh();
+            btnCargarStockNoEntregados.Enabled = false;
         }
     }
 }
