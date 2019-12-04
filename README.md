@@ -34,6 +34,8 @@ El programa opera con un inventario de diez productos distintos.
 
 - `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos, `IDproduto;Cantidad`), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
+- `DatosComercio.txt` y `CantidadesReposicionStock.txt` se validan uno contra el otro sobre la columna de IDs de producto, tanto en orden de los productos como en cantidad de productos totales, luego de pasar todas las validaciones que los harían válidos cada uno por separado. Ambos deben coincidir en este dato.
+
 Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución. Si alguno de los tres falla en su chequeo durante la carga, el programa se cierra con error fatal.
 
 Todos los archivos de salida como se muestran en el diagrama se guardan en la carpeta Grupo2 ubicada en la raíz de la unidad C. Si existe, borra el contenido (de la última ejecución), sino la crea.
@@ -92,6 +94,5 @@ Esta funcionalidad posee las siguientes validaciones:
 - Si se cargó un reporte cualquiera que no encuentra su par en la carpeta de salida, no permite su reingreso
 
 ### Varios
-
 Naturalmente es trabajo en progreso y es un concepto, no debería ser usado por ningún negocio real (momentaneamente)
 
