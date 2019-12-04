@@ -34,7 +34,7 @@ El programa opera con un inventario de diez productos distintos.
 
 - `CantidadesReposicionStock.txt` contiene las cantidades fijas a pedir a industrias por stock bajo que se cargan al iniciar el programa. Está validado por existencia del archivo, por cantidad de líneas (deben ser diez como el archivo de stock), por existencia del delimitador de split, por cantidad de items por línea (deben ser dos, `IDproduto;Cantidad`), por archivo vacío, por IDs duplicados y por posibilidad de parsear cada item de cada línea.
 
-- `DatosComercio.txt` y `CantidadesReposicionStock.txt` se validan uno contra el otro sobre la columna de IDs de producto, tanto en orden de los productos como en cantidad de productos totales, luego de pasar todas las validaciones que los harían válidos cada uno por separado. Ambos deben coincidir en este dato.
+`DatosComercio.txt` y `CantidadesReposicionStock.txt` se validan uno contra el otro sobre la columna de IDs de producto, tanto en orden de los productos como en cantidad de productos totales, luego de pasar todas las validaciones que los harían válidos cada uno por separado. Ambos deben coincidir en este dato.
 
 Estos tres archivos se copian siempre a la carpeta del ejecutable, vienen incluídos en la solución. Si alguno de los tres falla en su chequeo durante la carga, el programa se cierra con error fatal.
 
