@@ -111,7 +111,7 @@ Todos los archivos se copian automáticamente a la carpeta del ejecutable, aunqu
 	2. Restaure y agregue una segunda línea al archivo. Al abrir el programa tendrá un error sobre este archivo, que debe tener una sola línea.
 	3. Restaure y elimine esta segunda linea, ahora elimine uno de los delimitadores ';', o agregue uno más a la línea. Dará error al respecto, deben ser 5 items separados por 4 delimitadores.
 	4. Elimine todos los delimitadores. Dará error al respecto.
-	5. Restaure. Pruebe de cambiar la letra C del código de comercio, o el número por algo no numérico, o asignar un número mayor a 5 cifras. Dará error al respecto.
+	5. Restaure. Pruebe de cambiar la letra C del código de comercio, o el número por algo no numérico, o asignar un número mayor a 5 dígitos. Dará error al respecto.
 	6. Restaure. Pruebe de cambiar el CUIT a un largo distinto de 11 dígitos o agregarle algo no numérico. Dará error al respecto.
 
 - `CantidadesReposicionStock.txt`

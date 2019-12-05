@@ -111,7 +111,7 @@ namespace AppComercio
                 MessageBox.Show($"El archivo 'DatosComercio.txt' que contiene los datos del comercio " +
                                 $"no posee un número de CUIT correcto ni un código de comercio correcto. " +
                                 $"El CUIT Debe tener 11 dígitos y no tener guiones. " +
-                                $"El código de comercio debe comenzar con la letra C + un número menor a 5 dígitos." +
+                                $"El código de comercio debe comenzar con la letra C + un número menor o igual a 5 dígitos." +
                                 "\n\nNo se puede continuar. El programa se cerrará.", "Error fatal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
