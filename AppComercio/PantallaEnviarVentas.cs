@@ -86,7 +86,7 @@ namespace AppComercio
 
                     if (IdStock == IdPed)
                     {
-                        if (KStock > KPed)
+                        if (KStock >= KPed)
                         {
                             int sumact = KStock - KPed;
                             int sumcomp = kComp - KPed;

@@ -43,6 +43,7 @@ namespace AppComercio
             tablaEntregas.Columns.Add("ID", typeof(int));
             tablaEntregas.Columns.Add("Cantidad a Reponer", typeof(int));
             tablaEntregas.Columns.Add("Recepción", typeof(bool));
+            tablaEntregas.PrimaryKey = new System.Data.DataColumn[] { tablaEntregas.Columns["ID"] };
             tablaEntregados.Columns.Add("Código de referencia", typeof(string));
             tablaEntregados.Columns.Add("Entregado", typeof(bool));
             tablaNoEntregados.Columns.Add("Código de referencia", typeof(string));

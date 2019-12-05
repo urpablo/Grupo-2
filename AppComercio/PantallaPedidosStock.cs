@@ -183,12 +183,16 @@ namespace AppComercio
             {
                 valuesASD = linesASD[i].ToString().Split(';');
                 string[] row = new string[valuesASD.Length];
-
                 for (int j = 0; j < valuesASD.Length; j++)
                 {
                     row[j] = valuesASD[j].Trim();
                 }
                 tablaEntregas.Rows.Add(row);
+                //if (tablaEntregas.Rows.Contains(row[0])) 
+                //{
+                //    DataRow[] RowsActualizar = tablaEntregas.Select("ID='"+ row[0].ToString() +"'");
+                //    RowsActualizar[0]["Cantidad a Reponer"] = (int.Parse(RowsActualizar[0]["Cantidad a Reponer"].ToString()) + int.Parse(row[1])).ToString();
+                //}
             }
 
             foreach (DataGridViewRow dr1 in dgwEntregasFabrica.Rows)

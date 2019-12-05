@@ -19,7 +19,7 @@ namespace AppComercio
         private void RefrescarStock()
         {
             tablaStock.Clear();
-
+            int PendienteSuma = 0;
             string[] LineasStock = File.ReadAllLines(@"Stock.txt");
             string[] ValoresStock;
 
@@ -64,7 +64,8 @@ namespace AppComercio
                     cantidadProductosSobrecomprometidos++;
                 }
 
-                if (CARGAMESTOCK == true)
+                PendienteSuma = PendienteSuma + StockPendiente;
+                if (CARGAMESTOCK == true && PendienteSuma == 0)
                 {
                     btnGenerarTXTPedidoStockIndustrias.Enabled = true;
                 }
@@ -72,6 +73,8 @@ namespace AppComercio
                 {
                     btnGenerarTXTPedidoStockIndustrias.Enabled = false;
                 }
+
+                   
             }
 
             dgwStock.Refresh();
@@ -81,6 +84,7 @@ namespace AppComercio
         {
             if (tablaEntregas.Rows.Count > 0) btnCargarPedidosStockPendientesIndustrias.Enabled = true;
             else btnCargarPedidosStockPendientesIndustrias.Enabled = false;
+
             LabelEstadoPedidos();
             LabelEstadoLotes();
         }
